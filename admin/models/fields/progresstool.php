@@ -30,12 +30,23 @@ class JFormFieldProgressTool extends JFormFieldList
 	 */
 	protected function getOptions()
 	{
+	    // Get a db connection.
 		$db    = JFactory::getDBO();
+
+		// Create a new query object.
 		$query = $db->getQuery(true);
+
+		// Select all records from the progresstool table.
 		$query->select('id,greeting');
 		$query->from('#__progresstool');
+
+		// Reset the query using our newly populated query object.
 		$db->setQuery((string) $query);
+
+		// Load the results as a list of stdClass objects (will research later on)...
 		$messages = $db->loadObjectList();
+
+		// Declaring variable options array()
 		$options  = array();
 
 		if ($messages)
