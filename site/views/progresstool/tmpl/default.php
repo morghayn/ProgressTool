@@ -1,9 +1,9 @@
 <?php
 /**
  * @package     Joomla.Administrator
- * @subpackage  com_progressiontool
+ * @subpackage  com_progresstool
  */
-
+ 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 ?>

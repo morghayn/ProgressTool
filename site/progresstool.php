@@ -1,14 +1,14 @@
 <?php
 /**
  * @package     Joomla.Administrator
- * @subpackage  com_progressiontool
+ * @subpackage  com_progresstool
  */
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-// Get an instance of the controller prefixed by ProgressionTool
-$controller = JControllerLegacy::getInstance('ProgressionTool');
+// Get an instance of the controller prefixed by ProgressTool
+$controller = JControllerLegacy::getInstance('ProgressTool');
 
 // Perform the Request task
 $input = JFactory::getApplication()->input;

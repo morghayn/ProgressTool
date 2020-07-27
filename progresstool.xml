@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.0" method="upgrade">
 
-	<name>Progression Tool</name>
+	<name>Progress Tool!</name>
 	<!-- The following elements are optional and free of formatting constraints -->
 	<creationDate>July 2020</creationDate>
 	<author>Morgan Nolan</author>
@@ -12,7 +12,7 @@
 	<!--  The version string is recorded in the components table -->
 	<version>0.0.6</version>
 	<!-- The description is optional and defaults to the name -->
-	<description>Progression Tool for use with the OSS</description>
+	<description>Description of the Progress Tool component...</description>
 
 	<install> <!-- Runs on install -->
 		<sql>
@@ -37,7 +37,7 @@
 		in this section are copied from /site/ in the package -->
 	<files folder="site">
 		<filename>index.html</filename>
-		<filename>progressiontool.php</filename>
+		<filename>progresstool.php</filename>
 		<filename>controller.php</filename>
 		<folder>views</folder>
 		<folder>models</folder>
@@ -45,7 +45,7 @@
 
 	<administration>
 		<!-- Administration Menu Section -->
-		<menu link='index.php?option=com_progressiontool'>Progression Tool</menu>
+		<menu link='index.php?option=com_progresstool'>Progress Tool!</menu>
 		<!-- Administration Main File Copy Section -->
 		<!-- Note the folder attribute: This attribute describes the folder
 			to copy FROM in the package to install therefore files copied
@@ -53,9 +53,14 @@
 		<files folder="admin">
 			<!-- Admin Main File Copy Section -->
 			<filename>index.html</filename>
-			<filename>progressiontool.php</filename>
+			<filename>progresstool.php</filename>
 			<!-- SQL files section -->
 			<folder>sql</folder>
+			<!-- tables files section -->
+			<folder>tables</folder>
+			<!-- models files section -->
+			<folder>models</folder>
+
 		</files>
 	</administration>
 
