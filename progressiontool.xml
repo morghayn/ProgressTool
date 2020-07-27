@@ -10,7 +10,7 @@
 	<copyright>Copyright Info</copyright>
 	<license>License Info</license>
 	<!--  The version string is recorded in the components table -->
-	<version>0.0.1</version>
+	<version>0.0.4</version>
 	<!-- The description is optional and defaults to the name -->
 	<description>Progression Tool for use with the OSS</description>
 
@@ -27,6 +27,9 @@
 	<files folder="site">
 		<filename>index.html</filename>
 		<filename>progressiontool.php</filename>
+		<filename>controller.php</filename>
+		<folder>views</folder>
+		<folder>models</folder>
 	</files>
 
 	<administration>
