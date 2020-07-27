@@ -33,13 +33,13 @@ class ProgressionToolModelProgressionTool extends JModelItem
 
             switch ($id)
             {
-                case 1:
-                    $this->message = 'Hello World!';
-                    break;
                 case 2:
                     $this->message = 'Good Bye World!';
                     break;
                 default:
+                case 1:
+                    $this->message = 'Hello World!';
+                    break;
             }
         }
         return $this->message;
