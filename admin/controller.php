@@ -15,4 +15,5 @@
  */
 class ProgressToolController extends JControllerLegacy
 {
+    protected $default_view = 'administrator';
 }

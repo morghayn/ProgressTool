@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolModelProgressTool
+ * Class ProgressToolModelAdministrator
  *
  * Model for back-end administrator functionality.
  *
@@ -13,13 +13,13 @@
  * @link    https://github.com/morghayn
  * @license GNU General Public License version 2 or later; see LICENSE.txt
  */
-class ProgressToolModelProgressTool extends JModelItem
+class ProgressToolModelAdministrator extends JModelItem
 {
     /**
      * Retrieve survey questions.
      *
      * @return mixed survey questions.
-     * @since 0.0.9
+     * @since 0.1.2
      */
 	public function getQuestions()
 	{

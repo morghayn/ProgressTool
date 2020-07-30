@@ -1,5 +1,26 @@
 <?php defined('_JEXEC') or die; ?>
 
+<!--- Right side of administrator control panel --->
+
+<!--- // Side-tool-bar Buttons // --->
+<!----
+    -- Modify Question
+    -- Modify Choices
+    -- Position
+    ---- Up
+    ---- Down
+    ---- Position & Current Position
+    -- Colour
+    ---- Primary
+    ---- Secondary
+    -- Other
+    ---- Delete
+--->
+
+
+
+<!--- Left side of administrator control panel --->
+
 <?php foreach ($this->questions as $question): ?>
     <div class="box" style="background-color: #<?php echo $question->primary; ?>;">
         <h2 style="color: white;background-color: #<?php echo $question->secondary; ?>;"><?php echo $question->id . '. ' . $question->question; ?></h2>
@@ -15,3 +36,5 @@
         <?php endforeach; ?>
     </div>
 <?php endforeach; ?>
+
+<!-- New Question Button --->

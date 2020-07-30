@@ -1,19 +1,19 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolViewProgressTool
+ * Class ProgressToolViewAdministrator
  *
  * View for back-end administrator functionality.
  *
  * @package ProgressTool
  * @subpackage admin
- * @since 0.0.9
+ * @since 0.1.2
  *
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
  * @license GNU General Public License version 2 or later; see LICENSE.txt
  */
-class ProgressToolViewProgressTool extends JViewLegacy
+class ProgressToolViewAdministrator extends JViewLegacy
 {
     /**
      * Renders view.

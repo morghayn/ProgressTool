@@ -42,7 +42,7 @@ CREATE TABLE `#__preliminary_question`
 
 INSERT INTO `#__question` (`question`, `secondary`)
 VALUES ('Has your community hosted awareness activities surrounding the energy transition?', 'ff6600'),
-       ('Has there been exploratory discussions within the community about creating a renewable energy project?', '993399'),
+       ('Has there been exploratory discussions within the community about creating a renewable energy projectboard?', '993399'),
        ('Has a group been formed to manage the energy transition and any renewable energy projects in your community?', 'ff6600'),
        ('Has this group pursued any informal evaluation of the area to determine suitability?', '2dd280'),
        ('Do the local authorities know this group? Is the group registered as an SEC with SEAI?', 'ff6600'),
@@ -65,7 +65,7 @@ VALUES (1, 'No'),
        (3, 'Yes, the goals and the values of the group have been outlined'),
        (3, 'Yes, the group has been officially founded as an association'),
        (4, 'No'),
-       (4, 'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel '),
+       (4, 'Yes, the group has investigated local resources that may be suitable for a RE projectboard, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel '),
        (4, 'Yes, the group has looked into grid connection feasibility'),
        (4, 'Yes, the group has consulted with ICEI for advise on the matter'),
        (5, 'No'),
@@ -81,5 +81,5 @@ VALUES (1, 'No'),
 
 INSERT INTO `#__preliminary_question` (`question`)
 VALUES ('Has the group an idea of what they can do?'),
-       ('Will the project be viable? Will the income generated cover the costs of the project?'),
+       ('Will the projectboard be viable? Will the income generated cover the costs of the projectboard?'),
        ('Has the group sought advice from other groups, and are they interested to do so?');
