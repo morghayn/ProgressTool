@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.0" method="upgrade">
 
-	<name>Progress Tool!</name>
+	<name>Progress Tool</name>
 	<creationDate>July 2020</creationDate>
 	<author>Morgan Nolan</author>
 	<authorEmail>morgan.nolan@hotmail.com</authorEmail>
 	<authorUrl>https://github.com/morghayn</authorUrl>
 	<copyright>Copyright Info</copyright>
 	<license>License Info</license>
-	<version>0.0.6</version>
+	<version>0.1.1</version>
 	<description>Progress Tool</description>
 
 	<install>
@@ -36,15 +36,28 @@
 		<folder>models</folder>
 	</files>
 
+	<languages folder="site/language">
+		<language tag="en-GB">en-GB/en-GB.com_progresstool.ini</language>
+	</languages>
+
+	<media destination="com_progresstool" folder="media">
+		<folder>css</folder>
+	</media>
+
 	<administration>
 		<menu link='index.php?option=com_progresstool'>Progress Tool!</menu>
 		<files folder="admin">
 			<filename>index.html</filename>
 			<filename>progresstool.php</filename>
+			<filename>controller.php</filename>
+			<folder>views</folder>
 			<folder>sql</folder>
-			<folder>tables</folder>
 			<folder>models</folder>
 		</files>
+		<languages folder="admin/language">
+			<language tag="en-GB">en-GB/en-GB.com_progresstool.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_progresstool.sys.ini</language>
+		</languages>
 	</administration>
 
 </extension>

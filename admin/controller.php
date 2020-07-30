@@ -3,10 +3,10 @@
 /**
  * Class ProgressToolController
  *
- * Main component controller for the component's front-end.
+ * Main component controller for the component's back-end.
  *
  * @package ProgressTool
- * @subpackage site
+ * @subpackage admin
  * @since 0.0.1
  *
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
