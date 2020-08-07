@@ -8,7 +8,7 @@
 	<authorUrl>https://github.com/morghayn</authorUrl>
 	<copyright>Copyright Info</copyright>
 	<license>License Info</license>
-	<version>0.1.2</version>
+	<version>0.2.1</version>
 	<description>Progress Tool</description>
 
 	<install>
@@ -42,6 +42,7 @@
 
 	<media destination="com_progresstool" folder="media">
 		<folder>css</folder>
+		<folder>js</folder>
 	</media>
 
 	<administration>

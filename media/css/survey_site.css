@@ -1,0 +1,233 @@
+/*
+        ========================================================
+                            Survey Func
+        ========================================================
+ */
+
+.questionChoiceContainer {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: auto auto 5em auto;
+
+    border: 0.35em solid deeppink;
+    border-radius: 0.75rem;
+
+    box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
+    -webkit-box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
+    -moz-box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
+
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
+.questionContainer {
+    margin: 0 auto;
+    width: 100%;
+    color: #ffffff;
+}
+
+.question {
+    margin: 0 auto;
+    width: 95%;
+    padding: 1.15rem 0 1.15rem 0;
+
+    line-height: 1.1;
+    font-size: 1.6em;
+    font-weight: 600;
+}
+
+.choicesContainer {
+    width: 90%;
+    height: 100%;
+    margin: 1rem auto 1rem auto;
+
+    display: flex;
+    flex-direction: column;
+
+    /** for debug
+    background-color: aliceblue;
+     */
+}
+
+.choicesContainer {
+    --labelRadius: 10px;
+    --choiceSize: 50px;
+    --choiceBorderWidth: 2px;
+    --choiceColour: #000000;
+    --choiceIndent: 2em;
+    --choiceTickWidth: 2px;
+    --choiceTickColour: #ffffff;
+    --labelColour: #ffffff;
+    --choiceDisplay: inline-flex;
+
+    /* outline */
+    --outlineColour: #000000;
+    --outlineWidth: 3px;
+    --outlineOffset: 5px;
+
+    /* disabled */
+    --choiceCursorDisabled: not-allowed;
+    --choiceOpacityDisabled: 0.24;
+}
+
+.choiceContainer {
+    margin: 0.5rem auto 0.5rem 0;
+    display: var(--choiceDisplay);
+    position: relative;
+}
+
+.choice {
+    margin: auto;
+    color: #000000;
+    line-height: 1.25;
+    font-size: 1.25em;
+    font-weight: 500;
+}
+
+.choice::before {
+    opacity: 0;
+}
+
+.choiceInput {
+    /*
+      The pattern by Sara Soueidan https://www.sarasoueidan.com/blog/inclusively-hiding-and-styling-checkboxes-and-radio-buttons/
+    */
+    width: var(--choiceSize);
+    height: var(--choiceSize);
+    opacity: 0;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+}
+
+/* 1. Calculation of the gap for the custom checkbox */
+.choiceLabel {
+    display: inline-flex;
+    min-height: var(--choiceSize);
+    padding-left: calc(var(--choiceSize) + var(--choiceIndent));
+}
+
+.choiceInput:not(:disabled) ~ .choiceLabel {
+    cursor: pointer;
+}
+
+/* 1. Ems helps to calculate size of the checkbox */
+.choiceLabel::before,
+.choiceLabel::after {
+    content: "";
+    box-sizing: border-box;
+
+    /** Size of checkbox... */
+    width: 1em;
+    height: 1em;
+    font-size: var(--choiceSize); /* 1 */
+
+    /* can put margin-top here to move box, but then tick positioning is skewed */
+    position: absolute;
+    left: 0;
+}
+
+.choiceLabel::before {
+    border: var(--choiceBorderWidth) solid var(--choiceColour);
+    z-index: 2;
+}
+
+.choiceInput:not(:disabled) ~ .choiceLabel::after {
+    background-color: var(--choiceColour);
+    opacity: 0;
+}
+
+.choiceInput:not(:disabled):checked ~ .choiceLabel::after {
+    opacity: 1;
+}
+
+/* The arrow size and position depends from sizes of square because I needed an arrow correct positioning from the top left corner of the element choice
+    1. Ems helps to calculate size and position of the arrow */
+.choiceInput:not(:disabled) ~ .choiceLabel .choice::before {
+    content: "";
+    width: 0;
+    height: 0;
+    font-size: var(--choiceSize); /* 1 */
+
+    border-left-width: 0;
+    border-bottom-width: 0;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-color: var(--choiceTickColour);
+
+    position: absolute;
+    /** Useless? */
+    top: .5428em;
+    left: .25em;
+    z-index: 3;
+
+    transform-origin: left top;
+    transform: rotate(-40deg) skew(10deg);
+}
+
+.choiceInput:not(:disabled):checked ~ .choiceLabel .choice::before {
+    width: .4em;
+    height: .2em;
+    border-left-width: var(--choiceTickWidth);
+    border-bottom-width: var(--choiceTickWidth);
+}
+
+/*
+        ========================================================
+                                States
+        ========================================================
+ */
+
+/* focus state */
+.choiceContainer:focus-within {
+    outline: var(--outlineWidth) solid var(--outlineColour);
+    outline-offset: var(--outlineOffset);
+}
+
+/* The demo skin */
+.choiceLabel::before,
+.choiceLabel::after {
+    border-radius: var(--labelRadius);
+    background-color: var(--labelColour);
+}
+
+/* The animation of switching states */
+.choiceInput:not(:disabled) ~ .choiceLabel::before,
+.choiceInput:not(:disabled) ~ .choiceLabel::after {
+    opacity: 1;
+    transform-origin: center center;
+    will-change: transform;
+    transition: transform .2s ease-out;
+}
+
+.choiceInput:not(:disabled) ~ .choiceLabel::before {
+    transform: rotateY(0deg);
+    transition-delay: .2s;
+}
+
+.choiceInput:not(:disabled) ~ .choiceLabel::after {
+    transform: rotateY(90deg);
+}
+
+.choiceInput:not(:disabled):checked ~ .choiceLabel::before {
+    transform: rotateY(-90deg);
+    transition-delay: 0s;
+}
+
+.choiceInput:not(:disabled):checked ~ .choiceLabel::after {
+    transform: rotateY(0deg);
+    transition-delay: .2s;
+}
+
+.choiceInput:not(:disabled):checked ~ .choiceLabel .choice::before {
+    opacity: 1;
+    transition: opacity .1s ease-out .3s, width .1s ease-out .5s, height .2s ease-out .3s;
+}
+
+/* disabled state */
+.choiceInput:disabled ~ .choiceLabel {
+    opacity: var(--choiceOpacityDisabled);
+    cursor: var(--choiceCursorDisabled);
+}

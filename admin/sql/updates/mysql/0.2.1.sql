@@ -48,7 +48,7 @@ CREATE TABLE `#__project_question_choice`
 (
     `project_id` INT(11) NOT NULL,
     `choice_id`  INT(11) NOT NULL,
-    PRIMARY KEY (project_id, choice_id),
+    CONSTRAINT id PRIMARY KEY (project_id, choice_id),
     FOREIGN KEY (project_id) REFERENCES `#__project` (id),
     FOREIGN KEY (choice_id) REFERENCES `#__question_choice` (id)
 )

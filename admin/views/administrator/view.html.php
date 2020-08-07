@@ -16,31 +16,46 @@
 class ProgressToolViewAdministrator extends JViewLegacy
 {
     /**
-     * Renders view.
+     * Display the Hello World view
      *
-     * @param null $tpl use default template.
-     * @since 0.0.9
+     * @param string $tpl The name of the template file to parse; automatically searches through the template paths.
+     *
+     * @return  void
      */
     function display($tpl = null)
     {
+        $projectId = 2;
+        $model = $this->getModel();
+        $this->dirtyImp = $model->getSelected($projectId);
+
         $this->questions = array();
         $this->questions = $this->get('Questions');
 
-        $this->question_choices = array();
-        $this->question_choices = $this->get('Choices');
+        $this->choices = array();
+        $this->choices = $this->get('Choices');
 
+        // Adding CSS and JS
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/survey_admin.css");
-
-        /* Check for errors.
-        if (count($errors = $this->get('Errors')))
-        {
-            JLog::add(implode('<br />', $errors), JLog::WARNING, 'jerror');
-
-            return false;
-        } */
+        $document->addScript(JURI::root() . "media/com_progresstool/js/survey_site.js");
 
         // Display the view
         parent::display($tpl);
+        /**
+         * // Get data from the model
+         * $this->items        = $this->get('Items');
+         * $this->pagination    = $this->get('Pagination');
+         *
+         * // Check for errors.
+         * if (count($errors = $this->get('Errors')))
+         * {
+         * JError::raiseError(500, implode('<br />', $errors));
+         *
+         * return false;
+         * }
+         *
+         * // Display the template
+         * parent::display($tpl);
+         */
     }
 }

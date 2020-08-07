@@ -27,7 +27,7 @@ class ProgressToolViewPreliminary extends JViewLegacy
 	    $this->questions = $this->get('Questions');
 
         $document = JFactory::getDocument();
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/survey_site.css"); // TODO: change at some point
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/preliminary.css");
 
 		// Display the view
 		parent::display($tpl);
