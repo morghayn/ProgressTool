@@ -4,88 +4,151 @@
         ========================================================
  */
 
-/* TODO change names */
-.button-box {
-    width: 100%;
-    text-align: center;
+.buttonBox {
+    align-self: center;
+    width: 85%;
+    display: flex;
+    margin-top: 0.75rem;
+    margin-bottom: 2.5rem;
 }
 
-.space {
-    display: inline-block;
-    width: 10%;
-    height: 25px;
-    background-color: blue;
-}
-
-.test {
-    width: 40%;
-    margin: 35px auto;
-    display: inline-block;
-    padding: 0.5em 3em;
-    border: 0.16em solid #2dd280;
-    color: #2dd280;
-    background-color: #fff;
+.button {
+    width: 37%;
+    margin: 0 auto;
+    padding: 0.75em 0em;
+    /**
+    border: 0.16em solid #66ff8c;
+     */
+    border: 2px dashed #66ff8c;
+    color: #000000;
+    background-color: rgba(102, 255, 140, 0.5);
     box-sizing: border-box;
     text-decoration: none;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 1.15rem;
+    font-weight: 400;
     text-align: center;
+
+    border-radius: 5px;
+
+    box-shadow: 10px 10px 14px 0px rgba(0,0,0,0.15);
+    -webkit-box-shadow: 10px 10px 14px 0px rgba(0,0,0,0.15);
+    -moz-box-shadow: 10px 10px 14px 0px rgba(0,0,0,0.15);
 }
 
-.test:hover:enabled {
-    color: #000;
-    border-color: #000;
-    background-color: #2dd280;
+.button:hover:enabled {
+    color: #000000;
+    border-color: #000000;
+    background-color: #66ff8c;
 }
 
-.test:active:enabled {
-    color: #2dd280;
-    border-color: #2dd280;
+.button:active:enabled {
+    color: #66ff8c;
+    border-color: #66ff8c;
     background-color: #fff;
 }
 
-.test:disabled {
+.button:disabled {
     cursor: not-allowed;
-    color: #f45368;
-    border-color: #f45368;
+    color: #ffffff;
+    border-color: #000000;
+    background-color: rgba(255, 102, 102, 0.5);
 }
 
 /*
         ========================================================
-                            Everything Else
+                     Project Activation Container
         ========================================================
  */
 
-.box {
-    line-height: 3;
-    background-color: #ffffff;
-    color: #ff6600;
+.projectActivationContainer {
+    width: 80%;
     display: flex;
     flex-direction: column;
+    margin: auto auto 5em auto;
+
+    border: 0.35em solid deeppink;
+    border-radius: 0.75rem;
+
+    box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
+    -webkit-box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
+    -moz-box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
+
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
+.titleContainer {
     margin: 0 auto;
+    width: 100%;
+    color: #ffffff;
+    text-align: center;
 }
 
-.box span {
-    font-size: 1.2rem;
-    font-weight: 700;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+.title {
+    margin: 0 auto;
+    width: 95%;
+    padding: 1.15rem 0 1.15rem 0;
+
+    line-height: 1.1;
+    font-size: 1.9em;
+    font-weight: 600;
 }
 
-.toggle {
-    --uiToggleSize: var(--toggleSize, 1.25rem);
-    --uiToggleBorderWidth: var(--toggleBorderWidth, 2px);
-    --uiToggleColor: var(--toggleColor, #222);
+.questionsContainer {
+    width: 90%;
+    height: 100%;
+    margin: 1.75rem auto 1rem auto;
 
-    display: var(--toggleDisplay, inline-flex);
+    display: flex;
+    flex-direction: column;
+
+    --labelRadius: 10px;
+    --choiceSize: 50px;
+    --choiceBorderWidth: 2px;
+    --choiceColour: #000000;
+    --choiceIndent: 2em;
+    --choiceTickWidth: 2px;
+    --choiceTickColour: #ffffff;
+    --labelColour: #ffffff;
+    --choiceDisplay: inline-flex;
+
+    /* outline */
+    --outlineColour: #000000;
+    --outlineWidth: 3px;
+    --outlineOffset: 5px;
+
+    /* disabled */
+    --choiceCursorDisabled: not-allowed;
+    --choiceOpacityDisabled: 0.24;
+
+    /** for debug
+    background-color: aliceblue;
+     */
+}
+
+.questionContainer {
+    margin: 1.1rem auto 1.1rem 0;
+    display: var(--choiceDisplay);
     position: relative;
 }
 
-.toggle_input {
-    /* The pattern by Sara Soueidan https://www.sarasoueidan.com/blog/inclusively-hiding-and-styling-checkboxes-and-radio-buttons/ */
-    width: var(--uiToggleSize);
-    height: var(--uiToggleSize);
+.question {
+    margin: auto;
+    color: #000000;
+    line-height: 1.25;
+    font-size: 1.45em;
+    font-weight: 500;
+}
+
+.question::before {
+    opacity: 0;
+}
+
+.questionInput {
+    /*
+      The pattern by Sara Soueidan https://www.sarasoueidan.com/blog/inclusively-hiding-and-styling-checkboxes-and-radio-buttons/
+    */
+    width: var(--choiceSize);
+    height: var(--choiceSize);
     opacity: 0;
 
     position: absolute;
@@ -95,64 +158,62 @@
 }
 
 /* 1. Calculation of the gap for the custom checkbox */
-.toggle_label {
+.questionLabel {
     display: inline-flex;
-    min-height: var(--uiToggleSize);
-    padding-left: calc(var(--uiToggleSize) + var(--toggleIndent, .4em));
+    min-height: var(--choiceSize);
+    padding-left: calc(var(--choiceSize) + var(--choiceIndent));
 }
 
-.toggle_input:not(:disabled) ~ .toggle_label {
+.questionInput:not(:disabled) ~ .questionLabel {
     cursor: pointer;
 }
 
 /* 1. Ems helps to calculate size of the checkbox */
-.toggle_label::before,
-.toggle_label::after {
+.questionLabel::before,
+.questionLabel::after {
     content: "";
     box-sizing: border-box;
+
+    /** Size of checkbox... */
     width: 1em;
     height: 1em;
-    font-size: var(--uiToggleSize); /* 1 */
+    font-size: var(--choiceSize); /* 1 */
 
+    /* can put margin-top here to move box, but then tick positioning is skewed */
     position: absolute;
     left: 0;
-    top: 0;
 }
 
-.toggle_label::before {
-    border: var(--uiToggleBorderWidth) solid var(--uiToggleColor);
+.questionLabel::before {
+    border: var(--choiceBorderWidth) solid var(--choiceColour);
     z-index: 2;
 }
 
-.toggle_input:not(:disabled) ~ .toggle_label::after {
-    background-color: var(--uiToggleColor);
+.questionInput:not(:disabled) ~ .questionLabel::after {
+    background-color: var(--choiceColour);
     opacity: 0;
 }
 
-.toggle_input:not(:disabled):checked ~ .toggle_label::after {
+.questionInput:not(:disabled):checked ~ .questionLabel::after {
     opacity: 1;
 }
 
-.toggle_text {
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-/* The arrow size and position depends from sizes of square because I needed an arrow correct positioning from the top left corner of the element toggle
+/* The arrow size and position depends from sizes of square because I needed an arrow correct positioning from the top left corner of the element choice
     1. Ems helps to calculate size and position of the arrow */
-.toggle_input:not(:disabled) ~ .toggle_label .toggle_text::before {
+.questionInput:not(:disabled) ~ .questionLabel .question::before {
     content: "";
     width: 0;
     height: 0;
-    font-size: var(--uiToggleSize); /* 1 */
+    font-size: var(--choiceSize); /* 1 */
 
     border-left-width: 0;
     border-bottom-width: 0;
     border-left-style: solid;
     border-bottom-style: solid;
-    border-color: var(--toggleArrowColor, #ffffff);
+    border-color: var(--choiceTickColour);
 
     position: absolute;
+    /** Useless? */
     top: .5428em;
     left: .25em;
     z-index: 3;
@@ -161,90 +222,67 @@
     transform: rotate(-40deg) skew(10deg);
 }
 
-.toggle_input:not(:disabled):checked ~ .toggle_label .toggle_text::before {
-    --uiToggleArrowWidth: var(--toggleArrowWidth, 2px);
-
+.questionInput:not(:disabled):checked ~ .questionLabel .question::before {
     width: .4em;
     height: .2em;
-    border-left-width: var(--uiToggleArrowWidth);
-    border-bottom-width: var(--uiToggleArrowWidth);
+    border-left-width: var(--choiceTickWidth);
+    border-bottom-width: var(--choiceTickWidth);
 }
 
-/* States */
+/*
+        ========================================================
+                                States
+        ========================================================
+ */
 
 /* focus state */
-.toggle:focus-within {
-    outline: var(--toggleOutlineWidthFocus, 3px) solid var(--toggleOutlineColorFocus, currentColor);
-    outline-offset: var(--toggleOutlineOffsetFocus, 5px);
-}
-
-/* disabled state */
-.toggle_input:disabled ~ .toggle_label {
-    opacity: var(--toggleOpacityDisabled, .24);
-    cursor: var(--toggleCursorDisabled, not-allowed);
+.questionContainer:focus-within {
+    outline: var(--outlineWidth) solid var(--outlineColour);
+    outline-offset: var(--outlineOffset);
 }
 
 /* The demo skin */
-.toggle_label::before,
-.toggle_label::after {
-    border-radius: var(--toggleBorderRadius, 2px);
+.questionLabel::before,
+.questionLabel::after {
+    border-radius: var(--labelRadius);
+    background-color: var(--labelColour);
 }
 
 /* The animation of switching states */
-.toggle_input:not(:disabled) ~ .toggle_label::before,
-.toggle_input:not(:disabled) ~ .toggle_label::after {
+.questionInput:not(:disabled) ~ .questionLabel::before,
+.questionInput:not(:disabled) ~ .questionLabel::after {
     opacity: 1;
     transform-origin: center center;
     will-change: transform;
     transition: transform .2s ease-out;
 }
 
-.toggle_input:not(:disabled) ~ .toggle_label::before {
+.questionInput:not(:disabled) ~ .questionLabel::before {
     transform: rotateY(0deg);
     transition-delay: .2s;
 }
 
-.toggle_input:not(:disabled) ~ .toggle_label::after {
+.questionInput:not(:disabled) ~ .questionLabel::after {
     transform: rotateY(90deg);
 }
 
-.toggle_input:not(:disabled):checked ~ .toggle_label::before {
+.questionInput:not(:disabled):checked ~ .questionLabel::before {
     transform: rotateY(-90deg);
     transition-delay: 0s;
 }
 
-.toggle_input:not(:disabled):checked ~ .toggle_label::after {
+.questionInput:not(:disabled):checked ~ .questionLabel::after {
     transform: rotateY(0deg);
     transition-delay: .2s;
 }
 
-.toggle_text::before {
-    opacity: 0;
-}
-
-.toggle_input:not(:disabled):checked ~ .toggle_label .toggle_text::before {
+.questionInput:not(:disabled):checked ~ .questionLabel .question::before {
     opacity: 1;
     transition: opacity .1s ease-out .3s, width .1s ease-out .5s, height .2s ease-out .3s;
 }
 
-.toggle {
-    --toggleColor: #ff6600;
-    --toggleBackgroundColor: #ff7300;
-    --toggleSize: 50px;
-}
-
-.toggle {
-    margin-left: 1.75rem;
-    margin-right: 1.75rem;
-}
-
-.page_toggle {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #ff6600;
-}
-
-.page_toggle:nth-child(n+2) {
-    margin-top: .75rem;
-    margin-bottom: .75rem;
+/* disabled state */
+.questionInput:disabled ~ .questionLabel {
+    opacity: var(--choiceOpacityDisabled);
+    cursor: var(--choiceCursorDisabled);
 }

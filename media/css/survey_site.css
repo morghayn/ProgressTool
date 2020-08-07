@@ -1,10 +1,56 @@
 /*
         ========================================================
-                            Survey Func
+                            Button Box
         ========================================================
  */
 
-.questionChoiceContainer {
+.buttonBox {
+    align-self: center;
+    width: 90%;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.button {
+    width: 30%;
+    margin: 0 auto;
+    padding: 0.75em 0em;
+    border: 0.16em solid #2dd280;
+    color: #2dd280;
+    background-color: #fff;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.button:hover:enabled {
+    color: #000;
+    border-color: #000;
+    background-color: #2dd280;
+}
+
+.button:active:enabled {
+    color: #2dd280;
+    border-color: #2dd280;
+    background-color: #fff;
+}
+
+.button:disabled {
+    cursor: not-allowed;
+    color: #f45368;
+    border-color: #f45368;
+}
+
+/*
+        ========================================================
+                     Project Activation Container
+        ========================================================
+ */
+
+.projectActivationContainer {
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -20,13 +66,14 @@
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
 }
 
-.questionContainer {
+.titleContainer {
     margin: 0 auto;
     width: 100%;
     color: #ffffff;
+    text-align: center;
 }
 
-.question {
+.title {
     margin: 0 auto;
     width: 95%;
     padding: 1.15rem 0 1.15rem 0;
@@ -36,7 +83,7 @@
     font-weight: 600;
 }
 
-.choicesContainer {
+.questionsContainer {
     width: 90%;
     height: 100%;
     margin: 1rem auto 1rem auto;
@@ -44,12 +91,6 @@
     display: flex;
     flex-direction: column;
 
-    /** for debug
-    background-color: aliceblue;
-     */
-}
-
-.choicesContainer {
     --labelRadius: 10px;
     --choiceSize: 50px;
     --choiceBorderWidth: 2px;
@@ -68,27 +109,31 @@
     /* disabled */
     --choiceCursorDisabled: not-allowed;
     --choiceOpacityDisabled: 0.24;
+
+    /** for debug
+    background-color: aliceblue;
+     */
 }
 
-.choiceContainer {
-    margin: 0.5rem auto 0.5rem 0;
+.questionContainer {
+    margin: 1.5rem auto 1.5rem 0;
     display: var(--choiceDisplay);
     position: relative;
 }
 
-.choice {
+.question {
     margin: auto;
     color: #000000;
     line-height: 1.25;
-    font-size: 1.25em;
+    font-size: 1.3em;
     font-weight: 500;
 }
 
-.choice::before {
+.question::before {
     opacity: 0;
 }
 
-.choiceInput {
+.questionInput {
     /*
       The pattern by Sara Soueidan https://www.sarasoueidan.com/blog/inclusively-hiding-and-styling-checkboxes-and-radio-buttons/
     */
@@ -103,19 +148,19 @@
 }
 
 /* 1. Calculation of the gap for the custom checkbox */
-.choiceLabel {
+.questionLabel {
     display: inline-flex;
     min-height: var(--choiceSize);
     padding-left: calc(var(--choiceSize) + var(--choiceIndent));
 }
 
-.choiceInput:not(:disabled) ~ .choiceLabel {
+.questionInput:not(:disabled) ~ .questionLabel {
     cursor: pointer;
 }
 
 /* 1. Ems helps to calculate size of the checkbox */
-.choiceLabel::before,
-.choiceLabel::after {
+.questionLabel::before,
+.questionLabel::after {
     content: "";
     box-sizing: border-box;
 
@@ -129,23 +174,23 @@
     left: 0;
 }
 
-.choiceLabel::before {
+.questionLabel::before {
     border: var(--choiceBorderWidth) solid var(--choiceColour);
     z-index: 2;
 }
 
-.choiceInput:not(:disabled) ~ .choiceLabel::after {
+.questionInput:not(:disabled) ~ .questionLabel::after {
     background-color: var(--choiceColour);
     opacity: 0;
 }
 
-.choiceInput:not(:disabled):checked ~ .choiceLabel::after {
+.questionInput:not(:disabled):checked ~ .questionLabel::after {
     opacity: 1;
 }
 
 /* The arrow size and position depends from sizes of square because I needed an arrow correct positioning from the top left corner of the element choice
     1. Ems helps to calculate size and position of the arrow */
-.choiceInput:not(:disabled) ~ .choiceLabel .choice::before {
+.questionInput:not(:disabled) ~ .questionLabel .question::before {
     content: "";
     width: 0;
     height: 0;
@@ -167,7 +212,7 @@
     transform: rotate(-40deg) skew(10deg);
 }
 
-.choiceInput:not(:disabled):checked ~ .choiceLabel .choice::before {
+.questionInput:not(:disabled):checked ~ .questionLabel .question::before {
     width: .4em;
     height: .2em;
     border-left-width: var(--choiceTickWidth);
@@ -181,53 +226,53 @@
  */
 
 /* focus state */
-.choiceContainer:focus-within {
+.questionContainer:focus-within {
     outline: var(--outlineWidth) solid var(--outlineColour);
     outline-offset: var(--outlineOffset);
 }
 
 /* The demo skin */
-.choiceLabel::before,
-.choiceLabel::after {
+.questionLabel::before,
+.questionLabel::after {
     border-radius: var(--labelRadius);
     background-color: var(--labelColour);
 }
 
 /* The animation of switching states */
-.choiceInput:not(:disabled) ~ .choiceLabel::before,
-.choiceInput:not(:disabled) ~ .choiceLabel::after {
+.questionInput:not(:disabled) ~ .questionLabel::before,
+.questionInput:not(:disabled) ~ .questionLabel::after {
     opacity: 1;
     transform-origin: center center;
     will-change: transform;
     transition: transform .2s ease-out;
 }
 
-.choiceInput:not(:disabled) ~ .choiceLabel::before {
+.questionInput:not(:disabled) ~ .questionLabel::before {
     transform: rotateY(0deg);
     transition-delay: .2s;
 }
 
-.choiceInput:not(:disabled) ~ .choiceLabel::after {
+.questionInput:not(:disabled) ~ .questionLabel::after {
     transform: rotateY(90deg);
 }
 
-.choiceInput:not(:disabled):checked ~ .choiceLabel::before {
+.questionInput:not(:disabled):checked ~ .questionLabel::before {
     transform: rotateY(-90deg);
     transition-delay: 0s;
 }
 
-.choiceInput:not(:disabled):checked ~ .choiceLabel::after {
+.questionInput:not(:disabled):checked ~ .questionLabel::after {
     transform: rotateY(0deg);
     transition-delay: .2s;
 }
 
-.choiceInput:not(:disabled):checked ~ .choiceLabel .choice::before {
+.questionInput:not(:disabled):checked ~ .questionLabel .question::before {
     opacity: 1;
     transition: opacity .1s ease-out .3s, width .1s ease-out .5s, height .2s ease-out .3s;
 }
 
 /* disabled state */
-.choiceInput:disabled ~ .choiceLabel {
+.questionInput:disabled ~ .questionLabel {
     opacity: var(--choiceOpacityDisabled);
     cursor: var(--choiceCursorDisabled);
 }
