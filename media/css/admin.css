@@ -1,0 +1,68 @@
+/*
+        ========================================================
+                       Overriding Joomla's CSS
+        ========================================================
+ */
+
+.container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.subhead, .subhead-collapse, .header, .btn-subhead {
+    display: none;
+}
+
+/*
+        ========================================================
+                              Sidebar
+        ========================================================
+ */
+
+.sidebar {
+    margin-top: 30px;
+    position: fixed;
+    height: 100%;
+    width: 25%;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: black;
+}
+
+.sidebarSection {
+    width: 100%;
+    background-color: aquamarine;
+    height: 17%;
+
+    /*
+    need to add this to survey_site.css? to align text but do i?
+     */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /** for debug aesthetics */
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
+}
+
+/*
+        ========================================================
+                              Questions
+        ========================================================
+ */
+
+.questions {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 25%;
+    height: 100%;
+    width: 75%;
+
+    right: 0;
+    padding-top: 10vh;
+
+    background-color: white;
+}

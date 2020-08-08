@@ -30,6 +30,8 @@ class ProgressToolViewPreliminary extends JViewLegacy
 	    // Adding CSS
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/preliminary.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterChest.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/optionsChest.css");
 
 		// Display the view
 		parent::display($tpl);

@@ -1,119 +1,11 @@
-/*
-        ========================================================
-                       Overriding Joomla's CSS
-        ========================================================
- */
-
-.chest-fluid {
-    padding-right: 0;
-    padding-left: 0;
-}
-
-.subhead, .subhead-collapse, .header, .btn-subhead {
-    display: none;
-}
-
-/*
-        ========================================================
-                              Sidebar
-        ========================================================
- */
-
-.sidebar {
-    margin-top: 30px;
-    position: fixed;
-    height: 100%;
-    width: 25%;
-
-    display: flex;
-    flex-direction: column;
-
-    background-color: black;
-}
-
-.sidebarSection {
-    width: 100%;
-    background-color: aquamarine;
-    height: 17%;
-
-    /*
-    need to add this to survey_site.css? to align text but do i?
-     */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    /** for debug aesthetics */
-    border-top: 5px solid black;
-    border-bottom: 5px solid black;
-}
-
-/*
-        ========================================================
-                              Questions
-        ========================================================
- */
-
-.questions {
-    display: flex;
-    flex-direction: column;
-    margin: 0 0 0 25%;
-    height: 100%;
-    width: 75%;
-
-    right: 0;
-    padding-top: 10vh;
-
-    background-color: white;
-}
-
-.masterChest {
-    background-color: #ffffff;
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    margin: auto auto 5em auto;
-
-    border: 0.35em solid deeppink;
-    border-radius: 0.75rem;
-
-    box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
-    -webkit-box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
-    -moz-box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
-
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
-}
-
-.titleChest {
-    margin: 0 auto;
-    width: 100%;
-    color: #ffffff;
-}
-
-.title {
-    margin: 0 auto;
-    width: 95%;
-    padding: 1.15rem 0 1.15rem 0;
-
-    line-height: 1.1;
-    font-size: 1.6em;
-    font-weight: 600;
-}
-
 .optionsChest {
     width: 90%;
     height: 100%;
-    margin: 1rem auto 1rem auto;
+    margin: 1.75rem auto 1rem auto;
 
     display: flex;
     flex-direction: column;
 
-    /** for debug
-    background-color: aliceblue;
-     */
-}
-
-.optionsChest {
     --labelRadius: 10px;
     --optionSize: 50px;
     --optionBorderWidth: 2px;
@@ -132,10 +24,14 @@
     /* disabled */
     --optionCursorDisabled: not-allowed;
     --optionOpacityDisabled: 0.24;
+
+    /** for debug
+    background-color: aliceblue;
+     */
 }
 
 .optionChest {
-    margin: 0.5rem auto 0.5rem 0;
+    margin: 1.1rem auto 1.1rem 0; /* 0.5rem auto 0.5rem 0; for survey_admin? */
     display: var(--optionDisplay);
     position: relative;
 }
@@ -144,7 +40,7 @@
     margin: auto;
     color: #000000;
     line-height: 1.25;
-    font-size: 1.25em;
+    font-size: 1.45em; /* for survey_admin? */
     font-weight: 500;
 }
 

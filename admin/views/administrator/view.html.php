@@ -36,11 +36,14 @@ class ProgressToolViewAdministrator extends JViewLegacy
 
         // Adding CSS and JS
         $document = JFactory::getDocument();
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/survey_admin.css");
         $document->addScript(JURI::root() . "media/com_progresstool/js/survey_site.js");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterChest.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/optionsChest.css");
 
         // Display the view
         parent::display($tpl);
+
         /**
          * // Get data from the model
          * $this->items        = $this->get('Items');
