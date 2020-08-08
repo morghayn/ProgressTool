@@ -1,0 +1,24 @@
+/*
+        ========================================================
+                              Survey.css
+
+            - Overriding CSS elements from optionsChest.css
+        ========================================================
+ */
+
+.optionsChest {
+    margin: 1.1rem auto 1rem auto;
+    --optionSize: 37.5px;
+    --labelRadius: 4px;
+    --optionIndent: 1.15em;
+    --outlineWidth: 2px;
+    --outlineOffset: 6px;
+}
+
+.optionChest {
+    margin: 0.65rem auto 0.65rem 0;
+}
+
+.option {
+    font-size: 1.15em; /* for survey_admin? */
+}

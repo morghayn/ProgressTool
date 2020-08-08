@@ -2,6 +2,7 @@
 
 <!-- TODO -- Retrieve dummy user project data -- Code ability to create new project -->
 
+<?php $projectCreateRedirect = 'onclick="location.href = \'index.php?option=com_progresstool&view=projectcreate\';"'; ?>
 
 <div class="pb-container">
     <h2>ProjectBoard</h2>
@@ -9,24 +10,7 @@
         <button class="button"><?php echo $user_project->name; ?></button>
         <br>
     <?php endforeach; ?>
-    <button class="button button2">Create New Project</button>
+    <button <?php echo $projectCreateRedirect; ?> class="button button2">Create New Project</button>
 </div>
-
-<br>
-<br>
-<br>
-<br>
-
 
 <a href="<?php echo $this->redirect;?>">click to login and redirect to survey</a>
-
-
-<!-- TODO change example names and then remove after testing -->
-<div id="searchmap">
-    <?php echo '<input id="token" type="hidden" name="' . JSession::getFormToken() . '" value="1" />'; ?>
-    <button type="button" class="btn btn-primary" onclick="searchHere();">
-        Click to Return Information
-    </button>
-    <div id="searchresults">
-    </div>
-</div>

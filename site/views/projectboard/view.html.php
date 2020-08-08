@@ -48,9 +48,8 @@ class ProgressToolViewProjectBoard extends JViewLegacy
 
         // TODO: Generate Project Graph
 
-        // adding our own JS and CSS
+        // Adding stylesheet.
         $document = JFactory::getDocument();
-        $document->addScript(JURI::root() . "media/com_progresstool/js/myjs.js");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/projectboard.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterChest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/optionsChest.css");

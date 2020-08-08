@@ -20,8 +20,14 @@
         <!-- Choices -->
         <div class="optionsChest">
             <?php foreach ($this->choices[$question->id] as $choice): ?>
-                <?php $isChecked = in_array($choice->id, $this->dirtyImp) ? "checked" : ""; ?>
-                <?php $clickEvent = 'onclick=checker(' . $choice->id . ')" id="' . $choice->id . '"'; ?>
+                <?php $isChecked = (in_array($choice->id, $this->dirtyImp) ? "checked" : ""); ?>
+                <?php $clickEvent = 'id="' . $choice->id . '" onclick="checker(' . $choice->id . ')"'; ?> <!-- can i not just send checker(this) and get id?-->
+
+                <?php /** Debug
+                 * var_dump($clickEvent);
+                 * var_dump($isChecked);
+                 */ ?>
+
                 <?php echo '<label class="optionChest" style=" --outlineColour:' . $colour . '; --optionColour:' . $colour . ';">'; ?>
                 <input class="optionInput" type="checkbox" <?php echo $clickEvent . ' ' . $isChecked ?>>
                 <span class="optionLabel" style="--labelColour: rgba(<?php echo "{$r}, {$g}, {$b}"; ?>, 0.10);">
