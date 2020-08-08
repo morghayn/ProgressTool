@@ -1,35 +1,32 @@
 <?php defined('_JEXEC') or die; ?>
 
-<!-- TODO -- Check if all buttons have been checked via JavaScript -->
-
-
 <!--
+TODO -- Check if all buttons have been checked via JavaScript
 <p>
-    If you have any uncertainties to any of these questions... it's highly recommend to click the helpful resources
+    If you have any uncertainties to any of these options... it's highly recommend to click the helpful resources
     button
 </p>
 -->
 
 <?php $colour = "#ff6666"; ?>
 
-<!-- Question Box -->
-<div class="projectActivationContainer" style="border-color: <?php echo $colour; ?>">
+<!-- Option Chest -->
+<div class="masterChest" style="border-color: <?php echo $colour; ?>">
 
     <!-- Title -->
-    <div class="titleContainer" style="background-color: <?php echo $colour; ?>;">
+    <div class="titleChest" style="background-color: <?php echo $colour; ?>;">
         <div class="title">
-            <?php echo "Project Activation"; ?>
+            <?php echo "Activate Your Project"; ?>
         </div>
     </div>
 
-    <!-- Questions -->
-    <div class="questionsContainer">
+    <!-- Options -->
+    <div class="optionsChest">
         <?php foreach ($this->questions as $question): ?>
-            <label class="questionContainer"
-                   style="--outlineColour: <?php echo $colour; ?>; --choiceColour: <?php echo $colour; ?>;">
-                <input class="questionInput" type="checkbox">
-                <span class="questionLabel">
-                    <span class="question">
+            <?php echo '<label class="optionChest" style=" --outlineColour:' . $colour . '; --choiceColour:' . $colour . ';">'; ?>
+            <input class="optionInput" type="checkbox">
+            <span class="optionLabel">
+                    <span class="option">
                         <?php echo $question->question; ?>
                     </span>
                 </span>
@@ -37,7 +34,7 @@
         <?php endforeach; ?>
     </div>
 
-    <div class="buttonBox">
+    <div class="buttonChest">
         <button href="something" class="button">helpful resources</button>
         <button href="something" class="button" disabled>activate project</button>
     </div>

@@ -23,9 +23,11 @@ class ProgressToolViewPreliminary extends JViewLegacy
      */
 	function display($tpl = null)
 	{
+	    // Retrieving preliminary questions
 	    $this->questions = array();
 	    $this->questions = $this->get('Questions');
 
+	    // Adding CSS
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/preliminary.css");
 

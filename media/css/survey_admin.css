@@ -4,7 +4,7 @@
         ========================================================
  */
 
-.container-fluid {
+.chest-fluid {
     padding-right: 0;
     padding-left: 0;
 }
@@ -67,7 +67,7 @@
     background-color: white;
 }
 
-.questionChoiceContainer {
+.masterChest {
     background-color: #ffffff;
     width: 70%;
     display: flex;
@@ -84,13 +84,13 @@
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
 }
 
-.questionContainer {
+.titleChest {
     margin: 0 auto;
     width: 100%;
     color: #ffffff;
 }
 
-.question {
+.title {
     margin: 0 auto;
     width: 95%;
     padding: 1.15rem 0 1.15rem 0;
@@ -100,7 +100,7 @@
     font-weight: 600;
 }
 
-.choicesContainer {
+.optionsChest {
     width: 90%;
     height: 100%;
     margin: 1rem auto 1rem auto;
@@ -113,16 +113,16 @@
      */
 }
 
-.choicesContainer {
+.optionsChest {
     --labelRadius: 10px;
-    --choiceSize: 50px;
-    --choiceBorderWidth: 2px;
-    --choiceColour: #000000;
-    --choiceIndent: 2em;
-    --choiceTickWidth: 2px;
-    --choiceTickColour: #ffffff;
+    --optionSize: 50px;
+    --optionBorderWidth: 2px;
+    --optionColour: #000000;
+    --optionIndent: 2em;
+    --optionTickWidth: 2px;
+    --optionTickColour: #ffffff;
     --labelColour: #ffffff;
-    --choiceDisplay: inline-flex;
+    --optionDisplay: inline-flex;
 
     /* outline */
     --outlineColour: #000000;
@@ -130,17 +130,17 @@
     --outlineOffset: 5px;
 
     /* disabled */
-    --choiceCursorDisabled: not-allowed;
-    --choiceOpacityDisabled: 0.24;
+    --optionCursorDisabled: not-allowed;
+    --optionOpacityDisabled: 0.24;
 }
 
-.choiceContainer {
+.optionChest {
     margin: 0.5rem auto 0.5rem 0;
-    display: var(--choiceDisplay);
+    display: var(--optionDisplay);
     position: relative;
 }
 
-.choice {
+.option {
     margin: auto;
     color: #000000;
     line-height: 1.25;
@@ -148,16 +148,16 @@
     font-weight: 500;
 }
 
-.choice::before {
+.option::before {
     opacity: 0;
 }
 
-.choiceInput {
+.optionInput {
     /*
       The pattern by Sara Soueidan https://www.sarasoueidan.com/blog/inclusively-hiding-and-styling-checkboxes-and-radio-buttons/
     */
-    width: var(--choiceSize);
-    height: var(--choiceSize);
+    width: var(--optionSize);
+    height: var(--optionSize);
     opacity: 0;
 
     position: absolute;
@@ -167,59 +167,59 @@
 }
 
 /* 1. Calculation of the gap for the custom checkbox */
-.choiceLabel {
+.optionLabel {
     display: inline-flex;
-    min-height: var(--choiceSize);
-    padding-left: calc(var(--choiceSize) + var(--choiceIndent));
+    min-height: var(--optionSize);
+    padding-left: calc(var(--optionSize) + var(--optionIndent));
 }
 
-.choiceInput:not(:disabled) ~ .choiceLabel {
+.optionInput:not(:disabled) ~ .optionLabel {
     cursor: pointer;
 }
 
 /* 1. Ems helps to calculate size of the checkbox */
-.choiceLabel::before,
-.choiceLabel::after {
+.optionLabel::before,
+.optionLabel::after {
     content: "";
     box-sizing: border-box;
 
     /** Size of checkbox... */
     width: 1em;
     height: 1em;
-    font-size: var(--choiceSize); /* 1 */
+    font-size: var(--optionSize); /* 1 */
 
     /* can put margin-top here to move box, but then tick positioning is skewed */
     position: absolute;
     left: 0;
 }
 
-.choiceLabel::before {
-    border: var(--choiceBorderWidth) solid var(--choiceColour);
+.optionLabel::before {
+    border: var(--optionBorderWidth) solid var(--optionColour);
     z-index: 2;
 }
 
-.choiceInput:not(:disabled) ~ .choiceLabel::after {
-    background-color: var(--choiceColour);
+.optionInput:not(:disabled) ~ .optionLabel::after {
+    background-color: var(--optionColour);
     opacity: 0;
 }
 
-.choiceInput:not(:disabled):checked ~ .choiceLabel::after {
+.optionInput:not(:disabled):checked ~ .optionLabel::after {
     opacity: 1;
 }
 
-/* The arrow size and position depends from sizes of square because I needed an arrow correct positioning from the top left corner of the element choice
+/* The arrow size and position depends from sizes of square because I needed an arrow correct positioning from the top left corner of the element option
     1. Ems helps to calculate size and position of the arrow */
-.choiceInput:not(:disabled) ~ .choiceLabel .choice::before {
+.optionInput:not(:disabled) ~ .optionLabel .option::before {
     content: "";
     width: 0;
     height: 0;
-    font-size: var(--choiceSize); /* 1 */
+    font-size: var(--optionSize); /* 1 */
 
     border-left-width: 0;
     border-bottom-width: 0;
     border-left-style: solid;
     border-bottom-style: solid;
-    border-color: var(--choiceTickColour);
+    border-color: var(--optionTickColour);
 
     position: absolute;
     /** Useless? */
@@ -231,11 +231,11 @@
     transform: rotate(-40deg) skew(10deg);
 }
 
-.choiceInput:not(:disabled):checked ~ .choiceLabel .choice::before {
+.optionInput:not(:disabled):checked ~ .optionLabel .option::before {
     width: .4em;
     height: .2em;
-    border-left-width: var(--choiceTickWidth);
-    border-bottom-width: var(--choiceTickWidth);
+    border-left-width: var(--optionTickWidth);
+    border-bottom-width: var(--optionTickWidth);
 }
 
 /*
@@ -245,53 +245,53 @@
  */
 
 /* focus state */
-.choiceContainer:focus-within {
+.optionChest:focus-within {
     outline: var(--outlineWidth) solid var(--outlineColour);
     outline-offset: var(--outlineOffset);
 }
 
 /* The demo skin */
-.choiceLabel::before,
-.choiceLabel::after {
+.optionLabel::before,
+.optionLabel::after {
     border-radius: var(--labelRadius);
     background-color: var(--labelColour);
 }
 
 /* The animation of switching states */
-.choiceInput:not(:disabled) ~ .choiceLabel::before,
-.choiceInput:not(:disabled) ~ .choiceLabel::after {
+.optionInput:not(:disabled) ~ .optionLabel::before,
+.optionInput:not(:disabled) ~ .optionLabel::after {
     opacity: 1;
     transform-origin: center center;
     will-change: transform;
     transition: transform .2s ease-out;
 }
 
-.choiceInput:not(:disabled) ~ .choiceLabel::before {
+.optionInput:not(:disabled) ~ .optionLabel::before {
     transform: rotateY(0deg);
     transition-delay: .2s;
 }
 
-.choiceInput:not(:disabled) ~ .choiceLabel::after {
+.optionInput:not(:disabled) ~ .optionLabel::after {
     transform: rotateY(90deg);
 }
 
-.choiceInput:not(:disabled):checked ~ .choiceLabel::before {
+.optionInput:not(:disabled):checked ~ .optionLabel::before {
     transform: rotateY(-90deg);
     transition-delay: 0s;
 }
 
-.choiceInput:not(:disabled):checked ~ .choiceLabel::after {
+.optionInput:not(:disabled):checked ~ .optionLabel::after {
     transform: rotateY(0deg);
     transition-delay: .2s;
 }
 
-.choiceInput:not(:disabled):checked ~ .choiceLabel .choice::before {
+.optionInput:not(:disabled):checked ~ .optionLabel .option::before {
     opacity: 1;
     transition: opacity .1s ease-out .3s, width .1s ease-out .5s, height .2s ease-out .3s;
 }
 
 /* disabled state */
-.choiceInput:disabled ~ .choiceLabel {
-    opacity: var(--choiceOpacityDisabled);
-    cursor: var(--choiceCursorDisabled);
+.optionInput:disabled ~ .optionLabel {
+    opacity: var(--optionOpacityDisabled);
+    cursor: var(--optionCursorDisabled);
 }
