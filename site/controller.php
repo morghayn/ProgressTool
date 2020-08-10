@@ -16,7 +16,7 @@
 class ProgressToolController extends JControllerLegacy
 {
 
-    // TODO since 0.2.6
+    // TODO since 0.2.6/
     public function persistClick()
     {
         if (!JSession::checkToken('get'))
@@ -43,7 +43,25 @@ class ProgressToolController extends JControllerLegacy
     }
 
     // TODO 0.2.6
-    public function surveyRedirect()
+    public function openSurvey()
+    {
+        if (!JSession::checkToken('get'))
+        {
+            echo new JResponseJson(null, JText::_('JINVALID_TOKEN'), true);
+        }
+        else
+        {
+            $input = JFactory::getApplication()->input;
+            $data = $input->get('data', array(), 'ARRAY');
+
+            $projectID = urlencode(base64_encode($data['projectID']));
+            $surveyRedirect = 'index.php?option=com_progresstool&view=survey&projectID=' . $projectID;
+            $response = array("redirect" => $surveyRedirect);
+            echo new JResponseJson($response);
+        }
+    }
+
+    public function preliminary()
     {
         if (!JSession::checkToken('get'))
         {
@@ -55,3 +73,22 @@ class ProgressToolController extends JControllerLegacy
         }
     }
 }
+
+
+
+/*
+            $input = JFactory::getApplication()->input;
+            $data = $input->get('data', array(), 'ARRAY');
+
+            if($data['projectID'])
+            {
+                $projectID = urlencode(base64_encode($data['projectID']));
+                $surveyRedirect = 'index.php?option=com_progresstool&view=survey&projectID=' . $projectID;
+                $response = array("redirect"=>$surveyRedirect);
+                echo new JResponseJson($response);
+            }
+            else
+            {
+                parent::display();
+            }
+ */

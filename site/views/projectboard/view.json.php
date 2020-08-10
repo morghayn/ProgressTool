@@ -24,30 +24,31 @@ class ProgressToolViewProjectBoard extends JViewLegacy
      */
     function display($tpl = null)
     {
-        // Todo not this type of redirect
-        $this->user = JFactory::getUser();
-
-
         $input = JFactory::getApplication()->input;
         $data = $input->get('data', array(), 'ARRAY');
+        $projectID = $data['project'];
+        $preliminaryID = $data['preliminaryID'];
 
-        if($data['projectID'])
+        $model = $this->getModel(); // TODO does PHP have booleans?
+        $isSelected = $model->isSelected($projectID, $preliminaryID);
+
+        if ($isSelected == 1)
         {
-            $projectID = urlencode(base64_encode($data['projectID']));
-            $surveyRedirect = 'index.php?option=com_progresstool&view=survey&projectID=' . $projectID;
-            $respon = array("redirect"=>$surveyRedirect);
-            //JFactory::getApplication()->redirect(JRoute::_($respon, false));
-            echo new JResponseJson($respon);
+            $model->deselect($projectID, $preliminaryID);
         }
-        else
+        else if ($isSelected == 0)
         {
-            echo new JResponseJson('No projectID received');
+            $model->select($projectID, $preliminaryID);
         }
 
-        /*
-        $redirect_url = 'index.php?option=com_progresstool&view=projectboard';
-        JFactory::getApplication()->redirect(JRoute::_($redirect_url, false));
-        */
+        $isProjectValid = $model->isProjectValid(3, $projectID);
+        if ($isProjectValid)
+        {
+            $model->activateProject($projectID);
+        }
 
+
+        $response = array("activated"=>$isProjectValid, "selected"=>$isSelected);
+        echo new JResponseJson($response);
     }
 }

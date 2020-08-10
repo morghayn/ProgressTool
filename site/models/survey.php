@@ -1,5 +1,4 @@
 <?php defined('_JEXEC') or die;
-
 /**
  * Class ProgressToolModelSurvey
  *
@@ -184,6 +183,7 @@ class ProgressToolModelSurvey extends JModelItem
      *
      * @param int $projectID the projectID which the selection will be made under.
      * @param int $choiceID the choiceID of the selection to be inserted.
+     * @since 0.2.6
      */
     public function select($projectID, $choiceID)
     {
@@ -241,6 +241,7 @@ class ProgressToolModelSurvey extends JModelItem
      * @param int $projectID the projectID of which this concerns.
      * @param int $choiceID the selection of which this concerns.
      * @return mixed a boolean which indicates whether a choice is selected.
+     * @since 0.2.6
      */
     public function isSelected($projectID, $choiceID)
     {

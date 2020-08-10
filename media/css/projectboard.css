@@ -17,10 +17,11 @@
 }
 
 .button {
+    margin: 0 auto;
+
     border-radius: 8px;
 
     width: 100%;
-    max-width: 500px;
     background-color: #ffffff;
     color: #000000;
     border: 2px solid #668cff;
@@ -29,7 +30,6 @@
     text-decoration: none;
     display: inline-block;
     font-size: 18px;
-    margin: auto auto 35px auto;
     transition-duration: 0.1s;
     cursor: pointer;
 
@@ -44,11 +44,83 @@
 }
 
 .button2 {
+    /**
     margin: 5px auto auto auto;
+     */
+    margin: 0 auto;
     border: 2px solid #ff6666;
 }
 
 .button2:hover {
     background-color: #ff6666;
     color: #ffffff;
+}
+
+
+
+.optionsChest {
+    margin: 1.1rem auto 1rem auto;
+    --optionSize: 37.5px;
+    --labelRadius: 4px;
+    --optionIndent: 1.15em;
+    --outlineWidth: 2px;
+    --outlineOffset: 6px;
+}
+
+.optionChest {
+    margin: 0.65rem auto 0.65rem 0;
+}
+
+.option {
+    font-size: 1.15em; /* for survey_admin? */
+}
+
+.preliminaryButtonChest {
+    align-self: center;
+    width: 85%;
+    display: flex;
+    margin-top: 1.0rem;
+    margin-bottom: 1.0rem;
+}
+
+.preliminaryButton {
+    width: 37%;
+    margin: 0 auto;
+    padding: 0.75em 0em;
+    /**
+    border: 0.16em solid #66ff8c;
+     */
+    border: 2px dashed #66ff8c;
+    color: #000000;
+    background-color: rgba(102, 255, 140, 0.5);
+    box-sizing: border-box;
+    text-decoration: none;
+    font-size: 1.15rem;
+    font-weight: 400;
+    text-align: center;
+
+    border-radius: 5px;
+
+    box-shadow: 10px 10px 14px 0px rgba(0,0,0,0.15);
+    -webkit-box-shadow: 10px 10px 14px 0px rgba(0,0,0,0.15);
+    -moz-box-shadow: 10px 10px 14px 0px rgba(0,0,0,0.15);
+}
+
+.preliminaryButton:hover:enabled {
+    color: #000000;
+    border-color: #000000;
+    background-color: #66ff8c;
+}
+
+.preliminaryButton:active:enabled {
+    color: #66ff8c;
+    border-color: #66ff8c;
+    background-color: #fff;
+}
+
+.preliminaryButton:disabled {
+    cursor: not-allowed;
+    color: #ffffff;
+    border-color: #ff6666;
+    background-color: rgba(255, 102, 102, 0.5);
 }

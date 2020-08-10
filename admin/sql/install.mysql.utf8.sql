@@ -36,6 +36,7 @@ CREATE TABLE `#__project`
     `user_id`     INT(11)      NOT NULL, /* TODO is this a foreign key of user table? !!NEED TO RESEARCH!! */
     `name`        VARCHAR(255) NOT NULL,
     `description` VARCHAR(255),
+    `activated`   TINYINT(1)   NOT NULL DEFAULT '0',
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
@@ -61,6 +62,19 @@ CREATE TABLE `#__preliminary_question`
     `id`       INT(11)      NOT NULL AUTO_INCREMENT,
     `question` VARCHAR(255) NOT NULL,
     PRIMARY KEY (`id`)
+)
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 0
+    DEFAULT CHARSET = utf8mb4
+    DEFAULT COLLATE = utf8mb4_unicode_ci;
+
+CREATE TABLE `#__project_preliminary`
+(
+    `project_id` INT(11) NOT NULL,
+    `preliminary_id`  INT(11) NOT NULL,
+    CONSTRAINT id PRIMARY KEY (project_id, preliminary_id),
+    FOREIGN KEY (project_id) REFERENCES `#__project` (id),
+    FOREIGN KEY (preliminary_id) REFERENCES `#__preliminary_question` (id)
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 0

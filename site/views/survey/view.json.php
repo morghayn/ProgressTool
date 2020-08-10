@@ -87,6 +87,6 @@ class ProgressToolViewSurvey extends JViewLegacy
         */
 
         // responding with data
-        echo new JResponseJson($isChecked);
+        echo new JResponseJson($isSelected);
     }
 }

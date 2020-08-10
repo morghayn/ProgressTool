@@ -30,12 +30,6 @@ class ProgressToolViewProjectBoard extends JViewLegacy
     function display($tpl = null)
     {
         $this->user = JFactory::getUser();
-        if ($this->user->get('guest')) {
-            $return = urlencode(base64_encode('index.php?option=com_progresstool&view=survey'));
-            $this->redirect = "index.php?option=com_users&view=login&return=" . $return;
-        } else {
-            $this->redirect = "index.php?option=com_progresstool&view=survey";
-        }
 
         // TODO: Fetch User Projects
         $model = $this->getModel();
@@ -43,6 +37,8 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         $this->projects = $model->getUserProjects($this->user->id);
 
         // TODO: Generate Project Graph
+
+        $this->preliminaryQuestions = $this->get('PreliminaryQuestions');
 
         $this->addStylesheet();
         $this->addScripts();
@@ -59,9 +55,9 @@ class ProgressToolViewProjectBoard extends JViewLegacy
     private function addStylesheet()
     {
         $document = JFactory::getDocument();
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/projectboard.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterChest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/optionsChest.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/projectboard.css");
     }
 
     /**
