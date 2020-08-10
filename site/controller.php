@@ -16,8 +16,8 @@
 class ProgressToolController extends JControllerLegacy
 {
 
-    // todo comment here since 1.7 for survey_site
-    public function jsponse()
+    // TODO since 0.2.6
+    public function persistClick()
     {
         if (!JSession::checkToken('get'))
         {
@@ -29,8 +29,21 @@ class ProgressToolController extends JControllerLegacy
         }
     }
 
-    // TODO REMOVE AFTER TESTING is complete
-    public function mapsearch()
+    // TODO 0.2.6
+    public function createProject()
+    {
+        if (!JSession::checkToken('get'))
+        {
+            echo new JResponseJson(null, JText::_('JINVALID_TOKEN'), true);
+        }
+        else
+        {
+            parent::display();
+        }
+    }
+
+    // TODO 0.2.6
+    public function surveyRedirect()
     {
         if (!JSession::checkToken('get'))
         {

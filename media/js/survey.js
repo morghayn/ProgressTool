@@ -1,10 +1,7 @@
-function checker(choice) {
-    /**
-     * TODO do AJAX call here
-     */
+function checker(projectID, choiceID) { // todo rename tasks etc.
     var token = jQuery("#token").attr("name");
     jQuery.ajax({
-        data: { [token]: "1", task: "mapsearch", format: "json", choice: choice },
+        data: { [token]: "1", task: "persistClick", format: "json", data: {projectID: projectID, choiceID: choiceID} },
         success: function(result, status, xhr) { success(result); },
         error: function() { console.log('ajax call failed'); }, // todo do not allow selection of 'choice'
     });

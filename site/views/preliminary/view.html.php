@@ -27,13 +27,21 @@ class ProgressToolViewPreliminary extends JViewLegacy
 	    $this->questions = array();
 	    $this->questions = $this->get('Questions');
 
-	    // Adding CSS
-        $document = JFactory::getDocument();
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/preliminary.css");
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterChest.css");
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/optionsChest.css");
+	    $this->addStylesheet();
 
 		// Display the view
 		parent::display($tpl);
 	}
+
+    /**
+     * // TODO comment
+     * @since 0.2.6
+     */
+    private function addStylesheet()
+    {
+        $document = JFactory::getDocument();
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/preliminary.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterChest.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/optionsChest.css");
+    }
 }

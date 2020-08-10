@@ -238,4 +238,25 @@ class ProgressToolModelSurvey extends JModelItem
          */
     }
 
+    /** TODO since 0.2.6 */
+    public function getProjectName($projectID)
+    {
+        // Get a db connection.
+        $db = JFactory::getDbo();
+
+        // Create a new query object.
+        $query = $db->getQuery(true);
+
+        // Select all records from #__question
+        $query->select($db->quoteName('name'));
+        $query->from($db->quoteName('#__project'));
+        $query->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
+
+        // Reset the query using our newly populated query object.
+        $db->setQuery($query);
+
+        // returning weight
+        return $db->loadResult();
+    }
+
 }

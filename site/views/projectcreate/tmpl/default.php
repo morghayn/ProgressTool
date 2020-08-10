@@ -2,6 +2,8 @@
 
 <?php $colour = "#ff6666"; ?>
 
+<?php echo '<input id="token" type="hidden" name="' . JSession::getFormToken() . '" value="1" />'; ?>
+
 <!-- Question Box -->
 <div class="masterChest" style="border-color: <?php echo $colour; ?>">
 
@@ -13,11 +15,17 @@
     </div>
 
     <!-- Form -->
-    <div class="formContainer">
+    <div class="fieldChest">
+        <label class="labelChest">Project Name</label>
+        <input class="textBox" type="text" name="projectName" placeholder="Name" id="name" />
 
+        <label class="labelChest">Project Description</label>
+        <input class="textBox" type="text" name="projectDescription" placeholder="Description" id="description" />
     </div>
 
     <div class="buttonBox">
-        <button href="something" class="button" disabled>create project</button>
+        <button href="something" class="button" onclick="createProject()">create project</button>
+        <!---todo implement functionality disabled--->
     </div>
+
 </div>

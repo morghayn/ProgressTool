@@ -37,24 +37,40 @@ class ProgressToolViewProjectBoard extends JViewLegacy
             $this->redirect = "index.php?option=com_progresstool&view=survey";
         }
 
-
-        // TODO: Fetch User
-        $user_id = 1;
-
         // TODO: Fetch User Projects
         $model = $this->getModel();
-        $this->user_projects = array();
-        $this->user_projects = $model->getUserProjects($user_id);
+        $this->projects = array();
+        $this->projects = $model->getUserProjects($this->user->id);
 
         // TODO: Generate Project Graph
 
-        // Adding stylesheet.
+        $this->addStylesheet();
+        $this->addScripts();
+
+        // Display the view
+        parent::display($tpl);
+    }
+
+
+    /**
+     * // TODO comment
+     * @since 0.2.6
+     */
+    private function addStylesheet()
+    {
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/projectboard.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterChest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/optionsChest.css");
+    }
 
-        // Display the view
-        parent::display($tpl);
+    /**
+     * // TODO comment
+     * @since 0.2.6
+     */
+    private function addScripts()
+    {
+        $document = JFactory::getDocument();
+        $document->addScript(JURI::root() . "media/com_progresstool/js/projectboard.js");
     }
 }

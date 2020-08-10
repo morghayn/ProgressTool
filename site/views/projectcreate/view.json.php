@@ -1,55 +1,36 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolViewSurvey
+ * Class ProgressToolViewProjectCreate
  *
  * Handling JSON responses for AJAX requests client-side
  *
  * @package ProgressTool
  * @subpackage site
- * @since 0.1.7
+ * @since 0.2.6
  *
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
  * @license GNU General Public License version 2 or later; see LICENSE.txt
  */
-class ProgressToolViewSurvey extends JViewLegacy
+class ProgressToolViewProjectCreate extends JViewLegacy
 {
 
     /**
-     * Returns JSON test response
+     * Returns JSON test response //todo proper description
      *
      * @param null $tpl use default template.
-     * @since 0.1.7
+     * @since 0.2.6
      */
     function display($tpl = null)
     {
-        // todo integration of fetching the projectid
-        $input = JFactory::getApplication()->input;
-        $data = $input->get('data', array(), 'ARRAY');
-
         /*
-        if($data['projectID'])
-        {
-            $projectID = urlencode(base64_encode($data['projectID']));
-            $surveyRedirect = 'index.php?option=com_progresstool&view=survey&project=' . $projectID;
-            $respon = array("redirect"=>$surveyRedirect);
-            //JFactory::getApplication()->redirect(JRoute::_($respon, false));
-            echo new JResponseJson($respon);
-        }
-        else
-        {
-            echo new JResponseJson('No projectID received');
-        }
-        */
-
-        // todo this might not be safe, might have to specify type e.g get(array, array(), 'ARRAY')
-        //$choiceID = $input->get('choice');
-        //$projectID = 2;
-        $projectID = $data['projectID'];
-        $choiceID = $data['choiceID'];
+        // todo integration of fetching the projectid
+        $projectID = 2;
 
         $input = JFactory::getApplication()->input;
+        // todo this might not be safe, might have to specify type e.g get(array, array(), 'ARRAY')
+        $choiceID = $input->get('choice');
 
         // TODO does PHP have booleans?
         $model = $this->getModel();
@@ -62,6 +43,7 @@ class ProgressToolViewSurvey extends JViewLegacy
         {
             $model->insertProjectQuestionChoice($projectID, $choiceID);
         }
+        */
         /*
         // getting details about choice selection
         // todo maybe merge the queries for $questionID and $model
@@ -86,6 +68,27 @@ class ProgressToolViewSurvey extends JViewLegacy
         */
 
         // responding with data
-        echo new JResponseJson($isChecked);
+        /*
+         * echo new JResponseJson($isChecked);
+         */
+        //JFactory::getApplication()->redirect('index.php?option=com_progresstool&view=projectboard');
+        // Todo not this type of redirect
+        $this->user = JFactory::getUser();
+
+
+        $input = JFactory::getApplication()->input;
+        $projectData = $input->get('projectData', array(), 'ARRAY');
+
+        $model = $this->getModel();
+        $model->insertProject($this->user->id, $projectData['name'], $projectData['description']);
+
+
+        echo new JResponseJson($projectData['name']);
+
+        /*
+        $redirect_url = 'index.php?option=com_progresstool&view=projectboard';
+        JFactory::getApplication()->redirect(JRoute::_($redirect_url, false));
+        */
+
     }
 }

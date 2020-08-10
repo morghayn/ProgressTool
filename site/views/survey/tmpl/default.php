@@ -3,6 +3,17 @@
 <?php // TODO: Is this the correct setup for tokens? ?>
 <?php echo '<input id="token" type="hidden" name="' . JSession::getFormToken() . '" value="1" />'; ?>
 
+<div class="masterChest" style="background-color: #668cff; border-color: #668cff; width: 95%; border-radius: 3px;">
+
+    <!-- Question -->
+    <div class="titleChest" style="background-color: #668cff;">
+        <div class="title">
+            <?php echo $this->projectName; ?>
+        </div>
+    </div>
+
+</div>
+
 <?php foreach ($this->questions as $question): ?>
     <?php $colour = "#" . $question->secondary; ?>
     <?php list($r, $g, $b) = sscanf($colour, "#%02x%02x%02x"); ?>
@@ -21,7 +32,7 @@
         <div class="optionsChest">
             <?php foreach ($this->choices[$question->id] as $choice): ?>
                 <?php $isChecked = (in_array($choice->id, $this->dirtyImp) ? "checked" : ""); ?>
-                <?php $clickEvent = 'id="' . $choice->id . '" onclick="checker(' . $choice->id . ')"'; ?> <!-- can i not just send checker(this) and get id?-->
+                <?php $clickEvent = 'id="' . $choice->id . '" onclick="checker(' . $this->projectID . ',' . $choice->id . ')"'; ?> <!-- can i not just send checker(this) and get id?-->
 
                 <?php /** Debug
                  * var_dump($clickEvent);

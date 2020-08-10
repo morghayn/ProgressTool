@@ -30,7 +30,7 @@ class ProgressToolModelProjectBoard extends JModelItem
         $query = $db->getQuery(true);
 
         // Select all records from #__question
-        $query->select($db->quoteName(array('name', 'description')));
+        $query->select($db->quoteName(array('id', 'name', 'description')));
         $query->from($db->quoteName('#__project'));
         $query->where($db->quoteName('user_id') . ' = ' . $db->quote($user_id));
         // todo something with this $query->order('ordering ASC');

@@ -16,6 +16,18 @@
 class ProgressToolViewSurvey extends JViewLegacy
 {
     /**
+     * @var array
+     * @since 0.2.6
+     */
+    protected $questions = array();
+
+    /**
+     * @var array
+     * @since 0.2.6
+     */
+    protected $choices = array();
+
+    /**
      * Renders view.
      *
      * @param null $tpl use default template.
@@ -23,19 +35,27 @@ class ProgressToolViewSurvey extends JViewLegacy
      */
     function display($tpl = null)
     {
+        $model = $this->getModel();
         $this->user = JFactory::getUser();
-        $this->redirectIfGuest();
+
+        // Todo: hard-coded... must implement fetching project id from redirect
+        $data = array();
+        $input = JFactory::getApplication()->input;
+        // todo project is in the url and not projectid... a bit annoying and inconsistent.
+        $data['projectID'] = base64_decode($input->get('project', '', 'BASE64'));
+
+
+        $this->projectID = $data['projectID'];
+        $this->projectName = $model->getProjectName($this->projectID );
+
+        // TODO check if current user owns project as part of security protocol
 
         // If user not logged in, redirect to login.
-        $projectId = 2;
-        $model = $this->getModel();
-        $this->dirtyImp = $model->getSelected($projectId);
+        $this->redirectIfGuest();
 
-        $this->questions = array();
         $this->questions = $this->get('Questions');
-
-        $this->choices = array();
         $this->choices = $this->get('Choices');
+        $this->dirtyImp = $model->getSelected($this->projectID);
 
         $this->addStylesheet();
         $this->addScripts();
@@ -66,7 +86,6 @@ class ProgressToolViewSurvey extends JViewLegacy
      */
     private function addStylesheet()
     {
-        // Adding CSS and JS
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterChest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/optionsChest.css");
@@ -79,7 +98,6 @@ class ProgressToolViewSurvey extends JViewLegacy
      */
     private function addScripts()
     {
-        // Adding CSS and JS
         $document = JFactory::getDocument();
         $document->addScript(JURI::root() . "media/com_progresstool/js/survey.js");
     }
