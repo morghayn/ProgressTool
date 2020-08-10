@@ -53,14 +53,15 @@ class ProgressToolViewSurvey extends JViewLegacy
 
         // TODO does PHP have booleans?
         $model = $this->getModel();
-        $isChecked = $model->checkSelected($projectID, $choiceID);
-        if ($isChecked == 1)
+
+        $isSelected = $model->isSelected($projectID, $choiceID);
+        if ($isSelected == 1)
         {
             $model->deselect($projectID, $choiceID);
         }
-        else if ($isChecked == 0)
+        else if ($isSelected == 0)
         {
-            $model->insertProjectQuestionChoice($projectID, $choiceID);
+            $model->select($projectID, $choiceID);
         }
         /*
         // getting details about choice selection
@@ -69,7 +70,7 @@ class ProgressToolViewSurvey extends JViewLegacy
         $weight = $model->getWeight($choiceID);
 
         // inserting our data
-        $model->insertProjectQuestionChoice($projectID, $choiceID);
+        $model->select($projectID, $choiceID);
 
         if ($weight == "0")
         {

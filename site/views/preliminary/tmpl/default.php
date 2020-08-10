@@ -22,7 +22,7 @@ TODO -- Check if all buttons have been checked via JavaScript
 
     <!-- Options -->
     <div class="optionsChest">
-        <?php foreach ($this->questions as $question): ?>
+        <?php foreach ($this->preliminaryQuestions as $question): ?>
             <?php echo '<label class="optionChest" style=" --outlineColour:' . $colour . '; --optionColour:' . $colour . ';">'; ?>
             <input class="optionInput" type="checkbox">
             <span class="optionLabel">

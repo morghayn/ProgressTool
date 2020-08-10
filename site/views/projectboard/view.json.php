@@ -34,7 +34,7 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         if($data['projectID'])
         {
             $projectID = urlencode(base64_encode($data['projectID']));
-            $surveyRedirect = 'index.php?option=com_progresstool&view=survey&project=' . $projectID;
+            $surveyRedirect = 'index.php?option=com_progresstool&view=survey&projectID=' . $projectID;
             $respon = array("redirect"=>$surveyRedirect);
             //JFactory::getApplication()->redirect(JRoute::_($respon, false));
             echo new JResponseJson($respon);

@@ -1,5 +1,4 @@
 <?php defined('_JEXEC') or die;
-
 /**
  * Class ProgressToolModelPreliminary
  *
@@ -16,27 +15,23 @@
 class ProgressToolModelPreliminary extends JModelItem
 {
     /**
-     * Retrieve preliminary questions.
+     * Retrieve a list of the preliminary questions.
      *
-     * @return mixed preliminary questions.
-     * @since 0.1.2
+     * @return mixed list of the preliminary questions.
+     * @since 0.2.6
      */
-    public function getQuestions()
+    public function getPreliminaryQuestions()
     {
-        // Get a db connection.
+        // Get a db connection and create a new query object.
         $db = JFactory::getDbo();
-
-        // Create a new query object.
         $query = $db->getQuery(true);
 
-        // Select all records from #__question
-        $query->select($db->quoteName(array('question')));
-        $query->from($db->quoteName('#__preliminary_question'));
+        // Prepare query to retrieve the preliminary questions.
+        $query
+            ->select($db->quoteName(array('question'))) // TODO: does this have to be an array?
+            ->from($db->quoteName('#__preliminary_question'));
 
-        // Reset the query using our newly populated query object.
-        $db->setQuery($query);
-
-        // Load the results as a list of stdClass objects (see later for more options on retrieving data).
-        return $db->loadObjectList();
+        // Set query, and return questions as a list of stdClass objects.
+        return $db->setQuery($query)->loadObjectList();
     }
 }

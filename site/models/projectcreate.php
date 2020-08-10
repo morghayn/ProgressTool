@@ -1,5 +1,4 @@
 <?php defined('_JEXEC') or die;
-
 /**
  * Class ProgressToolModelProjectCreate
  *
@@ -16,22 +15,24 @@
 class ProgressToolModelProjectCreate extends JModelItem
 {
     /**
-     * TODO
+     * Inserts a new project into the #__projects table.
+     *
+     * @param int $userID the user id of which the project belongs.
+     * @param string $name the name of the project.
+     * @param string $description the description of the project.
      * @since 0.2.6
      */
-    public function insertProject($id, $name, $description)
+    public function insertProject($userID, $name, $description)
     {
-        // Get a db connection.
+        // Get a db connection and create a new query object.
         $db = JFactory::getDbo();
-
-        // Create a new query object.
         $query = $db->getQuery(true);
 
-        // Insert columns.
+        // Columns to insert into.
         $columns = array('user_id', 'name', 'description');
 
-        // Insert values.
-        $values = array($id, $db->quote($name), $db->quote($description));
+        // Columns that will be inserted.
+        $values = array($userID, $db->quote($name), $db->quote($description));
 
         // Prepare the insert query.
         $query
@@ -39,8 +40,7 @@ class ProgressToolModelProjectCreate extends JModelItem
             ->columns($db->quoteName($columns))
             ->values(implode(',', $values));
 
-        // Set the query using our newly populated query object and execute it.
-        $db->setQuery($query);
-        $db->execute();
+        // Set query and execute insertion.
+        $db->setQuery($query)->execute();
     }
 }

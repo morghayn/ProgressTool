@@ -16,6 +16,12 @@
 class ProgressToolViewPreliminary extends JViewLegacy
 {
     /**
+     * @var array
+     * @since 0.2.6
+     */
+    protected $preliminaryQuestions = array();
+
+    /**
      * Renders view.
      *
      * @param null $tpl use default template.
@@ -24,8 +30,7 @@ class ProgressToolViewPreliminary extends JViewLegacy
 	function display($tpl = null)
 	{
 	    // Retrieving preliminary questions
-	    $this->questions = array();
-	    $this->questions = $this->get('Questions');
+	    $this->preliminaryQuestions = $this->get('PreliminaryQuestions');
 
 	    $this->addStylesheet();
 

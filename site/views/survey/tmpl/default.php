@@ -14,8 +14,8 @@
 
 </div>
 
-<?php foreach ($this->questions as $question): ?>
-    <?php $colour = "#" . $question->secondary; ?>
+<?php foreach ($this->surveyQuestions as $question): ?>
+    <?php $colour = "#" . $question->colour; ?>
     <?php list($r, $g, $b) = sscanf($colour, "#%02x%02x%02x"); ?>
 
     <!-- Question Box -->
@@ -31,7 +31,7 @@
         <!-- Choices -->
         <div class="optionsChest">
             <?php foreach ($this->choices[$question->id] as $choice): ?>
-                <?php $isChecked = (in_array($choice->id, $this->dirtyImp) ? "checked" : ""); ?>
+                <?php $isChecked = (in_array($choice->id, $this->selections) ? "checked" : ""); ?>
                 <?php $clickEvent = 'id="' . $choice->id . '" onclick="checker(' . $this->projectID . ',' . $choice->id . ')"'; ?> <!-- can i not just send checker(this) and get id?-->
 
                 <?php /** Debug

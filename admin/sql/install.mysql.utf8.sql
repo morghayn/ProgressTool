@@ -8,8 +8,7 @@ CREATE TABLE `#__question`
 (
     `id`        INT(11)      NOT NULL AUTO_INCREMENT,
     `question`  VARCHAR(255) NOT NULL,
-    `primary`   VARCHAR(6)   NOT NULL DEFAULT '668cff',
-    `secondary` VARCHAR(6)   NOT NULL,
+    `colour` VARCHAR(6)   NOT NULL,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
@@ -48,7 +47,7 @@ CREATE TABLE `#__project_question_choice`
 (
     `project_id` INT(11) NOT NULL,
     `choice_id`  INT(11) NOT NULL,
-    PRIMARY KEY (project_id, choice_id),
+    CONSTRAINT id PRIMARY KEY (project_id, choice_id),
     FOREIGN KEY (project_id) REFERENCES `#__project` (id),
     FOREIGN KEY (choice_id) REFERENCES `#__question_choice` (id)
 )
@@ -68,7 +67,7 @@ CREATE TABLE `#__preliminary_question`
     DEFAULT CHARSET = utf8mb4
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
-INSERT INTO `#__question` (`question`, `secondary`)
+INSERT INTO `#__question` (`question`, `colour`)
 VALUES ('Has your community hosted awareness activities surrounding the energy transition?', 'ff6666'),
        ('Has there been exploratory discussions within the community about creating a renewable energy project?',
         'b366ff'),

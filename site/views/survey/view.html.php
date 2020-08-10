@@ -28,6 +28,12 @@ class ProgressToolViewSurvey extends JViewLegacy
     protected $choices = array();
 
     /**
+     * @var int
+     * @since 0.2.6
+     */
+    protected $projectID;
+
+    /**
      * Renders view.
      *
      * @param null $tpl use default template.
@@ -38,30 +44,42 @@ class ProgressToolViewSurvey extends JViewLegacy
         $model = $this->getModel();
         $this->user = JFactory::getUser();
 
-        // Todo: hard-coded... must implement fetching project id from redirect
-        $data = array();
-        $input = JFactory::getApplication()->input;
-        // todo project is in the url and not projectid... a bit annoying and inconsistent.
-        $data['projectID'] = base64_decode($input->get('project', '', 'BASE64'));
-
-
-        $this->projectID = $data['projectID'];
-        $this->projectName = $model->getProjectName($this->projectID );
-
-        // TODO check if current user owns project as part of security protocol
-
         // If user not logged in, redirect to login.
         $this->redirectIfGuest();
 
-        $this->questions = $this->get('Questions');
+        // Retrieving projectID from URL.
+        $this->projectID = base64_decode(JFactory::getApplication()->input->get('projectID', '', 'BASE64'));
+
+        // Redirect if project is not present in URL.
+        if(!$this->projectID)
+        {
+            $this->redirectProjectBoard();
+        }
+
+        $this->projectName = $model->getProjectName($this->projectID);
+
+        // TODO: check if current user owns project as part of security protocol
+
+        $this->surveyQuestions = $this->get('SurveyQuestions');
         $this->choices = $this->get('Choices');
-        $this->dirtyImp = $model->getSelected($this->projectID);
+        $this->selections = $model->getSelections($this->projectID);
 
         $this->addStylesheet();
         $this->addScripts();
 
         // Display the view
         parent::display($tpl);
+    }
+
+    /**
+     * // TODO: comment
+     * If projectID not present...
+     *
+     * @since 0.2.6
+     */
+    private function redirectProjectBoard()
+    {
+        JFactory::getApplication()->redirect('index.php?option=com_progresstool&view=projectboard');
     }
 
     /**
