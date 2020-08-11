@@ -56,35 +56,46 @@
     color: #ffffff;
 }
 
-
-
-.optionsChest {
-    margin: 1.1rem auto 1rem auto;
-    --optionSize: 37.5px;
-    --labelRadius: 4px;
-    --optionIndent: 1.15em;
-    --outlineWidth: 2px;
-    --outlineOffset: 6px;
+.projectInfo {
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem auto 1.5rem auto;
+    justify-content: center;
 }
 
-.optionChest {
-    margin: 0.65rem auto 0.65rem 0;
+.half {
+    font-size: 1.5rem;
+    width: 100%;
+    align-self: center;
+    margin: 0 auto;
+    text-align: center;
+    /**background-color: green;*/
+    vertical-align: center;
+    line-height: 1.2;
 }
 
-.option {
-    font-size: 1.15em; /* for survey_admin? */
+.half2 {
+    font-size: 1.2rem;
+    width: 100%;
+    align-self: center;
+    margin: 0 auto;
+    text-align: center;
+    /**background-color: green;*/
+    vertical-align: center;
+    line-height: 1.2;
 }
 
 .preliminaryButtonChest {
     align-self: center;
-    width: 85%;
+    width: 100%;
     display: flex;
     margin-top: 1.0rem;
     margin-bottom: 1.0rem;
 }
 
 .preliminaryButton {
-    width: 37%;
+    width: 45%;
     margin: 0 auto;
     padding: 0.75em 0em;
     /**

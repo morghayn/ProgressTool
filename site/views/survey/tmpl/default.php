@@ -8,7 +8,7 @@
     <!-- Question -->
     <div class="titleChest" style="background-color: #668cff;">
         <div class="title">
-            <?php echo $this->projectName; ?>
+            Project Name: <?php echo $this->projectName; ?>
         </div>
     </div>
 

@@ -1,16 +1,16 @@
 .optionsChest {
     width: 90%;
     height: 100%;
-    margin: 1.75rem auto 1rem auto;
+    margin: 1.1rem auto 1rem auto;
 
     display: flex;
     flex-direction: column;
 
-    --labelRadius: 10px;
-    --optionSize: 50px;
+    --labelRadius: 4px;
+    --optionSize: 37.5px;
     --optionBorderWidth: 2px;
     --optionColour: #000000;
-    --optionIndent: 2em;
+    --optionIndent: 1.15em;
     --optionTickWidth: 2px;
     --optionTickColour: #ffffff;
     --labelColour: #ffffff;
@@ -18,8 +18,8 @@
 
     /* outline */
     --outlineColour: #000000;
-    --outlineWidth: 3px;
-    --outlineOffset: 5px;
+    --outlineWidth: 2px;
+    --outlineOffset: 6px;
 
     /* disabled */
     --optionCursorDisabled: not-allowed;
@@ -31,7 +31,7 @@
 }
 
 .optionChest {
-    margin: 1.1rem auto 1.1rem 0; /* 0.5rem auto 0.5rem 0; for survey_admin? */
+    margin: 0.65rem auto 0.65rem 0;
     display: var(--optionDisplay);
     position: relative;
 }
@@ -40,7 +40,7 @@
     margin: auto;
     color: #000000;
     line-height: 1.25;
-    font-size: 1.45em; /* for survey_admin? */
+    font-size: 1.15em;
     font-weight: 500;
 }
 
