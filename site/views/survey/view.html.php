@@ -60,15 +60,35 @@ class ProgressToolViewSurvey extends JViewLegacy
 
         // TODO: check if current user owns project as part of security protocol
 
-        $this->surveyQuestions = $this->get('SurveyQuestions');
-        $this->choices = $this->get('Choices');
-        $this->selections = $model->getSelections($this->projectID);
+        $countryString = 'France';
+        // TODO: for non-official release $countryString = $this->getUserCountryString();
+        $countryIndex = $model->getCountryIndex($countryString);
+
+        $this->surveyQuestions = $model->getSurveyQuestions($countryIndex);
+        $this->choices = $model->getChoices($this->projectID, $countryIndex);
 
         $this->addStylesheet();
         $this->addScripts();
 
+        $this->questionCounter = 0;
         // Display the view
         parent::display($tpl);
+    }
+
+    /**
+     * Code to print a user's country. Will be used to retrieve country specific questions.
+     *
+     * @param object $cuser the user object
+     * @since 0.3.0
+     */
+    private function getUserCountryString()
+    {
+        $cuser = CFactory::getUser();
+        JFactory::getLanguage()->load('com_community.country', JPATH_SITE, 'en-GB', true);
+        $profileCountry = $cuser->getInfo('FIELD_COUNTRY');
+        $countryString = JText::_($profileCountry);
+
+        return $countryString;
     }
 
     /**

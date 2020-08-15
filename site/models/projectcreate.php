@@ -15,7 +15,7 @@
 class ProgressToolModelProjectCreate extends JModelItem
 {
     /**
-     * Inserts a new project into the #__projects table.
+     * Inserts a new project into the #__pt_projects table.
      *
      * @param int $userID the user id of which the project belongs.
      * @param string $name the name of the project.
@@ -36,7 +36,7 @@ class ProgressToolModelProjectCreate extends JModelItem
 
         // Prepare the insert query.
         $query
-            ->insert($db->quoteName('#__project'))
+            ->insert($db->quoteName('#__pt_project'))
             ->columns($db->quoteName($columns))
             ->values(implode(',', $values));
 

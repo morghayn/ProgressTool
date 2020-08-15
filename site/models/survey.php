@@ -1,4 +1,5 @@
 <?php defined('_JEXEC') or die;
+
 /**
  * Class ProgressToolModelSurvey
  *
@@ -15,50 +16,129 @@
 class ProgressToolModelSurvey extends JModelItem
 {
     /**
-     * Retrieve a list of the survey questions.
+     * Returns an index to a country String passed through, else returns 0 if not found.
      *
-     * @return mixed list of the survey questions.
-     * @since 0.2.6
+     * @return int the country index.
+     * @since 0.3.0
      */
-    public function getSurveyQuestions()
+
+    /**
+     * Returns an index to a country String passed through, else returns 0 if not found.
+     *
+     * @param string $country the country name.
+     * @return int the country index.
+     * @since 0.3.0
+     */
+    public function getCountryIndex($country)
     {
         // Get a db connection and create a new query object.
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
 
-        // Columns to be retrieved.
-        $columns = array('id', 'question', 'colour');
-
-        // Prepare query to retrieve the survey questions.
+        // Prepare query to retrieve the country id.
         $query
-            ->select($db->quoteName($columns))
-            ->from($db->quoteName('#__question'));
+            ->select($db->quoteName('C.id'))
+            ->from($db->quoteName('#__pt_country', 'C'))
+            ->where($db->quoteName('C.country') . ' LIKE ' . $db->quote($country));
 
-        // Set query, and return questions as a list of stdClass objects.
-        return $db->setQuery($query)->loadObjectList();
+        // Set query, and returns countryIndex.
+        $countryIndex = $db->setQuery($query)->loadResult();
+        return is_null($countryIndex) ? 0 : $countryIndex;
     }
 
     /**
-     * Retrieve choices grouped by their respective questions.
+     * Retrieve a list of universal and location specific questions.
      *
+     * @param $country int country index used to get location specific questions.
+     * @return mixed list of the survey questions.
+     * @since 0.2.6
+     */
+    public function getSurveyQuestions($country)
+    {
+        $universal = 1;
+
+        // Get a db connection and create a new query object.
+        $db = JFactory::getDbo();
+        $questions = $db->getQuery(true);
+        $included = $db->getQuery(true);
+        $excluded = $db->getQuery(true);
+
+        $excluded
+            ->select($db->quoteName('EXC.question_id'))
+            ->from($db->quoteName('#__pt_exclude', 'EXC'))
+            ->where($db->quoteName('EXC.country_id') . ' = ' . $country);
+
+        $included
+            ->select($db->quoteName('QC.question_id'))
+            ->from($db->quoteName('#__pt_question_country', 'QC'))
+            ->where(
+                '( ' . $db->quoteName('QC.country_id') . ' = ' . $universal . ' OR ' . $db->quoteName('QC.country_id') . ' = ' . $country . ')' .
+                ' AND' . $db->quoteName('QC.question_id') . ' NOT IN (' . $excluded . ')'
+            );
+
+        // Columns to be retrieved.
+        $columns = array('Q.id', 'Q.question', 'C.colour_hex', 'C.colour_rgb');
+
+        $questions
+            ->select($db->quoteName($columns))
+            ->from($db->quoteName('#__pt_question', 'Q'))
+            ->innerjoin('(' . $included . ') AS QC ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('QC.question_id'))
+            ->innerjoin($db->quoteName('#__pt_category') . ' AS C ON ' . $db->quoteName('Q.category_id') . ' = ' . $db->quoteName('C.id'))
+            ->order('Q.id ASC');
+
+        // Set query, and return questions as a list of stdClass objects.
+        return $db->setQuery($questions)->loadObjectList();
+    }
+
+    /**
+     * Retrieve a list of universal and location specific choices grouped by their respective question.
+     * Additionally, to indicate whether a project has selected a choice, the project_id attribute has been included from the left join.
+     * The project_id specified in the parameters will be returned to indicate a selection has been made,
+     * else if no such selection has been made, the field will be null to indicate no selection has been made.
+     *
+     * @param int $projectID project index for which selections will be retrieved
+     * @param int $country country index used to get location specific questions.
      * @return array the choices grouped by question.
      * @since 0.1.0
-     *
-     * TODO: I believe this function may break when questions get removed and added (when they get unordered indexes)
      */
-    public function getChoices()
+    public function getChoices($projectID, $country)
     {
+        $universal = 1;
+
         // Get a db connection and create a new query object.
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
+        $projectSelections = $db->getQuery(true);
+        $included = $db->getQuery(true);
+        $excluded = $db->getQuery(true);
+
+        $excluded
+            ->select($db->quoteName('EXC.question_id'))
+            ->from($db->quoteName('#__pt_exclude', 'EXC'))
+            ->where($db->quoteName('EXC.country_id') . ' = ' . $country);
+
+        $included
+            ->select($db->quoteName('QC.question_id'))
+            ->from($db->quoteName('#__pt_question_country', 'QC'))
+            ->where(
+                '( ' . $db->quoteName('QC.country_id') . ' = ' . $universal . ' OR ' . $db->quoteName('QC.country_id') . ' = ' . $country . ')' .
+                ' AND' . $db->quoteName('QC.question_id') . ' NOT IN (' . $excluded . ')'
+            );
+
+        $projectSelections
+            ->select('*')
+            ->from($db->quoteName('#__pt_project_choice'))
+            ->where($db->quoteName('project_id') . ' = ' . $projectID);
 
         // Columns to be retrieved.
-        $columns = array('id', 'question_id', 'choice', 'weight');
+        $columns = array('C.id', 'C.question_id', 'C.choice', 'C.weight', 'PC.project_id');
 
         // Prepare query to retrieve the choices for the survey questions.
         $query
             ->select($db->quoteName($columns))
-            ->from($db->quoteName('#__question_choice'));
+            ->from($db->quoteName('#__pt_question_choice', 'C'))
+            ->innerjoin('(' . $included . ') AS QC ON ' . $db->quoteName('C.question_id') . ' = ' . $db->quoteName('QC.question_id'))
+            ->leftjoin('(' . $projectSelections . ') AS PC ON ' . $db->quoteName('C.id') . ' = ' . $db->quoteName('PC.choice_id'));
 
         // Set query, and returns choices as an array indexed by their respective questions.
         return $this->groupChoices($db->setQuery($query)->loadObjectList());
@@ -81,6 +161,8 @@ class ProgressToolModelSurvey extends JModelItem
             $groupedChoices[$row->question_id][] = $row;
         }
 
+        var_dump($groupedChoices);
+
         return $groupedChoices;
     }
 
@@ -99,37 +181,14 @@ class ProgressToolModelSurvey extends JModelItem
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
 
-        // Select all records from #__question
+        // Select all records from #__pt_question
         $query
             ->select($db->quoteName('name'))
-            ->from($db->quoteName('#__project'))
+            ->from($db->quoteName('#__pt_project'))
             ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
 
         // Reset the query using our newly populated query object.... returning weight
         return $db->setQuery($query)->loadResult();
-    }
-
-    /**
-     * Returns a list of all the selections made by project specified.
-     *
-     * @param int $projectID the projectID of the project.
-     * @return mixed a list of all selections made by the project specified.
-     * @since 0.2.6
-     */
-    public function getSelections($projectID)
-    {
-        // Get a db connection and create a new query object.
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-
-        // Prepare query to retrieve the selections made by the specified project.
-        $query
-            ->select($db->quoteName(array('choice_id')))
-            ->from($db->quoteName('#__project_question_choice'))
-            ->where($db->quoteName('project_id') . ' = ' . $db->quote($projectID));
-
-        // Set query, and return a list of all choice selection made
-        return $db->setQuery($query)->loadColumn();
     }
 
     /**
@@ -148,7 +207,7 @@ class ProgressToolModelSurvey extends JModelItem
         // Prepare query to retrieve questionID of which owns the choiceID specified.
         $query
             ->select($db->quoteName('question_id'))
-            ->from($db->quoteName('#__question_choice'))
+            ->from($db->quoteName('#__pt_question_choice'))
             ->where($db->quoteName('id') . ' = ' . $db->quote($choiceID));
 
         // Set query, and return the questionID.
@@ -171,7 +230,7 @@ class ProgressToolModelSurvey extends JModelItem
         // Prepare query to select the weight of the choiceID specified.
         $query
             ->select($db->quoteName('weight'))
-            ->from($db->quoteName('#__question_choice'))
+            ->from($db->quoteName('#__pt_question_choice'))
             ->where($db->quoteName('id') . ' = ' . $db->quote($choiceID));
 
         // Set query, and return the weight of the choiceID specified.
@@ -199,7 +258,7 @@ class ProgressToolModelSurvey extends JModelItem
 
         // Prepare the insert query for the selection to be made.
         $query
-            ->insert($db->quoteName('#__project_question_choice'))
+            ->insert($db->quoteName('#__pt_project_choice'))
             ->columns($db->quoteName($columns))
             ->values(implode(',', $values));
 
@@ -228,7 +287,7 @@ class ProgressToolModelSurvey extends JModelItem
 
         // Preparing query which will remove the selection from the selection table.
         $query
-            ->delete($db->quoteName('#__project_question_choice'))
+            ->delete($db->quoteName('#__pt_project_choice'))
             ->where($conditions);
 
         // Set query, and remove selection from the selection table.
@@ -252,7 +311,7 @@ class ProgressToolModelSurvey extends JModelItem
         // Prepare query to check whether the project specified has made the selection specified.
         $query
             ->select('COUNT(*)')
-            ->from($db->quoteName('#__project_question_choice'))
+            ->from($db->quoteName('#__pt_project_choice'))
             ->where($db->quoteName('project_id') . ' = ' . $db->quote($projectID))
             ->where($db->quoteName('choice_id') . ' = ' . $db->quote($choiceID));
         // TODO: Apparently implementing LIMIT 1 method is faster than using COUNT(*)

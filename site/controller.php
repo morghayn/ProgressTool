@@ -61,7 +61,7 @@ class ProgressToolController extends JControllerLegacy
         }
     }
 
-    public function preliminary()
+    public function approval()
     {
         if (!JSession::checkToken('get'))
         {

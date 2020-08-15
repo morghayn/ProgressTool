@@ -4,7 +4,7 @@
 <?php echo '<input id="token" type="hidden" name="' . JSession::getFormToken() . '" value="1" />'; ?>
 <?php $createRedirect = 'onclick="location.href = \'index.php?option=com_progresstool&view=projectcreate\';"'; ?>
 
-    <div class="masterChest" style="background-color: #668cff; border-color: #668cff; width: 95%; border-radius: 3px;">
+    <div class="masterChest" style="background-color: #668cff; border-color: #668cff;">
 
         <!-- Heading -->
         <div class="titleChest" style="background-color: #668cff;">
@@ -18,7 +18,7 @@
 <?php foreach ($this->projects as $project): ?>
     <?php $colour = '#668cff'; ?>
     <?php $surveyRedirect = 'onclick="surveyRedirect(\'' . $project->id . '\')"'; ?>
-    <?php $preliminaryStyle = 'style=" --outlineColour: ' . $colour . '; --optionColour: ' . $colour . '"'; ?>
+    <?php $approvalStyle = 'style=" --outlineColour: ' . $colour . '; --optionColour: ' . $colour . '"'; ?>
 
     <!-- Question Box -->
     <div class="masterChest" style="border-color: <?php echo $colour; ?>">
@@ -38,30 +38,25 @@
         <div class="optionsChest">
             <?php if ($project->activated == 1): ?>
 
-                <!---
-				<div class="projectInfo">
-					<div class="half">Project Name:</div>
-					<div class="half"><?php echo $project->name; ?></div>
-				</div>
-				--->
                 <div class="projectInfo">
                     <div class="half">Project Description:</div>
                     <div class="half2"><?php echo $project->description; ?></div>
                 </div>
 
                 <!--<button class="button" <?php //echo $surveyRedirect; ?>>Update Progress</button>-->
-                <div class="preliminaryButtonChest">
-                    <button class="preliminaryButton" <?php echo $surveyRedirect; ?>>Update Progress</button>
+                <div class="approvalButtonChest">
+                    <button class="approvalButton" <?php echo $surveyRedirect; ?>>Update Progress</button>
                 </div>
 
             <?php else: ?>
 
-                <?php foreach ($this->preliminaryQuestions as $question): ?>
-                    <?php $clickEvent = 'onclick="preliminaryClick(' . $project->id . ',' . $question->id . ')"' ?>
+                <?php foreach ($this->approvalQuestions as $question): ?>
+                    <?php $isChecked = ""; ?> <!--is_null($question[$project->id]) ? "" : "checked"; ?>-->
+                    <?php $clickEvent = 'onclick="approvalClick(' . $project->id . ',' . $question->id . ')"' ?>
                     <?php $id = 'id="' . $project->id . $question->id . '"'; ?>
 
 
-                    <label class="optionChest" <?php echo $preliminaryStyle; ?>>
+                    <label class="optionChest" <?php echo $approvalStyle; ?>>
                         <input class="optionInput" <?php echo $clickEvent; ?> type="checkbox">
                         <span class="optionLabel">
                         <span class="option">
@@ -72,8 +67,8 @@
 
                 <?php endforeach; ?>
 
-                <div class="preliminaryButtonChest">
-                    <button href="something" class="preliminaryButton">Helpful Resources</button>
+                <div class="approvalButtonChest">
+                    <button href="something" class="approvalButton">Helpful Resources</button>
                 </div>
 
             <?php endif; ?>
@@ -88,6 +83,3 @@
             Create New Project
         </button>
     </div>
-    <!--<div class="pb-container"></div>--->
-<?php //$colour = "#" . $question->colour; ?>
-<?php //list($r, $g, $b) = sscanf($colour, "#%02x%02x%02x"); ?>

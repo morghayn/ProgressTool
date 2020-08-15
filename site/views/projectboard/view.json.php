@@ -27,18 +27,18 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         $input = JFactory::getApplication()->input;
         $data = $input->get('data', array(), 'ARRAY');
         $projectID = $data['project'];
-        $preliminaryID = $data['preliminaryID'];
+        $approvalID = $data['approvalID'];
 
         $model = $this->getModel(); // TODO does PHP have booleans?
-        $isSelected = $model->isSelected($projectID, $preliminaryID);
+        $isSelected = $model->isSelected($projectID, $approvalID);
 
         if ($isSelected == 1)
         {
-            $model->deselect($projectID, $preliminaryID);
+            $model->deselect($projectID, $approvalID);
         }
         else if ($isSelected == 0)
         {
-            $model->select($projectID, $preliminaryID);
+            $model->select($projectID, $approvalID);
         }
 
         $isProjectValid = $model->isProjectValid(3, $projectID);

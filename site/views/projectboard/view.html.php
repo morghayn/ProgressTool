@@ -41,12 +41,15 @@ class ProgressToolViewProjectBoard extends JViewLegacy
 
         // TODO: Generate Project Graph
 
-        $this->preliminaryQuestions = $this->get('PreliminaryQuestions');
+        $this->approvalQuestions = $this->get('ApprovalQuestions');
+        $this->approvalSelections = $model->getApprovalSelections($this->user->id);
+        var_dump($this->approvalSelections);
 
         $this->addStylesheet();
         $this->addScripts();
 
         // Display the view
+        parent::display('test');
         parent::display($tpl);
     }
 

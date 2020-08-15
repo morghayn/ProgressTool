@@ -14,17 +14,17 @@ function success(result)
 }
 
 
-function preliminaryClick(projectID, preliminaryID)
+function approvalClick(projectID, approvalID)
 {
     var token = jQuery("#token").attr("name");
     jQuery.ajax({
-        data: { [token]: "1", task: "preliminary", format: "json", data: {project: projectID, preliminaryID: preliminaryID} },
-        success: function(result, status, xhr) { preliminaryClickSuccess(result, projectID, preliminaryID); },
+        data: { [token]: "1", task: "approval", format: "json", data: {project: projectID, approvalID: approvalID} },
+        success: function(result, status, xhr) { approvalClickSuccess(result, projectID, approvalID); },
         error: function() { console.log('ajax call failed'); }
     });
 }
 
-function preliminaryClickSuccess(result, projectID, preliminaryID) {
+function approvalClickSuccess(result, projectID, approvalID) {
     // window.location = result.data.redirect;
 
     if(result.data.activated === true)

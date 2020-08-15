@@ -1,25 +1,7 @@
-.pb-container {
-    text-align: center;
-    width: 100%;
-    margin: 0 auto;
-
-    font-weight: 700;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
-}
-
-.pb-container h2 {
-    border-radius: 5px;
-    background-color: #ff6666;
-    color: #ffffff;
-    max-width: 650px;
-    padding: 1em;
-    margin: auto auto 40px auto;
-}
-
 .button {
     margin: 0 auto;
 
-    border-radius: 8px;
+    border-radius: 0.25rem;
 
     width: 100%;
     background-color: #ffffff;
@@ -86,7 +68,7 @@
     line-height: 1.2;
 }
 
-.preliminaryButtonChest {
+.approvalButtonChest {
     align-self: center;
     width: 100%;
     display: flex;
@@ -94,7 +76,7 @@
     margin-bottom: 1.0rem;
 }
 
-.preliminaryButton {
+.approvalButton {
     width: 45%;
     margin: 0 auto;
     padding: 0.75em 0em;
@@ -117,19 +99,19 @@
     -moz-box-shadow: 10px 10px 14px 0px rgba(0,0,0,0.15);
 }
 
-.preliminaryButton:hover:enabled {
+.approvalButton:hover:enabled {
     color: #000000;
     border-color: #000000;
     background-color: #66ff8c;
 }
 
-.preliminaryButton:active:enabled {
+.approvalButton:active:enabled {
     color: #66ff8c;
     border-color: #66ff8c;
     background-color: #fff;
 }
 
-.preliminaryButton:disabled {
+.approvalButton:disabled {
     cursor: not-allowed;
     color: #ffffff;
     border-color: #ff6666;
