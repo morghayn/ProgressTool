@@ -67,12 +67,12 @@ class ProgressToolViewSurvey extends JViewLegacy
         $this->surveyQuestions = $model->getSurveyQuestions($countryIndex);
         $this->choices = $model->getChoices($this->projectID, $countryIndex);
 
-        $this->addStylesheet();
-        $this->addScripts();
 
         $this->questionCounter = 0;
         // Display the view
         parent::display($tpl);
+        $this->addStylesheet();
+        $this->addScripts();
     }
 
     /**

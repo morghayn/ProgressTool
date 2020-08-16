@@ -5,34 +5,12 @@
 
     display: flex;
     flex-direction: column;
-
-    --labelRadius: 4px;
-    --optionSize: 37.5px;
-    --optionBorderWidth: 2px;
-    --optionColour: #000000;
-    --optionIndent: 1.15em;
-    --optionTickWidth: 2px;
-    --optionTickColour: #ffffff;
-    --labelColour: #ffffff;
-    --optionDisplay: inline-flex;
-
-    /* outline */
-    --outlineColour: #000000;
-    --outlineWidth: 2px;
-    --outlineOffset: 6px;
-
-    /* disabled */
-    --optionCursorDisabled: not-allowed;
-    --optionOpacityDisabled: 0.24;
-
-    /** for debug
-    background-color: aliceblue;
-     */
+    /* DEBUG: background-color: aliceblue; */
 }
 
 .optionChest {
     margin: 0.65rem auto 0.65rem 0;
-    display: var(--optionDisplay);
+    display: inline-flex;
     position: relative;
 }
 
@@ -52,8 +30,8 @@
     /*
       The pattern by Sara Soueidan https://www.sarasoueidan.com/blog/inclusively-hiding-and-styling-checkboxes-and-radio-buttons/
     */
-    width: var(--optionSize);
-    height: var(--optionSize);
+    width: 37px;
+    height: 37px;
     opacity: 0;
 
     position: absolute;
@@ -65,8 +43,8 @@
 /* 1. Calculation of the gap for the custom checkbox */
 .optionLabel {
     display: inline-flex;
-    min-height: var(--optionSize);
-    padding-left: calc(var(--optionSize) + var(--optionIndent));
+    min-height: 37.5px;
+    padding-left: calc(37.5px + 1.15em);
 }
 
 .optionInput:not(:disabled) ~ .optionLabel {
@@ -82,7 +60,7 @@
     /** Size of checkbox... */
     width: 1em;
     height: 1em;
-    font-size: var(--optionSize); /* 1 */
+    font-size: 37.5px; /* 1 */
 
     /* can put margin-top here to move box, but then tick positioning is skewed */
     position: absolute;
@@ -90,7 +68,7 @@
 }
 
 .optionLabel::before {
-    border: var(--optionBorderWidth) solid var(--optionColour);
+    border: 2px solid var(--optionColour);
     z-index: 2;
 }
 
@@ -109,13 +87,13 @@
     content: "";
     width: 0;
     height: 0;
-    font-size: var(--optionSize); /* 1 */
+    font-size: 37.5px; /* 1 */
 
     border-left-width: 0;
     border-bottom-width: 0;
     border-left-style: solid;
     border-bottom-style: solid;
-    border-color: var(--optionTickColour);
+    border-color: #ffffff;
 
     position: absolute;
     /** Useless? */
@@ -130,8 +108,8 @@
 .optionInput:not(:disabled):checked ~ .optionLabel .option::before {
     width: .4em;
     height: .2em;
-    border-left-width: var(--optionTickWidth);
-    border-bottom-width: var(--optionTickWidth);
+    border-left-width: 2px;
+    border-bottom-width: 2px;
 }
 
 /*
@@ -142,15 +120,14 @@
 
 /* focus state */
 .optionChest:focus-within {
-    outline: var(--outlineWidth) solid var(--outlineColour);
-    outline-offset: var(--outlineOffset);
+    outline: 2px solid var(--outlineColour);
+    outline-offset: 6px;
 }
 
-/* The demo skin */
 .optionLabel::before,
 .optionLabel::after {
-    border-radius: var(--labelRadius);
-    background-color: var(--labelColour);
+    border-radius: 4px;
+    background-color: rgba(var(--labelColour), 0.10);
 }
 
 /* The animation of switching states */
@@ -188,6 +165,6 @@
 
 /* disabled state */
 .optionInput:disabled ~ .optionLabel {
-    opacity: var(--optionOpacityDisabled);
-    cursor: var(--optionCursorDisabled);
+    opacity: 0.24;
+    cursor: not-allowed;
 }

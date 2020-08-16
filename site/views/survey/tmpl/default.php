@@ -17,12 +17,10 @@
 <!-- TODO input finish button when questionCounter = 16 -->
 <?php foreach ($this->surveyQuestions as $question): ?>
     <?php $this->questionCounter++; ?>
-    <?php $colour_hex = $question->colour_hex; ?>
-    <?php $colour_rgb = $question->colour_rgb; ?>
 
-    <div class="masterChest" style="border-color: <?php echo $colour_hex; ?>">
+    <div class="masterChest" style="border-color: <?php echo $question->colour_hex; ?>">
 
-        <div class="titleChest" style="background-color: <?php echo $colour_hex; ?>;">
+        <div class="titleChest" style="background-color: <?php echo $question->colour_hex; ?>;">
             <div class="title">
                 <?php echo $this->questionCounter . '. ' . $question->question; ?>
             </div>
@@ -32,9 +30,9 @@
             <?php foreach ($this->choices[$question->id] as $choice): ?>
                 <?php $clickEvent = 'id="' . $choice->id . '" onclick="checker(' . $this->projectID . ',' . $choice->id . ')"'; ?>
 
-                <label class="optionChest" style="<?php echo '--outlineColour:' . $colour_hex . '; --optionColour:' . $colour_hex; ?>;">
+                <label class="optionChest" style="--outlineColour: <?php echo $question->colour_hex; ?>; --optionColour: <?php echo $question->colour_hex; ?>;">
                     <input class="optionInput" type="checkbox" <?php echo $clickEvent . (is_null($choice->project_id) ? "" : " checked") ?>>
-                    <span class="optionLabel" style="--labelColour: <?php echo 'rgba(' . $colour_rgb . ', 0.10);'; ?>">
+                    <span class="optionLabel" style="--labelColour: <?php echo $question->colour_rgb; ?>;">
                         <span class="option">
                             <?php echo $choice->choice; ?>
                         </span>
