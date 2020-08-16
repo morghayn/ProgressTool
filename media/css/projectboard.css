@@ -1,3 +1,8 @@
+.optionsChest {
+    --outlineColour: #3d4d85;
+    --optionColour: #3d4d85;
+}
+
 .button {
     margin: 0 auto;
 
@@ -6,7 +11,7 @@
     width: 100%;
     background-color: #ffffff;
     color: #000000;
-    border: 2px solid #668cff;
+    border: 2px solid #3d4d85;
     padding: 16px 32px;
     text-align: center;
     text-decoration: none;
@@ -21,7 +26,7 @@
 }
 
 .button:hover {
-    background-color: #668cff;
+    background-color: #3d4d85;
     color: #ffffff;
 }
 

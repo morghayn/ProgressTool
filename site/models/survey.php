@@ -18,13 +18,6 @@ class ProgressToolModelSurvey extends JModelItem
     /**
      * Returns an index to a country String passed through, else returns 0 if not found.
      *
-     * @return int the country index.
-     * @since 0.3.0
-     */
-
-    /**
-     * Returns an index to a country String passed through, else returns 0 if not found.
-     *
      * @param string $country the country name.
      * @return int the country index.
      * @since 0.3.0
@@ -97,8 +90,8 @@ class ProgressToolModelSurvey extends JModelItem
      * else if no such selection has been made, the field will be null to indicate no selection has been made.
      *
      * @param int $projectID project index for which selections will be retrieved
-     * @param int $country country index used to get location specific questions.
-     * @return array the choices grouped by question.
+     * @param int $country country index used to get location specific choices.
+     * @return array the choices grouped by their respective questions, with an attribute to indicate whether it has been selected or not.
      * @since 0.1.0
      */
     public function getChoices($projectID, $country)
@@ -160,8 +153,6 @@ class ProgressToolModelSurvey extends JModelItem
             // Grouping by questionID.
             $groupedChoices[$row->question_id][] = $row;
         }
-
-        var_dump($groupedChoices);
 
         return $groupedChoices;
     }

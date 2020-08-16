@@ -43,11 +43,14 @@ CREATE TABLE `#__pt_category`
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO `#__pt_category` (`id`, `category`, `colour_hex`, `colour_rgb`)
-VALUES (1, 'People', '#ff6666', '255, 102, 102'), /* RED-ORANGE */
-       (2, 'Finance', '#b366ff', '179, 102, 255'), /* PURPLE */
-       (3, 'Technology', '#66ff8c', '102, 255, 140'), /* GREEN */
-       (4, 'null', '#ffffff', '255, 255, 255');
-/* GREEN */
+VALUES (1, 'People', '#f7a58a', '247, 165, 138'), /* RED-ORANGE */
+       (2, 'Finance', '#9690c6', '150, 144, 198'), /* PURPLE */
+       (3, 'Technology', '#95d0ab', '149, 208, 171'); /* GREEN */
+/* Old Values
+VALUES (1, 'People', '#ff6666', '255, 102, 102'),
+(2, 'Finance', '#b366ff', '179, 102, 255'),
+(3, 'Technology', '#66ff8c', '102, 255, 140'),
+ */
 
 /* */
 
@@ -92,28 +95,27 @@ VALUES (1, 1, 'Has your community hosted awareness activities surrounding the en
        (13, 3, 'Has a preliminary evaluation of the territory been completed?'),
        (14, 3, 'Following the preliminary evaluation of the territory, has a decision been made regarding project choice?'),
        (15, 3, 'Has a feasibility study been carried out for the selected Renewable Energy Project?'),
-       (16, 4, ''),
-       (17, 3, 'Has a land leasing commitment been agreed?'),
-       (18, 2, 'Is there a finance plan agreed within the group?'),
-       (19, 1, 'Has the local community group become a project society?'),
+       (16, 3, 'Has a land leasing commitment been agreed?'),
+       (17, 2, 'Is there a finance plan agreed within the group?'),
+       (18, 1, 'Has the local community group become a project society?'),
     /* Irish */
-       (20, 3, 'Has a technical committee been established within the group?'),
+       (19, 3, 'Has a technical committee been established within the group?'),
     /* Universal - Irish Exclusion */
-       (21, 1, 'Has a technical committee been established within the group?'),
-       (22, 2, 'Has the group organized to raise equity for construction or other projects?'),
-       (23, 3,
+       (20, 1, 'Has a technical committee been established within the group?'),
+       (21, 2, 'Has the group organized to raise equity for construction or other projects?'),
+       (22, 3,
         'Is there a technical file for planning permission to be submitted for administration approval? This file will contain a report from any studies carried out and other documents required by authorities to give planning permission for the project.'),
-       (24, 3, 'Was the file approved?'),
-       (25, 2, 'Is the financial plan finalized?'),
-       (26, 2, 'Has there been fundraising measures or bank loans for the construction phase?'),
-       (27, 3, 'Has the construction contracts been signed?'),
-       (28, 1, 'Has a plan for project management been agreed upon?'),
-       (29, 3, 'Has construction commenced?'),
-       (30, 1, 'Is the site operational?'),
-       (31, 2, 'Is there a financial management scheme in place for the project?'),
-       (32, 3, 'Is the group partaking in monitoring the project?'),
-       (33, 1, 'Has the community group maintained strong bonds with the local citizens?'),
-       (34, 1, 'Has there been further educational activities in your community?');
+       (23, 3, 'Was the file approved?'),
+       (24, 2, 'Is the financial plan finalized?'),
+       (25, 2, 'Has there been fundraising measures or bank loans for the construction phase?'),
+       (26, 3, 'Has the construction contracts been signed?'),
+       (27, 1, 'Has a plan for project management been agreed upon?'),
+       (28, 3, 'Has construction commenced?'),
+       (29, 1, 'Is the site operational?'),
+       (30, 2, 'Is there a financial management scheme in place for the project?'),
+       (31, 3, 'Is the group partaking in monitoring the project?'),
+       (32, 1, 'Has the community group maintained strong bonds with the local citizens?'),
+       (33, 1, 'Has there been further educational activities in your community?');
 
 /* */
 
@@ -166,8 +168,8 @@ VALUES (1, 2),
        (16, 1),
        (17, 1),
        (18, 1),
-       (19, 1),
-       (20, 2),
+       (19, 2),
+       (20, 1),
        (21, 1),
        (22, 1),
        (23, 1),
@@ -180,8 +182,7 @@ VALUES (1, 2),
        (30, 1),
        (31, 1),
        (32, 1),
-       (33, 1),
-       (34, 1); /* TODO: left join */
+       (33, 1);
 
 /* */
 
@@ -205,7 +206,7 @@ VALUES (2, 2),
        (9, 2),
        (11, 2),
        (13, 2),
-       (21, 2);
+       (20, 2);
 
 /* */
 
@@ -310,106 +311,106 @@ VALUES (1, 'No'),
        (15, 'Yes, the finding were positive and have been shared with the group'),
        (15, 'Yes, but the project is not viable and must be discontinued'),
 
+       (16, 'No'),
+       (16, 'Yes, commitment to lease on behalf of the association'),
+       (16, 'Yes, commitment to lease on behalf of a local community partner'),
+
        (17, 'No'),
-       (17, 'Yes, commitment to lease on behalf of the association'),
-       (17, 'Yes, commitment to lease on behalf of a local community partner'),
+       (17, 'Yes, a preliminary plan has been established'),
+       (17, 'Yes, the financial structure has been agreed'),
+       (17, 'Yes, and the group has launched fundraising for development costs'),
+       (17, 'Yes, the group is financially mobilized'),
 
        (18, 'No'),
-       (18, 'Yes, a preliminary plan has been established'),
-       (18, 'Yes, the financial structure has been agreed'),
-       (18, 'Yes, and the group has launched fundraising for development costs'),
-       (18, 'Yes, the group is financially mobilized'),
+       (18, 'Yes, they have hosted public meetings'),
+       (18, 'Yes, they have hosted technical training sessions'),
+       (18, 'Yes, they have hosted financing plan training sessions'),
+       (18, 'Yes, they have hosted negotiation training sessions'),
+       (18, 'Yes, they have hosted building project management training sessions'),
 
        (19, 'No'),
-       (19, 'Yes, they have hosted public meetings'),
-       (19, 'Yes, they have hosted technical training sessions'),
-       (19, 'Yes, they have hosted financing plan training sessions'),
-       (19, 'Yes, they have hosted negotiation training sessions'),
-       (19, 'Yes, they have hosted building project management training sessions'),
+       (19, 'Yes, with support from SEC mentors'),
+       (19, 'Yes, for quotations'),
+       (19, 'Yes, for providers'),
+       (19, 'Yes, and a technical study on a risk-sensitive basis and on the level of funds needed'),
 
        (20, 'No'),
-       (20, 'Yes, with support from SEC mentors'),
+       (20, 'Yes, with support from mentors'),
        (20, 'Yes, for quotations'),
        (20, 'Yes, for providers'),
        (20, 'Yes, and a technical study on a risk-sensitive basis and on the level of funds needed'),
 
        (21, 'No'),
-       (21, 'Yes, with support from mentors'),
-       (21, 'Yes, for quotations'),
-       (21, 'Yes, for providers'),
-       (21, 'Yes, and a technical study on a risk-sensitive basis and on the level of funds needed'),
+       (21, 'Yes, from banks'),
+       (21, 'Yes, from citizens'),
 
        (22, 'No'),
-       (22, 'Yes, from banks'),
-       (22, 'Yes, from citizens'),
+       (22, 'Yes, the feed-in tariff has been identified'),
+       (22, 'Yes, the technical scenario has been selected'),
+       (22, 'Yes, the means of production has been decided'),
+       (22, 'Yes, the site has been chosen'),
+       (22, 'Yes, the file has been submitted to the authorities for approval'),
 
-       (23, 'No'),
-       (23, 'Yes, the feed-in tariff has been identified'),
-       (23, 'Yes, the technical scenario has been selected'),
-       (23, 'Yes, the means of production has been decided'),
-       (23, 'Yes, the site has been chosen'),
-       (23, 'Yes, the file has been submitted to the authorities for approval'),
+       (23, 'No, a public enquiry is going to take place'),
+       (23, 'No, the file is being reviewed'),
+       (23, 'No, the project is being appealed '),
+       (23, 'Yes, there has been administration approval'),
 
-       (24, 'No, a public enquiry is going to take place'),
-       (24, 'No, the file is being reviewed'),
-       (24, 'No, the project is being appealed '),
-       (24, 'Yes, there has been administration approval'),
+       (24, 'No, it has not been started yet'),
+       (24, 'No, but it is in progress'),
+       (24, 'No, a feasibility study is ongoing'),
+       (24, 'Yes, the financial plan is consolidated'),
+       (24, 'Yes, and a risk assessment has been carried out'),
+       (24, 'Yes, the banking file is complete'),
 
-       (25, 'No, it has not been started yet'),
-       (25, 'No, but it is in progress'),
-       (25, 'No, a feasibility study is ongoing'),
-       (25, 'Yes, the financial plan is consolidated'),
-       (25, 'Yes, and a risk assessment has been carried out'),
-       (25, 'Yes, the banking file is complete'),
+       (25, 'No'),
+       (25, 'Yes, bank loan'),
+       (25, 'Yes, members’ investments'),
+       (25, 'Yes, government funding scheme'),
 
        (26, 'No'),
-       (26, 'Yes, bank loan'),
-       (26, 'Yes, members’ investments'),
-       (26, 'Yes, government funding scheme'),
+       (26, 'Yes, the land leasing contracts have been signed'),
+       (26, 'Yes, the energy feed-in tariffs have been agreed'),
+       (26, 'Yes, materials and production machines have been agreed'),
+       (26, 'Yes, maintenance contracts have been agreed'),
+       (26, 'Yes, building providers have been agreed'),
 
        (27, 'No'),
-       (27, 'Yes, the land leasing contracts have been signed'),
-       (27, 'Yes, the energy feed-in tariffs have been agreed'),
-       (27, 'Yes, materials and production machines have been agreed'),
-       (27, 'Yes, maintenance contracts have been agreed'),
-       (27, 'Yes, building providers have been agreed'),
+       (27, 'Yes, there has been a session to discuss citizen involvement in project management'),
+       (27, 'Yes, an official project management plan has been put in place'),
+       (27, 'Yes, there has been a group visit to the construction site'),
+       (27, 'Yes, plans are in place for preparation of operation monitoring'),
 
        (28, 'No'),
-       (28, 'Yes, there has been a session to discuss citizen involvement in project management'),
-       (28, 'Yes, an official project management plan has been put in place'),
-       (28, 'Yes, there has been a group visit to the construction site'),
-       (28, 'Yes, plans are in place for preparation of operation monitoring'),
+       (28, 'Yes, construction had commenced'),
+       (28, 'Yes, providers for neighborhood impact monitoring studies have been identified'),
+       (28, 'Yes, providers for environmental studies have been identified'),
+       (28, 'Yes, providers for system monitoring have been identified'),
+       (28, 'Yes, the site has been commissioned'),
 
-       (29, 'No'),
-       (29, 'Yes, construction had commenced'),
-       (29, 'Yes, providers for neighborhood impact monitoring studies have been identified'),
-       (29, 'Yes, providers for environmental studies have been identified'),
-       (29, 'Yes, providers for system monitoring have been identified'),
-       (29, 'Yes, the site has been commissioned'),
+       (29, 'No, construction is still ongoing'),
+       (29, 'No, but construction is complete and it has been inaugurated'),
+       (29, 'Yes, with ongoing communication regarding the operation'),
 
-       (30, 'No, construction is still ongoing'),
-       (30, 'No, but construction is complete and it has been inaugurated'),
-       (30, 'Yes, with ongoing communication regarding the operation'),
+       (30, 'No'),
+       (30, 'Yes, the finances are managed through the committee'),
+       (30, 'Yes, profits have been allocated'),
 
        (31, 'No'),
-       (31, 'Yes, the finances are managed through the committee'),
-       (31, 'Yes, profits have been allocated'),
+       (31, 'Yes, neighborhood impact monitoring in the first year of the project'),
+       (31, 'Yes, environmental monitoring every year of the project'),
+       (31, 'Yes, preventative maintenance and repairs are being carried out regularly'),
+       (31, 'Yes, the production site is being continuously technically monitored'),
 
        (32, 'No'),
-       (32, 'Yes, neighborhood impact monitoring in the first year of the project'),
-       (32, 'Yes, environmental monitoring every year of the project'),
-       (32, 'Yes, preventative maintenance and repairs are being carried out regularly'),
-       (32, 'Yes, the production site is being continuously technically monitored'),
+       (32, 'Yes, they have hosted a general assembly with the executive board'),
+       (32, 'Yes, and compensatory measures have been put in place for citizens'),
+       (32, 'Yes, they keep in touch with residents of the project'),
 
        (33, 'No'),
-       (33, 'Yes, they have hosted a general assembly with the executive board'),
-       (33, 'Yes, and compensatory measures have been put in place for citizens'),
-       (33, 'Yes, they keep in touch with residents of the project'),
-
-       (34, 'No'),
-       (34, 'Yes, about renewable energy'),
-       (34, 'Yes, about the environment'),
-       (34, 'Yes, about energy saving');
+       (33, 'Yes, about renewable energy'),
+       (33, 'Yes, about the environment'),
+       (33, 'Yes, about energy saving');
 
 /* */
 

@@ -43,13 +43,12 @@ class ProgressToolViewProjectBoard extends JViewLegacy
 
         $this->approvalQuestions = $this->get('ApprovalQuestions');
         $this->approvalSelections = $model->getApprovalSelections($this->user->id);
-        var_dump($this->approvalSelections);
+        //var_dump($this->approvalSelections);
 
         $this->addStylesheet();
         $this->addScripts();
 
         // Display the view
-        parent::display('test');
         parent::display($tpl);
     }
 
