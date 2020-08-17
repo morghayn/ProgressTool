@@ -84,12 +84,9 @@ class ProgressToolViewSurvey extends JViewLegacy
         {
             JFactory::getApplication()->redirect('index.php?option=com_progresstool&view=projectboard');
         }
-        else
+        elseif ($this->project['user_id'] !== $this->user->id)
         {
-            if ($this->project['user_id'] !== $this->user->id)
-            {
-                JFactory::getApplication()->redirect('index.php?option=com_progresstool&view=projectboard');
-            }
+            JFactory::getApplication()->redirect('index.php?option=com_progresstool&view=projectboard');
         }
     }
 
