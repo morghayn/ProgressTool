@@ -5,9 +5,7 @@
 <!-- Heading -->
 <div class="masterChest">
     <div class="titleChest">
-        <div class="title">
-            ProjectBoard
-        </div>
+        <h1 class="title">ProjectBoard</h1>
     </div>
 </div>
 
@@ -19,7 +17,9 @@
         <!-- Question -->
         <div class="titleChest">
             <div class="title">
-                <?php echo $project->name . ($project->activated == 0 ? ' :: Not Activated' : ''); ?>
+                <h2>
+                    <?php echo $project->name . ($project->activated == 0 ? ' :: Not Activated' : ''); ?>
+                </h2>
             </div>
         </div>
 

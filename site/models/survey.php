@@ -40,27 +40,31 @@ class ProgressToolModelSurvey extends JModelItem
     }
 
     /**
-     * Retrieve a list of universal and location specific questions.
+     * Returns a query object to retrieve question pool for a specified country, a question pool for a country is algorithmically defined as:
+     * (Universal Question Pool u The Question Pool of the Country Specified) /
+     * (The Questions Excluded from the Universal Question Pool of the Country Specified)
      *
-     * @param $country int country index used to get location specific questions.
-     * @return mixed list of the survey questions.
-     * @since 0.2.6
+     * Where / = Relative Complement and u = Union
+     *
+     * @param object $db the current database connection.
+     * @param int $country index for country specified.
+     * @return mixed the query object used to retrieve question pool for a specified country.
      */
-    public function getSurveyQuestions($country)
+    public function getQuestionPoolQuery($db, $country)
     {
+        $excluded = $db->getQuery(true);
+        $included = $db->getQuery(true);
+
+        // Index for universal question pool.
         $universal = 1;
 
-        // Get a db connection and create a new query object.
-        $db = JFactory::getDbo();
-        $questions = $db->getQuery(true);
-        $included = $db->getQuery(true);
-        $excluded = $db->getQuery(true);
-
+        // Query to retrieve universal questions excluded from a specific country.
         $excluded
-            ->select($db->quoteName('EXC.question_id'))
-            ->from($db->quoteName('#__pt_exclude', 'EXC'))
-            ->where($db->quoteName('EXC.country_id') . ' = ' . $country);
+            ->select($db->quoteName('Exclude.question_id'))
+            ->from($db->quoteName('#__pt_exclude', 'Exclude'))
+            ->where($db->quoteName('Exclude.country_id') . ' = ' . $country);
 
+        // Query used to
         $included
             ->select($db->quoteName('QC.question_id'))
             ->from($db->quoteName('#__pt_question_country', 'QC'))
@@ -68,6 +72,23 @@ class ProgressToolModelSurvey extends JModelItem
                 '( ' . $db->quoteName('QC.country_id') . ' = ' . $universal . ' OR ' . $db->quoteName('QC.country_id') . ' = ' . $country . ')' .
                 ' AND' . $db->quoteName('QC.question_id') . ' NOT IN (' . $excluded . ')'
             );
+
+        return $included;
+    }
+
+    /**
+     * Retrieve a list of universal and location specific questions.
+     *
+     * @param $country int country index used to get location specific questions.
+     * @return mixed objectList containing the location specific questions.
+     * @since 0.3.0
+     */
+    public function getQuestions($country)
+    {
+        // Get a db connection and create a new query object.
+        $db = JFactory::getDbo();
+        $questions = $db->getQuery(true);
+        $included = $this->getQuestionPoolQuery($db, $country);
 
         // Columns to be retrieved.
         $columns = array('Q.id', 'Q.question', 'C.colour_hex', 'C.colour_rgb');
@@ -96,45 +117,34 @@ class ProgressToolModelSurvey extends JModelItem
      */
     public function getChoices($projectID, $country)
     {
-        $universal = 1;
-
         // Get a db connection and create a new query object.
         $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-        $projectSelections = $db->getQuery(true);
-        $included = $db->getQuery(true);
-        $excluded = $db->getQuery(true);
-
-        $excluded
-            ->select($db->quoteName('EXC.question_id'))
-            ->from($db->quoteName('#__pt_exclude', 'EXC'))
-            ->where($db->quoteName('EXC.country_id') . ' = ' . $country);
-
-        $included
-            ->select($db->quoteName('QC.question_id'))
-            ->from($db->quoteName('#__pt_question_country', 'QC'))
-            ->where(
-                '( ' . $db->quoteName('QC.country_id') . ' = ' . $universal . ' OR ' . $db->quoteName('QC.country_id') . ' = ' . $country . ')' .
-                ' AND' . $db->quoteName('QC.question_id') . ' NOT IN (' . $excluded . ')'
-            );
-
-        $projectSelections
-            ->select('*')
-            ->from($db->quoteName('#__pt_project_choice'))
-            ->where($db->quoteName('project_id') . ' = ' . $projectID);
+        $choices = $db->getQuery(true);
+        $included = $this->getQuestionPoolQuery($db, $country);
 
         // Columns to be retrieved.
-        $columns = array('C.id', 'C.question_id', 'C.choice', 'C.weight', 'PC.project_id');
+        $columns = array('Choice.id', 'Choice.question_id', 'Choice.choice', 'Choice.weight', 'Selected.project_id');
 
         // Prepare query to retrieve the choices for the survey questions.
-        $query
+        $choices
             ->select($db->quoteName($columns))
-            ->from($db->quoteName('#__pt_question_choice', 'C'))
-            ->innerjoin('(' . $included . ') AS QC ON ' . $db->quoteName('C.question_id') . ' = ' . $db->quoteName('QC.question_id'))
-            ->leftjoin('(' . $projectSelections . ') AS PC ON ' . $db->quoteName('C.id') . ' = ' . $db->quoteName('PC.choice_id'));
+            ->from($db->quoteName('#__pt_question_choice', 'Choice'))
+            ->innerjoin('(' . $included . ') AS Pool ON ' . $db->quoteName('Choice.question_id') . ' = ' . $db->quoteName('Pool.question_id'))
+            ->leftjoin(
+                $db->quoteName('#__pt_project_choice') .
+                ' AS Selected ON ' . $db->quoteName('Choice.id') . ' = ' . $db->quoteName('Selected.choice_id') .
+                ' AND ' . $db->quoteName('Selected.project_id') . ' = ' . $projectID
+            );
+
+        /** TODO: remove when testing is done.
+         * ini_set("xdebug.var_display_max_children", '-1');
+         * ini_set("xdebug.var_display_max_data", '-1');
+         * ini_set("xdebug.var_display_max_depth", '-1');
+         * var_dump($db->replacePrefix((string) $choices));
+         */
 
         // Set query, and returns choices as an array indexed by their respective questions.
-        return $this->groupChoices($db->setQuery($query)->loadObjectList());
+        return $this->groupChoices($db->setQuery($choices)->loadObjectList());
     }
 
     /**
@@ -158,28 +168,29 @@ class ProgressToolModelSurvey extends JModelItem
     }
 
     /**
-     * Retrieve the name for the project of the projectID specified.
+     * Returns associated array containing data pertaining to the project specified in the parameters.
      *
-     * @param int $projectID the projectID specifying which project to retrieve a name for.
-     * @return mixed the name of the requested project.
-     * @since 0.2.6
-     *
-     * TODO: Merge with getSelections() via a join query.
+     * @param int $projectID the ID used to identify project.
+     * @return mixed associated array of dataa.
+     * @since 0.3.0
      */
-    public function getProjectName($projectID)
+    public function getProject($projectID)
     {
         // Get a db connection and create a new query object.
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
 
+        // Columns to be retrieved.
+        $columns = array('user_id', 'name', 'activated');
+
         // Select all records from #__pt_question
         $query
-            ->select($db->quoteName('name'))
+            ->select($db->quoteName($columns))
             ->from($db->quoteName('#__pt_project'))
             ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
 
         // Reset the query using our newly populated query object.... returning weight
-        return $db->setQuery($query)->loadResult();
+        return $db->setQuery($query)->loadAssoc();
     }
 
     /**

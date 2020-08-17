@@ -8,14 +8,15 @@
     <!-- Question -->
     <div class="titleChest">
         <div class="title">
-            Project Name: <?php echo $this->projectName; ?>
+            Project Name: <?php echo $this->project['name']; ?>
         </div>
     </div>
 
 </div>
 
 <!-- TODO input finish button when questionCounter = 16 -->
-<?php foreach ($this->surveyQuestions as $question): ?>
+<?php $this->questionCounter = 0; ?>
+<?php foreach ($this->questions as $question): ?>
     <?php $this->questionCounter++; ?>
 
     <div class="masterChest" style="border-color: <?php echo $question->colour_hex; ?>">

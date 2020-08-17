@@ -15,111 +15,110 @@
  */
 class ProgressToolViewSurvey extends JViewLegacy
 {
-    /**
-     * @var array
-     * @since 0.2.6
-     */
-    protected $questions = array();
 
     /**
-     * @var array
-     * @since 0.2.6
+     * @var object
      */
-    protected $choices = array();
+    private $user;
 
     /**
      * @var int
-     * @since 0.2.6
+     * @var array
+     * @var array
+     * @var array
      */
-    protected $projectID;
+    protected $projectID, $questions, $choices, $project;
 
     /**
-     * Renders view.
+     * Renders template for the Survey view.
      *
      * @param null $tpl use default template.
      * @since 0.1.0
      */
     function display($tpl = null)
     {
+        $input = JFactory::getApplication()->input;
         $model = $this->getModel();
+
         $this->user = JFactory::getUser();
+        $this->redirectGuest();
 
-        // If user not logged in, redirect to login.
-        $this->redirectIfGuest();
+        $projectIDBas64 = $input->get('projectID', '', 'BASE64');
+        $this->projectID = base64_decode($projectIDBas64);
+        $this->project = $model->getProject($this->projectID);
+        $this->handleAuthentication();
 
-        // Retrieving projectID from URL.
-        $this->projectID = base64_decode(JFactory::getApplication()->input->get('projectID', '', 'BASE64'));
-
-        // Redirect if project is not present in URL.
-        if(!$this->projectID)
-        {
-            $this->redirectProjectBoard();
-        }
-
-        $this->projectName = $model->getProjectName($this->projectID);
-
-        // TODO: check if current user owns project as part of security protocol
-
-        $countryString = 'France';
-        // TODO: for non-official release $countryString = $this->getUserCountryString();
-        $countryIndex = $model->getCountryIndex($countryString);
-
-        $this->surveyQuestions = $model->getSurveyQuestions($countryIndex);
+        $countryIndex = $this->getCountryIndex();
+        $this->questions = $model->getQuestions($countryIndex);
         $this->choices = $model->getChoices($this->projectID, $countryIndex);
 
-
-        $this->questionCounter = 0;
-        // Display the view
-        parent::display($tpl);
         $this->addStylesheet();
         $this->addScripts();
+
+        // Display the view
+        parent::display($tpl);
     }
 
     /**
-     * Code to print a user's country. Will be used to retrieve country specific questions.
-     *
-     * @param object $cuser the user object
+     * If user is not logged in, they will be redirected to login screen, and then redirected to their ProjectBoard.
      * @since 0.3.0
      */
-    private function getUserCountryString()
-    {
-        $cuser = CFactory::getUser();
-        JFactory::getLanguage()->load('com_community.country', JPATH_SITE, 'en-GB', true);
-        $profileCountry = $cuser->getInfo('FIELD_COUNTRY');
-        $countryString = JText::_($profileCountry);
-
-        return $countryString;
-    }
-
-    /**
-     * // TODO: comment
-     * If projectID not present...
-     *
-     * @since 0.2.6
-     */
-    private function redirectProjectBoard()
-    {
-        JFactory::getApplication()->redirect('index.php?option=com_progresstool&view=projectboard');
-    }
-
-    /**
-     * // TODO comment
-     * If user not logged in, redirect to login.
-     *
-     * @since 0.2.6
-     */
-    private function redirectIfGuest()
+    private function redirectGuest()
     {
         if ($this->user->get('guest'))
         {
-            $return = urlencode(base64_encode('index.php?option=com_progresstool&view=survey'));
+            $return = urlencode(base64_encode('index.php?option=com_progresstool&view=projectboard'));
             JFactory::getApplication()->redirect('index.php?option=com_users&view=login&return=' . $return);
-            //JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_users&view=login', JText::_("You must be logged in to view this content")));
         }
     }
 
     /**
-     * // TODO comment
+     * Authenticates both project and user. First checks to see whether project is exists, then checks if current user should have access to
+     * the project. If invalid, user is redirected to their ProjectBoard.
+     *
+     * @since 0.3.0
+     */
+    private function handleAuthentication()
+    {
+        if (!$this->projectID)
+        {
+            JFactory::getApplication()->redirect('index.php?option=com_progresstool&view=projectboard');
+        }
+        else
+        {
+            if ($this->project['user_id'] !== $this->user->id)
+            {
+                JFactory::getApplication()->redirect('index.php?option=com_progresstool&view=projectboard');
+            }
+        }
+    }
+
+    /**
+     * Returns country index of the current user. This function is intended to be used in conjunction with JomSocial. If JomSocial is not present,
+     * it will instead return 0.
+     *
+     * @return int the country index for the current user. If JomSocial is not present, it will return '0'.
+     */
+    private function getCountryIndex()
+    {
+        if (class_exists('CFactory'))
+        {
+            JFactory::getLanguage()->load('com_community.country', JPATH_SITE, 'en-GB', true);
+            $profileCountry = CFactory::getUser()->getInfo('FIELD_COUNTRY');
+
+            $country = JText::_($profileCountry);
+            return $this->getModel()->getCountryIndex($country);
+        }
+        else // for testing purposes
+        {
+            $country = "Ireland";
+            return $this->getModel()->getCountryIndex($country);
+            // TODO: return 0 once testing is complete.
+        }
+    }
+
+    /**
+     * // TODO: documentation
      * @since 0.2.6
      */
     private function addStylesheet()
@@ -131,7 +130,7 @@ class ProgressToolViewSurvey extends JViewLegacy
     }
 
     /**
-     * // TODO comment
+     * // TODO: documentation
      * @since 0.2.6
      */
     private function addScripts()
