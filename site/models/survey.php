@@ -49,6 +49,7 @@ class ProgressToolModelSurvey extends JModelItem
      * @param object $db the current database connection.
      * @param int $country index for country specified.
      * @return mixed the query object used to retrieve question pool for a specified country.
+     * @since 0.3.0
      */
     public function getQuestionPoolQuery($db, $country)
     {

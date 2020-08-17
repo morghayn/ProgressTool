@@ -61,6 +61,7 @@ class ProgressToolViewSurvey extends JViewLegacy
 
     /**
      * If user is not logged in, they will be redirected to login screen, and then redirected to their ProjectBoard.
+     *
      * @since 0.3.0
      */
     private function redirectGuest()
@@ -95,6 +96,7 @@ class ProgressToolViewSurvey extends JViewLegacy
      * it will instead return 0.
      *
      * @return int the country index for the current user. If JomSocial is not present, it will return '0'.
+     * @since 0.3.0
      */
     private function getCountryIndex()
     {
