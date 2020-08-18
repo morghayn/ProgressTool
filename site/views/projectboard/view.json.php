@@ -28,26 +28,13 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         $projectID = $data['project'];
         $approvalID = $data['approvalID'];
 
-        $model = parent::getModel(); // TODO does PHP have booleans?
-        $isSelected = $model->isSelected($projectID, $approvalID);
+        $model = parent::getModel();
+        $model->processSelection($projectID, $approvalID);
+        $isActivated = $model->activateProject($projectID);
 
-        if ($isSelected == 1)
+        if ($isActivated)
         {
-            $model->deselect($projectID, $approvalID);
+            JFactory::getApplication()->redirect('index.php?option=com_progresstool&view=projectboard');
         }
-        else if ($isSelected == 0)
-        {
-            $model->select($projectID, $approvalID);
-        }
-
-        $isProjectValid = $model->isProjectValid(3, $projectID);
-        if ($isProjectValid)
-        {
-            $model->activateProject($projectID);
-        }
-
-
-        $response = array("activated"=>$isProjectValid, "selected"=>$isSelected);
-        echo new JResponseJson($response);
     }
 }

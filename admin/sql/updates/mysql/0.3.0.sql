@@ -427,6 +427,7 @@ CREATE TABLE `#__pt_project`
     `description` VARCHAR(255),
     `activated`   TINYINT UNSIGNED NOT NULL DEFAULT '0',
     PRIMARY KEY (`id`)
+
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 0
@@ -440,7 +441,7 @@ CREATE TABLE `#__pt_project_choice`
     `project_id` INT UNSIGNED     NOT NULL,
     `choice_id`  TINYINT UNSIGNED NOT NULL,
     CONSTRAINT id PRIMARY KEY (project_id, choice_id),
-    FOREIGN KEY (project_id) REFERENCES `#__pt_project` (id),
+    FOREIGN KEY (project_id) REFERENCES `#__pt_project` (id) ON DELETE CASCADE,
     FOREIGN KEY (choice_id) REFERENCES `#__pt_question_choice` (id)
 )
     ENGINE = InnoDB
@@ -455,7 +456,7 @@ CREATE TABLE `#__pt_project_approval`
     `project_id`  INT UNSIGNED     NOT NULL,
     `approval_id` TINYINT UNSIGNED NOT NULL,
     CONSTRAINT id PRIMARY KEY (project_id, approval_id),
-    FOREIGN KEY (project_id) REFERENCES `#__pt_project` (id),
+    FOREIGN KEY (project_id) REFERENCES `#__pt_project` (id) ON DELETE CASCADE,
     FOREIGN KEY (approval_id) REFERENCES `#__pt_approval_question` (id)
 )
     ENGINE = InnoDB
