@@ -1,16 +1,12 @@
-<?php
-
-defined('_JEXEC') or die;
-
-$this->questionCounter = 0;
-
-?>
+<?php defined('_JEXEC') or die; ?>
 
 <input id="token" type="hidden" name="<?php echo JSession::getFormToken(); ?>" value="1"/>
 
 <?php
 
-echo $this->loadTemplate('heading');
+$this->questionCounter = 0;
+
+echo $this->loadTemplate('title');
 
 foreach ($this->questions as $this->question):
     $this->colourHex = $this->question->colour_hex;

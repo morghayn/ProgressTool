@@ -18,7 +18,7 @@ class ProgressToolController extends JControllerLegacy
     public function abc()
     {
         // (use JInput in 3.x)
-        $this->input->set('view', 'Abc');
+        $this->input->set('activeProject', 'ProjectBoard');
 
         parent::display();
     }

@@ -21,7 +21,7 @@ class ProgressToolModelProjectBoard extends JModelItem
      * @return mixed a list of the user's projects
      * @since 0.1.6
      */
-    public function getUserProjects($userID)
+    public function getProjects($userID)
     {
         // Get a db connection and create a new query object.
         $db = JFactory::getDbo();
@@ -39,6 +39,32 @@ class ProgressToolModelProjectBoard extends JModelItem
 
         // Set query, execute and return projects as a list of stdClass objects.
         return $db->setQuery($query)->loadObjectList();
+    }
+
+    /**
+     * Returns a project object linked to the projectID passed through parameters.
+     *
+     * @param int $projectID the ID of the project.
+     * @return mixed the questions project object.
+     */
+    public function getProject($projectID)
+    {
+        // Get a db connection and create a new query object.
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+
+        // Columns to be retrieved.
+        $columns = array('id', 'name', 'description', 'activated');
+
+        // Preparing query to retrieve a user's project.
+        $query
+            ->select($db->quoteName($columns))
+            ->from($db->quoteName('#__pt_project'))
+            ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
+        // TODO: $query->order('ordering ASC');
+
+        // Set query, execute and return project object.
+        return $db->setQuery($query)->loadObject();
     }
 
     /**

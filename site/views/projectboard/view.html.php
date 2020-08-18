@@ -36,13 +36,12 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         // TODO: Fetch User Projects
         $model = parent::getModel();
         $this->projects = array();
-        $this->projects = $model->getUserProjects($this->user->id);
+        $this->projects = $model->getProjects($this->user->id);
 
         // TODO: Generate Project Graph
 
         $this->approvalQuestions = $this->get('ApprovalQuestions');
         $this->approvalSelections = $model->getApprovalSelections($this->user->id);
-        //var_dump($this->approvalSelections);
 
         $this->addStylesheet();
         $this->addScripts();
