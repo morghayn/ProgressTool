@@ -60,6 +60,8 @@
     </div>
 <?php endforeach; ?>
 
+<div id="test"></div>
+
 <!--div class="masterChest" style="border: none; width: 55px;">
     <button onclick="location.href = '?option=com_progresstool&view=projectcreate'" class="cornerButton"></button>
 </div-->

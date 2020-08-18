@@ -15,6 +15,14 @@
 class ProgressToolController extends JControllerLegacy
 {
 
+    public function abc()
+    {
+        // (use JInput in 3.x)
+        $this->input->set('view', 'Abc');
+
+        parent::display();
+    }
+
     // TODO since 0.2.6/
     public function persistClick()
     {

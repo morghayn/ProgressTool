@@ -1,46 +1,23 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
 
-<?php // TODO: Is this the correct setup for tokens? ?>
-<?php echo '<input id="token" type="hidden" name="' . JSession::getFormToken() . '" value="1" />'; ?>
+defined('_JEXEC') or die;
 
-<div class="masterChest">
+$this->questionCounter = 0;
 
-    <!-- Question -->
-    <div class="headingChest">
-        <div class="heading">
-            Project Name: <?php echo $this->project['name']; ?>
-        </div>
-    </div>
+?>
 
-</div>
+<input id="token" type="hidden" name="<?php echo JSession::getFormToken(); ?>" value="1"/>
 
-<!-- TODO input finish button when questionCounter = 16 -->
-<?php $this->questionCounter = 0; ?>
-<?php foreach ($this->questions as $question): ?>
-    <?php $this->questionCounter++; ?>
+<?php
 
-    <div class="masterChest" style="border-color: <?php echo $question->colour_hex; ?>">
+echo $this->loadTemplate('heading');
 
-        <div class="headingChest" style="background-color: <?php echo $question->colour_hex; ?>;">
-            <div class="heading">
-                <?php echo $this->questionCounter . '. ' . $question->question; ?>
-            </div>
-        </div>
+foreach ($this->questions as $this->question):
+    $this->colourHex = $this->question->colour_hex;
+    $this->colourRGB = $this->question->colour_rgb;
+    $this->questionCounter++; // TODO: Input finish button when questionCounter is 16
 
-        <div class="optionsChest">
-            <?php foreach ($this->choices[$question->id] as $choice): ?>
-                <?php $clickEvent = 'id="' . $choice->id . '" onclick="checker(' . $this->projectID . ',' . $choice->id . ')"'; ?>
+    echo $this->loadTemplate('question');
+endforeach;
 
-                <label class="optionChest" style="--outlineColour: <?php echo $question->colour_hex; ?>; --optionColour: <?php echo $question->colour_hex; ?>;">
-                    <input class="optionInput" type="checkbox" <?php echo $clickEvent . (is_null($choice->project_id) ? "" : " checked") ?>>
-                    <span class="optionLabel" style="--labelColour: <?php echo $question->colour_rgb; ?>;">
-                        <span class="option">
-                            <?php echo $choice->choice; ?>
-                        </span>
-                    </span>
-                </label>
-            <?php endforeach; ?>
-        </div>
-
-    </div>
-<?php endforeach; ?>
+?>

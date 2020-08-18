@@ -32,9 +32,13 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         $model->processSelection($projectID, $approvalID);
         $isActivated = $model->activateProject($projectID);
 
-        if ($isActivated)
-        {
-            JFactory::getApplication()->redirect('index.php?option=com_progresstool&view=projectboard');
-        }
+        echo new JResponseJson($isActivated);
+
+        /**
+         * if ($isActivated)
+         * {
+         * JFactory::getApplication()->redirect('index.php?option=com_progresstool&view=projectboard');
+         * }
+         */
     }
 }
