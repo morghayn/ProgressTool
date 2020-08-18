@@ -11,7 +11,6 @@
  *
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
- * @license GNU General Public License version 2 or later; see LICENSE.txt
  */
 class ProgressToolViewProjectCreate extends JViewLegacy
 {
@@ -30,7 +29,7 @@ class ProgressToolViewProjectCreate extends JViewLegacy
         $input = JFactory::getApplication()->input;
         $projectData = $input->get('projectData', array(), 'ARRAY');
 
-        $model = $this->getModel();
+        $model = parent::getModel();
         $model->insertProject($this->user->id, $projectData['name'], $projectData['description']);
 
 

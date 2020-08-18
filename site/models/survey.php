@@ -11,7 +11,6 @@
  *
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
- * @license GNU General Public License version 2 or later; see LICENSE.txt
  */
 class ProgressToolModelSurvey extends JModelItem
 {
@@ -195,49 +194,26 @@ class ProgressToolModelSurvey extends JModelItem
     }
 
     /**
-     * Returns the questionID of the question which the choice specified belongs to.
+     * Returns data attached to a specific choice.
      *
-     * @param int $choiceID the choiceID of which questionID we want returned.
-     * @return mixed the questionID which is in ownership of the choiceID specified.
-     * @since 0.1.7
+     * @param int $choiceID the choiceID of the choice in question.
+     * @return mixed an associative array containing data of the choice in question.
+     * @since 0.3.0
      */
-    public function getQuestionID($choiceID)
+    public function getChoice($choiceID)
     {
         // Get a db connection and create a new query object.
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
 
-        // Prepare query to retrieve questionID of which owns the choiceID specified.
+        // Prepare query to associative array for the choice in question.
         $query
-            ->select($db->quoteName('question_id'))
+            ->select($db->quoteName('*'))
             ->from($db->quoteName('#__pt_question_choice'))
             ->where($db->quoteName('id') . ' = ' . $db->quote($choiceID));
 
         // Set query, and return the questionID.
-        return $db->setQuery($query)->loadResult();
-    }
-
-    /**
-     * Returns the weight value for a choiceID specified.
-     *
-     * @param int $choiceID the choiceID of which to return a weight value for.
-     * @return mixed the weight of the choiceID specified.
-     * @since 0.1.7
-     */
-    public function getWeight($choiceID)
-    {
-        // Get a db connection and create a new query object.
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-
-        // Prepare query to select the weight of the choiceID specified.
-        $query
-            ->select($db->quoteName('weight'))
-            ->from($db->quoteName('#__pt_question_choice'))
-            ->where($db->quoteName('id') . ' = ' . $db->quote($choiceID));
-
-        // Set query, and return the weight of the choiceID specified.
-        return $db->setQuery($query)->loadResult();
+        return $db->setQuery($query)->loadAssoc();
     }
 
     /**

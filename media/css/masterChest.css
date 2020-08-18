@@ -16,31 +16,109 @@
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
 }
 
-.titleChest {
+/*
+.headingChest {
     margin: 0 auto;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+color: #ffffff;
+background-color: #3d4d85;
+}
+
+.heading {
+    width: 50%;
+    margin: 0 auto;
+    padding: 1.10rem;
+    font-size: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+    line-height: 1.1;
+    word-wrap: break-word;
+    font-weight: 600;
+    color: #ffffff;
+}
+ */
+
+.headingChest {
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center; /* is this necessary? */
 
     color: #ffffff;
     background-color: #3d4d85;
 }
 
-.title {
-    /*
+.heading {
+    width: 40%;
     margin: 0 auto;
-    width: 95%;
-    padding: 1.10rem;
-
-    line-height: 1.1;
-    font-size: 1.6em; /* 1.9em for Project Activation */
-    font-weight: 600;
-    margin: 0 auto;
-    padding: 1.10rem;
+    padding: 1.25rem;
+    font-size: 1.6rem;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
-    font-size: 1.6em;
     line-height: 1.1;
     word-wrap: break-word; /** what does this do? */
     font-weight: 600;
     color: #ffffff;
-    text-rendering: optimizeLegibility;
+    /* text-rendering: optimizeLegibility; */
 }
+
+.cornerButton:before {
+    content: '\FF0B';
+}
+
+.cornerButton {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto;
+    font-size: 2.15rem;
+    color: #ffffff;
+    border: 0;
+    border-radius: 0.2rem;
+    background-color: #bad659;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+    font-weight: 600;
+    line-height: 0;
+
+    /**
+    box-sizing: border-box;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -webkit-font-smoothing: antialiased;
+     */
+}
+
+.cornerButton:hover {
+    opacity: 0.85;
+}
+
+.cornerButton:active {
+    box-shadow: inset 0 3px 4px hsla(0, 0%, 0%, 0.2);
+}
+
+.cornerButton:focus {
+    outline: thin dotted #444;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+.cornerBlank {
+    width: 55px;
+    margin: 0 auto;
+    padding: 1.10rem;
+    box-sizing: border-box;
+    background-color: #3d4d85;
+}
+/**
+@media only screen and (max-width: 1000px) {
+    .cornerButton {
+        width: 20%;
+    }
+}
+ */

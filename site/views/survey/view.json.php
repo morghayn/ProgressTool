@@ -11,7 +11,6 @@
  *
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
- * @license GNU General Public License version 2 or later; see LICENSE.txt
  */
 class ProgressToolViewSurvey extends JViewLegacy
 {
@@ -52,7 +51,7 @@ class ProgressToolViewSurvey extends JViewLegacy
         $input = JFactory::getApplication()->input;
 
         // TODO does PHP have booleans?
-        $model = $this->getModel();
+        $model = parent::getModel();
 
         $isSelected = $model->isSelected($projectID, $choiceID);
         if ($isSelected == 1)

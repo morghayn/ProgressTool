@@ -11,7 +11,6 @@
  *
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
- * @license GNU General Public License version 2 or later; see LICENSE.txt
  */
 class ProgressToolViewProjectBoard extends JViewLegacy
 {
@@ -29,7 +28,7 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         $projectID = $data['project'];
         $approvalID = $data['approvalID'];
 
-        $model = $this->getModel(); // TODO does PHP have booleans?
+        $model = parent::getModel(); // TODO does PHP have booleans?
         $isSelected = $model->isSelected($projectID, $approvalID);
 
         if ($isSelected == 1)

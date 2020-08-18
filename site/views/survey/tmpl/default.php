@@ -6,8 +6,8 @@
 <div class="masterChest">
 
     <!-- Question -->
-    <div class="titleChest">
-        <div class="title">
+    <div class="headingChest">
+        <div class="heading">
             Project Name: <?php echo $this->project['name']; ?>
         </div>
     </div>
@@ -21,8 +21,8 @@
 
     <div class="masterChest" style="border-color: <?php echo $question->colour_hex; ?>">
 
-        <div class="titleChest" style="background-color: <?php echo $question->colour_hex; ?>;">
-            <div class="title">
+        <div class="headingChest" style="background-color: <?php echo $question->colour_hex; ?>;">
+            <div class="heading">
                 <?php echo $this->questionCounter . '. ' . $question->question; ?>
             </div>
         </div>

@@ -11,7 +11,6 @@
  *
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
- * @license GNU General Public License version 2 or later; see LICENSE.txt
  */
 class ProgressToolViewSurvey extends JViewLegacy
 {
@@ -38,7 +37,7 @@ class ProgressToolViewSurvey extends JViewLegacy
     function display($tpl = null)
     {
         $input = JFactory::getApplication()->input;
-        $model = $this->getModel();
+        $model = parent::getModel();
 
         $this->user = JFactory::getUser();
         $this->redirectGuest();
@@ -106,12 +105,12 @@ class ProgressToolViewSurvey extends JViewLegacy
             $profileCountry = CFactory::getUser()->getInfo('FIELD_COUNTRY');
 
             $country = JText::_($profileCountry);
-            return $this->getModel()->getCountryIndex($country);
+            return parent::getModel()->getCountryIndex($country);
         }
         else // for testing purposes
         {
             $country = "Ireland";
-            return $this->getModel()->getCountryIndex($country);
+            return parent::getModel()->getCountryIndex($country);
             // TODO: return 0 once testing is complete.
         }
     }

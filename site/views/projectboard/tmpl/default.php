@@ -4,8 +4,10 @@
 
 <!-- Heading -->
 <div class="masterChest">
-    <div class="titleChest">
-        <h1 class="title">ProjectBoard</h1>
+    <div class="headingChest">
+        <div class="cornerBlank"></div>
+        <h1 class="heading">ProjectBoard</h1>
+        <button onclick="location.href = '?option=com_progresstool&view=projectcreate'" class="cornerButton"></button>
     </div>
 </div>
 
@@ -15,12 +17,8 @@
     <div class="masterChest">
 
         <!-- Question -->
-        <div class="titleChest">
-            <div class="title">
-                <h2>
-                    <?php echo $project->name . ($project->activated == 0 ? ' :: Not Activated' : ''); ?>
-                </h2>
-            </div>
+        <div class="headingChest">
+            <h1 class="heading"><?php echo $project->name . ($project->activated == 0 ? ' :: Not Activated' : ''); ?></h1>
         </div>
 
         <!-- Options -->
@@ -62,8 +60,6 @@
     </div>
 <?php endforeach; ?>
 
-<div class="masterChest" style="border: none; width: 45%;">
-    <button onclick="location.href = '?option=com_progresstool&view=projectcreate'" class="button button2">
-        Create New Project
-    </button>
-</div>
+<!--div class="masterChest" style="border: none; width: 55px;">
+    <button onclick="location.href = '?option=com_progresstool&view=projectcreate'" class="cornerButton"></button>
+</div-->

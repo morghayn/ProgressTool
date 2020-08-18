@@ -11,7 +11,6 @@
  *
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
- * @license GNU General Public License version 2 or later; see LICENSE.txt
  */
 class ProgressToolViewProjectBoard extends JViewLegacy
 {
@@ -35,7 +34,7 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         $this->redirectIfGuest();
 
         // TODO: Fetch User Projects
-        $model = $this->getModel();
+        $model = parent::getModel();
         $this->projects = array();
         $this->projects = $model->getUserProjects($this->user->id);
 
