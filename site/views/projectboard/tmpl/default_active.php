@@ -16,7 +16,7 @@ $description = $this->project->description;
 
     <div class="optionsChest">
         <div class="projectInfo">
-            <div class="half">Project Description:</div>
+            <div class="half">Project Description</div>
             <div class="half2"><?php echo $description; ?></div>
         </div>
 

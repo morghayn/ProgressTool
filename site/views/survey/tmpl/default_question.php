@@ -16,11 +16,13 @@ $colourHex = $this->colourHex;
     </div>
 
     <div class="optionsChest">
+
         <?php
         foreach ($this->choices[$questionID] as $this->choice):
             echo $this->loadTemplate('option');
         endforeach;
         ?>
+
     </div>
 
 </div>

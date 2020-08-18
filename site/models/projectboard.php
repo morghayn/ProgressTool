@@ -182,13 +182,13 @@ class ProgressToolModelProjectBoard extends JModelItem
      */
     public function activateProject($projectID)
     {
-        // Get a db connection and create a new query object.
+        // Get a db connection
         $db = JFactory::getDbo();
 
         // Setting up query objects.
         $criteria = $db->getQuery(true);
         $selectionCount = $db->getQuery(true);
-        $insert = $db->getQuery(true);
+        $update = $db->getQuery(true);
         $delete = $db->getQuery(true);
 
         // Prepares query to count the number of approval questions.
@@ -211,13 +211,13 @@ class ProgressToolModelProjectBoard extends JModelItem
             // Executes deletion query, if success, project will be activated.
             if ($db->setQuery($delete)->execute())
             {
-                $insert
+                $update
                     ->update($db->quoteName('#__pt_project'))
                     ->set($db->quoteName('activated') . ' = 1')
                     ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
 
                 // If insertion is a success, return true.
-                return $db->setQuery($insert)->execute();
+                return $db->setQuery($update)->execute();
             }
         }
         else
@@ -244,6 +244,36 @@ class ProgressToolModelProjectBoard extends JModelItem
 
         // Sets query, executes and stores result.
         $result = $db->setQuery($query)->execute();
+    }
+
+    /**
+     * Updates a specific project using data passed through the parameters.
+     *
+     * @param int $projectID the ID of the project.
+     * @param string $name the updated name for the project.
+     * @param string $description the updated description for the project.
+     * @return bool status of whether the update was a success or not.
+     */
+    public function updateProject($projectID, $name, $description)
+    {
+        // Get a db connection and create a new query object.
+        $db = JFactory::getDbo();
+        $update = $db->getQuery(true);
+
+        // Conditions for update query.
+        $conditions = array(
+            $db->quoteName('name') . ' = ' . $db->quote($name),
+            $db->quoteName('description') . ' = ' . $db->quote($description)
+        );
+
+        // Prepare query to update project.
+        $update
+            ->update($db->quoteName('#__pt_project'))
+            ->set($conditions)
+            ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
+
+        // Set query, execute query and return status as to whether the update was a success.
+        return $db->setQuery($update)->execute();
     }
 
     /**

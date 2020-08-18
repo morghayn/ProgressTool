@@ -6,20 +6,27 @@
 
 echo $this->loadTemplate('title');
 
-foreach ($this->projects as $this->project):
+if (!$this->projects):
 
-    $activated = $this->project->activated == 1;
+    echo $this->loadTemplate('noprojects');
 
-    if ($activated)
-    {
-        echo $this->loadTemplate('activeProject');
-    }
-    else
-    {
-        echo $this->loadTemplate('inactiveProject');
-    }
+else:
 
-endforeach;
+    foreach ($this->projects as $this->project):
+        $activated = $this->project->activated == 1;
+
+        if ($activated)
+        {
+            echo $this->loadTemplate('active');
+        }
+        else
+        {
+            echo $this->loadTemplate('inactive');
+        }
+
+    endforeach;
+
+endif;
 
 ?>
 

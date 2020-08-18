@@ -19,45 +19,26 @@ function approvalClick(projectID, approvalID)
     var token = jQuery("#token").attr("name");
     jQuery.ajax(
         {
-            data: {[token]: "1", task: "abc", format: "raw"},
-            success:
-                function (result, status, xhr)
+            data: {[token]: "1", task: "approval", format: "json", data: {project: projectID, approvalID: approvalID}},
+            success: (result) =>
+            {
+                if (result.data)
                 {
-                    //console.log(result);
-
-                    document.getElementById("test").innerHTML = result;
-                    if (result.data === true)
-                    {
-                        window.location = 'index.php?option=com_progresstool&view=projectboard'
-                    }
+                    activateProject(projectID)
                 }
-            ,
-            error:
-                function ()
-                {
-                    console.log('Failure to perform approvalClick(). Contact an administrator if this failure persists.');
-                }
+            },
+            error: () => console.log('Failure to perform activateProject(). Contact an administrator if this failure persists.'),
         }
     );
-    /*
+}
+
+function activateProject(projectID)
+{
     jQuery.ajax(
         {
-            data: {[token]: "1", task: "approval", format: "json", data: {project: projectID, approvalID: approvalID}},
-            success:
-                function (result, status, xhr)
-                {
-                    if (result.data === true)
-                    {
-                        window.location = 'index.php?option=com_progresstool&view=projectboard'
-                    }
-                }
-            ,
-            error:
-                function ()
-                {
-                    console.log('Failure to perform approvalClick(). Contact an administrator if this failure persists.');
-                }
+            data: {[token]: "1", task: "abc", format: "raw", data: {projectID: projectID}},
+            success: (result) => document.getElementById(projectID).outerHTML = result,
+            error: () => console.log('Failure to perform activateProject(). Contact an administrator if this failure persists.'),
         }
     );
-     */
 }
