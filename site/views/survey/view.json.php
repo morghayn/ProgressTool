@@ -27,6 +27,15 @@ class ProgressToolViewSurvey extends JViewLegacy
         $input = JFactory::getApplication()->input;
         $data = $input->get('data', array(), 'ARRAY');
 
+        $projectID = $data['projectID'];
+        $choiceID = $data['choiceID'];
+
+        $active = parent::getModel()->processSelection($projectID, $choiceID);
+        $questionID = parent::getModel()->getQuestionID($choiceID);
+        $score = parent::getModel()->getQuestionScore($projectID, $questionID);
+
+        echo new JResponseJson(array("active" => $active, "id" => $questionID, "score" => $score));
+
         /*
         if($data['projectID'])
         {
@@ -45,23 +54,8 @@ class ProgressToolViewSurvey extends JViewLegacy
         // todo this might not be safe, might have to specify type e.g get(array, array(), 'ARRAY')
         //$choiceID = $input->get('choice');
         //$projectID = 2;
-        $projectID = $data['projectID'];
-        $choiceID = $data['choiceID'];
+        // $input = JFactory::getApplication()->input;
 
-        $input = JFactory::getApplication()->input;
-
-        // TODO does PHP have booleans?
-        $model = parent::getModel();
-
-        $isSelected = $model->isSelected($projectID, $choiceID);
-        if ($isSelected == 1)
-        {
-            $model->deselect($projectID, $choiceID);
-        }
-        else if ($isSelected == 0)
-        {
-            $model->select($projectID, $choiceID);
-        }
         /*
         // getting details about choice selection
         // todo maybe merge the queries for $questionID and $model
@@ -86,6 +80,5 @@ class ProgressToolViewSurvey extends JViewLegacy
         */
 
         // responding with data
-        echo new JResponseJson($isSelected);
     }
 }

@@ -76,6 +76,22 @@ class ProgressToolModelSurvey extends JModelItem
         return $included;
     }
 
+    public function getQuestionScoreQuery($db)
+    {
+        // Create a new query object.
+        $scores = $db->getQuery(true);
+
+        // Prepare query to calculate and retrieve question scores.
+        $scores
+            ->select($db->quoteName('question_id'))
+            ->select('SUM(weight) as total')
+            ->from($db->quoteName('#__pt_question_choice'))
+            ->group($db->quoteName('question_id'));
+
+        // Return question score query.
+        return $scores;
+    }
+
     /**
      * Retrieve a list of universal and location specific questions.
      *
@@ -89,15 +105,17 @@ class ProgressToolModelSurvey extends JModelItem
         $db = JFactory::getDbo();
         $questions = $db->getQuery(true);
         $included = $this->getQuestionPoolQuery($db, $country);
+        $questionScores = $this->getQuestionScoreQuery($db);
 
         // Columns to be retrieved.
-        $columns = array('Q.id', 'Q.question', 'C.colour_hex', 'C.colour_rgb');
+        $columns = array('Q.id', 'Q.question', 'C.colour_hex', 'C.colour_rgb', 'T.total');
 
         $questions
             ->select($db->quoteName($columns))
             ->from($db->quoteName('#__pt_question', 'Q'))
             ->innerjoin('(' . $included . ') AS QC ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('QC.question_id'))
             ->innerjoin($db->quoteName('#__pt_category') . ' AS C ON ' . $db->quoteName('Q.category_id') . ' = ' . $db->quoteName('C.id'))
+            ->innerjoin('(' . $questionScores . ') AS T ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('T.question_id'))
             ->order('Q.id ASC');
 
         // Set query, and return questions as a list of stdClass objects.
@@ -217,42 +235,11 @@ class ProgressToolModelSurvey extends JModelItem
     }
 
     /**
-     * Inserts a specified choice selection for a specified project.
+     * TODO: Documentation here
      *
-     * @param int $projectID the projectID which the selection will be made under.
-     * @param int $choiceID the choiceID of the selection to be inserted.
-     * @since 0.2.6
+     * @since 0.3.0
      */
-    public function select($projectID, $choiceID)
-    {
-        // Get a db connection and create a new query object.
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-
-        // Columns to insert into.
-        $columns = array('project_id', 'choice_id');
-
-        // Values to be inserted.
-        $values = array($projectID, $choiceID);
-
-        // Prepare the insert query for the selection to be made.
-        $query
-            ->insert($db->quoteName('#__pt_project_choice'))
-            ->columns($db->quoteName($columns))
-            ->values(implode(',', $values));
-
-        // Set query and insert selection.
-        $db->setQuery($query)->execute();
-    }
-
-    /**
-     * Deselects the choice of a project specified.
-     *
-     * @param int $projectID the projectID of which we are deselecting a choice.
-     * @param int $choiceID the choiceID that we want deselected.
-     * @since 0.2.0
-     */
-    public function deselect($projectID, $choiceID)
+    public function processSelection($projectID, $choiceID)
     {
         // Get a db connection and create a new query object.
         $db = JFactory::getDbo();
@@ -264,38 +251,84 @@ class ProgressToolModelSurvey extends JModelItem
             $db->quoteName('choice_id') . ' = ' . $choiceID
         );
 
-        // Preparing query which will remove the selection from the selection table.
-        $query
-            ->delete($db->quoteName('#__pt_project_choice'))
-            ->where($conditions);
-
-        // Set query, and remove selection from the selection table.
-        $db->setQuery($query)->execute();
-    }
-
-    /**
-     * Checks whether or not a choiceID is currently selected by a specified project.
-     *
-     * @param int $projectID the projectID of which this concerns.
-     * @param int $choiceID the selection of which this concerns.
-     * @return mixed a boolean which indicates whether a choice is selected.
-     * @since 0.2.6
-     */
-    public function isSelected($projectID, $choiceID)
-    {
-        // Get a db connection and create a new query object.
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-
         // Prepare query to check whether the project specified has made the selection specified.
         $query
             ->select('COUNT(*)')
             ->from($db->quoteName('#__pt_project_choice'))
-            ->where($db->quoteName('project_id') . ' = ' . $db->quote($projectID))
-            ->where($db->quoteName('choice_id') . ' = ' . $db->quote($choiceID));
-        // TODO: Apparently implementing LIMIT 1 method is faster than using COUNT(*)
+            ->where($conditions)
+            ->setLimit(1);
 
-        // Set query, and return boolean as to whether selection has been made.
-        return $db->setQuery($query)->loadResult();
+        // If selection exists, delete it.
+        if ($db->setQuery($query)->loadResult())
+        {
+            // Prepare query object.
+            $query = $db->getQuery(true);
+
+            // Preparing query which will remove the selection from the selection table.
+            $query
+                ->delete($db->quoteName('#__pt_project_choice'))
+                ->where($conditions);
+
+            // Set query, and remove selection from the selection table.
+            $db->setQuery($query)->execute();
+            return false;
+        }
+        // If selection does not exist, insert it.
+        else
+        {
+            // Prepare query object.
+            $query = $db->getQuery(true);
+
+            // Columns to be inserted into and values to be inserted.
+            $columns = array('project_id', 'choice_id');
+            $values = array($projectID, $choiceID);
+
+            // Prepare the insert query for the selection to be made.
+            $query
+                ->insert($db->quoteName('#__pt_project_choice'))
+                ->columns($db->quoteName($columns))
+                ->values(implode(',', $values));
+
+            // Set query and insert selection.
+            $db->setQuery($query)->execute();
+            return true;
+        }
+    }
+
+    public function getQuestionScore($projectID, $questionID)
+    {
+        $db = JFactory::getDbo();
+        $getChoices = $db->getQuery(true);
+        $getQuestionScore = $db->getQuery(true);
+
+        $getChoices
+            ->select($db->quoteName('id'))
+            ->select($db->quoteName('weight'))
+            ->from($db->quoteName('#__pt_question_choice'))
+            ->where($db->quoteName('question_id') . ' = (' . $questionID . ')');
+
+        $getQuestionScore
+            ->select('SUM(weight) AS score')
+            ->from('#__pt_project_choice')
+            ->innerJoin('('.$getChoices.') AS CHOICES ON choice_id = id')
+            ->where($db->quoteName('project_id') . ' = ' . $db->quote($projectID));
+            //->setLimit(1);
+
+        $score = $db->setQuery($getQuestionScore)->loadResult();
+        return is_null($score) ? "0" : $score;
+    }
+
+    public function getQuestionID($choiceID)
+    {
+        $db = JFactory::getDbo();
+        $getQuestionID = $db->getQuery(true);
+
+        $getQuestionID
+            ->select($db->quoteName('question_id'))
+            ->from($db->quoteName('#__pt_question_choice'))
+            ->where($db->quoteName('id') . ' = ' . $db->quote($choiceID))
+            ->setLimit(1);
+
+        return $db->setQuery($getQuestionID)->loadResult();
     }
 }

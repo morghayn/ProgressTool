@@ -6,6 +6,8 @@
 
 echo $this->loadTemplate('title');
 
+echo $this->loadTemplate('dropdown');
+
 if (!$this->projects):
 
     echo $this->loadTemplate('noprojects');

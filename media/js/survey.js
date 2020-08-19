@@ -9,6 +9,7 @@ function checker(projectID, choiceID) { // todo rename tasks etc.
 
 function success(result)
 {
+    document.getElementById(`score_${result.data.id}`).innerHTML = result.data.score;
     console.log(result.data)
     //deselector(result);
 }
