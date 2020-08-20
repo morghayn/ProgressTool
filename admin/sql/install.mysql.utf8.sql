@@ -7,7 +7,10 @@ DROP TABLE IF EXISTS `#__pt_country`;
 DROP TABLE IF EXISTS `#__pt_question`;
 DROP TABLE IF EXISTS `#__pt_project`;
 DROP TABLE IF EXISTS `#__pt_approval_question`;
+DROP TABLE IF EXISTS `#__pt_progress_goal`;
 DROP TABLE IF EXISTS `#__pt_category`;
+DROP TABLE IF EXISTS `#__pt_measurement`;
+DROP TABLE IF EXISTS `#__pt_measurement_category`;
 
 /**/
 
@@ -45,7 +48,8 @@ CREATE TABLE `#__pt_category`
 INSERT INTO `#__pt_category` (`id`, `category`, `colour_hex`, `colour_rgb`)
 VALUES (1, 'People', '#f7a58a', '247, 165, 138'), /* RED-ORANGE */
        (2, 'Finance', '#9690c6', '150, 144, 198'), /* PURPLE */
-       (3, 'Technology', '#95d0ab', '149, 208, 171'); /* GREEN */
+       (3, 'Technology', '#95d0ab', '149, 208, 171');
+/* GREEN */
 /* Old Values
 VALUES (1, 'People', '#ff6666', '255, 102, 102'),
 (2, 'Finance', '#b366ff', '179, 102, 255'),
@@ -261,13 +265,17 @@ VALUES (1, 'No', 0),
 
        (6, 'No', 0),
        (6, 'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy', 1),
-       (6, 'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel', 1),
+       (6,
+        'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel',
+        1),
        (6, 'Yes, the group has looked into grid connection feasibility', 1),
        (6, 'Yes, the group has consulted with SEC mentors for advice on the matter', 1),
 
        (7, 'No', 0),
        (7, 'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy', 1),
-       (7, 'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel', 1),
+       (7,
+        'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel',
+        1),
 
        (8, 'No', 0),
        (8, 'Yes, the group has the support of local authorities such as SEAI', 1),
@@ -463,3 +471,158 @@ CREATE TABLE `#__pt_project_approval`
     AUTO_INCREMENT = 0
     DEFAULT CHARSET = utf8mb4
     DEFAULT COLLATE = utf8mb4_unicode_ci;
+
+/* */
+
+CREATE TABLE `#__pt_progress_goal`
+(
+    `id`          TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `category_id` TINYINT UNSIGNED NOT NULL,
+    `goal`        VARCHAR(255)     NOT NULL,
+    CONSTRAINT id PRIMARY KEY (id),
+    FOREIGN KEY (category_id) REFERENCES `#__pt_category` (id)
+)
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 0
+    DEFAULT CHARSET = utf8mb4
+    DEFAULT COLLATE = utf8mb4_unicode_ci;
+
+INSERT INTO `#__pt_progress_goal` (`category_id`, `goal`)
+VALUES (1, 'Awareness activities about existing Beacon projects, Educational actions of local associations, Private developer prospection'),
+       (1, 'Local initiatives: new ideas + willpower of individuals, citizens, associations and local communities'),
+       (1, 'Leading group'),
+       (1,
+        'Masterclasses: democratic organisation of the citizen group, Legal structuring, Technical issues, Initial financial elements, Expansion of the citizen group'),
+       (1, 'Brainwork on: goals and values of the group, The type of energy and awareness actions around energy transition'),
+       (1, 'Organisation of the group, Founding of the association'),
+       (1, 'Support of local authorities, to obtain official support from local bodies'),
+       (1, 'Founding of the project society'),
+       (1, 'Public meetings and Advanced training: technical training, financing plan, negotiation training, building project management'),
+       (1, 'Setting up of agreements with local authorities'),
+       (1, 'Establish contacts with administrative authorities'),
+       (1, 'Citizen financial mobilisation'),
+       (1, 'Brainwork on the citizen involvement in project management'),
+       (1, 'Project management'),
+       (1, 'Work site visit'),
+       (1, 'Preparation for the operation monitoring'),
+       (1, 'Inauguration'),
+       (1, 'Ongoing communication on operation'),
+       (1, 'Management of the cooperative: general assembly, executive board, retain strong bonds with citizens, compensatory measure'),
+       (1, 'Keep in touch with the residents of the project'),
+       (1, 'Educational activities on: renewable energy, environmental effects, Energy savings'),
+
+       (2, 'Think thank: type of governance, financial structuring, types of partnerships, how to distribute the benefits'),
+       (2, 'Meeting with potential partner'),
+       (2, 'Preliminary financing plan'),
+       (2, 'Financial mobilisation, launch fundraising for development costs, reinforcement of funding partnerships'),
+       (2, 'Preparation of the financial mobilisation for the construction phase'),
+       (2, 'Consolidation of the financial plan'),
+       (2, 'Assessment of the valuation of the risk'),
+       (2, 'Completion of the banking file'),
+       (2, 'Fundraising and bank loan for the construction phase'),
+       (2, 'Financial management accounting'),
+       (2, 'Profit allocation management'),
+
+       (3, 'Preliminary evaluation of the territory'),
+       (3, 'Project choice'),
+       (3, 'Land leasing commitment'),
+       (3, 'Ongoing analysis and validation: Technical committee, quotations, providers'),
+       (3, 'Technical Studies on a risk-sensitive basis and on the level of funds needed'),
+       (3, 'Technical file for submission for administrative approval'),
+       (3, 'Submission of the file to approval of authorities'),
+       (3, 'Public enquiry / review of the file'),
+       (3, 'Administration approval'),
+       (3, 'Land leasing contracts'),
+       (3, 'Signing of the construction contracts'),
+       (3, 'Construction Site'),
+       (3, 'Commissioning'),
+       (3, 'Environmental monitoring'),
+       (3, 'Preventative maintenance and repairs');
+
+/* */
+
+CREATE TABLE `#__pt_measurement_category`
+(
+    `id`         TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `category`   VARCHAR(255)     NOT NULL,
+    `colour_hex` VARCHAR(7)       NOT NULL DEFAULT ('#ffffff'),
+    `colour_rgb` VARCHAR(13)      NOT NULL DEFAULT ('255, 255, 255'),
+    CONSTRAINT id PRIMARY KEY (id)
+)
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 0
+    DEFAULT CHARSET = utf8mb4
+    DEFAULT COLLATE = utf8mb4_unicode_ci;
+
+INSERT INTO `#__pt_measurement_category` (`category`, `colour_hex`, `colour_rgb`)
+VALUES ('Emergence', '#81bce4', '129, 188, 228'),
+       ('Development', '#9ae481', '154, 228, 129'),
+       ('Funding', '#8181e4', '129, 129, 228'),
+       ('Building', '#e48181', '228, 129, 129'),
+       ('Exploitation', '#b381e4', '179, 129, 228');
+
+/* */
+
+CREATE TABLE `#__pt_measurement`
+(
+    `id`          TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `category_id` TINYINT UNSIGNED NOT NULL,
+    `measurement` VARCHAR(255)       NOT NULL DEFAULT ('#ffffff'),
+    CONSTRAINT id PRIMARY KEY (id),
+    FOREIGN KEY (category_id) REFERENCES `#__pt_measurement_category` (id)
+)
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 0
+    DEFAULT CHARSET = utf8mb4
+    DEFAULT COLLATE = utf8mb4_unicode_ci;
+
+INSERT INTO `#__pt_measurement` (`category_id`, `measurement`)
+VALUES (1, 'Awareness actions '),
+       (1, 'Local initiatives'),
+       (1, 'Leading group'),
+       (1, 'Goals and values of the group'),
+       (1, 'Founding of association'),
+       (1, 'Support of local authorities'),
+       (1, 'Founding of project society'),
+
+       (2, 'Public meetings, awareness and educational activities'),
+       (2, 'Setting up agreements with local authorities'),
+       (2, 'Established contacts with administrative authorities'),
+       (2, 'Citizen financial mobilisation'),
+       (2, 'Citizen involvement in project management'),
+       (2, 'Project management'),
+       (2, 'Ongoing communication on operation'),
+       (2, 'Keep in touch with residents of the project'),
+
+       (3, 'Think tank'),
+       (3, 'Meeting with potential partners'),
+       (3, 'Preliminary finance plan'),
+       (3, 'Financial mobilisation (creation of the co-op)'),
+       (3, 'Prepare finance for the construction phase'),
+       (3, 'Consolidation of the financial plan'),
+       (3, 'Assessment of the valuation of the risk'),
+       (3, 'Completion or the banking file'),
+       (3, 'Fund raising and bank loan for construction phase'),
+       (3, 'Financial management accounting'),
+       (3, 'Profit allocation management'),
+
+       (4, 'Preliminary evaluation of the territory'),
+       (4, 'Project choice'),
+       (4, 'Land leasing commitment'),
+       (4, 'Technical committee, source quotations and providers'),
+       (4, 'Technical studies for risk assessment'),
+       (4, 'Technical file for submission for approval of authorities'),
+       (4, 'Submission for approval ot authorities'),
+       (4, 'Administration approval'),
+       (4, 'Land leasing contracts signed'),
+       (4, 'Signing of construction contracts'),
+       (4, 'Work site visit'),
+       (4, 'Preparation of the operation monitoring'),
+       (4, 'Commissioning'),
+
+       (5, 'Identify providers for acoustic studies, environmental studies, monitoring systems'),
+       (5, 'Inauguration'),
+       (5, 'Management of the cooperative: general assembly, executive board, retain strong bonds with citizens, compensatory measure'),
+       (5, 'Environmental monitoring'),
+       (5, 'Preventative maintenance and repairs, Continuous technical monitoring of the production');
+

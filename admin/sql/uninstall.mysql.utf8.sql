@@ -7,4 +7,7 @@ DROP TABLE IF EXISTS `#__pt_country`;
 DROP TABLE IF EXISTS `#__pt_question`;
 DROP TABLE IF EXISTS `#__pt_project`;
 DROP TABLE IF EXISTS `#__pt_approval_question`;
+DROP TABLE IF EXISTS `#__pt_progress_goal`;
 DROP TABLE IF EXISTS `#__pt_category`;
+DROP TABLE IF EXISTS `#__pt_measurement`;
+DROP TABLE IF EXISTS `#__pt_measurement_category`;

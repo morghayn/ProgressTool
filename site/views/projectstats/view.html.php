@@ -7,7 +7,7 @@
  *
  * @package ProgressTool
  * @subpackage site
- * @since 0.2.6
+ * @since 0.3.0
  *
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
@@ -15,62 +15,39 @@
 class ProgressToolViewProjectStats extends JViewLegacy
 {
     /**
+     * @var
+     * @var
+     * @var
+     * @var
+     */
+    protected $measurementCategories, $progressGoals, $measurements, $categories;
+
+    /**
      * Renders view.
      *
      * @param null $tpl use default template.
-     * @since 0.2.6
+     * @since 0.3.0
      */
-	function display($tpl = null)
-	{
-        $this->user = JFactory::getUser();
-
-        // If user not logged in, redirect to login.
-        $this->redirectIfGuest();
+    function display($tpl = null)
+    {
+        $model = parent::getModel();
+        $this->measurementCategories = $model->getMeasurementCategories();
+        $this->progressGoals = $model->getProgressGoals();
+        $this->measurements = $model->getMeasurements();
+        $this->categories = $model->getCategories();
 
         $this->addStylesheet();
-        $this->addScripts();
-
-		// Display the view
-		parent::display($tpl);
-	}
-
-    /**
-     * // TODO comment
-     * If user not logged in, redirect to login.
-     *
-     * @since 0.2.6
-     */
-    private function redirectIfGuest()
-    {
-        if ($this->user->get('guest'))
-        {
-            $return = urlencode(base64_encode('index.php?option=com_progresstool&view=projectboard'));
-            JFactory::getApplication()->redirect('index.php?option=com_users&view=login&return=' . $return);
-            //JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_users&view=login', JText::_("You must be logged in to view this content")));
-        }
+        parent::display($tpl);
     }
 
     /**
-     * // TODO comment
+     * // TODO: documentation
      * @since 0.2.6
      */
     private function addStylesheet()
     {
-        // Adding CSS and JS
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterChest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/optionsChest.css");
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/projectcreate.css");
-    }
-
-    /**
-     * // TODO comment
-     * @since 0.2.6
-     */
-    private function addScripts()
-    {
-        // Adding CSS and JS
-        $document = JFactory::getDocument();
-        $document->addScript(JURI::root() . "media/com_progresstool/js/projectcreate.js");
     }
 }
