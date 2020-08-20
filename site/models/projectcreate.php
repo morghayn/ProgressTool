@@ -16,30 +16,24 @@ class ProgressToolModelProjectCreate extends JModelItem
     /**
      * Inserts a new project into the #__pt_projects table.
      *
-     * @param int $userID the user id of which the project belongs.
-     * @param string $name the name of the project.
-     * @param string $description the description of the project.
+     * @param int $userID ID of the current user.
+     * @param string $name name of the project.
+     * @param string $description description of the project.
      * @since 0.2.6
      */
     public function insertProject($userID, $name, $description)
     {
-        // Get a db connection and create a new query object.
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
 
-        // Columns to insert into.
         $columns = array('user_id', 'name', 'description');
-
-        // Columns that will be inserted.
         $values = array($userID, $db->quote($name), $db->quote($description));
 
-        // Prepare the insert query.
         $query
             ->insert($db->quoteName('#__pt_project'))
             ->columns($db->quoteName($columns))
             ->values(implode(',', $values));
 
-        // Set query and execute insertion.
         $db->setQuery($query)->execute();
     }
 }

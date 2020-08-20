@@ -30,7 +30,8 @@ class ProgressToolViewProjectBoard extends JViewLegacy
 
         $model = parent::getModel();
         $model->processSelection($projectID, $approvalID);
-        $isActivated = $model->activateProject($projectID);
+        if ($model->isProjectApproved($projectID))
+            $isActivated = $model->activateProject($projectID);
 
         echo new JResponseJson($isActivated);
 

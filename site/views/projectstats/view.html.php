@@ -1,54 +1,38 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolViewProjectBoard
+ * Class ProgressToolViewProjectStats
  *
- * View for front-end project board functionality.
+ * View for front-end project stats functionality.
  *
  * @package ProgressTool
  * @subpackage site
- * @since 0.1.2
+ * @since 0.2.6
  *
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
  */
-class ProgressToolViewProjectBoard extends JViewLegacy
+class ProgressToolViewProjectStats extends JViewLegacy
 {
-    /**
-     * @var
-     * @since 0.2.1
-     */
-    protected $redirect;
-
     /**
      * Renders view.
      *
      * @param null $tpl use default template.
-     * @since 0.1.2
+     * @since 0.2.6
      */
-    function display($tpl = null)
-    {
+	function display($tpl = null)
+	{
         $this->user = JFactory::getUser();
 
         // If user not logged in, redirect to login.
         $this->redirectIfGuest();
 
-        // TODO: Fetch User Projects
-        $model = parent::getModel();
-        $this->projects = array();
-        $this->projects = $model->getProjects($this->user->id);
-
-        // TODO: Generate Project Graph
-
-        $this->approvalQuestions = $this->get('ApprovalQuestions');
-        //$this->approvalSelections = $model->getApprovalSelections($this->user->id);
-
         $this->addStylesheet();
         $this->addScripts();
 
-        // Display the view
-        parent::display($tpl);
-    }
+		// Display the view
+		parent::display($tpl);
+	}
 
     /**
      * // TODO comment
@@ -72,11 +56,11 @@ class ProgressToolViewProjectBoard extends JViewLegacy
      */
     private function addStylesheet()
     {
+        // Adding CSS and JS
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterChest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/optionsChest.css");
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/projectboard.css");
-        //JHTML::stylesheet('media/jui/css/bootstrap.min.css');
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/projectcreate.css");
     }
 
     /**
@@ -85,7 +69,8 @@ class ProgressToolViewProjectBoard extends JViewLegacy
      */
     private function addScripts()
     {
+        // Adding CSS and JS
         $document = JFactory::getDocument();
-        $document->addScript(JURI::root() . "media/com_progresstool/js/projectboard.js");
+        $document->addScript(JURI::root() . "media/com_progresstool/js/projectcreate.js");
     }
 }

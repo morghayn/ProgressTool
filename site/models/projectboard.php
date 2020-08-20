@@ -15,122 +15,89 @@
 class ProgressToolModelProjectBoard extends JModelItem
 {
     /**
-     * Retrieve a list of a user's projects.
+     * Retrieves a project by ID.
      *
-     * @param int $userID the user id of which the project belongs.
-     * @return mixed a list of the user's projects
+     * @param int $projectID ID of the project.
+     * @return object project object.
+     */
+    public function getProject($projectID)
+    {
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+
+        $columns = array('id', 'name', 'description', 'activated');
+
+        $query
+            ->select($db->quoteName($columns))
+            ->from($db->quoteName('#__pt_project'))
+            ->where($db->quoteName('id') . ' = ' . $db->quote($projectID))
+            ->order('id ASC');
+
+        return $db->setQuery($query)->loadObject();
+    }
+
+    /**
+     * Retrieves all projects belonging to a user.
+     *
+     * @param int $userID ID of the user.
+     * @return mixed object list of all projects belonging to the user.
      * @since 0.1.6
      */
     public function getProjects($userID)
     {
-        // Get a db connection and create a new query object.
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
 
-        // Columns to be retrieved.
         $columns = array('id', 'name', 'description', 'activated');
 
-        // Preparing query to retrieve a user's projects.
         $query
             ->select($db->quoteName($columns))
             ->from($db->quoteName('#__pt_project'))
             ->where($db->quoteName('user_id') . ' = ' . $db->quote($userID));
         // TODO: $query->order('ordering ASC');
 
-        // Set query, execute and return projects as a list of stdClass objects.
         return $db->setQuery($query)->loadObjectList();
     }
 
     /**
-     * Returns a project object linked to the projectID passed through parameters.
+     * Retrieves approval questions.
      *
-     * @param int $projectID the ID of the project.
-     * @return mixed the questions project object.
-     */
-    public function getProject($projectID)
-    {
-        // Get a db connection and create a new query object.
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-
-        // Columns to be retrieved.
-        $columns = array('id', 'name', 'description', 'activated');
-
-        // Preparing query to retrieve a user's project.
-        $query
-            ->select($db->quoteName($columns))
-            ->from($db->quoteName('#__pt_project'))
-            ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
-        // TODO: $query->order('ordering ASC');
-
-        // Set query, execute and return project object.
-        return $db->setQuery($query)->loadObject();
-    }
-
-    /**
-     * Retrieve a list of the approval questions.
-     *
-     * @return mixed list of the approval questions.
+     * @return mixed object list of all approval questions.
      * @since 0.2.6
      */
     public function getApprovalQuestions()
     {
-        // Get a db connection and create a new query object.
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
 
-        // Columns to be returned.
         $columns = array('id', 'question');
 
-        // Prepare query to retrieve the approval questions.
         $query
-            ->select($db->quoteName($columns)) // TODO: does this have to be an array?
+            ->select($db->quoteName($columns))
             ->from($db->quoteName('#__pt_approval_question'));
 
-        // Set query, and return questions as a list of stdClass objects.
         return $db->setQuery($query)->loadObjectList();
     }
 
     /**
-     * Takes in choices through parameters and returns an array of the choices grouped by question.
+     * Processes approval selections. Inserts selection if selection does not exist, else removes selection.
      *
-     * @param mixed $rows the choice rows which are to be grouped.
-     * @return array the choices grouped by question.
-     * @since 0.2.6
-     */
-    public function groupChoices($rows)
-    {
-        $groupedChoices = array();
-
-        foreach ($rows as $row)
-        {
-            // Grouping by questionID.
-            $groupedChoices[$row->project_id][] = $row;
-        }
-
-        return $groupedChoices;
-    }
-
-    /**
-     * Processes approval selections. Inserts selections if selection does not exist, else removes selection.
-     *
-     * @param int $projectID the ID of the project.
-     * @param int $approvalID the ID of the approval question.
+     * @param int $projectID ID of the project.
+     * @param int $approvalID ID of the approval question.
      * @since 0.3.0
      */
     public function processSelection($projectID, $approvalID)
     {
-        // Get a db connection and create a new query object.
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
+        $delete = $db->getQuery(true);
+        $insert = $db->getQuery(true);
 
-        // Conditions to find a specific selection.
         $conditions = array(
             $db->quoteName('project_id') . ' = ' . $db->quote($projectID),
             $db->quoteName('approval_id') . ' = ' . $db->quote($approvalID)
         );
 
-        // Prepare query to check whether selection already exists
         $query
             ->select('COUNT(*)')
             ->from($db->quoteName('#__pt_project_approval'))
@@ -140,90 +107,85 @@ class ProgressToolModelProjectBoard extends JModelItem
         // If selection exists, delete it.
         if ($db->setQuery($query)->loadResult())
         {
-            // Prepare query object.
-            $query = $db->getQuery(true);
-
-            // Prepare the delete query for the selection.
-            $query
+            $delete
                 ->delete($db->quoteName('#__pt_project_approval'))
                 ->where($conditions);
 
-            // Set query and remove selection.
-            $db->setQuery($query)->execute();
+            $db->setQuery($delete)->execute();
         }
+
         // If selection does not exist, insert it.
         else
         {
-            // Prepare query object.
-            $query = $db->getQuery(true);
-
-            // Columns to be inserted into and values to be inserted.
             $columns = array('project_id', 'approval_id');
             $values = array($projectID, $approvalID);
 
-            // Prepare the insert query for the selection to be made.
-            $query
+            $insert
                 ->insert($db->quoteName('#__pt_project_approval'))
                 ->columns($db->quoteName($columns))
                 ->values(implode(',', $values));
 
-            // Set query and insert selection.
-            $db->setQuery($query)->execute();
+            $db->setQuery($insert)->execute();
         }
     }
 
     /**
-     * Checks if the project activation criteria has been met. If criteria met, project is activated, else it is not. Where the criteria is having
-     * the same number of approval selections as there are approval questions.
+     * Checks if project meets approval criteria.
      *
-     * @param int $projectID the ID of the project.
-     * @return boolean returns true if project has been activated, else returns false.
-     * @since 0.3.0
+     * @param int $projectID ID of the project.
+     * @return boolean returns true if project meets criteria, else returns false.
      */
-    public function activateProject($projectID)
+    public function isProjectApproved(int $projectID)
     {
-        // Get a db connection
         $db = JFactory::getDbo();
+        $countQuestions = $db->getQuery(true);
+        $countSelections = $db->getQuery(true);
 
-        // Setting up query objects.
-        $criteria = $db->getQuery(true);
-        $selectionCount = $db->getQuery(true);
-        $update = $db->getQuery(true);
-        $delete = $db->getQuery(true);
-
-        // Prepares query to count the number of approval questions.
-        $criteria
+        $countQuestions
             ->select('COUNT(*)')
             ->from($db->quoteName('#__pt_approval_question'));
 
-        // Prepares query to count the number of approval selections a project has made.
-        $selectionCount
+        $countSelections
             ->select('COUNT(*)')
             ->from($db->quoteName('#__pt_project_approval'))
             ->where($db->quoteName('project_id') . ' = ' . $db->quote($projectID));
 
-        if ($db->setQuery($selectionCount)->loadResult() == $db->setQuery($criteria)->loadResult())
-        {
-            // Prepares query to delete the approval selections made by the project.
-            $delete->delete($db->quoteName('#__pt_project_approval'))
-                ->where($db->quoteName('project_id') . ' = ' . $projectID);
+        $numberOfQuestions = $db->setQuery($countQuestions)->loadResult();
+        $numberOfSelections = $db->setQuery($countSelections)->loadResult();
 
-            // Executes deletion query, if success, project will be activated.
-            if ($db->setQuery($delete)->execute())
-            {
-                $update
-                    ->update($db->quoteName('#__pt_project'))
-                    ->set($db->quoteName('activated') . ' = 1')
-                    ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
+        return ($numberOfQuestions == $numberOfSelections);
+    }
 
-                // If insertion is a success, return true.
-                return $db->setQuery($update)->execute();
-            }
-        }
-        else
+    /**
+     * Activates a project.
+     *
+     * @param int $projectID ID of the project.
+     * @return boolean returns true if project activation is successful, else returns false.
+     * @since 0.3.0
+     */
+    public function activateProject($projectID)
+    {
+        $db = JFactory::getDbo();
+        $update = $db->getQuery(true);
+        $delete = $db->getQuery(true);
+
+        $delete
+            ->delete($db->quoteName('#__pt_project_approval'))
+            ->where($db->quoteName('project_id') . ' = ' . $projectID);
+
+        if ($db->setQuery($delete)->execute())
         {
-            return false;
+            $update
+                ->update($db->quoteName('#__pt_project'))
+                ->set($db->quoteName('activated') . ' = 1')
+                ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
+
+            // If activation is a success, return true.
+            return $db->setQuery($update)->execute();
         }
+
+        // If activation fails, return false.
+        return false;
     }
 
     /**
@@ -234,65 +196,70 @@ class ProgressToolModelProjectBoard extends JModelItem
      */
     public function deleteProject($projectID)
     {
-        // Get a db connection and create a new query object.
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
 
-        // Prepares query to delete project.
-        $query->delete($db->quoteName('#__project'))
+        $query
+            ->delete($db->quoteName('#__project'))
             ->where($db->quoteName('project_id') . ' = ' . $projectID);
 
-        // Sets query, executes and stores result.
         $result = $db->setQuery($query)->execute();
     }
 
     /**
-     * Updates a specific project using data passed through the parameters.
+     * Updates the information of a project.
      *
-     * @param int $projectID the ID of the project.
-     * @param string $name the updated name for the project.
-     * @param string $description the updated description for the project.
+     * @param int $projectID ID of the project.
+     * @param string $name updated name.
+     * @param string $description updated description.
      * @return bool status of whether the update was a success or not.
      */
     public function updateProject($projectID, $name, $description)
     {
-        // Get a db connection and create a new query object.
         $db = JFactory::getDbo();
         $update = $db->getQuery(true);
 
-        // Conditions for update query.
-        $conditions = array(
+        $set = array(
             $db->quoteName('name') . ' = ' . $db->quote($name),
             $db->quoteName('description') . ' = ' . $db->quote($description)
         );
 
-        // Prepare query to update project.
         $update
             ->update($db->quoteName('#__pt_project'))
-            ->set($conditions)
+            ->set($set)
             ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
 
-        // Set query, execute query and return status as to whether the update was a success.
         return $db->setQuery($update)->execute();
     }
 
-    /**
-     * // TODO: Documentation here :: WIP functionality
-     */
-    public function getApprovalSelections($user_id)
-    {
-        // Get a db connection and create a new query object.
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
+    /*
+        public function getApprovalSelections($user_id)
+        {
+            $db = JFactory::getDbo();
+            $query = $db->getQuery(true);
 
-        $columns = array('PRAP.project_id', 'PRAP.approval_id');
+            $columns = array('PRAP.project_id', 'PRAP.approval_id');
 
-        $query
-            ->select($db->quoteName($columns)) // TODO: does this have to be an array?
-            ->from($db->quoteName('#__pt_project', 'PR'))
-            ->innerjoin($db->quoteName('#__pt_project_approval') . ' AS PRAP ON PR.id = PRAP.project_id')
-            ->where($db->quoteName('PR.user_id') . ' = ' . $user_id);
+            $query
+                ->select($db->quoteName($columns)) // TODO: does this have to be an array?
+                ->from($db->quoteName('#__pt_project', 'PR'))
+                ->innerjoin($db->quoteName('#__pt_project_approval') . ' AS PRAP ON PR.id = PRAP.project_id')
+                ->where($db->quoteName('PR.user_id') . ' = ' . $user_id);
 
-        return $this->groupChoices($db->setQuery($query)->loadObjectList());
-    }
+            return $this->groupChoices($db->setQuery($query)->loadObjectList());
+        }
+
+        public function groupChoices($choices)
+        {
+            $groupedChoices = array();
+
+            foreach ($choices as $choice)
+            {
+                // Grouping by questionID.
+                $groupedChoices[$choice->project_id][] = $choice;
+            }
+
+            return $groupedChoices;
+        }
+    */
 }
