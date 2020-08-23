@@ -10,8 +10,4 @@ foreach ($this->categories as $this->category):
     echo $this->loadTemplate('category');
 endforeach;
 
-foreach ($this->measurementCategories as $this->measurementCategory):
-    echo $this->loadTemplate('measurements');
-endforeach;
-
 ?>

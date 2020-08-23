@@ -27,19 +27,6 @@ class ProgressToolModelProjectStats extends JModelItem
         return $grouped;
     }
 
-    public function getMeasurements()
-    {
-        $db = JFactory::getDbo();
-        $select = $db->getQuery(true);
-
-        $select
-            ->select('*')
-            ->from($db->quoteName('#__pt_measurement'));
-
-        $measurements = $db->setQuery($select)->loadObjectList();
-        return $this->groupByCategory($measurements);
-    }
-
     public function getCategories()
     {
         $db = JFactory::getDbo();
@@ -50,18 +37,6 @@ class ProgressToolModelProjectStats extends JModelItem
             ->from($db->quoteName('#__pt_category'));
 
         return $db->setQuery($select)->loadObjectList();
-    }
-
-    public function getMeasurementCategories()
-    {
-        $db = JFactory::getDbo();
-        $categories = $db->getQuery(true);
-
-        $categories
-            ->select('*')
-            ->from($db->quoteName('#__pt_measurement_category'));
-
-        return $db->setQuery($categories)->loadObjectList();
     }
 
     public function getProgressGoals()

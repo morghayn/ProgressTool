@@ -20,7 +20,7 @@ class ProgressToolViewProjectStats extends JViewLegacy
      * @var
      * @var
      */
-    protected $measurementCategories, $progressGoals, $measurements, $categories;
+    protected $progressGoals, $categories;
 
     /**
      * Renders view.
@@ -31,9 +31,7 @@ class ProgressToolViewProjectStats extends JViewLegacy
     function display($tpl = null)
     {
         $model = parent::getModel();
-        $this->measurementCategories = $model->getMeasurementCategories();
         $this->progressGoals = $model->getProgressGoals();
-        $this->measurements = $model->getMeasurements();
         $this->categories = $model->getCategories();
 
         $this->addStylesheet();
