@@ -2,7 +2,6 @@ DROP TABLE IF EXISTS `#__pt_project_approval`;
 DROP TABLE IF EXISTS `#__pt_project_choice`;
 DROP TABLE IF EXISTS `#__pt_question_choice`;
 DROP TABLE IF EXISTS `#__pt_question_country`;
-DROP TABLE IF EXISTS `#__pt_exclude`;
 DROP TABLE IF EXISTS `#__pt_country`;
 DROP TABLE IF EXISTS `#__pt_question`;
 DROP TABLE IF EXISTS `#__pt_project`;
@@ -46,15 +45,9 @@ CREATE TABLE `#__pt_category`
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO `#__pt_category` (`id`, `category`, `colour_hex`, `colour_rgb`)
-VALUES (1, 'People', '#f7a58a', '247, 165, 138'), /* RED-ORANGE */
-       (2, 'Finance', '#9690c6', '150, 144, 198'), /* PURPLE */
-       (3, 'Technology', '#95d0ab', '149, 208, 171');
-/* GREEN */
-/* Old Values
-VALUES (1, 'People', '#ff6666', '255, 102, 102'),
-(2, 'Finance', '#b366ff', '179, 102, 255'),
-(3, 'Technology', '#66ff8c', '102, 255, 140'),
- */
+VALUES (1, 'People', '#f7a58a', '247, 165, 138'), -- RED-ORANGE
+       (2, 'Finance', '#9690c6', '150, 144, 198'), -- PURPLE
+       (3, 'Technology', '#95d0ab', '149, 208, 171'); -- GREEN
 
 /* */
 
@@ -159,63 +152,58 @@ CREATE TABLE `#__pt_question_country`
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO `#__pt_question_country` (`question_id`, `country_id`)
-VALUES (1, 2),
-       (2, 1),
-       (3, 2),
-       (4, 1),
-       (5, 1),
-       (6, 2),
-       (7, 1),
-       (8, 2),
-       (9, 1),
-       (10, 2),
-       (11, 1),
-       (12, 2),
-       (13, 1),
-       (14, 1),
-       (15, 1),
-       (16, 1),
-       (17, 1),
-       (18, 1),
-       (19, 2),
-       (20, 1),
-       (21, 1),
-       (22, 1),
-       (23, 1),
-       (24, 1),
-       (25, 1),
-       (26, 1),
-       (27, 1),
-       (28, 1),
-       (29, 1),
-       (30, 1),
-       (31, 1),
-       (32, 1),
-       (33, 1);
-
-/* */
-
-CREATE TABLE `#__pt_exclude`
-(
-    `question_id` SMALLINT UNSIGNED NOT NULL,
-    `country_id`  TINYINT UNSIGNED  NOT NULL,
-    CONSTRAINT id PRIMARY KEY (`question_id`, `country_id`),
-    FOREIGN KEY (`question_id`) REFERENCES `#__pt_question` (`id`),
-    FOREIGN KEY (`country_id`) REFERENCES `#__pt_country` (`id`)
-)
-    ENGINE = InnoDB
-    AUTO_INCREMENT = 0
-    DEFAULT CHARSET = utf8mb4
-    DEFAULT COLLATE = utf8mb4_unicode_ci;
-
-INSERT INTO `#__pt_exclude` (`question_id`, `country_id`)
-VALUES (2, 2),
-       (4, 2),
-       (7, 2),
-       (9, 2),
-       (11, 2),
-       (13, 2),
-       (20, 2);
+VALUES (2,1),
+       (4,1),
+       (5,1),
+       (7,1),
+       (9,1),
+       (11,1),
+       (13,1),
+       (14,1),
+       (15,1),
+       (16,1),
+       (17,1),
+       (18,1),
+       (20,1),
+       (21,1),
+       (22,1),
+       (23,1),
+       (24,1),
+       (25,1),
+       (26,1),
+       (27,1),
+       (28,1),
+       (29,1),
+       (30,1),
+       (31,1),
+       (32,1),
+       (33,1),
+       (1,2),
+       (3,2),
+       (5,2),
+       (6,2),
+       (8,2),
+       (10,2),
+       (12,2),
+       (14,2),
+       (15,2),
+       (16,2),
+       (17,2),
+       (18,2),
+       (19,2),
+       (21,2),
+       (22,2),
+       (23,2),
+       (24,2),
+       (25,2),
+       (26,2),
+       (27,2),
+       (28,2),
+       (29,2),
+       (30,2),
+       (31,2),
+       (32,2),
+       (33,2);
 
 /* */
 
@@ -625,4 +613,3 @@ VALUES (1, 'Awareness actions '),
        (5, 'Management of the cooperative: general assembly, executive board, retain strong bonds with citizens, compensatory measure'),
        (5, 'Environmental monitoring'),
        (5, 'Preventative maintenance and repairs, Continuous technical monitoring of the production');
-
