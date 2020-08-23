@@ -9,50 +9,20 @@ $colourRGB = $category->colour_rgb;
 
 ?>
 
-<div class="masterChest">
+<div class="todoChest" style="border-color: <?php echo $colourHex; ?>">
 
-    <div class="headingChest" style="background-color: <?php echo $colourHex; ?>;">
+    <div class="headingChest" style="background-color: <?php echo $colourHex; ?>; cursor: pointer;" onclick="opensesame('taskList_<?php echo $this->category->id; ?>')">
         <div class="heading"><?php echo $name; ?></div>
     </div>
 
-    <div class="optionsChest">
-
+    <div class="taskChest" id="taskList_<?php echo $this->category->id; ?>" style="display: none;">
         <?php
         $this->count = 0;
-        foreach ($this->progressGoals[$this->category->id] as $this->progressGoal):
+        foreach ($this->tasks[$this->category->id] as $this->task):
             $this->count++;
-            echo $this->loadTemplate('progress');
+            echo $this->loadTemplate('task');
         endforeach;
         ?>
-
-        <style>
-            .test {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                text-align: center;
-                align-items: center;
-                margin: 0 0 15px 0;
-            }
-
-            .one {
-                margin: 0 auto;
-                width: 80%;
-                padding-right: 5%;
-                /**background-color: #ff6666; */
-                padding-top: 0.5em;
-                padding-bottom: 0.5em;
-            }
-
-            .two {
-                flex: auto;
-                margin: 0 auto;
-                /**background-color: #66ff8c;*/
-                padding-top: 0.5em;
-                padding-bottom: 0.5em;
-                border: 2px solid black;
-            }
-        </style>
     </div>
 
 </div>

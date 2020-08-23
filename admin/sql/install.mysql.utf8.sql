@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS `#__pt_country`;
 DROP TABLE IF EXISTS `#__pt_question`;
 DROP TABLE IF EXISTS `#__pt_project`;
 DROP TABLE IF EXISTS `#__pt_approval_question`;
-DROP TABLE IF EXISTS `#__pt_progress_goal`;
+DROP TABLE IF EXISTS `#__pt_task`;
 DROP TABLE IF EXISTS `#__pt_category`;
 
 /**/
@@ -43,9 +43,10 @@ CREATE TABLE `#__pt_category`
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO `#__pt_category` (`id`, `category`, `colour_hex`, `colour_rgb`)
-VALUES (1, 'People', '#f7a58a', '247, 165, 138'), -- RED-ORANGE
+VALUES (1, 'People', '#f7a58a', '247, 165, 138'),  -- RED-ORANGE
        (2, 'Finance', '#9690c6', '150, 144, 198'), -- PURPLE
-       (3, 'Technology', '#95d0ab', '149, 208, 171'); -- GREEN
+       (3, 'Technology', '#95d0ab', '149, 208, 171');
+-- GREEN
 
 /* */
 
@@ -63,39 +64,39 @@ CREATE TABLE `#__pt_question`
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO `#__pt_question` (`id`, `category_id`, `question`)
-    /* Irish */
-VALUES (1, 1, 'Has your community hosted awareness activities surrounding the energy transition?'),
-    /* Universal - Irish Exclusion */
+VALUES -- Irish
+       (1, 1, 'Has your community hosted awareness activities surrounding the energy transition?'),
+       -- Exclude Ireland
        (2, 1, 'Has your community hosted awareness activities surrounding the energy transition?'),
-    /* Irish */
+       -- Irish
        (3, 2, 'Has there been exploratory discussions within the community about creating a renewable energy project?'),
-    /* Universal - Irish Exclusion */
+       -- Exclude Ireland
        (4, 2, 'Has there been exploratory discussions within the community about creating a renewable energy project?'),
        (5, 1, 'Has a group been formed to manage the energy transition and any renewable energy projects in your community?'),
-    /* Irish */
+       -- Irish
        (6, 3, 'Has this group pursued any informal evaluation of the area to determine suitability?'),
-    /* Universal - Irish Exclusion */
+       -- Exclude Ireland
        (7, 3, 'Has this group pursued any informal evaluation of the area to determine suitability?'),
-    /* Irish */
+       -- Irish
        (8, 1, 'Do the local authorities know this group? Is the group registered as an SEC with SEAI?'),
-    /* Universal - Irish Exclusion */
+       -- Exclude Ireland
        (9, 1, 'Do the local authorities know this group?'),
-    /* Irish */
+       -- Irish
        (10, 2, 'Has there been any meetings with potential partners or mentors?'),
-    /* Universal - Irish Exclusion */
+       -- Exclude Ireland
        (11, 2, 'Has there been any meetings with potential partners or mentors?'),
-    /* Irish */
+       -- Irish
        (12, 3, 'Has a preliminary evaluation of the territory been completed? Has an Energy Master Plan been carried out for the community?'),
-    /* Universal - Irish Exclusion */
+       -- Exclude Ireland
        (13, 3, 'Has a preliminary evaluation of the territory been completed?'),
        (14, 3, 'Following the preliminary evaluation of the territory, has a decision been made regarding project choice?'),
        (15, 3, 'Has a feasibility study been carried out for the selected Renewable Energy Project?'),
        (16, 3, 'Has a land leasing commitment been agreed?'),
        (17, 2, 'Is there a finance plan agreed within the group?'),
        (18, 1, 'Has the local community group become a project society?'),
-    /* Irish */
+       -- Irish
        (19, 3, 'Has a technical committee been established within the group?'),
-    /* Universal - Irish Exclusion */
+       -- Exclude Ireland
        (20, 1, 'Has a technical committee been established within the group?'),
        (21, 2, 'Has the group organized to raise equity for construction or other projects?'),
        (22, 3,
@@ -150,58 +151,58 @@ CREATE TABLE `#__pt_question_country`
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO `#__pt_question_country` (`question_id`, `country_id`)
-VALUES (2,1),
-       (4,1),
-       (5,1),
-       (7,1),
-       (9,1),
-       (11,1),
-       (13,1),
-       (14,1),
-       (15,1),
-       (16,1),
-       (17,1),
-       (18,1),
-       (20,1),
-       (21,1),
-       (22,1),
-       (23,1),
-       (24,1),
-       (25,1),
-       (26,1),
-       (27,1),
-       (28,1),
-       (29,1),
-       (30,1),
-       (31,1),
-       (32,1),
-       (33,1),
-       (1,2),
-       (3,2),
-       (5,2),
-       (6,2),
-       (8,2),
-       (10,2),
-       (12,2),
-       (14,2),
-       (15,2),
-       (16,2),
-       (17,2),
-       (18,2),
-       (19,2),
-       (21,2),
-       (22,2),
-       (23,2),
-       (24,2),
-       (25,2),
-       (26,2),
-       (27,2),
-       (28,2),
-       (29,2),
-       (30,2),
-       (31,2),
-       (32,2),
-       (33,2);
+VALUES (2, 1),
+       (4, 1),
+       (5, 1),
+       (7, 1),
+       (9, 1),
+       (11, 1),
+       (13, 1),
+       (14, 1),
+       (15, 1),
+       (16, 1),
+       (17, 1),
+       (18, 1),
+       (20, 1),
+       (21, 1),
+       (22, 1),
+       (23, 1),
+       (24, 1),
+       (25, 1),
+       (26, 1),
+       (27, 1),
+       (28, 1),
+       (29, 1),
+       (30, 1),
+       (31, 1),
+       (32, 1),
+       (33, 1),
+       (1, 2),
+       (3, 2),
+       (5, 2),
+       (6, 2),
+       (8, 2),
+       (10, 2),
+       (12, 2),
+       (14, 2),
+       (15, 2),
+       (16, 2),
+       (17, 2),
+       (18, 2),
+       (19, 2),
+       (21, 2),
+       (22, 2),
+       (23, 2),
+       (24, 2),
+       (25, 2),
+       (26, 2),
+       (27, 2),
+       (28, 2),
+       (29, 2),
+       (30, 2),
+       (31, 2),
+       (32, 2),
+       (33, 2);
 
 /* */
 
@@ -220,28 +221,33 @@ CREATE TABLE `#__pt_question_choice` /* TODO: Make question_id, choice_id a comp
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO `#__pt_question_choice` (`question_id`, `choice`, `weight`)
-VALUES (1, 'No', 0),
+VALUES -- Question 1
+       (1, 'No', 0),
        (1, 'Yes, about existing beacons in ECCO and other Irish community group projects', 1),
        (1, 'Yes, about the actions of local authorities and their role in the transition', 1),
        (1, 'Yes, there has been local initiatives about coming up with new ideas', 1),
 
+       -- Question 2
        (2, 'No', 0),
        (2, 'Yes, about existing beacons in ECCO', 1),
        (2, 'Yes, about the actions of local authorities and their role in the transition', 1),
        (2, 'Yes, there has been local initiatives about coming up with new ideas', 1),
 
+       -- Question 3
        (3, 'No', 0),
        (3, 'Yes, regarding the type of governance that would be involved e.g. Co-operative or Sustainable Energy Community with SEAI (SEC)', 1),
        (3, 'Yes, regarding the financial structuring', 1),
        (3, 'Yes, regarding the type of partnerships available and if they would be suitable', 1),
        (3, 'Yes, regarding how to distribute benefits and profits among the local area', 1),
 
+       -- Question 4
        (4, 'No', 0),
        (4, 'Yes, regarding the type of governance that would be involved e.g. Co-operative', 1),
        (4, 'Yes, regarding the financial structuring', 1),
        (4, 'Yes, regarding the type of partnerships available and if they would be suitable', 1),
        (4, 'Yes, regarding how to distribute benefits and profits among the local area', 1),
 
+       -- Question 5
        (5, 'No', 0),
        (5, 'No, but there is interest from the community to form one', 0),
        (5, 'Yes, there is a leading group that has been democratically organized and formed with members of the local community', 1),
@@ -249,6 +255,7 @@ VALUES (1, 'No', 0),
        (5, 'Yes, the goals and the values of the group have been outlined', 1),
        (5, 'Yes, the group has been officially founded as an association', 1),
 
+       -- Question 6
        (6, 'No', 0),
        (6, 'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy', 1),
        (6,
@@ -257,34 +264,40 @@ VALUES (1, 'No', 0),
        (6, 'Yes, the group has looked into grid connection feasibility', 1),
        (6, 'Yes, the group has consulted with SEC mentors for advice on the matter', 1),
 
+       -- Question 7
        (7, 'No', 0),
        (7, 'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy', 1),
        (7,
         'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel',
         1),
 
+       -- Question 8
        (8, 'No', 0),
        (8, 'Yes, the group has the support of local authorities such as SEAI', 1),
        (8, 'Yes, the group has official support from local bodies', 1),
        (8, 'Yes, agreements have been set up with the local authorities', 1),
        (8, 'Yes, contacts have been established within the local authorities', 1),
 
+       -- Question 9
        (9, 'No', 0),
        (9, 'Yes, the group has the support of local authorities', 1),
        (9, 'Yes, the group has official support from local bodies', 1),
        (9, 'Yes, agreements have been set up with the local authorities', 1),
        (9, 'Yes, contacts have been established within the local authorities', 1),
 
+       -- Question 10
        (10, 'No', 0),
        (10, 'Yes, with public partners such as SEAI', 1),
        (10, 'Yes, with private partners (developers)', 1),
        (10, 'Yes, with SEC mentors', 1),
 
+       -- Question 11
        (11, 'No', 0),
        (11, 'Yes, with public partners', 1),
        (11, 'Yes, with private partners (developers)', 1),
        (11, 'Yes, with mentors', 1),
 
+       -- Question 12
        (12, 'No', 0),
        (12, 'It is not completed yet', 0),
        (12, 'Yes, regarding location and mapping to decide what form of RE is suitable to pursue', 1),
@@ -293,6 +306,7 @@ VALUES (1, 'No', 0),
        (12, 'Yes, regarding the impact to the local community', 1),
        (12, 'Yes, the findings have been shared with the group', 1),
 
+       -- Question 13
        (13, 'No', 0),
        (13, 'It is not completed yet', 1),
        (13, 'Yes, regarding location and mapping to decide what form of RE is suitable to pursue', 1),
@@ -301,25 +315,30 @@ VALUES (1, 'No', 0),
        (13, 'Yes, regarding the impact to the local community', 1),
        (13, 'Yes, the findings have been shared with the group', 1),
 
+       -- Question 14
        (14, 'No', 0),
        (14, 'No, but options have been presented to the group', 0),
        (14, 'Yes', 2),
 
+       -- Question 15
        (15, 'No', 0),
        (15, 'Yes, it is in ongoing', 1),
        (15, 'Yes, the finding were positive and have been shared with the group', 1),
        (15, 'Yes, but the project is not viable and must be discontinued', 1),
 
+       -- Question 16
        (16, 'No', 0),
        (16, 'Yes, commitment to lease on behalf of the association', 2),
        (16, 'Yes, commitment to lease on behalf of a local community partner', 2),
 
+       -- Question 17
        (17, 'No', 0),
        (17, 'Yes, a preliminary plan has been established', 1),
        (17, 'Yes, the financial structure has been agreed', 1),
        (17, 'Yes, and the group has launched fundraising for development costs', 1),
        (17, 'Yes, the group is financially mobilized', 1),
 
+       -- Question 18
        (18, 'No', 0),
        (18, 'Yes, they have hosted public meetings', 1),
        (18, 'Yes, they have hosted technical training sessions', 1),
@@ -327,22 +346,26 @@ VALUES (1, 'No', 0),
        (18, 'Yes, they have hosted negotiation training sessions', 1),
        (18, 'Yes, they have hosted building project management training sessions', 1),
 
+       -- Question 19
        (19, 'No', 0),
        (19, 'Yes, with support from SEC mentors', 1),
        (19, 'Yes, for quotations', 1),
        (19, 'Yes, for providers', 1),
        (19, 'Yes, and a technical study on a risk-sensitive basis and on the level of funds needed', 1),
 
+       -- Question 20
        (20, 'No', 0),
        (20, 'Yes, with support from mentors', 1),
        (20, 'Yes, for quotations', 1),
        (20, 'Yes, for providers', 1),
        (20, 'Yes, and a technical study on a risk-sensitive basis and on the level of funds needed', 1),
 
+       -- Question 21
        (21, 'No', 0),
        (21, 'Yes, from banks', 1),
        (21, 'Yes, from citizens', 1),
 
+       -- Question 22
        (22, 'No', 0),
        (22, 'Yes, the feed-in tariff has been identified', 1),
        (22, 'Yes, the technical scenario has been selected', 1),
@@ -350,11 +373,13 @@ VALUES (1, 'No', 0),
        (22, 'Yes, the site has been chosen', 1),
        (22, 'Yes, the file has been submitted to the authorities for approval', 1),
 
+       -- Question 23
        (23, 'No, a public enquiry is going to take place', 0),
        (23, 'No, the file is being reviewed', 0),
        (23, 'No, the project is being appealed ', 0),
        (23, 'Yes, there has been administration approval', 3),
 
+       -- Question 24
        (24, 'No, it has not been started yet', 0),
        (24, 'No, but it is in progress', 0),
        (24, 'No, a feasibility study is ongoing', 0),
@@ -362,11 +387,13 @@ VALUES (1, 'No', 0),
        (24, 'Yes, and a risk assessment has been carried out', 1),
        (24, 'Yes, the banking file is complete', 1),
 
+       -- Question 25
        (25, 'No', 0),
        (25, 'Yes, bank loan', 1),
        (25, 'Yes, members’ investments', 1),
        (25, 'Yes, government funding scheme', 1),
 
+       -- Question 26
        (26, 'No', 0),
        (26, 'Yes, the land leasing contracts have been signed', 1),
        (26, 'Yes, the energy feed-in tariffs have been agreed', 1),
@@ -374,12 +401,14 @@ VALUES (1, 'No', 0),
        (26, 'Yes, maintenance contracts have been agreed', 1),
        (26, 'Yes, building providers have been agreed', 1),
 
+       -- Question 27
        (27, 'No', 0),
        (27, 'Yes, there has been a session to discuss citizen involvement in project management', 1),
        (27, 'Yes, an official project management plan has been put in place', 1),
        (27, 'Yes, there has been a group visit to the construction site', 1),
        (27, 'Yes, plans are in place for preparation of operation monitoring', 1),
 
+       -- Question 28
        (28, 'No', 0),
        (28, 'Yes, construction had commenced', 1),
        (28, 'Yes, providers for neighborhood impact monitoring studies have been identified', 1),
@@ -387,25 +416,30 @@ VALUES (1, 'No', 0),
        (28, 'Yes, providers for system monitoring have been identified', 1),
        (28, 'Yes, the site has been commissioned', 1),
 
+       -- Question 29
        (29, 'No, construction is still ongoing', 0),
        (29, 'No, but construction is complete and it has been inaugurated', 0),
        (29, 'Yes, with ongoing communication regarding the operation', 3),
 
+       -- Question 30
        (30, 'No', 0),
        (30, 'Yes, the finances are managed through the committee', 1),
        (30, 'Yes, profits have been allocated', 1),
 
+       -- Question 31
        (31, 'No', 0),
        (31, 'Yes, neighborhood impact monitoring in the first year of the project', 1),
        (31, 'Yes, environmental monitoring every year of the project', 1),
        (31, 'Yes, preventative maintenance and repairs are being carried out regularly', 1),
        (31, 'Yes, the production site is being continuously technically monitored', 1),
 
+       -- Question 32
        (32, 'No', 0),
        (32, 'Yes, they have hosted a general assembly with the executive board', 1),
        (32, 'Yes, and compensatory measures have been put in place for citizens', 1),
        (32, 'Yes, they keep in touch with residents of the project', 1),
 
+       -- Question 33
        (33, 'No', 0),
        (33, 'Yes, about renewable energy', 1),
        (33, 'Yes, about the environment', 1),
@@ -460,11 +494,11 @@ CREATE TABLE `#__pt_project_approval`
 
 /* */
 
-CREATE TABLE `#__pt_progress_goal`
+CREATE TABLE `#__pt_task`
 (
     `id`          TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
     `category_id` TINYINT UNSIGNED NOT NULL,
-    `goal`        VARCHAR(255)     NOT NULL,
+    `task`        VARCHAR(255)     NOT NULL,
     CONSTRAINT id PRIMARY KEY (id),
     FOREIGN KEY (category_id) REFERENCES `#__pt_category` (id)
 )
@@ -473,7 +507,7 @@ CREATE TABLE `#__pt_progress_goal`
     DEFAULT CHARSET = utf8mb4
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
-INSERT INTO `#__pt_progress_goal` (`category_id`, `goal`)
+INSERT INTO `#__pt_task` (`category_id`, `task`)
 VALUES (1, 'Awareness activities about existing Beacon projects, Educational actions of local associations, Private developer prospection'),
        (1, 'Local initiatives: new ideas + willpower of individuals, citizens, associations and local communities'),
        (1, 'Leading group'),

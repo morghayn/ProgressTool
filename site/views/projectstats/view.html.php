@@ -20,7 +20,7 @@ class ProgressToolViewProjectStats extends JViewLegacy
      * @var
      * @var
      */
-    protected $progressGoals, $categories;
+    protected $tasks, $categories;
 
     /**
      * Renders view.
@@ -31,21 +31,32 @@ class ProgressToolViewProjectStats extends JViewLegacy
     function display($tpl = null)
     {
         $model = parent::getModel();
-        $this->progressGoals = $model->getProgressGoals();
+        $this->tasks = $model->getTasks();
         $this->categories = $model->getCategories();
 
         $this->addStylesheet();
+        $this->addScripts();
         parent::display($tpl);
     }
 
     /**
      * // TODO: documentation
-     * @since 0.2.6
+     * @since 0.3.0
      */
     private function addStylesheet()
     {
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterChest.css");
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/optionsChest.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/projectStats.css");
+    }
+
+    /**
+     * // TODO: documentation
+     * @since 0.3.0
+     */
+    private function addScripts()
+    {
+        $document = JFactory::getDocument();
+        $document->addScript(JURI::root() . "media/com_progresstool/js/projectstats.js");
     }
 }

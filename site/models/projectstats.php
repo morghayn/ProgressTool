@@ -14,19 +14,6 @@
  */
 class ProgressToolModelProjectStats extends JModelItem
 {
-    public function groupByCategory($rows)
-    {
-        $grouped = array();
-
-        foreach ($rows as $row)
-        {
-            // Grouping by category
-            $grouped[$row->category_id][] = $row;
-        }
-
-        return $grouped;
-    }
-
     public function getCategories()
     {
         $db = JFactory::getDbo();
@@ -39,17 +26,29 @@ class ProgressToolModelProjectStats extends JModelItem
         return $db->setQuery($select)->loadObjectList();
     }
 
-    public function getProgressGoals()
+    public function getTasks()
     {
         $db = JFactory::getDbo();
         $select = $db->getQuery(true);
 
         $select
             ->select('*')
-            ->from($db->quoteName('#__pt_progress_goal'));
+            ->from($db->quoteName('#__pt_task'));
 
         $progressGoals = $db->setQuery($select)->loadObjectList();
         return $this->groupByCategory($progressGoals);
     }
 
+    public function groupByCategory($rows)
+    {
+        $grouped = array();
+
+        foreach ($rows as $row)
+        {
+            // Grouping by category
+            $grouped[$row->category_id][] = $row;
+        }
+
+        return $grouped;
+    }
 }

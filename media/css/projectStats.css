@@ -1,0 +1,48 @@
+.superChest {
+    display: flex;
+    margin: 0 auto;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.todoChest {
+    width: 30%;
+    display: inline-block;
+    margin: 0 auto 50px;
+
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border: 0.35em solid #3d4d85;
+    border-radius: 0.25rem;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
+@media only screen and (max-width: 575px) {
+    .superChest {
+        display: inline-block;
+    }
+
+    .todoChest {
+        width: 100%;
+    }
+}
+
+.taskChest {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.75rem;
+    padding-top: 0.75rem;
+}
+
+.task {
+    width: 80%;
+    margin-left: 5%;
+}
+
+.box {
+    margin-right: 5%;
+    margin-left: 5%;
+    width: 25px;
+    height: 25px;
+    border: 1px solid black;
+}

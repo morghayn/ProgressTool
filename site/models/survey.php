@@ -57,7 +57,8 @@ class ProgressToolModelSurvey extends JModelItem
             ->innerjoin($db->quoteName('#__pt_question_choice', 'CH') . ' ON ' . $db->quoteName('Q.ID') . ' = ' . $db->quoteName('CH.question_id'))
             ->innerjoin($db->quoteName('#__pt_category', 'CA') . ' ON ' . $db->quoteName('Q.category_id') . ' = ' . $db->quoteName('CA.id'))
             ->where($db->quoteName('CO.country_id') . ' = ' . $db->quote($country))
-            ->group($db->quoteName('Q.id'));
+            ->group($db->quoteName('Q.id'))
+            ->order('Q.id ASC');
 
         return $db->setQuery($getQuestions)->loadObjectList();
     }
