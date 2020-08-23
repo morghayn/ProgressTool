@@ -8,8 +8,6 @@ DROP TABLE IF EXISTS `#__pt_project`;
 DROP TABLE IF EXISTS `#__pt_approval_question`;
 DROP TABLE IF EXISTS `#__pt_progress_goal`;
 DROP TABLE IF EXISTS `#__pt_category`;
-DROP TABLE IF EXISTS `#__pt_measurement`;
-DROP TABLE IF EXISTS `#__pt_measurement_category`;
 
 /**/
 
@@ -526,90 +524,3 @@ VALUES (1, 'Awareness activities about existing Beacon projects, Educational act
        (3, 'Commissioning'),
        (3, 'Environmental monitoring'),
        (3, 'Preventative maintenance and repairs');
-
-/* */
-
-CREATE TABLE `#__pt_measurement_category`
-(
-    `id`         TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `category`   VARCHAR(255)     NOT NULL,
-    `colour_hex` VARCHAR(7)       NOT NULL DEFAULT ('#ffffff'),
-    `colour_rgb` VARCHAR(13)      NOT NULL DEFAULT ('255, 255, 255'),
-    CONSTRAINT id PRIMARY KEY (id)
-)
-    ENGINE = InnoDB
-    AUTO_INCREMENT = 0
-    DEFAULT CHARSET = utf8mb4
-    DEFAULT COLLATE = utf8mb4_unicode_ci;
-
-INSERT INTO `#__pt_measurement_category` (`category`, `colour_hex`, `colour_rgb`)
-VALUES ('Emergence', '#81bce4', '129, 188, 228'),
-       ('Development', '#9ae481', '154, 228, 129'),
-       ('Funding', '#8181e4', '129, 129, 228'),
-       ('Building', '#e48181', '228, 129, 129'),
-       ('Exploitation', '#b381e4', '179, 129, 228');
-
-/* */
-
-CREATE TABLE `#__pt_measurement`
-(
-    `id`          TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `category_id` TINYINT UNSIGNED NOT NULL,
-    `measurement` VARCHAR(255)       NOT NULL DEFAULT ('#ffffff'),
-    CONSTRAINT id PRIMARY KEY (id),
-    FOREIGN KEY (category_id) REFERENCES `#__pt_measurement_category` (id)
-)
-    ENGINE = InnoDB
-    AUTO_INCREMENT = 0
-    DEFAULT CHARSET = utf8mb4
-    DEFAULT COLLATE = utf8mb4_unicode_ci;
-
-INSERT INTO `#__pt_measurement` (`category_id`, `measurement`)
-VALUES (1, 'Awareness actions '),
-       (1, 'Local initiatives'),
-       (1, 'Leading group'),
-       (1, 'Goals and values of the group'),
-       (1, 'Founding of association'),
-       (1, 'Support of local authorities'),
-       (1, 'Founding of project society'),
-
-       (2, 'Public meetings, awareness and educational activities'),
-       (2, 'Setting up agreements with local authorities'),
-       (2, 'Established contacts with administrative authorities'),
-       (2, 'Citizen financial mobilisation'),
-       (2, 'Citizen involvement in project management'),
-       (2, 'Project management'),
-       (2, 'Ongoing communication on operation'),
-       (2, 'Keep in touch with residents of the project'),
-
-       (3, 'Think tank'),
-       (3, 'Meeting with potential partners'),
-       (3, 'Preliminary finance plan'),
-       (3, 'Financial mobilisation (creation of the co-op)'),
-       (3, 'Prepare finance for the construction phase'),
-       (3, 'Consolidation of the financial plan'),
-       (3, 'Assessment of the valuation of the risk'),
-       (3, 'Completion or the banking file'),
-       (3, 'Fund raising and bank loan for construction phase'),
-       (3, 'Financial management accounting'),
-       (3, 'Profit allocation management'),
-
-       (4, 'Preliminary evaluation of the territory'),
-       (4, 'Project choice'),
-       (4, 'Land leasing commitment'),
-       (4, 'Technical committee, source quotations and providers'),
-       (4, 'Technical studies for risk assessment'),
-       (4, 'Technical file for submission for approval of authorities'),
-       (4, 'Submission for approval ot authorities'),
-       (4, 'Administration approval'),
-       (4, 'Land leasing contracts signed'),
-       (4, 'Signing of construction contracts'),
-       (4, 'Work site visit'),
-       (4, 'Preparation of the operation monitoring'),
-       (4, 'Commissioning'),
-
-       (5, 'Identify providers for acoustic studies, environmental studies, monitoring systems'),
-       (5, 'Inauguration'),
-       (5, 'Management of the cooperative: general assembly, executive board, retain strong bonds with citizens, compensatory measure'),
-       (5, 'Environmental monitoring'),
-       (5, 'Preventative maintenance and repairs, Continuous technical monitoring of the production');
