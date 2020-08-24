@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `#__pt_choice_task`;
 DROP TABLE IF EXISTS `#__pt_project_approval`;
 DROP TABLE IF EXISTS `#__pt_project_choice`;
 DROP TABLE IF EXISTS `#__pt_question_choice`;
