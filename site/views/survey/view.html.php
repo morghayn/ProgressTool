@@ -42,8 +42,7 @@ class ProgressToolViewSurvey extends JViewLegacy
         $this->user = JFactory::getUser();
         $this->redirectGuest();
 
-        $projectIDBas64 = $input->get('projectID', '', 'BASE64');
-        $this->projectID = base64_decode($projectIDBas64);
+        $this->projectID = $input->get('projectID', 1);
         $this->project = $model->getProject($this->projectID);
         $this->handleAuthentication();
 

@@ -15,7 +15,7 @@ $colourRGB = $category->colour_rgb;
         <div class="heading"><?php echo $name; ?></div>
     </div>
 
-    <div class="taskChest" id="taskList_<?php echo $this->category->id; ?>" style="display: none;">
+    <div class="taskChest" id="taskList_<?php echo $this->category->id; ?>" style="display: block;">
         <?php
         $this->count = 0;
         foreach ($this->tasks[$this->category->id] as $this->task):

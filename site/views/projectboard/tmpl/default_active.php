@@ -25,6 +25,12 @@ $description = $this->project->description;
                 Update Progress
             </button>
         </div>
+
+        <div class="approvalButtonChest">
+            <button class="approvalButton" onclick="statsRedirect(<?php echo $id; ?>)">
+                Stats
+            </button>
+        </div>
     </div>
 
 </div>

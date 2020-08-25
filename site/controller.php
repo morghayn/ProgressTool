@@ -49,25 +49,6 @@ class ProgressToolController extends JControllerLegacy
         }
     }
 
-    // TODO 0.2.6
-    public function openSurvey()
-    {
-        if (!JSession::checkToken('get'))
-        {
-            echo new JResponseJson(null, JText::_('JINVALID_TOKEN'), true);
-        }
-        else
-        {
-            $input = JFactory::getApplication()->input;
-            $data = $input->get('data', array(), 'ARRAY');
-
-            $projectID = urlencode(base64_encode($data['projectID']));
-            $surveyRedirect = 'index.php?option=com_progresstool&view=survey&projectID=' . $projectID;
-            $response = array("redirect" => $surveyRedirect);
-            echo new JResponseJson($response);
-        }
-    }
-
     public function approval()
     {
         if (!JSession::checkToken('get'))

@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS `#__pt_project_approval`;
 DROP TABLE IF EXISTS `#__pt_project_choice`;
 DROP TABLE IF EXISTS `#__pt_question_choice`;
 DROP TABLE IF EXISTS `#__pt_question_country`;
+DROP TABLE IF EXISTS `#__pt_task_country`;
 DROP TABLE IF EXISTS `#__pt_country`;
 DROP TABLE IF EXISTS `#__pt_question`;
 DROP TABLE IF EXISTS `#__pt_project`;
@@ -74,7 +75,8 @@ VALUES -- Irish
        (3, 3, 'Has there been exploratory discussions within the community about creating a renewable energy project?'),
        -- Exclude Ireland
        (4, 3, 'Has there been exploratory discussions within the community about creating a renewable energy project?'),
-       (5, 1, 'Has a group been formed to manage the energy transition and any renewable energy projects in your community?'),
+       (5, 1,
+        'Has a group been formed to manage the energy transition and any renewable energy projects in your community?'),
        -- Irish
        (6, 2, 'Has this group pursued any informal evaluation of the area to determine suitability?'),
        -- Exclude Ireland
@@ -88,10 +90,12 @@ VALUES -- Irish
        -- Exclude Ireland
        (11, 3, 'Has there been any meetings with potential partners or mentors?'),
        -- Irish
-       (12, 2, 'Has a preliminary evaluation of the territory been completed? Has an Energy Master Plan been carried out for the community?'),
+       (12, 2,
+        'Has a preliminary evaluation of the territory been completed? Has an Energy Master Plan been carried out for the community?'),
        -- Exclude Ireland
        (13, 2, 'Has a preliminary evaluation of the territory been completed?'),
-       (14, 2, 'Following the preliminary evaluation of the territory, has a decision been made regarding project choice?'),
+       (14, 2,
+        'Following the preliminary evaluation of the territory, has a decision been made regarding project choice?'),
        (15, 2, 'Has a feasibility study been carried out for the selected Renewable Energy Project?'),
        (16, 2, 'Has a land leasing commitment been agreed?'),
        (17, 3, 'Is there a finance plan agreed within the group?'),
@@ -237,7 +241,9 @@ VALUES -- Question 1
 
        -- Question 3
        (9, 3, 'No', 0),
-       (10, 3, 'Yes, regarding the type of governance that would be involved e.g. Co-operative or Sustainable Energy Community with SEAI (SEC)', 1),
+       (10, 3,
+        'Yes, regarding the type of governance that would be involved e.g. Co-operative or Sustainable Energy Community with SEAI (SEC)',
+        1),
        (11, 3, 'Yes, regarding the financial structuring', 1),
        (12, 3, 'Yes, regarding the type of partnerships available and if they would be suitable', 1),
        (13, 3, 'Yes, regarding how to distribute benefits and profits among the local area', 1),
@@ -252,14 +258,18 @@ VALUES -- Question 1
        -- Question 5
        (19, 5, 'No', 0),
        (20, 5, 'No, but there is interest from the community to form one', 0),
-       (21, 5, 'Yes, there is a leading group that has been democratically organized and formed with members of the local community', 1),
+       (21, 5,
+        'Yes, there is a leading group that has been democratically organized and formed with members of the local community',
+        1),
        (22, 5, 'Yes, legal, technical and financial structuring has been discussed ', 1),
        (23, 5, 'Yes, the goals and the values of the group have been outlined', 1),
        (24, 5, 'Yes, the group has been officially founded as an association', 1),
 
        -- Question 6
        (25, 6, 'No', 0),
-       (26, 6, 'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy', 1),
+       (26, 6,
+        'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy',
+        1),
        (27, 6,
         'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel',
         1),
@@ -268,7 +278,9 @@ VALUES -- Question 1
 
        -- Question 7
        (30, 7, 'No', 0),
-       (31, 7, 'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy', 1),
+       (31, 7,
+        'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy',
+        1),
        (32, 7,
         'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel',
         1),
@@ -510,16 +522,19 @@ CREATE TABLE `#__pt_task`
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO `#__pt_task` (`id`, `category_id`, `task`)
-VALUES (1, 1, 'Awareness activities about existing Beacon projects, Educational actions of local associations, Private developer prospection'),
+VALUES (1, 1,
+        'Awareness activities about existing Beacon projects, Educational actions of local associations, Private developer prospection'),
        (2, 1, 'Local initiatives: new ideas + willpower of individuals, citizens, associations and local communities'),
        (3, 1, 'Leading group'),
        (4, 1,
         'Masterclasses: democratic organisation of the citizen group, Legal structuring, Technical issues, Initial financial elements, Expansion of the citizen group'),
-       (5, 1, 'Brainwork on: goals and values of the group, The type of energy and awareness actions around energy transition'),
+       (5, 1,
+        'Brainwork on: goals and values of the group, The type of energy and awareness actions around energy transition'),
        (6, 1, 'Organisation of the group, Founding of the association'),
        (7, 1, 'Support of local authorities, to obtain official support from local bodies'),
        (8, 1, 'Founding of the project society'),
-       (9, 1, 'Public meetings and Advanced training: technical training, financing plan, negotiation training, building project management'),
+       (9, 1,
+        'Public meetings and Advanced training: technical training, financing plan, negotiation training, building project management'),
        (10, 1, 'Setting up of agreements with local authorities'),
        (11, 1, 'Establish contacts with administrative authorities'),
        -- (12, 1, 'Citizen financial mobilisation'),
@@ -529,7 +544,8 @@ VALUES (1, 1, 'Awareness activities about existing Beacon projects, Educational 
        (16, 1, 'Preparation for the operation monitoring'),
        (17, 1, 'Inauguration'),
        (18, 1, 'Ongoing communication on operation'),
-       (19, 1, 'Management of the cooperative: general assembly, executive board, retain strong bonds with citizens, compensatory measure'),
+       (19, 1,
+        'Management of the cooperative: general assembly, executive board, retain strong bonds with citizens, compensatory measure'),
        (20, 1, 'Keep in touch with the residents of the project'),
        (21, 1, 'Educational activities on: renewable energy, environmental effects, Energy savings'),
 
@@ -549,10 +565,12 @@ VALUES (1, 1, 'Awareness activities about existing Beacon projects, Educational 
        (35, 2, 'Environmental monitoring'),
        (36, 2, 'Preventative maintenance and repairs'),
 
-       (37, 3, 'Think thank: type of governance, financial structuring, types of partnerships, how to distribute the benefits'),
+       (37, 3,
+        'Think thank: type of governance, financial structuring, types of partnerships, how to distribute the benefits'),
        (38, 3, 'Meeting with potential partner'),
        (39, 3, 'Preliminary financing plan'),
-       (40, 3, 'Financial mobilisation, launch fundraising for development costs, reinforcement of funding partnerships'),
+       (40, 3,
+        'Financial mobilisation, launch fundraising for development costs, reinforcement of funding partnerships'),
        (41, 3, 'Preparation of the financial mobilisation for the construction phase'),
        (42, 3, 'Consolidation of the financial plan'),
        (43, 3, 'Assessment of the valuation of the risk'),
@@ -560,6 +578,118 @@ VALUES (1, 1, 'Awareness activities about existing Beacon projects, Educational 
        (45, 3, 'Fundraising and bank loan for the construction phase'),
        (46, 3, 'Financial management accounting'),
        (47, 3, 'Profit allocation management');
+
+/* */
+CREATE TABLE `#__pt_task_country`
+(
+    `task_id`    SMALLINT UNSIGNED NOT NULL,
+    `country_id` TINYINT UNSIGNED  NOT NULL,
+    `criteria` TINYINT UNSIGNED NOT NULL,
+    CONSTRAINT id PRIMARY KEY (`task_id`, `country_id`),
+    FOREIGN KEY (`task_id`) REFERENCES `#__pt_task` (`id`),
+    FOREIGN KEY (`country_id`) REFERENCES `#__pt_country` (`id`)
+)
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 0
+    DEFAULT CHARSET = utf8mb4
+    DEFAULT COLLATE = utf8mb4_unicode_ci;
+
+INSERT INTO `#__pt_task_country` (`task_id`, `country_id`, `criteria`)
+VALUES (1,1,1),
+       (2,1,1),
+       (3,1,1),
+       (4,1,2),
+       (5,1,1),
+       (6,1,1),
+       (7,1,1),
+       (8,1,1),
+       (9,1,5),
+       (10,1,1),
+       (11,1,1),
+       (13,1,1),
+       (14,1,1),
+       (15,1,1),
+       (16,1,1),
+       (17,1,1),
+       (18,1,1),
+       (19,1,2),
+       (20,1,1),
+       (21,1,3),
+       (22,1,4),
+       (23,1,1),
+       (24,1,1),
+       (25,1,3),
+       (26,1,1),
+       (27,1,4),
+       (28,1,1),
+       (29,1,1),
+       (30,1,1),
+       (31,1,1),
+       (32,1,4),
+       (33,1,3),
+       (34,1,1),
+       (35,1,2),
+       (36,1,2),
+       (37,1,4),
+       (38,1,1),
+       (39,1,1),
+       (40,1,3),
+       (41,1,1),
+       (42,1,1),
+       (43,1,1),
+       (44,1,1),
+       (45,1,1),
+       (46,1,1),
+       (47,1,1),
+
+       (1,2,1),
+       (2,2,1),
+       (3,2,1),
+       (4,2,2),
+       (5,2,1),
+       (6,2,1),
+       (7,2,1),
+       (8,2,1),
+       (9,2,5),
+       (10,2,1),
+       (11,2,1),
+       (13,2,1),
+       (14,2,1),
+       (15,2,1),
+       (16,2,1),
+       (17,2,1),
+       (18,2,1),
+       (19,2,2),
+       (20,2,1),
+       (21,2,3),
+       (22,2,4),
+       (23,2,1),
+       (24,2,1),
+       (25,2,3),
+       (26,2,1),
+       (27,2,4),
+       (28,2,1),
+       (29,2,1),
+       (30,2,1),
+       (31,2,1),
+       (32,2,4),
+       (33,2,3),
+       (34,2,1),
+       (35,2,2),
+       (36,2,2),
+       (37,2,4),
+       (38,2,1),
+       (39,2,1),
+       (40,2,3),
+       (41,2,1),
+       (42,2,1),
+       (43,2,1),
+       (44,2,1),
+       (45,2,1),
+       (46,2,1),
+       (47,2,1);
+
+/* */
 
 CREATE TABLE `#__pt_choice_task`
 (
@@ -665,7 +795,7 @@ VALUES (1, 2),
        (38, 48),
        (38, 49),
        (38, 50),
-       (9, 76),
+       (39, 76),
        (40, 77),
        (40, 78),
        (40, 79),

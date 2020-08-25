@@ -1,17 +1,11 @@
 function surveyRedirect(projectID)
 {
-    var token = jQuery("#token").attr("name");
-    jQuery.ajax({
-        data: {[token]: "1", task: "openSurvey", format: "json", data: {projectID: projectID}},
-        success: function (result, status, xhr)
-        {
-            window.location = result.data.redirect;
-        },
-        error: function ()
-        {
-            console.log('ajax call failed');
-        }, // todo do not allow selection of 'choice'
-    });
+    window.location = `?option=com_progresstool&view=survey&projectID=${projectID}`
+}
+
+function statsRedirect(projectID)
+{
+    window.location = `?option=com_progresstool&view=projectstats&projectID=${projectID}`
 }
 
 function approvalClick(projectID, approvalID)
