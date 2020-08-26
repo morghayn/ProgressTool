@@ -5,3 +5,18 @@
             - Overriding CSS elements from optionsChest.css
         ========================================================
  */
+/**
+.contentChest {
+    display: flex;
+}
+
+.iconChest {
+    flex: 2;
+    background-color: deeppink;
+}
+
+.optionsChest {
+    flex: 5;
+}
+
+ */

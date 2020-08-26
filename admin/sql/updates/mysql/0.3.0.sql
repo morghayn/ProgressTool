@@ -90,12 +90,10 @@ VALUES -- Irish
        -- Exclude Ireland
        (11, 3, 'Has there been any meetings with potential partners or mentors?'),
        -- Irish
-       (12, 2,
-        'Has a preliminary evaluation of the territory been completed? Has an Energy Master Plan been carried out for the community?'),
+       (12, 2,'Has a preliminary evaluation of the territory been completed? Has an Energy Master Plan been carried out for the community?'),
        -- Exclude Ireland
        (13, 2, 'Has a preliminary evaluation of the territory been completed?'),
-       (14, 2,
-        'Following the preliminary evaluation of the territory, has a decision been made regarding project choice?'),
+       (14, 2,'Following the preliminary evaluation of the territory, has a decision been made regarding project choice?'),
        (15, 2, 'Has a feasibility study been carried out for the selected Renewable Energy Project?'),
        (16, 2, 'Has a land leasing commitment been agreed?'),
        (17, 3, 'Is there a finance plan agreed within the group?'),
@@ -241,9 +239,7 @@ VALUES -- Question 1
 
        -- Question 3
        (9, 3, 'No', 0),
-       (10, 3,
-        'Yes, regarding the type of governance that would be involved e.g. Co-operative or Sustainable Energy Community with SEAI (SEC)',
-        1),
+       (10, 3, 'Yes, regarding the type of governance that would be involved e.g. Co-operative or Sustainable Energy Community with SEAI (SEC)', 1),
        (11, 3, 'Yes, regarding the financial structuring', 1),
        (12, 3, 'Yes, regarding the type of partnerships available and if they would be suitable', 1),
        (13, 3, 'Yes, regarding how to distribute benefits and profits among the local area', 1),
@@ -258,32 +254,22 @@ VALUES -- Question 1
        -- Question 5
        (19, 5, 'No', 0),
        (20, 5, 'No, but there is interest from the community to form one', 0),
-       (21, 5,
-        'Yes, there is a leading group that has been democratically organized and formed with members of the local community',
-        1),
+       (21, 5, 'Yes, there is a leading group that has been democratically organized and formed with members of the local community', 1),
        (22, 5, 'Yes, legal, technical and financial structuring has been discussed ', 1),
        (23, 5, 'Yes, the goals and the values of the group have been outlined', 1),
        (24, 5, 'Yes, the group has been officially founded as an association', 1),
 
        -- Question 6
        (25, 6, 'No', 0),
-       (26, 6,
-        'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy',
-        1),
-       (27, 6,
-        'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel',
-        1),
+       (26, 6, 'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy', 1),
+       (27, 6, 'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel', 1),
        (28, 6, 'Yes, the group has looked into grid connection feasibility', 1),
        (29, 6, 'Yes, the group has consulted with SEC mentors for advice on the matter', 1),
 
        -- Question 7
        (30, 7, 'No', 0),
-       (31, 7,
-        'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy',
-        1),
-       (32, 7,
-        'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel',
-        1),
+       (31, 7, 'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy', 1),
+       (32, 7, 'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel', 1),
 
        -- Question 8
        (33, 8, 'No', 0),
@@ -322,7 +308,7 @@ VALUES -- Question 1
 
        -- Question 13
        (58, 13, 'No', 0),
-       (59, 13, 'It is not completed yet', 1),
+       (59, 13, 'It is not completed yet', 0),
        (60, 13, 'Yes, regarding location and mapping to decide what form of RE is suitable to pursue', 1),
        (61, 13, 'Yes, regarding local political context', 1),
        (62, 13, 'Yes, regarding the environmental impact', 1),
@@ -780,7 +766,7 @@ VALUES (1, 2),
        (35, 144),
        (36, 145),
        (36, 146),
-       -- --
+       --
        (37, 10),
        (37, 11),
        (37, 12),

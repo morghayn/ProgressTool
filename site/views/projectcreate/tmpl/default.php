@@ -1,31 +1,23 @@
 <?php defined('_JEXEC') or die; ?>
 
-<?php $colour = "#ff6666"; ?>
-
 <?php echo '<input id="token" type="hidden" name="' . JSession::getFormToken() . '" value="1" />'; ?>
 
-<!-- Question Box -->
-<div class="masterChest" style="border-color: <?php echo $colour; ?>">
 
-    <!-- Title -->
-    <div class="titleContainer" style="background-color: <?php echo $colour; ?>;">
-        <div class="title">
-            <?php echo "Project Creation"; ?>
-        </div>
-    </div>
+<label for="name">Project Name</label>
+<input placeholder="Project Name" id="name"/>
 
-    <!-- Form -->
-    <div class="fieldChest">
-        <label class="labelChest">Project Name</label>
-        <input class="textBox" type="text" name="projectName" placeholder="Name" id="name" />
 
-        <label class="labelChest">Project Description</label>
-        <input class="textBox" type="text" name="projectDescription" placeholder="Description" id="description" />
-    </div>
+<label for="description">Project Description</label>
+<textarea placeholder="Project Description" id="description"></textarea>
 
-    <div class="buttonBox">
-        <button href="something" class="button" onclick="createProject()">create project</button>
-        <!---todo implement functionality disabled--->
-    </div>
+<label for="projectType">Choose a project type:</label>
+<select id="projectType" name="projectType">
+    <option value="geothermal">Geothermal Energy</option>
+    <option value="solar">Solar Energy</option>
+    <option value="wind">Wind Energy</option>
+    <option value="hydropower">Hydropower</option>
+    <option value="other">Other</option>
+</select>
 
-</div>
+<button onclick="createProject()">Submit</button>
+<!---todo implement functionality disabled--->

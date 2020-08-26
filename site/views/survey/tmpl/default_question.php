@@ -25,14 +25,20 @@ endforeach;
         </h2>
     </div>
 
-    <div class="optionsChest">
+    <div class="contentChest">
+        <div class="optionsChest">
 
-        <?php
-        foreach ($this->choices[$questionID] as $this->choice):
-            echo $this->loadTemplate('option');
-        endforeach;
-        ?>
+            <?php
+            foreach ($this->choices[$questionID] as $this->choice):
+                echo $this->loadTemplate('option');
+            endforeach;
+            ?>
 
+        </div>
+
+        <div class="iconChest">
+
+        </div>
     </div>
 
 </div>

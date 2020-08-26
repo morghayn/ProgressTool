@@ -45,11 +45,13 @@ class ProgressToolViewProjectStats extends JViewLegacy
         $this->project = $model->getProject($this->projectID);
         $this->handleAuthentication();
 
-        $countryIndex = $this->getCountryIndex();
-        $this->tasks = $model->getTasks($countryIndex, $this->projectID);
-        $this->categories = $model->getCategories();
+        $countryID = $this->getCountryID();
+        $this->tasks = $model->getTasks($countryID, $this->projectID);
+        $this->categories = $model->getCategories($countryID);
+        $this->totals = $model->getTotals($countryID, $this->projectID);
 
-        // for debug var_dump($this->tasks);
+        var_dump($this->totals);
+        var_dump($this->categories);
 
         $this->addStylesheet();
         $this->addScripts();
@@ -91,18 +93,18 @@ class ProgressToolViewProjectStats extends JViewLegacy
      * @return int the country index for the current user. If JomSocial is not present, it will return '0'.
      * @since 0.3.0
      */
-    private function getCountryIndex()
+    private function getCountryID()
     {
         if (class_exists('CFactory')) {
             JFactory::getLanguage()->load('com_community.country', JPATH_SITE, 'en-GB', true);
             $profileCountry = CFactory::getUser()->getInfo('FIELD_COUNTRY');
 
             $country = JText::_($profileCountry);
-            return parent::getModel()->getCountryIndex($country);
+            return parent::getModel()->getCountryID($country);
         } else // for testing purposes
         {
             $country = "Ireland";
-            return parent::getModel()->getCountryIndex($country);
+            return parent::getModel()->getCountryID($country);
             // TODO: return 0 once testing is complete.
         }
     }
@@ -125,6 +127,7 @@ class ProgressToolViewProjectStats extends JViewLegacy
     private function addScripts()
     {
         $document = JFactory::getDocument();
+        $document->addScript(JURI::root() . "media/com_progresstool/js/chart.js");
         $document->addScript(JURI::root() . "media/com_progresstool/js/projectstats.js");
     }
 }

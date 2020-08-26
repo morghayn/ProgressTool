@@ -1,3 +1,8 @@
+.testing {
+    width: 45%;
+    margin: 0 auto;
+}
+
 .superChest {
     display: flex;
     margin: 0 auto;

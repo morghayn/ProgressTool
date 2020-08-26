@@ -170,8 +170,8 @@ class ProgressToolModelSurvey extends JModelItem
         $insert = $db->getQuery(true);
 
         $conditions = array(
-            $db->quoteName('project_id') . ' = ' . $projectID,
-            $db->quoteName('choice_id') . ' = ' . $choiceID
+            $db->quoteName('project_id') . ' = ' . $db->quote($projectID),
+            $db->quoteName('choice_id') . ' = ' . $db->quote($choiceID)
         );
 
         $exists
