@@ -1,162 +1,65 @@
-.testChest {
-    width: 100%;
+.projectChest {
     display: flex;
-    /**flex-direction: column;
-
-     */
-    margin: auto auto 5em auto;
-
-    box-sizing: border-box;
-    background-color: #3d4d85;
-
-    border-top: 0.6em solid #3d4d85;
-    border-bottom: 0.6em solid #3d4d85;
-
-    border-radius: 40px 10px 10px 40px;
-    /*
-        box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.15);
-        -webkit-box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.15);
-        -moz-box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.15);
-    */
-
-    justify-content: right;
+    margin-bottom: 75px;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
+.projectDetails {
+    width: 75%;
 }
 
 .projectTitle {
-    margin: 0 auto;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
-    color: #ffffff;
-}
-
-.projectChest {
-    padding-top: 25px;
-    padding-bottom: 25px;
-    background-color: white;
-    height: 100%;
-    display: flex;
-
-    width: 95%;
-    margin-right: 0;
-    border-radius: 60px 0 0 60px;
-}
-
-.projectInfo {
-    margin: 50px auto;
-    justify-content: center;
-    flex-direction: column;
-    width: 65%;
-    display:flex;
-
-    word-break: break-all;
-}
-
-.projectInfo > div {
     line-height: 1;
-    flex-wrap: wrap;
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 5%;
-    padding-right: 5%;
+    font-size: 2rem;
 }
 
-.half {
-    font-size: 1.40rem;
-}
-
-.half2 {
-    font-size: 1.15rem;
-}
-
-.buttonsChest {
-    margin: 0 auto;
-    width: 30%;
-}
-
-.approvalButtonChest {
-    align-self: center;
-    width: 100%;
-    display: flex;
-    margin-top: 1.0rem;
-    margin-bottom: 1.0rem;
-}
-
-.approvalButton {
-    width: 80%;
-    margin: 0 auto;
-    padding: 0.75em 0em;
-    border: 2px solid #000000;
-    color: #000000;
-    background-color: rgba(102, 255, 140, 0.5);
-    box-sizing: border-box;
-    text-decoration: none;
-    font-size: 1.15rem;
-    font-weight: 400;
-    text-align: center;
-
-    border-radius: 25px;
-}
-
-.approvalButton:hover:enabled {
-    opacity: 0.5;
-}
-
-.approvalButton:active:enabled {
-    color: #66ff8c;
-    border-color: #66ff8c;
-    background-color: #fff;
-}
-
-.approvalButton:disabled {
-    cursor: not-allowed;
-    color: #ffffff;
-    border-color: #ff6666;
-    background-color: rgba(255, 102, 102, 0.5);
-}
-
-.button {
-    margin: 0 auto;
-
-    border-radius: 0.25rem;
-
-    width: 100%;
-    background-color: #ffffff;
-    color: #000000;
-    border: 2px solid #3d4d85;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    transition-duration: 0.1s;
-    cursor: pointer;
-
+.projectCategory {
+    font-size: 0.9rem;
     font-weight: 500;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
-
 }
 
-.button:hover {
-    background-color: #3d4d85;
-    color: #ffffff;
+.projectDescription {
+    line-height: 1;
+    padding: 1rem;
+    font-size: 1rem;
+    text-align: right;
+    /*background-color: gold;*/
 }
 
-.button2 {
-    /**
-    margin: 5px auto auto auto;
-     */
-    margin: 0 auto;
-    border: 2px solid #ff6666;
+.buttonChest {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    /*background-color: darkorange;*/
 }
 
-.button2:hover {
-    background-color: #ff6666;
-    color: #ffffff;
+.buttonChest > button {
+    flex: 1;
+    border: none;
+    font-size: 1.10rem;
+    padding: 0.75rem;
+}
+
+.surveyButton {
+    background-color: rgba(247, 165, 138, 1);
+}
+
+.surveyButton:hover {
+    background-color: rgba(247, 165, 138, 0.5);
+}
+
+.metricsButton {
+    background-color: rgba(149, 208, 171, 1);
+}
+
+.metricsButton:hover {
+    background-color: rgba(149, 208, 171, 0.5);
+}
+
+.settingsButton {
+    background-color: rgba(150, 144, 198, 1);
+}
+
+.settingsButton:hover {
+    background-color: rgba(150, 144, 198, 0.5);
 }

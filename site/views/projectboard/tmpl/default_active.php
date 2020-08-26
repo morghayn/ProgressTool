@@ -3,44 +3,33 @@
 defined('_JEXEC') or die;
 
 $id = $this->project->id;
-$name = $this->project->name;
+$title = $this->project->name;
 $description = $this->project->description;
 
 ?>
 
-<div class="testChest">
-
-    <!--
-    <div class="projectTitle">
-        <div class="heading"><?php //echo $name; ?></div>
-    </div>
-    -->
-
-    <div class="projectChest">
-        <div class="projectInfo">
-            <div class="half">Project Description</div>
-            <div class="half2"><?php echo $description; ?></div>
+<div class="projectChest">
+    <div class="projectDetails">
+        <div class="projectTitle">
+            <?php echo $title; ?>
         </div>
-
-        <div class="buttonsChest">
-            <div class="approvalButtonChest">
-                <button class="approvalButton" onclick="surveyRedirect(<?php echo $id; ?>)">
-                    Survey
-                </button>
-            </div>
-
-            <div class="approvalButtonChest">
-                <button class="approvalButton" onclick="statsRedirect(<?php echo $id; ?>)" style="background-color: cornflowerblue;">
-                    Statistics
-                </button>
-            </div>
-
-            <div class="approvalButtonChest">
-                <button class="approvalButton" onclick="statsRedirect(<?php echo $id; ?>)" style="background-color: gray;">
-                    Settings
-                </button>
-            </div>
+        <div class="projectCategory">
+            Hydro-electric
+        </div>
+        <div class="projectDescription">
+            <?php echo $description; ?>
         </div>
     </div>
 
+    <div class="buttonChest">
+        <button class="surveyButton" onclick="surveyRedirect(<?php echo $id; ?>)">
+            Survey
+        </button>
+        <button class="metricsButton" onclick="statsRedirect(<?php echo $id; ?>)">
+            Metrics
+        </button>
+        <button class="settingsButton" onclick="statsRedirect(<?php echo $id; ?>)">
+            Settings
+        </button>
+    </div>
 </div>
