@@ -8,7 +8,12 @@ function statsRedirect(projectID)
     window.location = `?option=com_progresstool&view=projectstats&projectID=${projectID}`
 }
 
-function approvalClick(projectID, approvalID)
+function resourceRedirect()
+{
+    window.location = `/oss-resources`
+}
+
+function approvalClick(projectID, approvalID, projectCount)
 {
     var token = jQuery("#token").attr("name");
     jQuery.ajax(
@@ -18,7 +23,7 @@ function approvalClick(projectID, approvalID)
             {
                 if (result.data)
                 {
-                    activateProject(projectID)
+                    activateProject(projectID, projectCount)
                 }
             },
             error: () => console.log('Failure to perform activateProject(). Contact an administrator if this failure persists.'),
@@ -26,11 +31,11 @@ function approvalClick(projectID, approvalID)
     );
 }
 
-function activateProject(projectID)
+function activateProject(projectID, projectCount)
 {
     jQuery.ajax(
         {
-            data: {[token]: "1", task: "abc", format: "raw", data: {projectID: projectID}},
+            data: {[token]: "1", task: "abc", format: "raw", data: {projectID: projectID, projectCount: projectCount}},
             success: (result) => document.getElementById(projectID).outerHTML = result,
             error: () => console.log('Failure to perform activateProject(). Contact an administrator if this failure persists.'),
         }

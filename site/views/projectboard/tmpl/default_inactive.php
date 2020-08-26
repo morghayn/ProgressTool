@@ -3,24 +3,25 @@
 defined('_JEXEC') or die;
 
 $id = $this->project->id;
-$name = $this->project->name;
+$title = $this->project->name;
 $description = $this->project->description;
 
 ?>
 
-<div class="testChest" id="<?php echo $id; ?>">
+<div class="projectContainer" id="<?php echo $id; ?>">
 
-    <div class="projectChest" style="padding: 0;">
+    <div class="projectChest">
 
-        <!--
-        <div class="projectTitle">
-            <div class="heading"><?php //echo $name; ?> :: Not Activated</div>
-        </div>
-        -->
+        <div class="projectApproval">
+            <div class="projectTitle">
+                <?php echo $title; ?>
+            </div>
 
+            <div class="projectCategory">
+                (Not Activated)
+            </div>
 
-        <div class="projectInfo">
-            <div class="testApproval">
+            <div class="approvalCheck">
                 <?php
                 foreach ($this->approvalQuestions as $this->question):
                     echo $this->loadTemplate('option');
@@ -29,10 +30,8 @@ $description = $this->project->description;
             </div>
         </div>
 
-        <div class="buttonsChest">
-            <div class="approvalButtonChest">
-                <button href="something" class="approvalButton">Helpful Resources</button>
-            </div>
+        <div class="buttonChest">
+            <button class="approvalButton" onclick="resourceRedirect()">Helpful Resources</button>
         </div>
 
     </div>

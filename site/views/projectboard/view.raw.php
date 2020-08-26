@@ -8,13 +8,14 @@ class ProgressToolViewProjectBoard extends JViewLegacy
     /** // TODO: Documentation here
      * @var
      */
-    protected $project;
+    protected $project, $projectCount;
 
     function display($tpl = null)
     {
         $input = JFactory::getApplication()->input;
         $data = $input->get('data', array(), 'ARRAY');
         $projectID = $data['projectID'];
+        $this->projectCount = $data['projectCount'];
 
         if (!$projectID)
         {

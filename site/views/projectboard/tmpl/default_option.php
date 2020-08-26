@@ -8,12 +8,12 @@ $questionID = $this->question->id;
 
 ?>
 
-<label class="optionChest" style="--outlineColour: #3d4d85; --optionColour: #3d4d85;">
+<label class="optionChest" style="--outlineColour: #ffffff; --optionColour: #ffffff;">
 
-    <input class="optionInput" onclick="approvalClick(<?php echo $projectID . ',' . $questionID; ?>)" type="checkbox">
+    <input class="optionInput" onclick="approvalClick(<?php echo $projectID . ',' . $questionID . ',' . $this->projectCount; ?>)" type="checkbox">
 
-    <span class="optionLabel" style="--labelColour: 61, 77, 133;">
-        <span class="option"><?php echo $question; ?></span>
+    <span class="optionLabel" style="--labelColour: 255, 255, 255; color: #ffffff;">
+        <span class="option" style="color: #ffffff;"><?php echo $question; ?></span>
     </span>
 
 </label>

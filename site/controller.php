@@ -61,22 +61,3 @@ class ProgressToolController extends JControllerLegacy
         }
     }
 }
-
-
-
-/*
-            $input = JFactory::getApplication()->input;
-            $data = $input->get('data', array(), 'ARRAY');
-
-            if($data['projectID'])
-            {
-                $projectID = urlencode(base64_encode($data['projectID']));
-                $surveyRedirect = 'index.php?option=com_progresstool&view=survey&projectID=' . $projectID;
-                $response = array("redirect"=>$surveyRedirect);
-                echo new JResponseJson($response);
-            }
-            else
-            {
-                parent::display();
-            }
- */

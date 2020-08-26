@@ -12,8 +12,10 @@ if (!$this->projects):
 
 else:
 
+    $this->projectCount = 0;
     foreach ($this->projects as $this->project):
         $activated = $this->project->activated == 1;
+        $this->projectCount++;
 
         if ($activated)
         {
