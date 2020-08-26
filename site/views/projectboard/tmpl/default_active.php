@@ -8,28 +8,38 @@ $description = $this->project->description;
 
 ?>
 
-<div class="masterChest">
+<div class="testChest">
 
-    <div class="headingChest">
-        <div class="heading"><?php echo $name; ?></div>
+    <!--
+    <div class="projectTitle">
+        <div class="heading"><?php //echo $name; ?></div>
     </div>
+    -->
 
-    <div class="optionsChest">
+    <div class="projectChest">
         <div class="projectInfo">
             <div class="half">Project Description</div>
             <div class="half2"><?php echo $description; ?></div>
         </div>
 
-        <div class="approvalButtonChest">
-            <button class="approvalButton" onclick="surveyRedirect(<?php echo $id; ?>)">
-                Update Progress
-            </button>
-        </div>
+        <div class="buttonsChest">
+            <div class="approvalButtonChest">
+                <button class="approvalButton" onclick="surveyRedirect(<?php echo $id; ?>)">
+                    Survey
+                </button>
+            </div>
 
-        <div class="approvalButtonChest">
-            <button class="approvalButton" onclick="statsRedirect(<?php echo $id; ?>)">
-                Stats
-            </button>
+            <div class="approvalButtonChest">
+                <button class="approvalButton" onclick="statsRedirect(<?php echo $id; ?>)" style="background-color: cornflowerblue;">
+                    Statistics
+                </button>
+            </div>
+
+            <div class="approvalButtonChest">
+                <button class="approvalButton" onclick="statsRedirect(<?php echo $id; ?>)" style="background-color: gray;">
+                    Settings
+                </button>
+            </div>
         </div>
     </div>
 
