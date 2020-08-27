@@ -45,11 +45,9 @@ CREATE TABLE `#__pt_category`
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO `#__pt_category` (`id`, `category`, `colour_hex`, `colour_rgb`)
-VALUES (1, 'People', '#f7a58a', '247, 165, 138'), -- RED-ORANGE
+VALUES (1, 'People', '#f7a58a', '247, 165, 138'),
        (2, 'Technology', '#95d0ab', '149, 208, 171'),
        (3, 'Finance', '#9690c6', '150, 144, 198');
--- PURPLE
--- GREEN
 
 /* */
 

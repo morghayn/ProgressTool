@@ -31,12 +31,12 @@
 .title {
     width: 40%;
     margin: 0 auto;
-    padding: 1.25rem;
-    font-size: 1.6rem;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
     line-height: 1.1;
     word-wrap: break-word; /** what does this do? */
     font-weight: 600;
+    padding: 1.25rem;
+    font-size: 1.6rem;
     color: #ffffff;
     /* text-rendering: optimizeLegibility; */
 }
@@ -114,11 +114,3 @@
     box-sizing: border-box;
     background-color: #3d4d85;
 }
-
-/**
-@media only screen and (max-width: 1000px) {
-    .cornerButton {
-        width: 20%;
-    }
-}
- */

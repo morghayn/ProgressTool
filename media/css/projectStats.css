@@ -11,11 +11,13 @@
     border: none;
     background-color: rgba(61, 77, 133, 1);
     color: #ffffff;
-    font-size: 1.75rem;
     line-height: 1;
-    padding: 1rem;
     border-radius: 10px;
     outline:none;
+    padding: 1.25rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+
 }
 
 .buttonChest > button:hover {

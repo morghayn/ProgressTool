@@ -1,13 +1,11 @@
 <?php defined('_JEXEC') or die; ?>
-<?php $title = $this->project->name; ?>
-<?php $id = $this->project->id; ?>
 
-<div class="projectContainer" id="<?php echo $id; ?>">
+<div class="projectContainer" id="<?php echo $this->project->id; ?>">
     <div class="projectChest">
 
         <div class="projectApproval">
             <div class="projectTitle">
-                <?php echo $title; ?>
+                <?php echo $this->project->name; ?>
             </div>
 
             <div class="projectCategory">
@@ -16,13 +14,14 @@
 
             <div class="approvalCheck">
                 <?php foreach ($this->approvalQuestions as $question):
-                    $param = $id . ',' . $question->id . ',' . $this->projectCount;
-                    $isChecked = array_key_exists($question->id, $this->approvalSelects[$id]);
-                    $checkStr = $isChecked ? 'checked' : '';
+                    $param = $this->project->id . ',' . $question->id . ',' . $this->projectCount;
+                    $checkStr =
+                        array_key_exists($this->project->id, $this->approvalSelects)
+                            ? array_key_exists($question->id, $this->approvalSelects[$this->project->id]) ? 'checked' : '' : '';
                     ?>
 
                     <label class="optionChest">
-                        <input class="optionInput" onclick="affirm(<?php echo $param; ?>)" type="checkbox" <?php echo $checkStr; ?>>
+                        <input class="optionInput" onclick="approvalSelect(<?php echo $param; ?>)" type="checkbox" <?php echo $checkStr; ?>>
                         <span class="optionLabel">
                             <span class="option">
                                 <?php echo $question->question; ?>

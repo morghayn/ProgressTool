@@ -9,7 +9,7 @@ $colourHex = $this->colourHex;
 $colourRGB = $this->colourRGB;
 
 $checked = is_null($this->choice->project_id) ? "" : " checked";
-$onclick = 'onclick="checker(' . $projectID . ',' . $choiceID . ')"';
+$onclick = 'onclick="surveySelect(' . $projectID . ',' . $choiceID . ')"';
 
 ?>
 

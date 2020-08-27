@@ -15,24 +15,24 @@
 class ProgressToolModelSurvey extends JModelItem
 {
     /**
-     * Returns an index to a country String passed through, else returns 1 if not found. Country index of 1 represents the universal question pool.
+     * Returns the countryID associated with countryString, else if not found returns 1 if not found.
      *
-     * @param string $country the country name.
-     * @return int the country index.
+     * @param string $countryString the country name.
+     * @return int the countryID.
      * @since 0.3.0
      */
-    public function getCountryIndex($country)
+    public function getCountryID($countryString)
     {
         $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
+        $getCountryID = $db->getQuery(true);
 
-        $query
+        $getCountryID
             ->select($db->quoteName('C.id'))
             ->from($db->quoteName('#__pt_country', 'C'))
-            ->where($db->quoteName('C.country') . ' LIKE ' . $db->quote($country));
+            ->where($db->quoteName('C.country') . ' LIKE ' . $db->quote($countryString));
 
-        $countryIndex = $db->setQuery($query)->loadResult();
-        return is_null($countryIndex) ? 1 : $countryIndex;
+        $countryID = $db->setQuery($getCountryID)->loadResult();
+        return is_null($countryID) ? 1 : $countryID;
     }
 
     /**

@@ -33,8 +33,7 @@ class ProgressToolModelProjectStats extends JModelItem
     }
 
     /**
-     * Returns countryID associated with countryString, else if not found returns 1 if not found.
-     * A country index of 1 represents the universal question pool.
+     * Returns the countryID associated with countryString, else if not found returns 1 if not found.
      *
      * @param string $countryString the country name.
      * @return int the countryID.
@@ -76,6 +75,14 @@ class ProgressToolModelProjectStats extends JModelItem
         return $db->setQuery($query)->loadAssoc();
     }
 
+    /**
+     * // TODO documentation here
+     *
+     * @param $countryID
+     * @param $projectID
+     * @return array
+     * @since 0.3.0
+     */
     public function getTasks($countryID, $projectID)
     {
         $db = JFactory::getDbo();
@@ -98,6 +105,13 @@ class ProgressToolModelProjectStats extends JModelItem
         );
     }
 
+    /**
+     * // TODO documentation here
+     *
+     * @param $countryID
+     * @return mixed
+     * @since 0.3.0
+     */
     public function getCategories($countryID)
     {
         $db = JFactory::getDbo();
@@ -119,6 +133,14 @@ class ProgressToolModelProjectStats extends JModelItem
         return $db->setQuery($getCategories)->loadObjectList();
     }
 
+    /**
+     * // TODO documentation here
+     *
+     * @param $countryID
+     * @param $projectID
+     * @return mixed
+     * @since 0.3.0
+     */
     public function getTotals($countryID, $projectID)
     {
         $db = JFactory::getDbo();

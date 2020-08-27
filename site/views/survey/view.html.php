@@ -14,12 +14,6 @@
  */
 class ProgressToolViewSurvey extends JViewLegacy
 {
-
-    /**
-     * @var object
-     */
-    private $user;
-
     /**
      * @var int
      * @var array
@@ -36,19 +30,15 @@ class ProgressToolViewSurvey extends JViewLegacy
      */
     function display($tpl = null)
     {
-        $input = JFactory::getApplication()->input;
         $model = parent::getModel();
-
-        $this->user = JFactory::getUser();
-        $this->redirectGuest();
-
+        $input = JFactory::getApplication()->input;
         $this->projectID = $input->get('projectID', 1);
         $this->project = $model->getProject($this->projectID);
         $this->handleAuthentication();
 
-        $countryIndex = $this->getCountryIndex();
-        $this->questions = $model->getQuestions($countryIndex);
-        $this->choices = $model->getChoices($this->projectID, $countryIndex);
+        $countryID = $this->getCountryID();
+        $this->questions = $model->getQuestions($countryID);
+        $this->choices = $model->getChoices($this->projectID, $countryID);
 
         $this->addStylesheet();
         $this->addScripts();
@@ -58,45 +48,42 @@ class ProgressToolViewSurvey extends JViewLegacy
     }
 
     /**
-     * If user is not logged in, they will be redirected to login screen, and then redirected to their ProjectBoard.
-     *
-     * @since 0.3.0
-     */
-    private function redirectGuest()
-    {
-        if ($this->user->get('guest'))
-        {
-            $return = urlencode(base64_encode('index.php?option=com_progresstool&view=projectboard'));
-            JFactory::getApplication()->redirect('index.php?option=com_users&view=login&return=' . $return);
-        }
-    }
-
-    /**
-     * Authenticates both project and user. First checks to see whether project is exists, then checks if current user should have access to
-     * the project. If invalid, user is redirected to their ProjectBoard.
+     * Authenticates both user and project. If invalid, user is redirected.
      *
      * @since 0.3.0
      */
     private function handleAuthentication()
     {
-        if (!$this->projectID)
+        $user = JFactory::getUser();
+
+        // If project does not exist.
+        if (!$this->project)
         {
             JFactory::getApplication()->redirect('index.php?option=com_progresstool&view=projectboard');
         }
-        elseif ($this->project['user_id'] !== $this->user->id)
+
+        // If user is guest.
+        elseif ($user->get('guest'))
+        {
+            $return = urlencode(base64_encode('index.php?option=com_progresstool&view=projectboard'));
+            JFactory::getApplication()->redirect('index.php?option=com_users&view=login&return=' . $return);
+        }
+
+        // If user should not have access to the project.
+        elseif ($this->project['user_id'] !== $user->id)
         {
             JFactory::getApplication()->redirect('index.php?option=com_progresstool&view=projectboard');
         }
     }
 
     /**
-     * Returns country index of the current user. This function is intended to be used in conjunction with JomSocial. If JomSocial is not present,
+     * Returns countryID of the current user. This function is intended to be used in conjunction with JomSocial. If JomSocial is not present,
      * it will instead return 0.
      *
-     * @return int the country index for the current user. If JomSocial is not present, it will return '0'.
+     * @return int the countryID for the current user. If JomSocial is not present, it will return '0'.
      * @since 0.3.0
      */
-    private function getCountryIndex()
+    private function getCountryID()
     {
         if (class_exists('CFactory'))
         {
@@ -104,18 +91,19 @@ class ProgressToolViewSurvey extends JViewLegacy
             $profileCountry = CFactory::getUser()->getInfo('FIELD_COUNTRY');
 
             $country = JText::_($profileCountry);
-            return parent::getModel()->getCountryIndex($country);
+            return parent::getModel()->getCountryID($country);
         }
         else // for testing purposes
         {
             $country = "Ireland";
-            return parent::getModel()->getCountryIndex($country);
+            return parent::getModel()->getCountryID($country);
             // TODO: return 0 once testing is complete.
         }
     }
 
     /**
-     * // TODO: documentation
+     * Adds stylesheets.
+     *
      * @since 0.2.6
      */
     private function addStylesheet()
@@ -127,7 +115,8 @@ class ProgressToolViewSurvey extends JViewLegacy
     }
 
     /**
-     * // TODO: documentation
+     * Adds JavaScript.
+     *
      * @since 0.2.6
      */
     private function addScripts()

@@ -1,19 +1,9 @@
-<?php
-
-defined('_JEXEC') or die;
+<?php defined('_JEXEC') or die;
 
 $id = $this->project->id;
 $title = $this->project->name;
 $description = $this->project->description;
-
-$detailsOrder = 1;
-$buttonsOrder = 2;
-
-if ($this->projectCount % 2 == 0)
-{
-    $detailsOrder = 2;
-    $buttonsOrder = 1;
-}
+$alt = $this->projectCount % 2 == 0 ? 2 : 1;
 
 ?>
 
@@ -21,7 +11,7 @@ if ($this->projectCount % 2 == 0)
 
     <div class="projectChest">
 
-        <div class="projectDetails" style="order: <?php echo $detailsOrder;?>;">
+        <div class="projectDetails" style="order: <?php echo $alt;?>;">
             <div class="projectTitle">
                 <?php echo $title; ?>
             </div>
@@ -33,7 +23,7 @@ if ($this->projectCount % 2 == 0)
             </div>
         </div>
 
-        <div class="buttonChest" style="order: <?php echo $buttonsOrder;?>;">
+        <div class="buttonChest" style="order: <?php echo $alt == 2 ? 1 : $alt;?>;">
             <button class="surveyButton" onclick="surveyRedirect(<?php echo $id; ?>)">
                 Survey
             </button>

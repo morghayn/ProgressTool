@@ -3,7 +3,7 @@
 /**
  * Class ProgressToolModelAdministrator
  *
- * Model for back-end administrator functionality.
+ * Model for back-end dashboard functionality.
  *
  * @package ProgressTool
  * @subpackage admin

@@ -25,7 +25,7 @@ class ProgressToolModelProjectBoard extends JModelItem
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
 
-        $columns = array('id', 'name', 'description', 'activated');
+        $columns = array('id', 'user_id', 'name', 'description', 'activated');
 
         $query
             ->select($db->quoteName($columns))
@@ -189,6 +189,38 @@ class ProgressToolModelProjectBoard extends JModelItem
     }
 
     /**
+     * Returns all inactive projects and their currently active approval selections belonging to a user.
+     *
+     * @param int $userID the ID of the user.
+     * @return array an array of inactive projects and their currently active selections.
+     */
+    public function getApprovalSelects($userID)
+    {
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+
+        $columns = array('A.project_id', 'A.approval_id');
+        $conditions = array(
+            $db->quoteName('P.user_id') . ' = ' . $db->quote($userID),
+            $db->quoteName('P.activated') . ' = 0'
+        );
+
+        $query
+            ->select($db->quoteName($columns))
+            ->from($db->quoteName('#__pt_project', 'P'))
+            ->innerjoin($db->quoteName('#__pt_project_approval') . ' AS A ON P.id = A.project_id')
+            ->where($conditions);
+
+        $rows = $db->setQuery($query)->loadObjectList();
+        $grouped = array();
+
+        foreach ($rows as $row)
+            $grouped[$row->project_id][$row->approval_id] = 1;
+
+        return $grouped;
+    }
+
+    /**
      * Deletes a project. Deletion is setup to cascade so do not worry about referential integrity.
      *
      * @param int $projectID the ID of the project.
@@ -231,31 +263,4 @@ class ProgressToolModelProjectBoard extends JModelItem
 
         return $db->setQuery($update)->execute();
     }
-
-    public function getApprovalSelects($user_id)
-    {
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-
-        $columns = array('A.project_id', 'A.approval_id');
-        $conditions = array(
-            $db->quoteName('P.user_id') . ' = ' . $db->quote($user_id),
-            $db->quoteName('P.activated') . ' = 0'
-        );
-
-        $query
-            ->select($db->quoteName($columns))
-            ->from($db->quoteName('#__pt_project', 'P'))
-            ->innerjoin($db->quoteName('#__pt_project_approval') . ' AS A ON P.id = A.project_id')
-            ->where($conditions);
-
-        $rows = $db->setQuery($query)->loadObjectList();
-        $grouped = array();
-
-        foreach ($rows as $row)
-            $grouped[$row->project_id][$row->approval_id] = 1;
-
-        return $grouped;
-    }
-
 }
