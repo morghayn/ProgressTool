@@ -15,12 +15,6 @@
 class ProgressToolViewProjectBoard extends JViewLegacy
 {
     /**
-     * @var
-     * @since 0.2.1
-     */
-    protected $redirect;
-
-    /**
      * Renders view.
      *
      * @param null $tpl use default template.
@@ -33,15 +27,12 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         // If user not logged in, redirect to login.
         $this->redirectIfGuest();
 
-        // TODO: Fetch User Projects
         $model = parent::getModel();
         $this->projects = array();
         $this->projects = $model->getProjects($this->user->id);
 
-        // TODO: Generate Project Graph
-
         $this->approvalQuestions = $this->get('ApprovalQuestions');
-        //$this->approvalSelections = $model->getApprovalSelections($this->user->id);
+        $this->approvalSelects = $model->getApprovalSelects($this->user->id);
 
         $this->addStylesheet();
         $this->addScripts();

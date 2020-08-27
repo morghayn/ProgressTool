@@ -14,10 +14,9 @@ else:
 
     $this->projectCount = 0;
     foreach ($this->projects as $this->project):
-        $activated = $this->project->activated == 1;
         $this->projectCount++;
 
-        if ($activated)
+        if ($this->project->activated == 1)
         {
             echo $this->loadTemplate('active');
         }

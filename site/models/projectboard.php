@@ -135,7 +135,7 @@ class ProgressToolModelProjectBoard extends JModelItem
      * @param int $projectID ID of the project.
      * @return boolean returns true if project meets criteria, else returns false.
      */
-    public function isProjectApproved(int $projectID)
+    public function isProjectApproved($projectID)
     {
         $db = JFactory::getDbo();
         $countQuestions = $db->getQuery(true);
@@ -232,34 +232,30 @@ class ProgressToolModelProjectBoard extends JModelItem
         return $db->setQuery($update)->execute();
     }
 
-    /*
-        public function getApprovalSelections($user_id)
-        {
-            $db = JFactory::getDbo();
-            $query = $db->getQuery(true);
+    public function getApprovalSelects($user_id)
+    {
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
 
-            $columns = array('PRAP.project_id', 'PRAP.approval_id');
+        $columns = array('A.project_id', 'A.approval_id');
+        $conditions = array(
+            $db->quoteName('P.user_id') . ' = ' . $db->quote($user_id),
+            $db->quoteName('P.activated') . ' = 0'
+        );
 
-            $query
-                ->select($db->quoteName($columns)) // TODO: does this have to be an array?
-                ->from($db->quoteName('#__pt_project', 'PR'))
-                ->innerjoin($db->quoteName('#__pt_project_approval') . ' AS PRAP ON PR.id = PRAP.project_id')
-                ->where($db->quoteName('PR.user_id') . ' = ' . $user_id);
+        $query
+            ->select($db->quoteName($columns))
+            ->from($db->quoteName('#__pt_project', 'P'))
+            ->innerjoin($db->quoteName('#__pt_project_approval') . ' AS A ON P.id = A.project_id')
+            ->where($conditions);
 
-            return $this->groupChoices($db->setQuery($query)->loadObjectList());
-        }
+        $rows = $db->setQuery($query)->loadObjectList();
+        $grouped = array();
 
-        public function groupChoices($choices)
-        {
-            $groupedChoices = array();
+        foreach ($rows as $row)
+            $grouped[$row->project_id][$row->approval_id] = 1;
 
-            foreach ($choices as $choice)
-            {
-                // Grouping by questionID.
-                $groupedChoices[$choice->project_id][] = $choice;
-            }
+        return $grouped;
+    }
 
-            return $groupedChoices;
-        }
-    */
 }

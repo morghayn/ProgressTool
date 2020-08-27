@@ -13,7 +13,7 @@ function resourceRedirect()
     window.location = `/oss-resources`
 }
 
-function approvalClick(projectID, approvalID, projectCount)
+function affirm(projectID, approvalID, projectCount)
 {
     var token = jQuery("#token").attr("name");
     jQuery.ajax(
@@ -26,7 +26,7 @@ function approvalClick(projectID, approvalID, projectCount)
                     activateProject(projectID, projectCount)
                 }
             },
-            error: () => console.log('Failure to perform activateProject(). Contact an administrator if this failure persists.'),
+            error: () => console.log('Failure to perform affirm(). Contact an administrator if this failure persists.'),
         }
     );
 }

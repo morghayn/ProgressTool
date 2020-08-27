@@ -130,3 +130,19 @@
         box-shadow: 0 0 0 0 rgba(0,0,0,0);
     }
 }
+
+/** Overriding optionsChest for Inactive Projects to have white text on blue background */
+
+.optionChest {
+    --outlineColour: #ffffff;
+    --optionColour: #ffffff;
+}
+
+.optionLabel {
+    --labelColour: 255, 255, 255;
+    color: #ffffff;
+}
+
+.option {
+    color: #ffffff;
+}
