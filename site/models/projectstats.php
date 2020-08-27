@@ -138,7 +138,7 @@ class ProgressToolModelProjectStats extends JModelItem
             ->innerjoin($db->quoteName('#__pt_question_country', 'CO') . ' ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('CO.question_id'))
             ->innerjoin($db->quoteName('#__pt_category', 'CA') . ' ON ' . $db->quoteName('Q.category_id') . ' = ' . $db->quoteName('CA.id'))
             ->where($conditions)
-            ->group('CA.id ASC');
+            ->group('CA.id');
 
         return $db->setQuery($getTotals)->loadAssocList('id', 'total');
     }
