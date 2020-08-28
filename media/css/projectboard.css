@@ -37,7 +37,7 @@
     font-size: 2rem;
 }
 
-.projectCategory {
+.projectType {
     font-size: 0.9rem;
     font-weight: 500;
 }
@@ -45,7 +45,7 @@
 .projectDescription {
     line-height: 1;
     padding: 1rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .projectApproval {
@@ -133,6 +133,7 @@
 
 /** Overriding optionsChest for Inactive Projects to have white text on blue background */
 
+/*
 .optionChest {
     --outlineColour: #ffffff;
     --optionColour: #ffffff;
@@ -146,3 +147,4 @@
 .option {
     color: #ffffff;
 }
+ */

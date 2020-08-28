@@ -33,9 +33,10 @@ class ProgressToolController extends JControllerLegacy
             $input = JFactory::getApplication()->input;
 
             $projectData = $input->get('projectData', array(), 'ARRAY');
-            $projectName = $projectData['name'];
-            $projectDescription = $projectData['description'];
-            $model->insertProject($user->id, $projectName, $projectDescription);
+            $name = $projectData['name'];
+            $description = $projectData['description'];
+            $type = $projectData['type'];
+            $model->insertProject($user->id, $name, $description, $type);
 
             // TODO: should I redirect here instead of client side?
             echo new JResponseJson(true, 'success');

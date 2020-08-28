@@ -15,6 +15,12 @@
 class ProgressToolViewProjectCreate extends JViewLegacy
 {
     /**
+     * // TODO: document this
+     * @var
+     */
+    protected $projectTypes;
+
+    /**
      * Renders view.
      *
      * @param null $tpl use default template.
@@ -27,6 +33,8 @@ class ProgressToolViewProjectCreate extends JViewLegacy
         // If user not logged in, redirect to login.
         $this->redirectIfGuest();
 
+        $this->projectTypes = parent::getModel()->getProjectTypes();
+        //var_dump($this->projectTypes);
         $this->addStylesheet();
         $this->addScripts();
 

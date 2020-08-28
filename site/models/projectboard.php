@@ -25,13 +25,14 @@ class ProgressToolModelProjectBoard extends JModelItem
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
 
-        $columns = array('id', 'user_id', 'name', 'description', 'activated');
+        $columns = array('P.id', 'P.user_id', 'P.name', 'P.description', 'T.type', 'P.activated');
 
         $query
             ->select($db->quoteName($columns))
-            ->from($db->quoteName('#__pt_project'))
-            ->where($db->quoteName('id') . ' = ' . $db->quote($projectID))
-            ->order('id ASC');
+            ->from($db->quoteName('#__pt_project', 'P'))
+            ->innerjoin($db->quoteName('#__pt_project_type', 'T') . ' ON P.type_id = T.id')
+            ->where($db->quoteName('P.id') . ' = ' . $db->quote($projectID))
+            ->setLimit(1);
 
         return $db->setQuery($query)->loadObject();
     }
@@ -48,12 +49,14 @@ class ProgressToolModelProjectBoard extends JModelItem
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
 
-        $columns = array('id', 'name', 'description', 'activated');
+        $columns = array('P.id', 'P.name', 'P.description', 'T.type', 'P.activated');
 
         $query
             ->select($db->quoteName($columns))
-            ->from($db->quoteName('#__pt_project'))
-            ->where($db->quoteName('user_id') . ' = ' . $db->quote($userID));
+            ->from($db->quoteName('#__pt_project', 'P'))
+            ->innerjoin($db->quoteName('#__pt_project_type', 'T') . ' ON P.type_id = T.id')
+            ->where($db->quoteName('user_id') . ' = ' . $db->quote($userID))
+            ->order('P.id DESC');
         // TODO: $query->order('ordering ASC');
 
         return $db->setQuery($query)->loadObjectList();

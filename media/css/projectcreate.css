@@ -41,7 +41,8 @@
 .projectForm select {
     margin: 0 auto;
     width: 80%;
-    padding: 12px 20px;
+    height: 100%;
+    padding: 0.5rem;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;

@@ -3,6 +3,7 @@
 $id = $this->project->id;
 $title = $this->project->name;
 $description = $this->project->description;
+$type = $this->project->type;
 $alt = $this->projectCount % 2 == 0 ? 2 : 1;
 
 ?>
@@ -15,8 +16,8 @@ $alt = $this->projectCount % 2 == 0 ? 2 : 1;
             <div class="projectTitle">
                 <?php echo $title; ?>
             </div>
-            <div class="projectCategory">
-                Hydro-electric
+            <div class="projectType">
+                <?php echo $type; ?>
             </div>
             <div class="projectDescription">
                 <?php echo $description; ?>

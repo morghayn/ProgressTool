@@ -8,7 +8,7 @@
                 <?php echo $this->project->name; ?>
             </div>
 
-            <div class="projectCategory">
+            <div class="projectType">
                 (Not Activated)
             </div>
 
@@ -20,10 +20,10 @@
                             ? array_key_exists($question->id, $this->approvalSelects[$this->project->id]) ? 'checked' : '' : '';
                     ?>
 
-                    <label class="optionChest">
+                    <label class="optionChest" style="--outlineColour: #ffffff; --optionColour: #ffffff;">
                         <input class="optionInput" onclick="approvalSelect(<?php echo $param; ?>)" type="checkbox" <?php echo $checkStr; ?>>
-                        <span class="optionLabel">
-                            <span class="option">
+                        <span class="optionLabel" style="--labelColour: 255, 255, 255; color: #ffffff;">
+                            <span class="option" style="color: #ffffff;">
                                 <?php echo $question->question; ?>
                             </span>
                         </span>

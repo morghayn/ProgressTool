@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS `#__pt_project`;
 DROP TABLE IF EXISTS `#__pt_approval_question`;
 DROP TABLE IF EXISTS `#__pt_task`;
 DROP TABLE IF EXISTS `#__pt_category`;
+DROP TABLE IF EXISTS `#__pt_project_type`;
 
 /**/
 
@@ -45,9 +46,11 @@ CREATE TABLE `#__pt_category`
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO `#__pt_category` (`id`, `category`, `colour_hex`, `colour_rgb`)
-VALUES (1, 'People', '#f7a58a', '247, 165, 138'),
+VALUES (1, 'People', '#f7a58a', '247, 165, 138'), -- RED-ORANGE
        (2, 'Technology', '#95d0ab', '149, 208, 171'),
        (3, 'Finance', '#9690c6', '150, 144, 198');
+-- PURPLE
+-- GREEN
 
 /* */
 
@@ -88,10 +91,10 @@ VALUES -- Irish
        -- Exclude Ireland
        (11, 3, 'Has there been any meetings with potential partners or mentors?'),
        -- Irish
-       (12, 2,'Has a preliminary evaluation of the territory been completed? Has an Energy Master Plan been carried out for the community?'),
+       (12, 2, 'Has a preliminary evaluation of the territory been completed? Has an Energy Master Plan been carried out for the community?'),
        -- Exclude Ireland
        (13, 2, 'Has a preliminary evaluation of the territory been completed?'),
-       (14, 2,'Following the preliminary evaluation of the territory, has a decision been made regarding project choice?'),
+       (14, 2, 'Following the preliminary evaluation of the territory, has a decision been made regarding project choice?'),
        (15, 2, 'Has a feasibility study been carried out for the selected Renewable Energy Project?'),
        (16, 2, 'Has a land leasing commitment been agreed?'),
        (17, 3, 'Is there a finance plan agreed within the group?'),
@@ -260,14 +263,18 @@ VALUES -- Question 1
        -- Question 6
        (25, 6, 'No', 0),
        (26, 6, 'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy', 1),
-       (27, 6, 'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel', 1),
+       (27, 6,
+        'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel',
+        1),
        (28, 6, 'Yes, the group has looked into grid connection feasibility', 1),
        (29, 6, 'Yes, the group has consulted with SEC mentors for advice on the matter', 1),
 
        -- Question 7
        (30, 7, 'No', 0),
        (31, 7, 'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy', 1),
-       (32, 7, 'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel', 1),
+       (32, 7,
+        'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel',
+        1),
 
        -- Question 8
        (33, 8, 'No', 0),
@@ -445,15 +452,35 @@ VALUES -- Question 1
 
 /* */
 
+CREATE TABLE `#__pt_project_type`
+(
+    `id`   TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `type` VARCHAR(50)      NOT NULL,
+    PRIMARY KEY (`id`)
+)
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 0
+    DEFAULT CHARSET = utf8mb4
+    DEFAULT COLLATE = utf8mb4_unicode_ci;
+
+INSERT INTO `#__pt_project_type` (`type`)
+VALUES ('Solar'),
+       ('Wind'),
+       ('Hydro'),
+       ('Biomass');
+
+/* */
+
 CREATE TABLE `#__pt_project`
 (
     `id`          INT UNSIGNED     NOT NULL AUTO_INCREMENT,
-    `user_id`     INT UNSIGNED     NOT NULL, /* TODO: Foreign key of user table */
-    `name`        VARCHAR(255)     NOT NULL,
+    `user_id`     INT UNSIGNED     NOT NULL, /* TODO: Foreign key of user table? */
+    `name`        VARCHAR(35)     NOT NULL,
     `description` VARCHAR(255),
+    `type_id`     TINYINT UNSIGNED NOT NULL,
     `activated`   TINYINT UNSIGNED NOT NULL DEFAULT '0',
-    PRIMARY KEY (`id`)
-
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`type_id`) REFERENCES `#__pt_project_type` (`id`)
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 0
@@ -568,7 +595,7 @@ CREATE TABLE `#__pt_task_country`
 (
     `task_id`    SMALLINT UNSIGNED NOT NULL,
     `country_id` TINYINT UNSIGNED  NOT NULL,
-    `criteria` TINYINT UNSIGNED NOT NULL,
+    `criteria`   TINYINT UNSIGNED  NOT NULL,
     CONSTRAINT id PRIMARY KEY (`task_id`, `country_id`),
     FOREIGN KEY (`task_id`) REFERENCES `#__pt_task` (`id`),
     FOREIGN KEY (`country_id`) REFERENCES `#__pt_country` (`id`)
@@ -579,99 +606,99 @@ CREATE TABLE `#__pt_task_country`
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO `#__pt_task_country` (`task_id`, `country_id`, `criteria`)
-VALUES (1,1,1),
-       (2,1,1),
-       (3,1,1),
-       (4,1,2),
-       (5,1,1),
-       (6,1,1),
-       (7,1,1),
-       (8,1,1),
-       (9,1,5),
-       (10,1,1),
-       (11,1,1),
-       (13,1,1),
-       (14,1,1),
-       (15,1,1),
-       (16,1,1),
-       (17,1,1),
-       (18,1,1),
-       (19,1,2),
-       (20,1,1),
-       (21,1,3),
-       (22,1,4),
-       (23,1,1),
-       (24,1,1),
-       (25,1,3),
-       (26,1,1),
-       (27,1,4),
-       (28,1,1),
-       (29,1,1),
-       (30,1,1),
-       (31,1,1),
-       (32,1,4),
-       (33,1,3),
-       (34,1,1),
-       (35,1,2),
-       (36,1,2),
-       (37,1,4),
-       (38,1,1),
-       (39,1,1),
-       (40,1,3),
-       (41,1,1),
-       (42,1,1),
-       (43,1,1),
-       (44,1,1),
-       (45,1,1),
-       (46,1,1),
-       (47,1,1),
+VALUES (1, 1, 1),
+       (2, 1, 1),
+       (3, 1, 1),
+       (4, 1, 2),
+       (5, 1, 1),
+       (6, 1, 1),
+       (7, 1, 1),
+       (8, 1, 1),
+       (9, 1, 5),
+       (10, 1, 1),
+       (11, 1, 1),
+       (13, 1, 1),
+       (14, 1, 1),
+       (15, 1, 1),
+       (16, 1, 1),
+       (17, 1, 1),
+       (18, 1, 1),
+       (19, 1, 2),
+       (20, 1, 1),
+       (21, 1, 3),
+       (22, 1, 4),
+       (23, 1, 1),
+       (24, 1, 1),
+       (25, 1, 3),
+       (26, 1, 1),
+       (27, 1, 4),
+       (28, 1, 1),
+       (29, 1, 1),
+       (30, 1, 1),
+       (31, 1, 1),
+       (32, 1, 4),
+       (33, 1, 3),
+       (34, 1, 1),
+       (35, 1, 2),
+       (36, 1, 2),
+       (37, 1, 4),
+       (38, 1, 1),
+       (39, 1, 1),
+       (40, 1, 3),
+       (41, 1, 1),
+       (42, 1, 1),
+       (43, 1, 1),
+       (44, 1, 1),
+       (45, 1, 1),
+       (46, 1, 1),
+       (47, 1, 1),
 
-       (1,2,1),
-       (2,2,1),
-       (3,2,1),
-       (4,2,2),
-       (5,2,1),
-       (6,2,1),
-       (7,2,1),
-       (8,2,1),
-       (9,2,5),
-       (10,2,1),
-       (11,2,1),
-       (13,2,1),
-       (14,2,1),
-       (15,2,1),
-       (16,2,1),
-       (17,2,1),
-       (18,2,1),
-       (19,2,2),
-       (20,2,1),
-       (21,2,3),
-       (22,2,4),
-       (23,2,1),
-       (24,2,1),
-       (25,2,3),
-       (26,2,1),
-       (27,2,4),
-       (28,2,1),
-       (29,2,1),
-       (30,2,1),
-       (31,2,1),
-       (32,2,4),
-       (33,2,3),
-       (34,2,1),
-       (35,2,2),
-       (36,2,2),
-       (37,2,4),
-       (38,2,1),
-       (39,2,1),
-       (40,2,3),
-       (41,2,1),
-       (42,2,1),
-       (43,2,1),
-       (44,2,1),
-       (45,2,1),
-       (46,2,1),
-       (47,2,1);
+       (1, 2, 1),
+       (2, 2, 1),
+       (3, 2, 1),
+       (4, 2, 2),
+       (5, 2, 1),
+       (6, 2, 1),
+       (7, 2, 1),
+       (8, 2, 1),
+       (9, 2, 5),
+       (10, 2, 1),
+       (11, 2, 1),
+       (13, 2, 1),
+       (14, 2, 1),
+       (15, 2, 1),
+       (16, 2, 1),
+       (17, 2, 1),
+       (18, 2, 1),
+       (19, 2, 2),
+       (20, 2, 1),
+       (21, 2, 3),
+       (22, 2, 4),
+       (23, 2, 1),
+       (24, 2, 1),
+       (25, 2, 3),
+       (26, 2, 1),
+       (27, 2, 4),
+       (28, 2, 1),
+       (29, 2, 1),
+       (30, 2, 1),
+       (31, 2, 1),
+       (32, 2, 4),
+       (33, 2, 3),
+       (34, 2, 1),
+       (35, 2, 2),
+       (36, 2, 2),
+       (37, 2, 4),
+       (38, 2, 1),
+       (39, 2, 1),
+       (40, 2, 3),
+       (41, 2, 1),
+       (42, 2, 1),
+       (43, 2, 1),
+       (44, 2, 1),
+       (45, 2, 1),
+       (46, 2, 1),
+       (47, 2, 1);
 
 /* */
 

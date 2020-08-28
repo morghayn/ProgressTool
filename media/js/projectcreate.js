@@ -9,7 +9,7 @@ function createProject()
     jQuery.ajax(
         {
             data: {[token]: "1", task: "createProject", format: "json", projectData: projectData},
-            success: () => window.location = 'index.php?option=com_progresstool&view=projectboard',
+            success: () => window.location = '?option=com_progresstool&view=projectboard',
             error: function ()
             {
                 console.log('ajax call failed');
@@ -21,12 +21,13 @@ function createProject()
 /**
  * Retrieves project data from the form.
  *
- * @returns {{name: *, description: *}} an array consisting of the project's name and description.
+ * @returns {{name: *, projectType: *, description: *}} an array consisting of the project's name and description.
  */
 function getProjectData()
 {
     return {
         name: document.getElementById("name").value,
-        description: document.getElementById("description").value
+        description: document.getElementById("description").value,
+        type: document.getElementById("type").value
     }
 }
