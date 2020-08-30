@@ -1,4 +1,12 @@
 /**
+ * Redirects back to the ProjectBoard
+ */
+function redirectProjectBoard()
+{
+    window.location = '?option=com_progresstool&view=projectboard'
+}
+
+/**
  * Requests the server to create a new project using data from the form.
  */
 function createProject()

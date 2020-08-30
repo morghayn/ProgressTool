@@ -11,11 +11,15 @@
 }
 
 .projectForm label {
-    width: 80%;
-    text-align: left;
+    width: 100%;
     font-size: 1.25rem;
     font-weight: 500;
+    /**
     margin: 1.5rem auto 0.5rem;
+    text-align: left;
+     */
+    margin: 0 auto;
+    text-align: center;
 }
 
 .projectForm input[type=text] {
@@ -49,19 +53,37 @@
     box-sizing: border-box;
 }
 
-.projectForm .buttonSubmit {
+.buttonChest {
     width: 80%;
-    margin: 1.5rem auto 0;
-    background-color: rgba(186, 214, 89, 1);
+    margin: 0 auto;
+    display: flex;
+    flex: 3;
+}
+
+.projectForm .buttonSubmit, .projectForm .buttonCancel {
+    flex: 1;
     color: white;
     padding: 14px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin: 25px;
+}
+
+.projectForm .buttonSubmit {
+    background-color: rgba(186, 214, 89, 1);
 }
 
 .buttonSubmit:hover {
     background-color: rgba(186, 214, 89, 0.5);
+}
+
+.projectForm .buttonCancel {
+    background-color: rgba(220, 20, 60, 1);
+}
+
+.buttonCancel:hover {
+    background-color: rgba(220, 20, 60, 0.5);
 }
 
 /**
