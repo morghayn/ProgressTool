@@ -1,84 +1,79 @@
-<?php defined('_JEXEC') or die;
+<?php
+/**
+ * @package     Joomla.Administrator
+ * @subpackage  com_progresstool
+ *
+ * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
+
+
+// No direct access to this file
+defined('_JEXEC') or die('Restricted access');
 
 /**
- * Class ProgressToolViewProjectCreate
- *
- * View for front-end project creation functionality.
- *
- * @package ProgressTool
- * @subpackage site
- * @since 0.2.6
- *
- * @author  Morgan Nolan <morgan.nolan@hotmail.com>
- * @link    https://github.com/morghayn
+ * HelloWorld View
+ * This is the site view presenting the user with the ability to add a new Helloworld record
+ * 
  */
 class ProgressToolViewProjectCreate extends JViewLegacy
 {
-    /**
-     * // TODO: document this
-     * @var
-     */
-    protected $projectTypes;
 
-    /**
-     * Renders view.
-     *
-     * @param null $tpl use default template.
-     * @since 0.2.6
-     */
-	function display($tpl = null)
+	protected $form = null;
+	protected $canDo;
+
+	/**
+	 * Display the Hello World view
+	 *
+	 * @param   string  $tpl  The name of the layout file to parse.
+	 *
+	 * @return  void
+	 */
+	public function display($tpl = null)
 	{
-        $this->user = JFactory::getUser();
+		// Get the form to display
+		$this->form = $this->get('Form');
+		// Get the javascript script file for client-side validation
+		$this->script = $this->get('Script'); 
 
-        // If user not logged in, redirect to login.
-        $this->redirectIfGuest();
+		/******** Access Control Removed 14:04 31/08/2020
+		// Check that the user has permissions to create a new helloworld record
+		$this->canDo = JHelperContent::getActions('com_helloworld');
+		if (!($this->canDo->get('core.create'))) 
+		{
+			$app = JFactory::getApplication(); 
+			$app->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR'), 'error');
+			$app->setHeader('status', 403, true);
+			return;
+		}
+        
+		// Check for errors.
+		if (count($errors = $this->get('Errors')))
+		{
+			throw new Exception(implode("\n", $errors), 500);
+		}
+		*/
 
-        $this->projectTypes = parent::getModel()->getProjectTypes();
-        //var_dump($this->projectTypes);
-        $this->addStylesheet();
-        $this->addScripts();
-
-		// Display the view
+		// Call the parent display to display the layout file
 		parent::display($tpl);
+
+		// Set properties of the html document
+		$this->setDocument();
 	}
 
-    /**
-     * // TODO comment
-     * If user not logged in, redirect to login.
-     *
-     * @since 0.2.6
-     */
-    private function redirectIfGuest()
-    {
-        if ($this->user->get('guest'))
-        {
-            $return = urlencode(base64_encode('index.php?option=com_progresstool&view=projectboard'));
-            JFactory::getApplication()->redirect('index.php?option=com_users&view=login&return=' . $return);
-            //JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_users&view=login', JText::_("You must be logged in to view this content")));
-        }
-    }
-
-    /**
-     * // TODO comment
-     * @since 0.2.6
-     */
-    private function addStylesheet()
-    {
-        // Adding CSS and JS
-        $document = JFactory::getDocument();
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterChest.css");
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/optionsChest.css");
+	/**
+	 * Method to set up the html document properties
+	 *
+	 * @return void
+	 */
+	protected function setDocument() 
+	{
+		$document = JFactory::getDocument();
+		//$document->setTitle(JText::_('COM_HELLOWORLD_HELLOWORLD_CREATING'));
+		$document->addScript(JURI::root() . $this->script);
+		$document->addScript(JURI::root() . "media/com_progresstool/forms/submitbutton.js");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/projectcreate.css");
-    }
-
-    /**
-     * // TODO comment
-     * @since 0.2.6
-     */
-    private function addScripts()
-    {
-        // Adding CSS and JS
-        $document = JFactory::getDocument();
-        $document->addScript(JURI::root() . "media/com_progresstool/js/projectcreate.js");
-    }
+		//JText::script('COM_HELLOWORLD_HELLOWORLD_ERROR_UNACCEPTABLE');
+	}
 }

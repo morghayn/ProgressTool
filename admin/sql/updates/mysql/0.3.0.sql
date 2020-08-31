@@ -254,7 +254,7 @@ VALUES -- Question 1
 
        -- Question 5
        (19, 5, 'No', 0),
-       (20, 5, 'No, but there is interest from the community to form one', 0),
+       (20, 5, 'No, but there is interest from the community to forms one', 0),
        (21, 5, 'Yes, there is a leading group that has been democratically organized and formed with members of the local community', 1),
        (22, 5, 'Yes, legal, technical and financial structuring has been discussed ', 1),
        (23, 5, 'Yes, the goals and the values of the group have been outlined', 1),
@@ -305,7 +305,7 @@ VALUES -- Question 1
        -- Question 12
        (51, 12, 'No', 0),
        (52, 12, 'It is not completed yet', 0),
-       (53, 12, 'Yes, regarding location and mapping to decide what form of RE is suitable to pursue', 1),
+       (53, 12, 'Yes, regarding location and mapping to decide what forms of RE is suitable to pursue', 1),
        (54, 12, 'Yes, regarding local political context', 1),
        (55, 12, 'Yes, regarding the environmental impact', 1),
        (56, 12, 'Yes, regarding the impact to the local community', 1),
@@ -314,7 +314,7 @@ VALUES -- Question 1
        -- Question 13
        (58, 13, 'No', 0),
        (59, 13, 'It is not completed yet', 0),
-       (60, 13, 'Yes, regarding location and mapping to decide what form of RE is suitable to pursue', 1),
+       (60, 13, 'Yes, regarding location and mapping to decide what forms of RE is suitable to pursue', 1),
        (61, 13, 'Yes, regarding local political context', 1),
        (62, 13, 'Yes, regarding the environmental impact', 1),
        (63, 13, 'Yes, regarding the impact to the local community', 1),

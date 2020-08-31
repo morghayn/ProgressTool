@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+    addrulepath="media/com_progresstool/rules"
+    >
+    <fieldset
+				name="details"
+				label="Project Creation Form"
+	>
+		<field
+				name="id"
+				type="hidden"
+				/>
+		<field
+				name="name"
+				validate="name"
+				type="text"
+				label="Name"
+				description="Project Create Name Desc"
+				class="textField"
+				maxlength="35"
+				required="true"
+				hint="Project Create Name Hint"
+		/>
+		<field
+				name="description"
+				type="textarea"
+				rows="4"
+				cols="80"
+				maxlength="255"
+				label="Description"
+				description="Project Description Desc"
+				hint="Project Description Hint"
+				required="true"
+				>
+		</field>
+		<field
+				name="type"
+				type="sql"
+				default="10"
+				label="Type"
+				query="SELECT id, type FROM #__pt_project_type"
+				key_field="id"
+				value_field="type"
+				required="true"
+		>
+		</field>
+    </fieldset>
+</form>

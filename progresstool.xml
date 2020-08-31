@@ -32,6 +32,7 @@
 		<filename>index.html</filename>
 		<filename>progresstool.php</filename>
 		<filename>controller.php</filename>
+		<folder>controllers</folder>
 		<folder>views</folder>
 		<folder>models</folder>
 	</files>
@@ -42,6 +43,8 @@
 
 	<media destination="com_progresstool" folder="media">
 		<folder>css</folder>
+		<folder>forms</folder>
+		<folder>rules</folder>
 		<folder>images</folder>
 		<folder>js</folder>
 	</media>

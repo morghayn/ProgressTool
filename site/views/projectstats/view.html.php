@@ -124,7 +124,7 @@ class ProgressToolViewProjectStats extends JViewLegacy
     private function addScripts()
     {
         $document = JFactory::getDocument();
-        $document->addScript(JURI::root() . "media/com_progresstool/js/chart.js");
+        // TODO: remove $document->addScript(JURI::root() . "media/com_progresstool/js/chart.js");
         $document->addScript(JURI::root() . "media/com_progresstool/js/projectstats.js");
     }
 }

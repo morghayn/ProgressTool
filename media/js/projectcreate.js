@@ -7,7 +7,7 @@ function redirectProjectBoard()
 }
 
 /**
- * Requests the server to create a new project using data from the form.
+ * Requests the server to create a new project using data from the forms.
  */
 function createProject()
 {
@@ -27,7 +27,7 @@ function createProject()
 }
 
 /**
- * Retrieves project data from the form.
+ * Retrieves project data from the forms.
  *
  * @returns {{name: *, projectType: *, description: *}} an array consisting of the project's name and description.
  */

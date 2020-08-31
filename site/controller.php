@@ -16,7 +16,7 @@ class ProgressToolController extends JControllerLegacy
 {
     /**
      * Creates a new project.
-     * Project creation requests are sent from the ProjectCreate form.
+     * Project creation requests are sent from the ProjectCreate forms.
      *
      * @since 0.2.6
      */

@@ -1,35 +1,40 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
+/**
+ * @package     Joomla.Administrator
+ * @subpackage  com_helloworld
+ *
+ * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ *
+ * This layout file is for displaying the front end form for capturing a new helloworld message
+ *
+ */
 
-<?php echo '<input id="token" type="hidden" name="' . JSession::getFormToken() . '" value="1" />'; ?>
+// No direct access
+defined('_JEXEC') or die('Restricted access');
+JHtml::_('behavior.formvalidator');
 
-<div class="projectForm">
+?>
+<form action="<?php echo JRoute::_('index.php?option=com_progresstool&view=projectcreate&layout=edit'); ?>"
+      method="post" name="adminForm" id="adminForm" class="projectForm" enctype="multipart/form-data">
 
-    <label for="name">Project Name</label>
-    <input type="text" placeholder="Project Name" id="name"/>
-
-
-    <label for="description">Project Description</label>
-    <textarea placeholder="Project Description" id="description"></textarea>
-
-
-    <label for="type">Choose a project type:</label>
-    <select id="type" name="type">
-        <?php foreach ($this->projectTypes as $projectType): ?>
-            <option value="<?php echo $projectType->id; ?>">
-                <?php echo $projectType->type; ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
-
+    <div class="form-horizontal">
+        <fieldset class="adminform">
+            <legend>Project Creation Form</legend>
+            <?php echo $this->form->renderFieldset('details'); ?>
+        </fieldset>
+    </div>
 
     <div class="buttonChest">
-        <button class="buttonCancel" onclick="createProject()">
-            <span class="icon-cancel"></span>Cancel
+        <button type="button" class="buttonCancel" onclick="Joomla.submitbutton('projectcreate.cancel')">
+            <span class="icon-cancel"></span><?php echo JText::_('JCANCEL') ?>
         </button>
 
-        <button class="buttonSubmit" onclick="redirectProjectBoard()">
-            <span class="icon-ok"></span>Submit
+        <button type="button" class="buttonSubmit" onclick="Joomla.submitbutton('projectcreate.save')">
+            <span class="icon-ok"></span><?php echo JText::_('JSAVE') ?>
         </button>
     </div>
 
-</div>
+    <input type="hidden" name="task"/>
+    <?php echo JHtml::_('form.token'); ?>
+</form>
