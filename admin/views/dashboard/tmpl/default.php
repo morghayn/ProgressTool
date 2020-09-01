@@ -8,7 +8,12 @@ $this->questionCounter = 0;
 
 foreach ($this->questions as $this->question):
     $this->questionCounter++; // TODO: Input finish button when questionCounter is 16
+    echo '<div class="flexxy" style="width: 100%; display: flex; align-items: center; margin-bottom: 75px;">';
+
     echo $this->loadTemplate('question');
+    echo $this->loadTemplate('imageform');
+
+    echo '</div>';
 endforeach;
 
 ?>

@@ -14,7 +14,6 @@
  */
 class ProgressToolViewSurvey extends JViewLegacy
 {
-
     /**
      * Returns JSON test response
      *
@@ -23,62 +22,14 @@ class ProgressToolViewSurvey extends JViewLegacy
      */
     function display($tpl = null)
     {
-        // todo integration of fetching the projectid
+        // todo integration of fetching the projectid :: ?? i don't know what was i on about here
         $input = JFactory::getApplication()->input;
         $data = $input->get('data', array(), 'ARRAY');
 
         $projectID = $data['projectID'];
         $choiceID = $data['choiceID'];
 
-        $active = parent::getModel()->processSelection($projectID, $choiceID);
-        $questionID = parent::getModel()->getQuestionID($choiceID);
-        $score = parent::getModel()->getQuestionScore($projectID, $questionID);
-
-        echo new JResponseJson(array("active" => $active, "id" => $questionID, "score" => $score));
-
-        /*
-        if($data['projectID'])
-        {
-            $projectID = urlencode(base64_encode($data['projectID']));
-            $surveyRedirect = 'index.php?option=com_progresstool&view=survey&project=' . $projectID;
-            $respon = array("redirect"=>$surveyRedirect);
-            //JFactory::getApplication()->redirect(JRoute::_($respon, false));
-            echo new JResponseJson($respon);
-        }
-        else
-        {
-            echo new JResponseJson('No projectID received');
-        }
-        */
-
-        // todo this might not be safe, might have to specify type e.g get(array, array(), 'ARRAY')
-        //$choiceID = $input->get('choice');
-        //$projectID = 2;
-        // $input = JFactory::getApplication()->input;
-
-        /*
-        // getting details about choice selection
-        // todo maybe merge the queries for $questionID and $model
-        $questionID = $model->getQuestionID($choiceID);
-        $weight = $model->getWeight($choiceID);
-
-        // inserting our data
-        $model->select($projectID, $choiceID);
-
-        if ($weight == "0")
-        {
-            // todo select all where weight is greater than 0
-            // todo delete all where weight is great than 0
-            $questionID .= "0";
-        }
-        else
-        {
-            // todo select all where weight is less than 1
-            // todo delete all where weight is less than 1
-            $questionID .= "1";
-        }
-        */
-
-        // responding with data
+        $status = parent::getModel()->processSelection($projectID, $choiceID);
+        echo new JResponseJson($status);
     }
 }

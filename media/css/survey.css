@@ -5,18 +5,89 @@
             - Overriding CSS elements from optionsChest.css
         ========================================================
  */
-/**
-.contentChest {
+
+.introductionParagraph {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    border: 1px dotted #000;
+    padding: 1rem;
+    margin: 0 auto 3rem;
+    width: 95%;
+    /* text-align: center; */
+}
+
+.introductionParagraph a {
+    font-weight: 700;
+}
+
+.introductionParagraph .people {
+    font-weight: 700;
+    color: rgb(247, 165, 138);
+}
+
+.introductionParagraph .technology {
+    font-weight: 700;
+    color: rgb(149, 208, 171);
+}
+
+.introductionParagraph .finance {
+    font-weight: 700;
+    color: rgb(150, 144, 198);
+}
+
+.headC {
     display: flex;
+    width: 100%;
+    margin: 0 auto 3rem;
 }
 
-.iconChest {
-    flex: 2;
-    background-color: deeppink;
+.titlC {
+    width: 90%;
+    /** margin: 0 5% 0 auto; */
+    margin-left: 5%;
+    background-color: #3d4d85;
+    /* text-align: center; */
+    /* line-height: 1; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.optionsChest {
-    flex: 5;
+.titl {
+    /* width: 90%; */
+    /** margin: 0 5% 0 auto; */
+    padding: 1.05rem;
+    font-size: 1.70rem;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+    line-height: 1;
+    /* word-wrap: break-word; */
+    font-weight: 600;
+    color: #ffffff;
 }
 
- */
+.buttonBack {
+    width: 110px;
+    height: 70px;
+    /* margin: 0 auto; */
+    font-size: 1.55rem;
+    color: #ffffff;
+    border: none;
+    font-weight: 600;
+    border-radius: 0.2rem;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+    background-color: rgba(239, 62, 106, 1);
+}
+
+.buttonBack:hover {
+    background-color: rgba(244, 113, 146, 0.5);
+}
+
+.buttonBack:active {
+    box-shadow: inset 0 3px 4px hsla(0, 0%, 0%, 0.2);
+}
+
+.buttonBack:focus {
+    outline: thin dotted #444;
+    /**outline: 5px auto -webkit-focus-ring-color;*/
+    outline-offset: -2px;
+}

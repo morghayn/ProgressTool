@@ -62,9 +62,13 @@ class ProgressToolViewProjectStats extends JViewLegacy
      */
     private function redirectGuest()
     {
-        if ($this->user->get('guest')) {
+        if ($this->user->get('guest'))
+        {
             $return = urlencode(base64_encode('index.php?option=com_progresstool&view=projectboard'));
-            JFactory::getApplication()->redirect('index.php?option=com_users&view=login&return=' . $return);
+            JFactory::getApplication()->redirect(
+                'index.php?option=com_users&view=login&return=' . $return,
+                'You must be logged in to use the Progress Tool'
+            );
         }
     }
 
@@ -76,10 +80,19 @@ class ProgressToolViewProjectStats extends JViewLegacy
      */
     private function handleAuthentication()
     {
-        if (!$this->projectID) {
-            JFactory::getApplication()->redirect('index.php?option=com_progresstool&view=projectboard');
-        } elseif ($this->project['user_id'] !== $this->user->id) {
-            JFactory::getApplication()->redirect('index.php?option=com_progresstool&view=projectboard');
+        if (!$this->projectID)
+        {
+            JFactory::getApplication()->redirect(
+                JRoute::_('index.php?option=com_progresstool&view=projectboard', 'You must be logged in to use the Progress Tool.'),
+                'You must be logged in to use the Progress Tool'
+            );
+        }
+        elseif ($this->project['user_id'] !== $this->user->id)
+        {
+            JFactory::getApplication()->redirect(
+                JRoute::_('index.php?option=com_progresstool&view=projectboard', 'You must be logged in to use the Progress Tool.'),
+                'You must be logged in to use the Progress Tool'
+            );
         }
     }
 
@@ -92,13 +105,15 @@ class ProgressToolViewProjectStats extends JViewLegacy
      */
     private function getCountryID()
     {
-        if (class_exists('CFactory')) {
+        if (class_exists('CFactory'))
+        {
             JFactory::getLanguage()->load('com_community.country', JPATH_SITE, 'en-GB', true);
             $profileCountry = CFactory::getUser()->getInfo('FIELD_COUNTRY');
 
             $country = JText::_($profileCountry);
             return parent::getModel()->getCountryID($country);
-        } else // for testing purposes
+        }
+        else // for testing purposes
         {
             $country = "Ireland";
             return parent::getModel()->getCountryID($country);
@@ -114,7 +129,7 @@ class ProgressToolViewProjectStats extends JViewLegacy
     {
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterChest.css");
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/projectStats.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/projectstats.css");
     }
 
     /**

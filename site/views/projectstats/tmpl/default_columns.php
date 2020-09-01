@@ -1,5 +1,11 @@
 <?php defined('_JEXEC') or die; ?>
 
+<p class="introductionParagraph">
+    The lists below show the tasks divided between each heading from the <a href="/test">ECCO timeline</a>, <b class="people">People</b>,
+    <b class="technology">Technology</b> and <b class="finance">Finance</b>. The tasks that have been completed by your Community Group are marked as
+    green. To collapse the lists click on the title box.
+</p>
+
 <div class="superChest">
 
     <?php foreach ($this->categories as $this->category):

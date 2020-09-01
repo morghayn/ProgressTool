@@ -10,16 +10,16 @@
 				name="id"
 				type="hidden"
 				/>
+		<!--validate="name"-->
 		<field
 				name="name"
-				validate="name"
 				type="text"
 				label="Name"
-				description="Project Create Name Desc"
+				hint="Project Name"
 				class="textField"
 				maxlength="35"
 				required="true"
-				hint="Project Create Name Hint"
+				description="Your project name can be 35 characters long."
 		/>
 		<field
 				name="description"
@@ -28,8 +28,8 @@
 				cols="80"
 				maxlength="255"
 				label="Description"
-				description="Project Description Desc"
-				hint="Project Description Hint"
+				hint="Project Description"
+				description="Your project description can be 255 characters long."
 				required="true"
 				>
 		</field>
@@ -41,6 +41,7 @@
 				query="SELECT id, type FROM #__pt_project_type"
 				key_field="id"
 				value_field="type"
+				description="Please pick a category that most suits your project."
 				required="true"
 		>
 		</field>

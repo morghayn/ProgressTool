@@ -159,7 +159,7 @@ class ProgressToolModelSurvey extends JModelItem
      *
      * @param $projectID
      * @param $choiceID
-     * @return bool
+     * @return array
      * @since 0.3.0
      */
     public function processSelection($projectID, $choiceID)
@@ -168,11 +168,7 @@ class ProgressToolModelSurvey extends JModelItem
         $exists = $db->getQuery(true);
         $delete = $db->getQuery(true);
         $insert = $db->getQuery(true);
-
-        $conditions = array(
-            $db->quoteName('project_id') . ' = ' . $db->quote($projectID),
-            $db->quoteName('choice_id') . ' = ' . $db->quote($choiceID)
-        );
+        $conditions = array($db->quoteName('project_id') . ' = ' . $db->quote($projectID), $db->quoteName('choice_id') . ' = ' . $db->quote($choiceID));
 
         $exists
             ->select('COUNT(*)')
@@ -180,66 +176,54 @@ class ProgressToolModelSurvey extends JModelItem
             ->where($conditions)
             ->setLimit(1);
 
-        // If selection exists, delete it.
-        if ($db->setQuery($exists)->loadResult())
+        if ($db->setQuery($exists)->loadResult()) // If selection exists, delete it.
         {
             $delete
                 ->delete($db->quoteName('#__pt_project_choice'))
                 ->where($conditions);
-
             $db->setQuery($delete)->execute();
-            return false;
+            $active = false;
         }
-        // Else if selection does not exist, insert it.
-        else
+        else // Else if selection does not exist, insert it.
         {
-            $columns = array('project_id', 'choice_id');
-            $values = array($projectID, $choiceID);
-
             $insert
                 ->insert($db->quoteName('#__pt_project_choice'))
-                ->columns($db->quoteName($columns))
-                ->values(implode(',', $values));
-
+                ->columns($db->quoteName(array('project_id', 'choice_id')))
+                ->values(implode(',', array($projectID, $choiceID)));
             $db->setQuery($insert)->execute();
-            return true;
+            $active = true;
         }
-    }
 
-    public function getQuestionScore($projectID, $questionID)
-    {
-        $db = JFactory::getDbo();
-        $getChoices = $db->getQuery(true);
-        $getQuestionScore = $db->getQuery(true);
-
-        $getChoices
-            ->select($db->quoteName('id'))
-            ->select($db->quoteName('weight'))
-            ->from($db->quoteName('#__pt_question_choice'))
-            ->where($db->quoteName('question_id') . ' = (' . $questionID . ')');
-
-        $getQuestionScore
-            ->select('SUM(weight) AS score')
-            ->from('#__pt_project_choice')
-            ->innerJoin('(' . $getChoices . ') AS CHOICES ON choice_id = id')
-            ->where($db->quoteName('project_id') . ' = ' . $db->quote($projectID));
-        //->setLimit(1);
-
-        $score = $db->setQuery($getQuestionScore)->loadResult();
-        return is_null($score) ? "0" : $score;
-    }
-
-    public function getQuestionID($choiceID)
-    {
-        $db = JFactory::getDbo();
+        // Getting questionID.
         $getQuestionID = $db->getQuery(true);
-
         $getQuestionID
-            ->select($db->quoteName('question_id'))
-            ->from($db->quoteName('#__pt_question_choice'))
-            ->where($db->quoteName('id') . ' = ' . $db->quote($choiceID))
+            ->select($db->quoteName('QC.question_id'))
+            ->from($db->quoteName('#__pt_question_choice', 'QC'))
+            ->where($db->quoteName('QC.id') . ' = ' . $db->quote($choiceID))
             ->setLimit(1);
+        $questionID = $db->setQuery($getQuestionID)->loadResult();
 
-        return $db->setQuery($getQuestionID)->loadResult();
+        // Getting userScore.
+        $getUserScore = $db->getQuery(true);
+        $getUserScore
+            ->select('IFNULL(SUM(QC.weight), 0) AS userScore')
+            ->from($db->quoteName('#__pt_question_choice', 'QC'))
+            ->innerjoin($db->quoteName('#__pt_project_choice', 'PC') . ' ON ' . $db->quoteName('QC.id') . ' = ' . $db->quoteName('PC.choice_id'))
+            ->where($db->quoteName('QC.question_id') . ' = ' . $db->quote($questionID))
+            ->where($db->quoteName('PC.project_id') . ' = ' . $db->quote($projectID))
+            ->setLimit(1);
+        $userScore = $db->setQuery($getUserScore)->loadResult();
+
+        // Getting isComplete.
+        $getIsComplete = $db->getQuery(true);
+        $getIsComplete
+            ->select('IF(SUM(QC.weight) = ' . $db->quote($userScore) . ', 1, 0) AS isComplete')
+            ->from($db->quoteName('#__pt_question_choice', 'QC'))
+            ->where($db->quoteName('QC.question_id') . ' = ' . $db->quote($questionID))
+            ->setLimit(1);
+        $isComplete = $db->setQuery($getIsComplete)->loadResult() == 1;
+
+
+        return array("active" => $active, "questionID" => $questionID, "userScore" => $userScore, "isComplete" => $isComplete);
     }
 }

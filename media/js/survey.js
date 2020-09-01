@@ -1,3 +1,15 @@
+function opensesame(boxName)
+{
+    let x = document.getElementById(boxName);
+    if (x.style.display === "none")
+    {
+        x.style.display = "block";
+    } else
+    {
+        x.style.display = "none";
+    }
+}
+
 /**
  * Processes a survey choice selection request.
  *
@@ -14,7 +26,7 @@ function surveySelect(projectID, choiceID)
             success:
                 function (result, status, xhr)
                 {
-                    updateQuestionScore(result.data.id, result.data.score);
+                    updateQuestionScore(result.data.questionID, result.data.userScore, result.data.isComplete);
                 },
             error:
                 function ()
@@ -31,10 +43,14 @@ function surveySelect(projectID, choiceID)
  * @param id the ID of the question, parent of the choice selected.
  * @param score the updated score.
  */
-function updateQuestionScore(id, score)
+function updateQuestionScore(questionID, score, isComplete)
 {
-    let elementID = `score_${id}`;
+    let elementID = `score_${questionID}`;
     let element = document.getElementById(elementID)
 
     element.innerHTML = score;
+    if (isComplete)
+    {
+        opensesame(`cC${questionID}`)
+    }
 }

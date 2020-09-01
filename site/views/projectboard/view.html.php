@@ -52,8 +52,10 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         if ($this->user->get('guest'))
         {
             $return = urlencode(base64_encode('index.php?option=com_progresstool&view=projectboard'));
-            JFactory::getApplication()->redirect('index.php?option=com_users&view=login&return=' . $return);
-            //JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_users&view=login', JText::_("You must be logged in to view this content")));
+            JFactory::getApplication()->redirect(
+                'index.php?option=com_users&view=login&return=' . $return,
+                'You must be logged in to use the Progress Tool'
+            );
         }
     }
 
@@ -67,7 +69,6 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterChest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/optionsChest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/projectboard.css");
-        //JHTML::stylesheet('media/jui/css/bootstrap.min.css');
     }
 
     /**

@@ -41,11 +41,14 @@
 		<language tag="en-GB">en-GB/en-GB.com_progresstool.ini</language>
 	</languages>
 
+	<!--<media destination="../images/com_progresstool" folder="images">
+		<folder>survey</folder>
+	</media>-->
+
 	<media destination="com_progresstool" folder="media">
 		<folder>css</folder>
 		<folder>forms</folder>
 		<folder>rules</folder>
-		<folder>images</folder>
 		<folder>js</folder>
 	</media>
 

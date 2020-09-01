@@ -12,6 +12,14 @@ foreach ($this->categories as $category)
 
 ?>
 
+<p class="introductionParagraph">
+    The graph below shows the % progression under each heading: <b class="people">People</b>, <b class="technology">Technology</b> and
+    <b class="finance">Finance</b>.
+    <br>
+    All heading should be progressed at an even rate, if one is developing faster than the others think about focusing on the less developed heading
+    tasks.
+</p>
+
 <div class="testing">
     <canvas id="myChart" width="50%" height="50%"></canvas>
 </div>

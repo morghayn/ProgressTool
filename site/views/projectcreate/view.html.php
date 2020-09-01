@@ -21,7 +21,7 @@ class ProgressToolViewProjectCreate extends JViewLegacy
 {
 
 	protected $form = null;
-	protected $canDo;
+	//protected $canDo;
 
 	/**
 	 * Display the Hello World view

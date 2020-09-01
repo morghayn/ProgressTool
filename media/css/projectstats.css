@@ -1,23 +1,53 @@
+.introductionParagraph {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    border: 1px dotted #000;
+    padding: 1rem;
+    margin: 0 auto 3rem;
+    width: 95%;
+    /* text-align: center; */
+}
+
+.introductionParagraph a {
+    font-weight: 700;
+}
+
+.introductionParagraph .people {
+    font-weight: 700;
+    color: rgb(247, 165, 138);
+}
+
+.introductionParagraph .technology {
+    font-weight: 700;
+    color: rgb(149, 208, 171);
+}
+
+.introductionParagraph .finance {
+    font-weight: 700;
+    color: rgb(150, 144, 198);
+}
+
 .buttonChest {
     width: 100%;
     display: flex;
-    margin: 0 auto 5rem;
+    margin: 0 auto 3rem;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
 }
 
 .buttonChest > button {
     margin: 0 auto;
-    width: 25%;
+    width: 30%;
     border: none;
     background-color: rgba(61, 77, 133, 1);
     color: #ffffff;
     line-height: 1;
-    border-radius: 10px;
-    outline:none;
-    padding: 1.25rem;
-    font-size: 1.6rem;
+    border-radius: 0.2rem;
+    outline: none;
+    /* padding: 1.25rem; */
+    font-size: 1.55rem;
     font-weight: 600;
-
+    height: 70px;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
 }
 
 .buttonChest > button:hover {
@@ -25,11 +55,11 @@
 }
 
 .buttonChest .buttonProjectBoard {
-    background-color: rgba(186, 214, 89, 1);
+    background-color: rgba(239, 62, 106, 1);
 }
 
 .buttonChest .buttonProjectBoard:hover {
-    background-color: rgba(186, 214, 89, 0.5);
+    background-color: rgba(244, 113, 146, 0.5);
 }
 
 

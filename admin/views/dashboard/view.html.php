@@ -14,6 +14,8 @@
  */
 class ProgressToolViewDashboard extends JViewLegacy
 {
+    protected $form = null;
+
     /**
      * Renders view.
      *
@@ -22,6 +24,11 @@ class ProgressToolViewDashboard extends JViewLegacy
      */
     function display($tpl = null)
     {
+        // Get the form to display
+        $this->form = $this->get('Form');
+        // Get the javascript script file for client-side validation
+        $this->script = $this->get('Script');
+
         $model = parent::getModel();
 
         $countryID = 1;
@@ -47,6 +54,11 @@ class ProgressToolViewDashboard extends JViewLegacy
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/optionsChest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/survey.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/dashboard.css");
+
+        $document->addScript(JURI::root() . $this->script);
+        $document->addScript(JURI::root() . "media/com_progresstool/forms/submitbutton.js");
+        $document->addScript(JURI::root() . "media/com_progresstool/js/imagetoggle.js");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/projectcreate.css");
     }
 
     /**

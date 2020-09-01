@@ -9,7 +9,7 @@
             </div>
 
             <div class="projectType">
-                (Not Activated)
+                These initial questions are designed to gauge the viability of the project
             </div>
 
             <div class="approvalCheck">

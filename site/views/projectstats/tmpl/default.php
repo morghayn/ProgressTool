@@ -4,7 +4,7 @@
 <input id="token" type="hidden" name="<?php echo JSession::getFormToken(); ?>" value="1"/>
 
 <div class="buttonChest">
-    <button class="buttonProjectBoard" onclick="redirectProjectBoard()">< Project Board</button>
+    <button class="buttonProjectBoard" onclick="redirectProjectBoard()">Project Board</button>
     <button onclick="showColumns()">Task List</button>
     <button onclick="showGraphs()">Graphs</button>
 </div>

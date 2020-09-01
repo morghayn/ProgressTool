@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
 JHtml::_('behavior.formvalidator');
 
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_progresstool&view=projectcreate&layout=edit'); ?>"
+<form action="<?php echo JRoute::_('index.php?option=com_progresstool&view=projectcreate'); ?>"
       method="post" name="adminForm" id="adminForm" class="projectForm" enctype="multipart/form-data">
 
     <div class="form-horizontal">
