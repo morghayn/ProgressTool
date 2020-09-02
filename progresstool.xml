@@ -29,14 +29,13 @@
 	</update>
 
 	<files folder="site">
-		<filename>index.html</filename>
+		<folder>models</folder>
+		<folder>views</folder>
+		<folder>controllers</folder>
 		<filename>progresstool.php</filename>
 		<filename>controller.php</filename>
-		<folder>controllers</folder>
-		<folder>views</folder>
-		<folder>models</folder>
+		<filename>index.html</filename>
 	</files>
-
 	<languages folder="site/language">
 		<language tag="en-GB">en-GB/en-GB.com_progresstool.ini</language>
 	</languages>
@@ -53,14 +52,15 @@
 	</media>
 
 	<administration>
-		<menu link='index.php?option=com_progresstool'>Progress Tool!</menu>
+		<menu link='index.php?option=com_progresstool'>Progress Tool 😎</menu>
 		<files folder="admin">
-			<filename>index.html</filename>
+			<folder>models</folder>
+			<folder>views</folder>
+			<folder>controllers</folder>
+			<folder>sql</folder>
 			<filename>progresstool.php</filename>
 			<filename>controller.php</filename>
-			<folder>views</folder>
-			<folder>sql</folder>
-			<folder>models</folder>
+			<filename>index.html</filename>
 		</files>
 		<languages folder="admin/language">
 			<language tag="en-GB">en-GB/en-GB.com_progresstool.ini</language>

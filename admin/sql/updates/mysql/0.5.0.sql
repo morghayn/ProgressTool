@@ -475,7 +475,7 @@ CREATE TABLE `#__pt_project`
 (
     `id`          INT UNSIGNED     NOT NULL AUTO_INCREMENT,
     `user_id`     INT UNSIGNED     NOT NULL, /* TODO: Foreign key of user table? */
-    `name`        VARCHAR(35)     NOT NULL,
+    `name`        VARCHAR(100)     NOT NULL,
     `description` VARCHAR(255),
     `type_id`     TINYINT UNSIGNED NOT NULL,
     `activated`   TINYINT UNSIGNED NOT NULL DEFAULT '0',
