@@ -36,7 +36,7 @@ function approvalSelect(projectID, approvalID, projectCount)
 
     jQuery.ajax(
         {
-            data: {[token]: "1", task: "approvalSelect", format: "json", projectID: projectID, approvalID: approvalID},
+            data: {[token]: "1", task: "projectboard.approvalSelect", format: "json", projectID: projectID, approvalID: approvalID},
             success: (result) =>
             {
                 if (result.data === true)
@@ -63,7 +63,7 @@ function activateProject(projectID, projectCount)
 
     jQuery.ajax(
         {
-            data: {[token]: "1", task: "activeProjectTemplate", format: "raw", data: {projectID: projectID, projectCount: projectCount}},
+            data: {[token]: "1", task: "active", format: "raw", projectID: projectID, projectCount: projectCount},
             success: (result) => {
                 document.getElementById(projectID).outerHTML = result
                 document.getElementById(`projectBox`).innerHTML = result

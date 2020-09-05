@@ -18,9 +18,7 @@ defined('_JEXEC') or die('Restricted access');
  */
 class ProgressToolViewProjectCreate extends JViewLegacy
 {
-
     protected $form = null;
-    //protected $canDo;
 
     /**
      * Display the Hello World view
@@ -34,46 +32,22 @@ class ProgressToolViewProjectCreate extends JViewLegacy
         // Get the form to display
         $this->form = $this->get('Form');
 
-        // Get the javascript script file for client-side validation
-        $this->script = $this->get('Script');
-
-        /******** Access Control Removed 14:04 31/08/2020
-         * // Check that the user has permissions to create a new helloworld record
-         * $this->canDo = JHelperContent::getActions('com_helloworld');
-         * if (!($this->canDo->get('core.create')))
-         * {
-         * $app = JFactory::getApplication();
-         * $app->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR'), 'error');
-         * $app->setHeader('status', 403, true);
-         * return;
-         * }
-         *
-         * // Check for errors.
-         * if (count($errors = $this->get('Errors')))
-         * {
-         * throw new Exception(implode("\n", $errors), 500);
-         * }
-         */
-
         // Call the parent display to display the layout file
         parent::display($tpl);
 
         // Set properties of the html document
-        $this->setDocument();
+        $this->prepareDocument();
     }
 
     /**
-     * Method to set up the html document properties
+     * Prepares document by adding stylesheets and scripts.
      *
-     * @return void
+     * @since 0.5.0
      */
-    protected function setDocument()
+    protected function prepareDocument()
     {
         $document = JFactory::getDocument();
-        //$document->setTitle(JText::_('COM_HELLOWORLD_HELLOWORLD_CREATING'));
-        $document->addScript(JURI::root() . $this->script);
         $document->addScript(JURI::root() . "media/com_progresstool/forms/submitbutton.js");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/projectcreate.css");
-        //JText::script('COM_HELLOWORLD_HELLOWORLD_ERROR_UNACCEPTABLE');
     }
 }

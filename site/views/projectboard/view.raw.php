@@ -13,19 +13,14 @@ class ProgressToolViewProjectBoard extends JViewLegacy
 
     function display($tpl = null)
     {
+        //$user = JFactory::getUser();
+        $model = parent::getModel('projectboard');
         $input = JFactory::getApplication()->input;
-        $data = $input->get('data', array(), 'ARRAY');
-        $projectID = $data['projectID'];
-        $this->projectCount = $data['projectCount'];
 
-        if (!$projectID)
-        {
-            echo "<h1>An error occurred, please reload your page</h1>";
-        }
-        else
-        {
-            $this->project = parent::getModel()->getProject($projectID);
-            parent::display('active');
-        }
+        $projectID = $input->getInt('projectID', 0);
+        $this->projectCount = $input->getInt('projectCount', 0);
+        $this->project = $model->getProject($projectID);
+
+        parent::display('active');
     }
 }
