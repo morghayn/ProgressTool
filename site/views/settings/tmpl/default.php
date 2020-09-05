@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
 JHtml::_('behavior.formvalidator');
 
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_progresstool&view=projectcreate'); ?>"
+<form action="<?php echo JRoute::_('index.php?option=com_progresstool&view=settings'); ?>"
       method="post" name="adminForm" id="adminForm" class="projectForm" enctype="multipart/form-data">
 
     <div class="form-horizontal">
@@ -26,11 +26,11 @@ JHtml::_('behavior.formvalidator');
     </div>
 
     <div class="buttonChest">
-        <button type="button" class="buttonCancel" onclick="Joomla.submitbutton('projectcreate.cancel')">
+        <button type="button" class="buttonCancel" onclick="Joomla.submitbutton('settings.cancel')">
             <span class="icon-cancel"></span><?php echo ' ' . JText::_('JCANCEL') ?>
         </button>
 
-        <button type="button" class="buttonSubmit" onclick="Joomla.submitbutton('projectcreate.save')">
+        <button type="button" class="buttonSubmit" onclick="Joomla.submitbutton('settings.update')">
             <span class="icon-ok"></span><?php echo ' ' . JText::_('JSAVE') ?>
         </button>
     </div>

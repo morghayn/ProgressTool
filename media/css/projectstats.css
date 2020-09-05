@@ -65,7 +65,7 @@
 
 
 .testing {
-    width: 45%;
+    width: 80%;
     margin: 0 auto;
 }
 
@@ -83,12 +83,17 @@
 
     box-sizing: border-box;
     background-color: #ffffff;
-    border: 0.35em solid #3d4d85;
+    border: 0.35em solid #0C4DA0;
     border-radius: 0.25rem;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
 }
 
 @media only screen and (max-width: 575px) {
+    .testing {
+        width: 100%;
+        margin: 0 auto;
+    }
+
     .superChest {
         display: inline-block;
     }

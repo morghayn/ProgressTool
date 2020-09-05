@@ -40,11 +40,9 @@ class ProgressToolViewSurvey extends JViewLegacy
         $this->questions = $model->getQuestions($countryID);
         $this->choices = $model->getChoices($this->projectID, $countryID);
 
-        $this->addStylesheet();
-        $this->addScripts();
-
         // Display the view
         parent::display($tpl);
+        $this->prepareDocument();
     }
 
     /**
@@ -111,26 +109,16 @@ class ProgressToolViewSurvey extends JViewLegacy
     }
 
     /**
-     * Adds stylesheets.
+     * Prepares document by adding stylesheets and scripts.
      *
      * @since 0.2.6
      */
-    private function addStylesheet()
+    private function prepareDocument()
     {
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterChest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/optionsChest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/survey.css");
-    }
-
-    /**
-     * Adds JavaScript.
-     *
-     * @since 0.2.6
-     */
-    private function addScripts()
-    {
-        $document = JFactory::getDocument();
         $document->addScript(JURI::root() . "media/com_progresstool/js/survey.js");
     }
 }

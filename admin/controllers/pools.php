@@ -12,7 +12,7 @@
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
  */
-class ProgressToolControllerPools extends JModelAdmin
+class ProgressToolControllerPools extends JControllerLegacy
 {
 
 }

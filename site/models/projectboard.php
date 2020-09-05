@@ -63,6 +63,38 @@ class ProgressToolModelProjectBoard extends JModelItem
     }
 
     /**
+     * Returns all inactive projects and their currently active approval selections belonging to a user.
+     *
+     * @param int $userID the ID of the user.
+     * @return array an array of inactive projects and their currently active selections.
+     */
+    public function getInactiveProjects($userID)
+    {
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+
+        $columns = array('A.project_id', 'A.approval_id');
+        $conditions = array(
+            $db->quoteName('P.user_id') . ' = ' . $db->quote($userID),
+            $db->quoteName('P.activated') . ' = 0'
+        );
+
+        $query
+            ->select($db->quoteName($columns))
+            ->from($db->quoteName('#__pt_project', 'P'))
+            ->innerjoin($db->quoteName('#__pt_project_approval') . ' AS A ON P.id = A.project_id')
+            ->where($conditions);
+
+        $rows = $db->setQuery($query)->loadObjectList();
+        $grouped = array();
+
+        foreach ($rows as $row)
+            $grouped[$row->project_id][$row->approval_id] = 1;
+
+        return $grouped;
+    }
+
+    /**
      * Retrieves approval questions.
      *
      * @return mixed object list of all approval questions.
@@ -189,81 +221,5 @@ class ProgressToolModelProjectBoard extends JModelItem
 
         // If activation fails, return false.
         return false;
-    }
-
-    /**
-     * Returns all inactive projects and their currently active approval selections belonging to a user.
-     *
-     * @param int $userID the ID of the user.
-     * @return array an array of inactive projects and their currently active selections.
-     */
-    public function getApprovalSelects($userID)
-    {
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-
-        $columns = array('A.project_id', 'A.approval_id');
-        $conditions = array(
-            $db->quoteName('P.user_id') . ' = ' . $db->quote($userID),
-            $db->quoteName('P.activated') . ' = 0'
-        );
-
-        $query
-            ->select($db->quoteName($columns))
-            ->from($db->quoteName('#__pt_project', 'P'))
-            ->innerjoin($db->quoteName('#__pt_project_approval') . ' AS A ON P.id = A.project_id')
-            ->where($conditions);
-
-        $rows = $db->setQuery($query)->loadObjectList();
-        $grouped = array();
-
-        foreach ($rows as $row)
-            $grouped[$row->project_id][$row->approval_id] = 1;
-
-        return $grouped;
-    }
-
-    /**
-     * Deletes a project. Deletion is setup to cascade so do not worry about referential integrity.
-     *
-     * @param int $projectID the ID of the project.
-     * @since 0.3.0
-     */
-    public function deleteProject($projectID)
-    {
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-
-        $query
-            ->delete($db->quoteName('#__project'))
-            ->where($db->quoteName('project_id') . ' = ' . $projectID);
-
-        $result = $db->setQuery($query)->execute();
-    }
-
-    /**
-     * Updates the information of a project.
-     *
-     * @param int $projectID ID of the project.
-     * @param string $name updated name.
-     * @param string $description updated description.
-     * @return bool status of whether the update was a success or not.
-     */
-    public function updateProject($projectID, $name, $description)
-    {
-        $db = JFactory::getDbo();
-        $update = $db->getQuery(true);
-
-        $set = array(
-            $db->quoteName('name') . ' = ' . $db->quote($name),
-            $db->quoteName('description') . ' = ' . $db->quote($description)
-        );
-
-        $update
-            ->update($db->quoteName('#__pt_project'))
-            ->set($set)
-            ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
-
-        return $db->setQuery($update)->execute();
     }
 }

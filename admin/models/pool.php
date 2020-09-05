@@ -1,9 +1,9 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolControllerDashboard
+ * Class ProgressToolModelPools
  *
- * Controller for back-end dashboard functionality.
+ * Model for back-end question pools functionality.
  *
  * @package ProgressTool
  * @subpackage admin
@@ -12,7 +12,10 @@
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
  */
-class ProgressToolControllerDashboard extends JControllerLegacy
+class ProgressToolModelPool extends JModelLegacy
 {
+    public function getPool()
+    {
 
+    }
 }

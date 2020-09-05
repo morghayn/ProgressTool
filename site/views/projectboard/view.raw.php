@@ -5,7 +5,8 @@ jimport('joomla.application.component.view');
 
 class ProgressToolViewProjectBoard extends JViewLegacy
 {
-    /** // TODO: Documentation here
+    /**
+     * @var
      * @var
      */
     protected $project, $projectCount;

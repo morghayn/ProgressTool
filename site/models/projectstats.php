@@ -15,24 +15,6 @@
 class ProgressToolModelProjectStats extends JModelItem
 {
     /**
-     * A utility function that groups object lists by categoryID.
-     *
-     * @param object $rows list of objects which will be grouped.
-     * @return array list of objects grouped by categoryID.
-     */
-    public function groupByCategory($rows)
-    {
-        $grouped = array();
-
-        foreach ($rows as $row)
-        {
-            $grouped[$row->category_id][] = $row;
-        }
-
-        return $grouped;
-    }
-
-    /**
      * Returns the countryID associated with countryString, else if not found returns 1 if not found.
      *
      * @param string $countryString the country name.
@@ -103,6 +85,24 @@ class ProgressToolModelProjectStats extends JModelItem
         return $this->groupByCategory(
             $db->setQuery($getTasks)->loadObjectList()
         );
+    }
+
+    /**
+     * A utility function that groups object lists by categoryID.
+     *
+     * @param object $rows list of objects which will be grouped.
+     * @return array list of objects grouped by categoryID.
+     */
+    public function groupByCategory($rows)
+    {
+        $grouped = array();
+
+        foreach ($rows as $row)
+        {
+            $grouped[$row->category_id][] = $row;
+        }
+
+        return $grouped;
     }
 
     /**

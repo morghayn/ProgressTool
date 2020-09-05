@@ -42,46 +42,7 @@ class ProgressToolModelProjectCreate extends JModelAdmin
             ->values(implode(',', $values));
 
         return $db->setQuery($insert)->execute();
-
-        /* Try using JTable here
-        // retrieve all table objects needed to store form data
-        $tbl_employer = $this->getTable('Employer');
-        $tbl_contact = $this->getTable('Contact', 'RgtMyraTable', array());
-
-        if($tbl_employer){
-            $tbl_employer->industries_id = $data['industry'];
-        }
-        else{
-            $this->setError("Error getting employer table");
-            return false;
-        }
-
-        // Store the data.
-        if (!$tbl_employer->save($data))
-        {
-            $this->setError("Error saving into employer table");
-            return false;
-        }
-        */
     }
-
-    /*
-     * Method to get a table object, load it if necessary.
-     *
-     * @param string $type The table name. Optional.
-     * @param string $prefix The class prefix. Optional.
-     * @param array $config Configuration array for model. Optional.
-     *
-     * @return  JTable  A JTable object
-     *
-     * @since   1.6
-     */
-    /* // TODO: probably need
-    public function getTable($type = 'project', $prefix = 'pt_', $config = array())
-    {
-        return JTable::getInstance($type, $prefix, $config);
-    }
-    */
 
     /**
      * Method to get the record form.
@@ -126,17 +87,6 @@ class ProgressToolModelProjectCreate extends JModelAdmin
     protected function loadFormData()
     {
         // Check the session for previously entered form data.
-        return JFactory::getApplication()->getUserState('com_progresstool.edit.projectcreate.data', array());
-    }
-
-    /**
-     * Method to get the script that have to be included on the form
-     * This returns the script associated with projectcreate field name validation
-     *
-     * @return string    Script files
-     */
-    public function getScript()
-    {
-        return 'media/com_progresstool/forms/projectcreate.js';
+        return JFactory::getApplication()->getUserState('com_progresstool.projectcreate.data', array());
     }
 }

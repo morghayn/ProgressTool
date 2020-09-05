@@ -1,4 +1,29 @@
 /**
+ * Shows all projects on the projectboard. Request made by the dropdown box.
+ */
+function showAll()
+{
+    window.location = '?option=com_progresstool&view=projectboard'
+}
+
+/**
+ * Shows a specific project on the projectboard. Request made by the dropdown box.
+ *
+ * @param projectID the specific project to be shown.
+ */
+function showSpecific(projectID)
+{
+    let projectsBox = document.getElementById(`projectsBox`);
+    let projectBox = document.getElementById(`projectBox`);
+    projectBox.style.display = "block";
+    projectsBox.style.display = "none";
+
+    let elem = document.getElementById(projectID).innerHTML
+    document.getElementById(`projectBox`).innerHTML = elem;
+
+}
+
+/**
  * Processes an approval selection request for an inactive project.
  *
  * @param projectID the ID of the inactive project.
@@ -39,7 +64,10 @@ function activateProject(projectID, projectCount)
     jQuery.ajax(
         {
             data: {[token]: "1", task: "activeProjectTemplate", format: "raw", data: {projectID: projectID, projectCount: projectCount}},
-            success: (result) => document.getElementById(projectID).outerHTML = result,
+            success: (result) => {
+                document.getElementById(projectID).outerHTML = result
+                document.getElementById(`projectBox`).innerHTML = result
+            },
             error: () => console.log('Failure to perform activateProject(). Contact an dashboard if this failure persists.'),
         }
     );
@@ -55,6 +83,11 @@ function surveyRedirect(projectID)
 function statsRedirect(projectID)
 {
     window.location = `?option=com_progresstool&view=projectstats&projectID=${projectID}`
+}
+
+function settingsRedirect(projectID)
+{
+    window.location = `?option=com_progresstool&view=settings&projectID=${projectID}`
 }
 
 function resourceRedirect()

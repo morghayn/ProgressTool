@@ -89,7 +89,7 @@ class ProgressToolModelSurvey extends JModelItem
             ->leftjoin($db->quoteName('#__pt_project_choice', 'S') . ' ON ' . $leftJoinCondition1 . ' AND ' . $leftJoinCondition2)
             ->where($db->quoteName('CO.country_id') . ' = ' . $db->quote($country));
 
-        return $this->groupChoices($db->setQuery($choices)->loadObjectList());
+        return $this->groupByQuestionID($db->setQuery($choices)->loadObjectList());
     }
 
     /**
@@ -99,7 +99,7 @@ class ProgressToolModelSurvey extends JModelItem
      * @return array the choices grouped by question.
      * @since 0.2.6
      */
-    public function groupChoices($rows)
+    public function groupByQuestionID($rows)
     {
         $groupedChoices = array();
 
@@ -130,26 +130,6 @@ class ProgressToolModelSurvey extends JModelItem
             ->select($db->quoteName($columns))
             ->from($db->quoteName('#__pt_project'))
             ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
-
-        return $db->setQuery($query)->loadAssoc();
-    }
-
-    /**
-     * Returns data attached to a specific choice.
-     *
-     * @param int $choiceID the choiceID of the choice in question.
-     * @return mixed an associative array containing data of the choice in question.
-     * @since 0.3.0
-     */
-    public function getChoice($choiceID)
-    {
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-
-        $query
-            ->select($db->quoteName('*'))
-            ->from($db->quoteName('#__pt_question_choice'))
-            ->where($db->quoteName('id') . ' = ' . $db->quote($choiceID));
 
         return $db->setQuery($query)->loadAssoc();
     }

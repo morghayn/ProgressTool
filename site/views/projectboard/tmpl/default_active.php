@@ -8,7 +8,7 @@ $alt = $this->projectCount % 2 == 0 ? 2 : 1;
 
 ?>
 
-<div class="projectContainer">
+<div class="projectContainer" id="<?php echo $this->project->id; ?>">
 
     <div class="projectChest">
 
@@ -31,7 +31,7 @@ $alt = $this->projectCount % 2 == 0 ? 2 : 1;
             <button class="metricsButton" onclick="statsRedirect(<?php echo $id; ?>)">
                 Metrics
             </button>
-            <button class="settingsButton" onclick="statsRedirect(<?php echo $id; ?>)">
+            <button class="settingsButton" onclick="settingsRedirect(<?php echo $id; ?>)">
                 Settings
             </button>
         </div>

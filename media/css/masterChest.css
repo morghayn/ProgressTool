@@ -6,7 +6,7 @@
 
     box-sizing: border-box;
     background-color: #ffffff;
-    border: 0.35em solid #3d4d85;
+    border: 0.35em solid #0C4DA0;
     border-radius: 0.25rem;
 
     box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
@@ -25,7 +25,7 @@
     text-align: center; /* is this necessary? */
 
     color: #ffffff;
-    background-color: #3d4d85;
+    background-color: #0C4DA0;
 }
 
 .title {
@@ -51,7 +51,7 @@
     text-align: center;
 
     color: #ffffff;
-    background-color: #3d4d85;
+    background-color: #0C4DA0;
 }
 
 .heading {

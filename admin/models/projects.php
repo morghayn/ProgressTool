@@ -14,5 +14,8 @@
  */
 class ProgressToolModelProjects extends JModelLegacy
 {
+    public function getProjects()
+    {
 
+    }
 }

@@ -24,8 +24,9 @@ class ProgressToolViewProjectStats extends JViewLegacy
      * @var
      * @var
      * @var
+     * @var
      */
-    protected $projectID, $project, $tasks, $categories;
+    protected $projectID, $project, $tasks, $categories, $totals;
 
     /**
      * Renders view.

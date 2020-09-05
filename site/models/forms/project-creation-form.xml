@@ -7,9 +7,10 @@
 				label="Project Creation Form"
 	>
 		<field
-				name="id"
+				name="projectID"
 				type="hidden"
-				/>
+				default="0"
+		/>
 		<!--validate="name"-->
 		<field
 				name="name"

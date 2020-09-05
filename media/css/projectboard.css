@@ -27,16 +27,49 @@
     color: rgb(150, 144, 198);
 }
 
+.projectSelection {
+    display: flex;
+    width: 90%;
+    margin: 0 auto 1.25rem;
+    border: 2px solid #0C4DA0;
+}
+
+.projectSelection h2 {
+    flex: 1;
+    align-self: center;
+    color: white;
+    background-color: #0C4DA0;
+    padding: 0.55rem;
+    font-size: 1.25rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.projectSelection select {
+    flex: 3;
+    font-size: 1.25rem;
+    margin: 0 auto;
+    align-self: center;
+    line-height: 1;
+    padding: 0;
+    align-items: stretch;
+    display: flex;
+    height: 100% !important;
+}
+
+
+
+
 .headC {
     display: flex;
     width: 100%;
-    margin: 0 auto 3rem;
+    margin: 0 auto 2.5rem;
 }
 
 .titlC {
     width: 90%;
     margin: 0 5% 0 auto;
-    background-color: #3d4d85;
+    background-color: #0C4DA0;
     /* text-align: center; */
     /* line-height: 1; */
     display: flex;
@@ -68,13 +101,13 @@
     color: #ffffff;
     border: none;
     border-radius: 0.2rem;
-    background-color: rgba(88, 213, 150, 1);
+    background-color: rgba(125, 201, 37, 1);
     /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif; */
     font-weight: 600;
 }
 
 .buttonCreate:hover {
-    background-color: rgba(186, 214, 89, 0.5);
+    background-color: rgba(125, 201, 37, 0.5);
 }
 
 .buttonCreate:active {
@@ -119,7 +152,7 @@
     box-shadow: 4px 4px 17px 0 rgba(0,0,0,0.1);
 
     color: white;
-    background-color: #3d4d85;
+    background-color: #0C4DA0;
 }
 
 .projectTitle {
@@ -149,7 +182,7 @@
     box-sizing: border-box;
     box-shadow: 4px 4px 17px 0 rgba(0,0,0,0.1);
     color: white;
-    background-color: #3d4d85;
+    background-color: #0C4DA0;
 }
 
 .approvalCheck {
@@ -179,11 +212,11 @@
     -moz-box-shadow: 4px 4px 17px 0px rgba(0,0,0,0.1);
     box-shadow: 4px 4px 17px 0px rgba(0,0,0,0.1);
 
-    background-color: rgba(88, 213, 150, 1);
+    background-color: rgba(125, 201, 37, 1);
 }
 
 .buttonChest > button:hover {
-    background-color: rgba(186, 214, 89, 0.5);
+    background-color: rgba(125, 201, 37, 0.5);
 }
 
 .buttonChest .settingsButton {
@@ -200,7 +233,7 @@
 
 @media only screen and (max-width: 550px) {
     .projectContainer {
-        background-color: #3d4d85;
+        background-color: #0C4DA0;
         border-radius: 10px;
     }
 

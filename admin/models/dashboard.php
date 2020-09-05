@@ -14,15 +14,16 @@
  */
 class ProgressToolModelDashboard extends JModelLegacy
 {
-    public function test()
+    public function test($userID)
     {
         $db = JFactory::getDbo();
-        $getTasks = $db->getQuery(true);
+        $getGroupMemebers = $db->getQuery(true);
 
-        $getTasks
+        $getGroupMemebers
             ->select('*')
-            ->from($db->quoteName('#__community_groups_members'));
+            ->from($db->quoteName('#__community_groups_members'))
+            ->where($db->quoteName('memberid') . ' = ' . $db->quote($userID));
 
-        return $db->setQuery($getTasks)->loadObjectList();
+        return $db->setQuery($getGroupMemebers)->loadObjectList();
     }
 }

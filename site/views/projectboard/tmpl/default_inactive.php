@@ -16,8 +16,8 @@
                 <?php foreach ($this->approvalQuestions as $question):
                     $param = $this->project->id . ',' . $question->id . ',' . $this->projectCount;
                     $checkStr =
-                        array_key_exists($this->project->id, $this->approvalSelects)
-                            ? array_key_exists($question->id, $this->approvalSelects[$this->project->id]) ? 'checked' : '' : '';
+                        array_key_exists($this->project->id, $this->inactiveProjects)
+                            ? array_key_exists($question->id, $this->inactiveProjects[$this->project->id]) ? 'checked' : '' : '';
                     ?>
 
                     <label class="optionChest" style="--outlineColour: #ffffff; --optionColour: #ffffff;">

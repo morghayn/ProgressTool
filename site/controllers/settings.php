@@ -7,13 +7,12 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-class ProgressToolControllerProjectCreate extends JControllerForm
+class ProgressToolControllerSettings extends JControllerForm
 {
     public function cancel($key = null)
     {
         // TODO: probably need this at some stage parent::cancel($key);
 
-        // set up the redirect back to the same form
         $app = JFactory::getApplication();
         $this->setRedirect('index.php?option=com_progresstool&view=projectboard', 'You cancelled creating a form.');
     }
@@ -22,14 +21,13 @@ class ProgressToolControllerProjectCreate extends JControllerForm
      * Function handing the save for adding a new helloworld record
      * Based on the save() function in the JControllerForm class
      */
-    public function save($key = null, $urlVar = null)
+    public function update($key = null, $urlVar = null)
     {
-        // Check for request forgeries.
         JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
         $app = JFactory::getApplication();
         $input = $app->input;
-        $model = $this->getModel('projectcreate');
+        $model = $this->getModel('settings');
 
         // Get the current URI to set in redirects. As we're handling a POST,
         // this URI comes from the <form action="..."> attribute in the layout file above
@@ -85,7 +83,7 @@ class ProgressToolControllerProjectCreate extends JControllerForm
         }
 
         // Attempt to save the data.
-        if (!$model->save($validData))
+        if (!$model->update($validData))
         {
             // Handle the case where the save failed
 

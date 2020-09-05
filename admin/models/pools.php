@@ -14,5 +14,8 @@
  */
 class ProgressToolModelPools extends JModelLegacy
 {
+    public function getPools()
+    {
 
+    }
 }
