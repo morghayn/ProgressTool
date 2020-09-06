@@ -21,7 +21,22 @@ JHtml::_('behavior.formvalidator');
     <div class="form-horizontal">
         <fieldset class="adminform">
             <legend>Project Creation Form</legend>
-            <?php echo $this->form->renderFieldset('details'); ?>
+            <?php // echo $this->form->renderFieldset('details'); ?>
+            <div class="test">
+                <?php echo $this->form->getInput('projectID'); ?>
+            </div>
+            <div class="test">
+                <?php echo $this->form->getLabel('name'); ?>
+                <?php echo $this->form->getInput('name'); ?>
+            </div>
+            <div class="test">
+                <?php echo $this->form->getLabel('description'); ?>
+                <?php echo $this->form->getInput('description'); ?>
+            </div>
+            <div class="test">
+                <?php echo $this->form->getLabel('type'); ?>
+                <?php echo $this->form->getInput('type'); ?>
+            </div>
         </fieldset>
     </div>
 
