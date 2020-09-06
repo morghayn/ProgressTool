@@ -38,11 +38,11 @@ class ProgressToolModelSurvey extends JModelItem
     /**
      * Retrieve a list of location specific questions.
      *
-     * @param $country int country index used to get location specific questions.
-     * @return mixed objectList containing the location specific questions.
+     * @param $countryID int country index used to get location specific questions.
+     * @return object list comprising of the location specific questions.
      * @since 0.3.0
      */
-    public function getQuestions($country)
+    public function getQuestions($countryID)
     {
         $db = JFactory::getDbo();
         $getQuestions = $db->getQuery(true);
@@ -54,9 +54,9 @@ class ProgressToolModelSurvey extends JModelItem
             ->select('SUM(CH.weight) as total')
             ->from($db->quoteName('#__pt_question', 'Q'))
             ->innerjoin($db->quoteName('#__pt_question_country', 'CO') . ' ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('CO.question_id'))
-            ->innerjoin($db->quoteName('#__pt_question_choice', 'CH') . ' ON ' . $db->quoteName('Q.ID') . ' = ' . $db->quoteName('CH.question_id'))
+            ->innerjoin($db->quoteName('#__pt_question_choice', 'CH') . ' ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('CH.question_id'))
             ->innerjoin($db->quoteName('#__pt_category', 'CA') . ' ON ' . $db->quoteName('Q.category_id') . ' = ' . $db->quoteName('CA.id'))
-            ->where($db->quoteName('CO.country_id') . ' = ' . $db->quote($country))
+            ->where($db->quoteName('CO.country_id') . ' = ' . $db->quote($countryID))
             ->group($db->quoteName('Q.id'))
             ->order('Q.id ASC');
 
@@ -68,11 +68,11 @@ class ProgressToolModelSurvey extends JModelItem
      * is retrieved via a left join. If a selection has been made, the projectID will be present, else the field will return null.
      *
      * @param int $projectID project index for which selections will be retrieved
-     * @param int $country country index used to get location specific choices.
+     * @param int $countryID country index used to get location specific choices.
      * @return array the choices grouped by their respective questions, with an attribute to indicate whether it has been selected or not.
      * @since 0.1.0
      */
-    public function getChoices($projectID, $country)
+    public function getChoices($projectID, $countryID)
     {
         $db = JFactory::getDbo();
         $choices = $db->getQuery(true);
@@ -87,7 +87,7 @@ class ProgressToolModelSurvey extends JModelItem
             ->innerjoin($db->quoteName('#__pt_question', 'Q') . ' ON CH.question_id = Q.id')
             ->innerjoin($db->quoteName('#__pt_question_country', 'CO') . ' ON Q.id = CO.question_id')
             ->leftjoin($db->quoteName('#__pt_project_choice', 'S') . ' ON ' . $leftJoinCondition1 . ' AND ' . $leftJoinCondition2)
-            ->where($db->quoteName('CO.country_id') . ' = ' . $db->quote($country));
+            ->where($db->quoteName('CO.country_id') . ' = ' . $db->quote($countryID));
 
         return $this->groupByQuestionID($db->setQuery($choices)->loadObjectList());
     }

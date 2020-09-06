@@ -1,9 +1,9 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolControllerSettings
+ * Class ProgressToolControllerCategories
  *
- * Controller for back-end settings functionality.
+ * Controller for back-end categories functionality.
  *
  * @package ProgressTool
  * @subpackage admin
@@ -12,7 +12,7 @@
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
  */
-class ProgressToolControllerSettings extends JControllerLegacy
+class ProgressToolControllerCategories extends JControllerLegacy
 {
 
 }

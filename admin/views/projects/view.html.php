@@ -22,6 +22,6 @@ class ProgressToolViewProjects extends JViewLegacy
      */
     function display($tpl = null)
     {
-
+        parent::display($tpl);
     }
 }

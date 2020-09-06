@@ -133,12 +133,7 @@ CREATE TABLE `#__pt_country`
 
 INSERT INTO `#__pt_country` (`country`)
 VALUES ('Universal'),
-       ('Ireland'),
-       ('Belgium'),
-       ('Germany'),
-       ('Netherlands'),
-       ('France'),
-       ('United Kingdom');
+       ('Ireland');
 
 /* */
 

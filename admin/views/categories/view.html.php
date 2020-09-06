@@ -1,9 +1,9 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolViewSettings
+ * Class ProgressToolViewCategories
  *
- * View for back-end settings functionality.
+ * View for back-end categories functionality.
  *
  * @package ProgressTool
  * @subpackage admin
@@ -12,7 +12,7 @@
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
  */
-class ProgressToolViewSettings extends JViewLegacy
+class ProgressToolViewCategories extends JViewLegacy
 {
     /**
      * Renders view.
@@ -22,6 +22,6 @@ class ProgressToolViewSettings extends JViewLegacy
      */
     function display($tpl = null)
     {
-
+        parent::display($tpl);
     }
 }

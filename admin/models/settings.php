@@ -1,9 +1,9 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolModelSettings
+ * Class ProgressToolModelCategories
  *
- * Model for back-end settings functionality.
+ * Model for back-end categories functionality.
  *
  * @package ProgressTool
  * @subpackage admin
@@ -12,7 +12,7 @@
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
  */
-class ProgressToolModelSettings extends JModelLegacy
+class ProgressToolModelCategories extends JModelLegacy
 {
 
 }

@@ -6,16 +6,17 @@
     margin: 0 auto;
 }
 
-.fragmentContainer a {
+.fragmentContainer div {
     margin: 1rem;
     padding: 1.25rem 0 1.25rem 2rem;
     background-color: #0C4DA0;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #ffffff;
     border: 2px solid #ffffff;
+    line-height: 1;
 }
 
-.fragmentContainer a:hover {
+.fragmentContainer div:hover {
     opacity: 0.5;
     color: #ffffff;
     border: 2px dashed #000000;

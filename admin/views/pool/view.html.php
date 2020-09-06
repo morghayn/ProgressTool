@@ -15,6 +15,12 @@
 class ProgressToolViewPool extends JViewLegacy
 {
     /**
+     * @var object list comprising of the questions associated with the pool.
+     * @var object list comprising of the choices grouped by the question identifiers for the questions associated with the pool.
+     */
+    protected $questions, $choices;
+
+    /**
      * Renders view.
      *
      * @param string $tpl The name of the template file to parse; automatically searches through the template paths.
@@ -22,6 +28,26 @@ class ProgressToolViewPool extends JViewLegacy
      */
     function display($tpl = null)
     {
+        $model = parent::getModel();
+        $input = JFactory::getApplication()->input;
 
+        $poolID = $input->getInt('pool', 0); // TODO: verify poolID exists first...
+
+        $this->questions = $model->getQuestions($poolID);
+        $this->choices = $model->getChoices($poolID);
+
+        parent::display($tpl);
+        $this->prepareDocument();
+    }
+
+    /**
+     * Prepares document by adding stylesheets and scripts.
+     *
+     * @since 0.5.0
+     */
+    private function prepareDocument()
+    {
+        $document = JFactory::getDocument();
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/pool.css");
     }
 }

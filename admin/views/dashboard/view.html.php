@@ -25,11 +25,21 @@ class ProgressToolViewDashboard extends JViewLegacy
         $user = JFactory::getUser();
         $userID = $user->id;
 
-        $model = parent::getModel();
-        $this->test = $model->test($userID);
+        //$model = parent::getModel();
+        //$this->test = $model->test($userID);
 
+        parent::display();
+        $this->prepareDocument();
+    }
+
+    /**
+     * Prepares document by adding stylesheets and scripts.
+     *
+     * @since 0.5.0
+     */
+    private function prepareDocument()
+    {
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/dashboard.css");
-        parent::display();
     }
 }

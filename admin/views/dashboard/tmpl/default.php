@@ -3,27 +3,19 @@
 defined('_JEXEC') or die;
 
 $fragments = array(
-    'metrics',
-    'pools',
-    'projects',
-    'settings',
-    'tasks'
+    'Pools',
+    'Categories',
+    'Tasks',
+    'Projects',
+    'Metrics',
 );
 
 ?>
 
-<?php
-echo '<pre>';
-var_dump($this->test);
- echo '</pre>';
- ?>
-
-<div class="fragments">
+<div class="fragmentContainer">
     <?php foreach ($fragments as $fragment): ?>
-        <a class="fragment" href="?option=com_progresstool&view=<?php echo $fragment; ?>">
-            <span>
+        <a href="?option=com_progresstool&view=<?php echo $fragment; ?>">
                 <?php echo $fragment; ?>
-            </span>
         </a>
     <?php endforeach; ?>
 </div>
