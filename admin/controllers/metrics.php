@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolControllerMetrics
+ * (Admin) Class ProgressToolControllerMetrics
  *
  * Controller for back-end metrics functionality.
  *

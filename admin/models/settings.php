@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolModelCategories
+ * (Admin) Class ProgressToolModelCategories
  *
  * Model for back-end categories functionality.
  *

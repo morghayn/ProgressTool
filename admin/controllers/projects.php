@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolControllerProjects
+ * (Admin) Class ProgressToolControllerProjects
  *
  * Controller for back-end projects functionality.
  *

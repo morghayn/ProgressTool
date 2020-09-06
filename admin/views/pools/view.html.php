@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolViewPools
+ * (Admin) Class ProgressToolViewPools
  *
  * View for back-end pools functionality.
  *

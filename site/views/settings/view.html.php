@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolViewSettings
+ * (Site) Class ProgressToolViewSettings
  *
  * View for front-end settings functionality.
  *

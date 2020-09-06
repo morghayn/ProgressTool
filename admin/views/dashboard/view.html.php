@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolViewDashboard
+ * (Admin) Class ProgressToolViewDashboard
  *
  * View for back-end dashboard functionality.
  *

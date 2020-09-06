@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolControllerPool
+ * (Admin) Class ProgressToolControllerPool
  *
  * Controller for back-end pool functionality.
  *

@@ -1,9 +1,9 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolModelProjectBoard
+ * (Site) Class ProgressToolModelProjectBoard
  *
- * Model for front-end project board functionality.
+ * Model for front-end projectboard functionality.
  *
  * @package ProgressTool
  * @subpackage site

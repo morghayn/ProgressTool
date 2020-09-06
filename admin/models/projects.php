@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolModelProjects
+ * (Admin) Class ProgressToolModelProjects
  *
  * Model for back-end projects functionality.
  *
@@ -14,8 +14,20 @@
  */
 class ProgressToolModelProjects extends JModelLegacy
 {
+    /**
+     * Returns all projects on record.
+     *
+     * @return object list comprising of all projects on record.
+     */
     public function getProjects()
     {
+        $db = JFactory::getDbo();
+        $getProjects = $db->getQuery(true);
 
+        $getProjects
+            ->select('*')
+            ->from($db->quoteName('#__pt_project'));
+
+        return $db->setQuery($getProjects)->loadObjectList();
     }
 }

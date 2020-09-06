@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolController
+ * (Admin) Class ProgressToolController
  *
  * Main component controller for the component's back-end.
  *

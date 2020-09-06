@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolViewSurvey
+ * (Site) Class ProgressToolViewSurvey
  *
  * View for front-end survey functionality.
  *

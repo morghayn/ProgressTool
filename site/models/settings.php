@@ -1,19 +1,16 @@
-<?php
-/**
- * @package     Joomla.Administrator
- * @subpackage  com_progresstool
- *
- * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
-
-// No direct access to this file
-defined('_JEXEC') or die('Restricted access');
+<?php defined('_JEXEC') or die;
 
 /**
- * HelloWorld Model
+ * (Site) Class ProgressToolModelSettings
  *
- * @since  0.0.1
+ * Model for front-end project settings functionality.
+ *
+ * @package ProgressTool
+ * @subpackage site
+ * @since 0.5.0
+ *
+ * @author  Morgan Nolan <morgan.nolan@hotmail.com>
+ * @link    https://github.com/morghayn
  */
 class ProgressToolModelSettings extends JModelAdmin
 {

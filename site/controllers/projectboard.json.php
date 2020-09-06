@@ -1,12 +1,17 @@
 <?php
-/**
- * @package     Joomla.Administrator
- * @subpackage  com_helloworld
- *
- * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
 
+/**
+ * (Site) Class ProgressToolControllerProjectBoard
+ *
+ * Controller for back-end projectboard functionality.
+ *
+ * @package ProgressTool
+ * @subpackage admin
+ * @since 0.5.0
+ *
+ * @author  Morgan Nolan <morgan.nolan@hotmail.com>
+ * @link    https://github.com/morghayn
+ */
 class ProgressToolControllerProjectBoard extends JControllerLegacy
 {
     /**

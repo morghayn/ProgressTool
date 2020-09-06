@@ -4,6 +4,10 @@ defined('_JEXEC') or die;
 
 ?>
 
+<p class="introductionParagraph">
+    <b style="color: red">!!! Create new project and settings is currently heavily in work-in-progress. !!!</b>
+</p>
+
 <div class="projectSelection">
     <h2>
         Select Project

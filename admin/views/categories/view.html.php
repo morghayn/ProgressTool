@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolViewCategories
+ * (Admin) Class ProgressToolViewCategories
  *
  * View for back-end categories functionality.
  *

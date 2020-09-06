@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolModelProjectStats
+ * (Site) Class ProgressToolModelProjectStats
  *
  * Model for front-end project stats functionality.
  *

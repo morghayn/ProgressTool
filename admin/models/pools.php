@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolModelPools
+ * (Admin) Class ProgressToolModelPools
  *
  * Model for back-end question pools functionality.
  *

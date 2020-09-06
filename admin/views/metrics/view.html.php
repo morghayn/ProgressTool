@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolViewMetrics
+ * (Admin) Class ProgressToolViewMetrics
  *
  * View for back-end metrics functionality.
  *

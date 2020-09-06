@@ -1,20 +1,16 @@
-<?php
-/**
- * @package     Joomla.Administrator
- * @subpackage  com_progresstool
- *
- * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
- */
-
-
-// No direct access to this file
-defined('_JEXEC') or die('Restricted access');
+<?php defined('_JEXEC') or die;
 
 /**
- * HelloWorld View
- * This is the site view presenting the user with the ability to add a new Helloworld record
+ * (Site) Class ProgressToolViewProjectCreate
  *
+ * View for front-end projectcreate functionality.
+ *
+ * @package ProgressTool
+ * @subpackage site
+ * @since 0.5.0
+ *
+ * @author  Morgan Nolan <morgan.nolan@hotmail.com>
+ * @link    https://github.com/morghayn
  */
 class ProgressToolViewProjectCreate extends JViewLegacy
 {

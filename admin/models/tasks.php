@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolModelTasks
+ * (Admin) Class ProgressToolModelTasks
  *
  * Model for back-end tasks functionality.
  *

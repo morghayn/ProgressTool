@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolModelSurvey
+ * (Site) Class ProgressToolModelSurvey
  *
  * Model for front-end survey functionality.
  *

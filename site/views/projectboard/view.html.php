@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * Class ProgressToolViewProjectBoard
+ * (Site) Class ProgressToolViewProjectBoard
  *
  * View for front-end project board functionality.
  *
