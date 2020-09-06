@@ -103,7 +103,7 @@ class ProgressToolControllerSettings extends JControllerForm
         $app->setUserState($context . '.data', null);
 
         // redirect success
-        $this->setRedirect('index.php?option=com_progresstool&view=projectboard', 'New project created successfully');
+        $this->setRedirect('index.php?option=com_progresstool&view=projectboard', 'Project has been updated successfully');
         return true;
     }
 

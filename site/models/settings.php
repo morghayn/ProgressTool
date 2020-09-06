@@ -18,6 +18,36 @@ defined('_JEXEC') or die('Restricted access');
 class ProgressToolModelSettings extends JModelAdmin
 {
     /**
+     * Updates the information of a project. // TODO: document
+     *
+     * @param $data
+     * @return mixed
+     */
+    public function update($data)
+    {
+        $projectID = $data['projectID'];
+        $name = $data['name'];
+        $description = $data['description'];
+        $type = $data['type'];
+
+        $db = JFactory::getDbo();
+        $update = $db->getQuery(true);
+
+        $set = array(
+            $db->quoteName('name') . ' = ' . $db->quote($name),
+            $db->quoteName('description') . ' = ' . $db->quote($description),
+            $db->quoteName('type_id') . ' = ' . $db->quote($type)
+        );
+
+        $update
+            ->update($db->quoteName('#__pt_project'))
+            ->set($set)
+            ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
+
+        return $db->setQuery($update)->execute();
+    }
+
+    /**
      * Returns associated array containing data pertaining to the project specified in the parameters.
      *
      * @param int $projectID the ID used to identify project.
@@ -38,37 +68,6 @@ class ProgressToolModelSettings extends JModelAdmin
             ->setLimit(1);
 
         return $db->setQuery($query)->loadObjectList();
-    }
-
-    /**
-     * Updates the information of a project.
-     *
-     * @param int $projectID ID of the project.
-     * @param string $name updated name.
-     * @param string $description updated description.
-     * @return bool status of whether the update was a success or not.
-     */
-    public function update($data)
-    {
-        $projectID = $data['projectID'];
-        $name = $data['name'];
-        $description = $data['description'];
-        $type = $data['type'];
-
-        $db = JFactory::getDbo();
-        $update = $db->getQuery(true);
-
-        $set = array(
-            $db->quoteName('name') . ' = ' . $db->quote($name),
-            $db->quoteName('description') . ' = ' . $db->quote($description)
-        );
-
-        $update
-            ->update($db->quoteName('#__pt_project'))
-            ->set($set)
-            ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
-
-        return $db->setQuery($update)->execute();
     }
 
     /**

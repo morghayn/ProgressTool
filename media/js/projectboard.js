@@ -18,8 +18,7 @@ function showSpecific(projectID)
     projectBox.style.display = "block";
     projectsBox.style.display = "none";
 
-    let elem = document.getElementById(projectID).innerHTML
-    document.getElementById(`projectBox`).innerHTML = elem;
+    document.getElementById(`projectBox`).innerHTML = document.getElementById(projectID).outerHTML;
 
 }
 
@@ -66,7 +65,6 @@ function activateProject(projectID, projectCount)
             data: {[token]: "1", task: "active", format: "raw", projectID: projectID, projectCount: projectCount},
             success: (result) => {
                 document.getElementById(projectID).outerHTML = result
-                document.getElementById(`projectBox`).innerHTML = result
             },
             error: () => console.log('Failure to perform activateProject(). Contact an dashboard if this failure persists.'),
         }
