@@ -24,9 +24,8 @@ class ProgressToolViewProjectStats extends JViewLegacy
      * @var
      * @var
      * @var
-     * @var
      */
-    protected $projectID, $project, $tasks, $categories, $totals;
+    protected $project, $tasks, $categories, $totals;
 
     /**
      * Renders view.
@@ -42,18 +41,17 @@ class ProgressToolViewProjectStats extends JViewLegacy
         $this->user = JFactory::getUser();
         $this->redirectGuest();
 
-        $this->projectID = $input->get('projectID', 1);
-        $this->project = $model->getProject($this->projectID);
-        $this->handleAuthentication();
+        $projectID = $input->get('projectID', 1);
+        $this->project = $model->getProject($projectID);
+        $this->handleAuthentication($projectID);
 
         $countryID = $this->getCountryID();
-        $this->tasks = $model->getTasks($countryID, $this->projectID);
+        $this->tasks = $model->getTasks($countryID, $projectID);
         $this->categories = $model->getCategories($countryID);
-        $this->totals = $model->getTotals($countryID, $this->projectID);
+        $this->totals = $model->getTotals($countryID, $projectID);
 
-        $this->addStylesheet();
-        $this->addScripts();
         parent::display($tpl);
+        $this->prepareDocument();
     }
 
     /**
@@ -79,9 +77,9 @@ class ProgressToolViewProjectStats extends JViewLegacy
      *
      * @since 0.3.0
      */
-    private function handleAuthentication()
+    private function handleAuthentication($projectID)
     {
-        if (!$this->projectID)
+        if (!$projectID)
         {
             JFactory::getApplication()->redirect(
                 JRoute::_('index.php?option=com_progresstool&view=projectboard', 'You must be logged in to use the Progress Tool.'),
@@ -123,24 +121,15 @@ class ProgressToolViewProjectStats extends JViewLegacy
     }
 
     /**
-     * // TODO: documentation
-     * @since 0.3.0
+     * Prepares document by adding stylesheets and scripts.
+     *
+     * @since 0.5.0
      */
-    private function addStylesheet()
+    private function prepareDocument()
     {
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterChest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/projectstats.css");
-    }
-
-    /**
-     * // TODO: documentation
-     * @since 0.3.0
-     */
-    private function addScripts()
-    {
-        $document = JFactory::getDocument();
-        // TODO: remove $document->addScript(JURI::root() . "media/com_progresstool/js/chart.js");
         $document->addScript(JURI::root() . "media/com_progresstool/js/projectstats.js");
     }
 }

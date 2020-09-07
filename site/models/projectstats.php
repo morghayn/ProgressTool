@@ -71,11 +71,11 @@ class ProgressToolModelProjectStats extends JModelItem
         $db = JFactory::getDbo();
         $getTasks = $db->getQuery(true);
 
-        $columns = array('T.id', 'T.task', 'T.category_id', 'TC.criteria');
+        $columns = array('T.id', 'T.task', 'T.category_id');
 
         $getTasks
             ->select($columns)
-            ->select('COUNT(CH.project_id) AS selected')
+            ->select('IF(TC.criteria <= COUNT(CH.project_id), 1, 0) AS criteria_met')
             ->from($db->quoteName('#__pt_task', 'T'))
             ->innerjoin($db->quoteName('#__pt_task_country', 'TC') . ' ON ' . $db->quoteName('T.id') . ' = ' . $db->quoteName('TC.task_id'))
             ->innerjoin($db->quoteName('#__pt_choice_task', 'CT') . ' ON ' . $db->quoteName('TC.task_id') . ' = ' . $db->quoteName('CT.task_id'))
@@ -159,9 +159,6 @@ class ProgressToolModelProjectStats extends JModelItem
             ->where($db->quotename('CO.country_id') . ' = ' . $db->quote($countryID))
             ->where($db->quoteName('PC.project_id') . ' = ' . $db->quote($projectID))
             ->group('CA.id');
-
-        $debug = $db->replacePrefix((string) $getTotals);
-        var_dump($debug);
 
         return $db->setQuery($getTotals)->loadAssocList('id', 'total');
     }
