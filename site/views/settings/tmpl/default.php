@@ -37,6 +37,10 @@ JHtml::_('behavior.formvalidator');
                 <?php echo $this->form->getLabel('type'); ?>
                 <?php echo $this->form->getInput('type'); ?>
             </div>
+            <div class="test">
+                <?php echo $this->form->getLabel('group'); ?>
+                <?php echo $this->form->getInput('group'); ?>
+            </div>
         </fieldset>
     </div>
 

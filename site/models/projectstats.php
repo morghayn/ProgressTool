@@ -58,11 +58,12 @@ class ProgressToolModelProjectStats extends JModelItem
     }
 
     /**
-     * // TODO documentation here
+     * Retrieves all tasks specific to users country. Includes a column named selected in which the number of choices selected associated with a
+     * specific task are counted.
      *
-     * @param $countryID
-     * @param $projectID
-     * @return array
+     * @param int $countryID the ID of the country.
+     * @param int $projectID the ID of the project in which the selections will be counted.
+     * @return array an array of the tasks grouped by their designated category.
      * @since 0.3.0
      */
     public function getTasks($countryID, $projectID)
@@ -106,10 +107,11 @@ class ProgressToolModelProjectStats extends JModelItem
     }
 
     /**
-     * // TODO documentation here
+     * Retrieves the categories within the progress tool. Returns an additional field -- the total weight among all the choices
+     * within that category.
      *
-     * @param $countryID
-     * @return mixed
+     * @param $countryID the ID of the country.
+     * @return object list of all the categories within the progress tool.
      * @since 0.3.0
      */
     public function getCategories($countryID)
@@ -136,8 +138,8 @@ class ProgressToolModelProjectStats extends JModelItem
     /**
      * // TODO documentation here
      *
-     * @param $countryID
-     * @param $projectID
+     * @param int $countryID the ID of the country.
+     * @param int $projectID the ID of the project.
      * @return mixed
      * @since 0.3.0
      */
@@ -145,11 +147,6 @@ class ProgressToolModelProjectStats extends JModelItem
     {
         $db = JFactory::getDbo();
         $getTotals = $db->getQuery(true);
-
-        $conditions = array(
-            $db->quotename('CO.country_id') . ' = ' . $db->quote($countryID),
-            $db->quoteName('PC.project_id') . ' = ' . $db->quote($projectID)
-        );
 
         $getTotals
             ->select($db->quoteName('CA.id'))
@@ -159,8 +156,12 @@ class ProgressToolModelProjectStats extends JModelItem
             ->innerjoin($db->quoteName('#__pt_question', 'Q') . ' ON ' . $db->quoteName('QC.question_id') . ' = ' . $db->quoteName('Q.id'))
             ->innerjoin($db->quoteName('#__pt_question_country', 'CO') . ' ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('CO.question_id'))
             ->innerjoin($db->quoteName('#__pt_category', 'CA') . ' ON ' . $db->quoteName('Q.category_id') . ' = ' . $db->quoteName('CA.id'))
-            ->where($conditions)
+            ->where($db->quotename('CO.country_id') . ' = ' . $db->quote($countryID))
+            ->where($db->quoteName('PC.project_id') . ' = ' . $db->quote($projectID))
             ->group('CA.id');
+
+        $debug = $db->replacePrefix((string) $getTotals);
+        var_dump($debug);
 
         return $db->setQuery($getTotals)->loadAssocList('id', 'total');
     }

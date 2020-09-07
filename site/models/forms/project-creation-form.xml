@@ -51,9 +51,9 @@
                 type="sql"
                 default="10"
                 label="Associated Group"
-                query="SELECT groupid, groupname FROM #__community_groups_members AS CGM WHERE CGM.memberid"
-                key_field="groupid"
-                value_field="groupname"
+                query="SELECT id, type FROM #__pt_project_type"
+                key_field="id"
+                value_field="name"
                 description="Associate this project with a group page you own or administrate. This will share the project with other owners and administrators of that group."
                 required="false"
         >

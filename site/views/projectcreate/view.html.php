@@ -25,8 +25,13 @@ class ProgressToolViewProjectCreate extends JViewLegacy
      */
     public function display($tpl = null)
     {
+        $user = JFactory::getUser();
+        $model = parent::getModel();
+
         // Get the form to display
         $this->form = $this->get('Form');
+        $groupsQuery = $model->getGroupsQuery($user->id);
+        $this->form->setFieldAttribute('group', 'query', $groupsQuery);
 
         // Call the parent display to display the layout file
         parent::display($tpl);

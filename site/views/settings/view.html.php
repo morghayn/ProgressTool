@@ -25,21 +25,14 @@ class ProgressToolViewSettings extends JViewLegacy
     {
         $model = parent::getModel();
         $input = JFactory::getApplication()->input;
+
         $projectID = $input->get('projectID', 1);
-        //$projectID = 3;
         $project = $model->getProject($projectID)[0];
-        var_dump($project);
-        //
-        $name = $project->name;
-        $description = $project->description;
-        $type = $project->type_id;
-        //
-        //$this->handleAuthentication();
         $assoc = array(
             "projectID" => $projectID,
-            "name" => $name,
-            "description" => $description,
-            "type" => $type
+            "name" => $project->name,
+            "description" => $project->description,
+            "type" => $project->type_id
         );
 
         // Get the form to display
