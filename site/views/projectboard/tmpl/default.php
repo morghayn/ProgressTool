@@ -12,8 +12,6 @@ if (!$this->projects):
 
 else:
 
-    echo $this->loadTemplate('dropdown');
-
     echo '<div id="projectBox"></div>';
 
     echo '<div id="projectsBox">';

@@ -23,6 +23,7 @@ class ProgressToolViewSettings extends JViewLegacy
      */
     public function display($tpl = null)
     {
+        $user = JFactory::getUser();
         $model = parent::getModel();
         $input = JFactory::getApplication()->input;
 
@@ -37,6 +38,8 @@ class ProgressToolViewSettings extends JViewLegacy
 
         // Get the form to display
         $this->form = $this->get('Form');
+        $groupsQuery = $model->getGroupsQuery($user->id);
+        $this->form->setFieldAttribute('group', 'query', $groupsQuery);
         $this->form->bind($assoc);
 
         // Call the parent display to display the layout file

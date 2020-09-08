@@ -26,15 +26,43 @@
     font-weight: 700;
     color: rgb(150, 144, 198);
 }
-
 .projectSelection {
     display: flex;
-    width: 90%;
+    /* width: 90%; */
+    /* margin: 0 auto 1.25rem; */
+    border: 2px solid #0C4DA0;
+    align-items: stretch;
+    /* border-radius: 3px; */
+    /* margin-bottom: 1.25rem; */
+    width: 100%;
+    box-sizing: border-box;
+}
+/*
+.projectSelection {
+    display: flex;
+    width: 92%;
     margin: 0 auto 1.25rem;
     border: 2px solid #0C4DA0;
     align-items: stretch;
+    border-radius: 3px;
 }
-
+*/
+.projectSelection h2 {
+    flex: 1;
+    align-self: center;
+    /* background-color: #0C4DA0; */
+    padding: 0.65rem;
+    font-size: 1.15rem;
+    margin: 0 auto;
+    text-align: center;
+    border-right: 2px solid #0C4DA0;
+    color: #0C4Da0;
+    background: white;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+    line-height: 1;
+}
+/*
 .projectSelection h2 {
     flex: 1;
     align-self: center;
@@ -45,15 +73,14 @@
     margin: 0 auto;
     text-align: center;
 }
-
+*/
 .projectSelection select {
     height: auto;
     flex: 2;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     margin: 0 auto;
     border: 0;
-    /**height: 100%;*/
-    /**align-self: center;*/
+    border-radius: 0;
 }
 
 
@@ -74,6 +101,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .titl {
@@ -260,21 +288,3 @@
         box-shadow: 0 0 0 0 rgba(0,0,0,0);
     }
 }
-
-/** Overriding optionsChest for Inactive Projects to have white text on blue background */
-
-/*
-.optionChest {
-    --outlineColour: #ffffff;
-    --optionColour: #ffffff;
-}
-
-.optionLabel {
-    --labelColour: 255, 255, 255;
-    color: #ffffff;
-}
-
-.option {
-    color: #ffffff;
-}
- */

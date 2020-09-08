@@ -20,7 +20,7 @@ class ProgressToolModelProjectCreate extends JModelAdmin
             'SELECT CG.id, CG.name ' .
             'FROM #__community_groups AS CG ' .
             'INNER JOIN #__community_groups_members AS CGM ON CG.id = CGM.groupid ' .
-            'WHERE memberid = ' . $userID . ' AND CGM.permissions = 1 '
+            'WHERE CGM.memberid = ' . $userID . ' AND CGM.permissions = 1 '
         );
     }
     /**

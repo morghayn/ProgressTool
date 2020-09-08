@@ -57,6 +57,7 @@
                 description="Associate this project with a group page you own or administrate. This will share the project with other owners and administrators of that group."
                 required="false"
         >
+            <option value="0">No group</option>
         </field>
     </fieldset>
 </form>

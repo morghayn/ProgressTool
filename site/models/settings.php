@@ -14,6 +14,16 @@
  */
 class ProgressToolModelSettings extends JModelAdmin
 {
+    public function getGroupsQuery($userID)
+    {
+        return (
+            'SELECT CG.id, CG.name ' .
+            'FROM #__community_groups AS CG ' .
+            'INNER JOIN #__community_groups_members AS CGM ON CG.id = CGM.groupid ' .
+            'WHERE memberid = ' . $userID . ' AND CGM.permissions = 1 '
+        );
+    }
+
     /**
      * Updates the information of a project. // TODO: document
      *
