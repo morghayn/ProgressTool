@@ -34,12 +34,13 @@ class ProgressToolModelProjectCreate extends JModelAdmin
         $name = $data['name'];
         $description = $data['description'];
         $type = $data['type'];
+        $groupID = $data['group'];
 
         $db = JFactory::getDbo();
         $insert = $db->getQuery(true);
 
-        $columns = array('user_id', 'name', 'description', 'type_id');
-        $values = array($userID, $db->quote($name), $db->quote($description), $db->quote($type));
+        $columns = array('user_id', 'group_id', 'name', 'description', 'type_id');
+        $values = array($userID, $db->quote($groupID), $db->quote($name), $db->quote($description), $db->quote($type));
 
         $insert
             ->insert($db->quoteName('#__pt_project'))

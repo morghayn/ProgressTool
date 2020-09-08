@@ -33,7 +33,8 @@ class ProgressToolViewSettings extends JViewLegacy
             "projectID" => $projectID,
             "name" => $project->name,
             "description" => $project->description,
-            "type" => $project->type_id
+            "type" => $project->type_id,
+            "group" => $project->group_id
         );
 
         // Get the form to display

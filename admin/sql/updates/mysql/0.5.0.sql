@@ -469,7 +469,8 @@ VALUES ('Solar'),
 CREATE TABLE `#__pt_project`
 (
     `id`          INT UNSIGNED     NOT NULL AUTO_INCREMENT,
-    `user_id`     INT UNSIGNED     NOT NULL, /* TODO: Foreign key of user table? */
+    `user_id`     INT UNSIGNED     NOT NULL, -- TODO: Foreign key of user table?
+    `group_id`     INT UNSIGNED     NOT NULL, -- TODO: Foreign key of community_groups?
     `name`        VARCHAR(100)     NOT NULL,
     `description` VARCHAR(255),
     `type_id`     TINYINT UNSIGNED NOT NULL,

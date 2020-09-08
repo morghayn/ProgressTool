@@ -36,11 +36,13 @@ class ProgressToolModelSettings extends JModelAdmin
         $name = $data['name'];
         $description = $data['description'];
         $type = $data['type'];
+        $groupID = $data['group'];
 
         $db = JFactory::getDbo();
         $update = $db->getQuery(true);
 
         $set = array(
+            $db->quoteName('group_id') . ' = ' . $db->quote($groupID),
             $db->quoteName('name') . ' = ' . $db->quote($name),
             $db->quoteName('description') . ' = ' . $db->quote($description),
             $db->quoteName('type_id') . ' = ' . $db->quote($type)
@@ -66,7 +68,7 @@ class ProgressToolModelSettings extends JModelAdmin
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
 
-        $columns = array('name', 'description', 'type_id');
+        $columns = array('group_id', 'name', 'description', 'type_id');
 
         $query
             ->select($db->quoteName($columns))

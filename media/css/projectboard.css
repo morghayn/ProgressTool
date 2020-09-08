@@ -89,7 +89,7 @@
 .headC {
     display: flex;
     width: 100%;
-    margin: 0 auto 2.5rem;
+    /* margin: 0 auto 2.5rem; */
 }
 
 .titlC {
@@ -147,26 +147,20 @@
     outline-offset: -2px;
 }
 
-
-.projectContainer {
-    width: 95%;
-    border-radius: 0.15rem;
-    overflow: hidden;
-    box-sizing: border-box;
-    margin: 0 auto 65px;
-}
-
 .projectChest {
     width: 100%;
     display: flex;
     flex: 4;
-    margin: 0 auto;
+    /* margin: 1rem auto 1rem; */
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
     word-break: break-word;
+    margin-top: 50px;
+    /* margin-bottom: 25px; */
 }
 
 .projectDetails, .buttonChest, .projectApproval {
-    margin: 1.0rem;
+    margin-right: 1.0rem;
+    margin-left: 1.0rem;
 }
 
 .projectDetails {
