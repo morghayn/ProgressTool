@@ -19,8 +19,11 @@ class ProgressToolModelSurvey extends JModelItem
      *
      * @since 0.5.0
      */
-    private function authenticate()
+    private function authenticate($userID, $projectID)
     {
+        $db = JFactory::getDbo();
+        $authenticate = $db->getQuery(true);
+
         /**
          * SELECT IF(COUNT(P.id) != 1, 0, 1) AS status
          * FROM `gr7dt_pt_project` AS P
@@ -32,6 +35,19 @@ class ProgressToolModelSurvey extends JModelItem
         // If project exists...
 
         // Then check if user should have access to the project
+        $authenticate
+            ->select('IF(COUNT(P.id) != 1, 0, 1) AS status')
+            ->from($db->quoteName('#__pt_project', 'P'))
+            ->leftjoin($db->quoteName('#__community_groups_members', 'CGM') . ' ON ' . $db->quoteName('P.group_id') . ' = ' . $db->quoteName('CGM.groupid'))
+            ->where(
+                '(' . $db->quoteName('P.id') . ' = ' . $db->quote($projectID) . ' AND ' . $db->quoteName('P.user_id') . ' = ' . $db->quote($userID) . ')' .
+                ' OR ' .
+                '(' . $db->quoteName('P.id') . ' = ' . $db->quote($projectID) . ' AND ' . $db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID) . ' AND ' . $db->quoteName('CGM.permissions') . ' = 1)'
+            )
+            ->setLimit(1);
+
+        //-- 1 = access granted
+        //-- 0 = access denied
 
         $user = JFactory::getUser();
 
