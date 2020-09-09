@@ -91,10 +91,12 @@ VALUES -- Irish
        -- Exclude Ireland
        (11, 3, 'Has there been any meetings with potential partners or mentors?'),
        -- Irish
-       (12, 2, 'Has a preliminary evaluation of the territory been completed? Has an Energy Master Plan been carried out for the community?'),
+       (12, 2,
+        'Has a preliminary evaluation of the territory been completed? Has an Energy Master Plan been carried out for the community?'),
        -- Exclude Ireland
        (13, 2, 'Has a preliminary evaluation of the territory been completed?'),
-       (14, 2, 'Following the preliminary evaluation of the territory, has a decision been made regarding project choice?'),
+       (14, 2,
+        'Following the preliminary evaluation of the territory, has a decision been made regarding project choice?'),
        (15, 2, 'Has a feasibility study been carried out for the selected Renewable Energy Project?'),
        (16, 2, 'Has a land leasing commitment been agreed?'),
        (17, 3, 'Is there a finance plan agreed within the group?'),
@@ -235,7 +237,9 @@ VALUES -- Question 1
 
        -- Question 3
        (9, 3, 'No', 0),
-       (10, 3, 'Yes, regarding the type of governance that would be involved e.g. Co-operative or Sustainable Energy Community with SEAI (SEC)', 1),
+       (10, 3,
+        'Yes, regarding the type of governance that would be involved e.g. Co-operative or Sustainable Energy Community with SEAI (SEC)',
+        1),
        (11, 3, 'Yes, regarding the financial structuring', 1),
        (12, 3, 'Yes, regarding the type of partnerships available and if they would be suitable', 1),
        (13, 3, 'Yes, regarding how to distribute benefits and profits among the local area', 1),
@@ -250,14 +254,18 @@ VALUES -- Question 1
        -- Question 5
        (19, 5, 'No', 0),
        (20, 5, 'No, but there is interest from the community to forms one', 0),
-       (21, 5, 'Yes, there is a leading group that has been democratically organized and formed with members of the local community', 1),
+       (21, 5,
+        'Yes, there is a leading group that has been democratically organized and formed with members of the local community',
+        1),
        (22, 5, 'Yes, legal, technical and financial structuring has been discussed ', 1),
        (23, 5, 'Yes, the goals and the values of the group have been outlined', 1),
        (24, 5, 'Yes, the group has been officially founded as an association', 1),
 
        -- Question 6
        (25, 6, 'No', 0),
-       (26, 6, 'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy', 1),
+       (26, 6,
+        'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy',
+        1),
        (27, 6,
         'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel',
         1),
@@ -266,7 +274,9 @@ VALUES -- Question 1
 
        -- Question 7
        (30, 7, 'No', 0),
-       (31, 7, 'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy', 1),
+       (31, 7,
+        'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy',
+        1),
        (32, 7,
         'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel',
         1),
@@ -469,8 +479,8 @@ VALUES ('Solar'),
 CREATE TABLE `#__pt_project`
 (
     `id`          INT UNSIGNED     NOT NULL AUTO_INCREMENT,
-    `user_id`     INT UNSIGNED     NOT NULL, -- TODO: Foreign key of user table?
-    `group_id`     INT UNSIGNED     NOT NULL, -- TODO: Foreign key of community_groups?
+    `user_id`     INT UNSIGNED     NOT NULL,             -- TODO: Foreign key of user table?
+    `group_id`    INT UNSIGNED     NOT NULL DEFAULT '0', -- TODO: Foreign key of community_groups?
     `name`        VARCHAR(100)     NOT NULL,
     `description` VARCHAR(255),
     `type_id`     TINYINT UNSIGNED NOT NULL,

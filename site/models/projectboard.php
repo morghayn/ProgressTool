@@ -55,7 +55,10 @@ class ProgressToolModelProjectBoard extends JModelItem
             ->select($db->quoteName($columns))
             ->from($db->quoteName('#__pt_project', 'P'))
             ->innerjoin($db->quoteName('#__pt_project_type', 'T') . ' ON P.type_id = T.id')
-            ->where($db->quoteName('user_id') . ' = ' . $db->quote($userID))
+            ->leftjoin($db->quoteName('#__community_groups_members', 'CGM') . ' ON P.group_id = CGM.groupid')
+            ->where(
+                '(' . $db->quoteName('user_id') . ' = ' . $db->quote($userID) . ') OR (' .
+                $db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID) . ' AND ' . $db->quoteName('CGM.permissions') . ' = 1)')
             ->order('P.id DESC');
         // TODO: $query->order('ordering ASC');
 
@@ -140,18 +143,14 @@ class ProgressToolModelProjectBoard extends JModelItem
             ->setLimit(1);
 
         // If selection exists, delete it.
-        if ($db->setQuery($query)->loadResult())
-        {
+        if ($db->setQuery($query)->loadResult()) {
             $delete
                 ->delete($db->quoteName('#__pt_project_approval'))
                 ->where($conditions);
 
             $db->setQuery($delete)->execute();
-        }
-
-        // If selection does not exist, insert it.
-        else
-        {
+        } // If selection does not exist, insert it.
+        else {
             $columns = array('project_id', 'approval_id');
             $values = array($projectID, $approvalID);
 
@@ -208,8 +207,7 @@ class ProgressToolModelProjectBoard extends JModelItem
             ->delete($db->quoteName('#__pt_project_approval'))
             ->where($db->quoteName('project_id') . ' = ' . $projectID);
 
-        if ($db->setQuery($delete)->execute())
-        {
+        if ($db->setQuery($delete)->execute()) {
             $update
                 ->update($db->quoteName('#__pt_project'))
                 ->set($db->quoteName('activated') . ' = 1')

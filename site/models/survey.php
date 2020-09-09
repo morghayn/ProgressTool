@@ -15,6 +15,49 @@
 class ProgressToolModelSurvey extends JModelItem
 {
     /**
+     * Authenticates both user and project. If invalid, user is redirected.
+     *
+     * @since 0.5.0
+     */
+    private function authenticate()
+    {
+        /**
+         * SELECT IF(COUNT(P.id) != 1, 0, 1) AS status
+         * FROM `gr7dt_pt_project` AS P
+         * LEFT JOIN `gr7dt_community_groups_members` AS CGM ON P.group_id = CGM.groupid
+         * WHERE (P.id = 1 AND P.user_id = 749) OR (P.id = 1 AND CGM.memberid = 749 AND CGM.permissions = 1)
+         * LIMIT 1
+         */
+
+        // If project exists...
+
+        // Then check if user should have access to the project
+
+        $user = JFactory::getUser();
+
+        // If project does not exist.
+        if (!$this->project) {
+            JFactory::getApplication()->redirect(
+                JRoute::_('index.php?option=com_progresstool&view=projectboard', 'You must be logged in to use the Progress Tool.'),
+                'You must be logged in to use the Progress Tool'
+            );
+        } // If user is guest.
+        elseif ($user->get('guest')) {
+            $return = urlencode(base64_encode('index.php?option=com_progresstool&view=projectboard'));
+            JFactory::getApplication()->redirect(
+                'index.php?option=com_users&view=login&return=' . $return,
+                'You must be logged in to use the Progress Tool'
+            );
+        } // If user should not have access to the project.
+        elseif ($this->project['user_id'] !== $user->id) {
+            JFactory::getApplication()->redirect(
+                JRoute::_('index.php?option=com_progresstool&view=projectboard', 'You must be logged in to use the Progress Tool.'),
+                'You must be logged in to use the Progress Tool'
+            );
+        }
+    }
+
+    /**
      * Returns the countryID associated with countryString, else if not found returns 1 if not found.
      *
      * @param string $countryString the country name.
@@ -103,8 +146,7 @@ class ProgressToolModelSurvey extends JModelItem
     {
         $groupedChoices = array();
 
-        foreach ($rows as $row)
-        {
+        foreach ($rows as $row) {
             // Grouping by questionID.
             $groupedChoices[$row->question_id][] = $row;
         }
@@ -163,8 +205,7 @@ class ProgressToolModelSurvey extends JModelItem
                 ->where($conditions);
             $db->setQuery($delete)->execute();
             $active = false;
-        }
-        else // Else if selection does not exist, insert it.
+        } else // Else if selection does not exist, insert it.
         {
             $insert
                 ->insert($db->quoteName('#__pt_project_choice'))

@@ -54,21 +54,22 @@ class ProgressToolViewSurvey extends JViewLegacy
     {
         $user = JFactory::getUser();
 
-        // If project does not exist.
-        if (!$this->project)
+        // If user is guest.
+        if ($user->get('guest'))
         {
+        $return = urlencode(base64_encode('index.php?option=com_progresstool&view=projectboard'));
             JFactory::getApplication()->redirect(
-                JRoute::_('index.php?option=com_progresstool&view=projectboard', 'You must be logged in to use the Progress Tool.'),
+                'index.php?option=com_users&view=login&return=' . $return,
                 'You must be logged in to use the Progress Tool'
             );
         }
 
-        // If user is guest.
-        elseif ($user->get('guest'))
+
+        // If project does not exist.
+        elseif (!$this->project)
         {
-            $return = urlencode(base64_encode('index.php?option=com_progresstool&view=projectboard'));
             JFactory::getApplication()->redirect(
-                'index.php?option=com_users&view=login&return=' . $return,
+                JRoute::_('index.php?option=com_progresstool&view=projectboard', 'You must be logged in to use the Progress Tool.'),
                 'You must be logged in to use the Progress Tool'
             );
         }

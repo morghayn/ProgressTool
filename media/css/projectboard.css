@@ -5,7 +5,6 @@
     padding: 1rem;
     margin: 0 auto 3rem;
     width: 95%;
-    /* text-align: center; */
 }
 
 .introductionParagraph a {
@@ -28,29 +27,15 @@
 }
 .projectSelection {
     display: flex;
-    /* width: 90%; */
-    /* margin: 0 auto 1.25rem; */
     border: 2px solid #0C4DA0;
     align-items: stretch;
-    /* border-radius: 3px; */
-    /* margin-bottom: 1.25rem; */
     width: 100%;
     box-sizing: border-box;
 }
-/*
-.projectSelection {
-    display: flex;
-    width: 92%;
-    margin: 0 auto 1.25rem;
-    border: 2px solid #0C4DA0;
-    align-items: stretch;
-    border-radius: 3px;
-}
-*/
+
 .projectSelection h2 {
     flex: 1;
     align-self: center;
-    /* background-color: #0C4DA0; */
     padding: 0.65rem;
     font-size: 1.15rem;
     margin: 0 auto;
@@ -62,18 +47,7 @@
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
     line-height: 1;
 }
-/*
-.projectSelection h2 {
-    flex: 1;
-    align-self: center;
-    color: white;
-    background-color: #0C4DA0;
-    padding: 0.55rem;
-    font-size: 1.3rem;
-    margin: 0 auto;
-    text-align: center;
-}
-*/
+
 .projectSelection select {
     height: auto;
     flex: 2;
@@ -84,34 +58,26 @@
 }
 
 
-
-
 .headC {
     display: flex;
     width: 100%;
-    /* margin: 0 auto 2.5rem; */
 }
 
 .titlC {
-    width: 90%;
+    /*width: 90%;*/
+    flex: auto;
     margin: 0 5% 0 auto;
     background-color: #0C4DA0;
-    /* text-align: center; */
-    /* line-height: 1; */
+    text-align: center;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
 }
 
 .titl {
-    /* width: 90%; */
-    /* margin: 0 auto; */
     padding: 1.05rem;
     font-size: 1.70rem;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
     line-height: 1;
-    /* word-wrap: break-word; */
     font-weight: 600;
     color: #ffffff;
 }
@@ -123,13 +89,11 @@
 .buttonCreate {
     width: 70px;
     height: 70px;
-    /* margin: 0 auto; */
     font-size: 2.55rem;
     color: #ffffff;
     border: none;
     border-radius: 0.2rem;
     background-color: rgba(125, 201, 37, 1);
-    /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif; */
     font-weight: 600;
 }
 
@@ -143,7 +107,7 @@
 
 .buttonCreate:focus {
     outline: thin dotted #444;
-    outline: 5px auto -webkit-focus-ring-color;
+    /* outline: 5px auto -webkit-focus-ring-color; */
     outline-offset: -2px;
 }
 
@@ -151,11 +115,9 @@
     width: 100%;
     display: flex;
     flex: 4;
-    /* margin: 1rem auto 1rem; */
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
     word-break: break-word;
     margin-top: 50px;
-    /* margin-bottom: 25px; */
 }
 
 .projectDetails, .buttonChest, .projectApproval {
@@ -253,17 +215,14 @@
 }
 
 @media only screen and (max-width: 550px) {
-    .projectContainer {
+    .projectChest {
+        flex-direction: column;
         background-color: #0C4DA0;
         border-radius: 10px;
     }
 
     .projectDetails, .buttonChest, .projectApproval {
         margin: 0.5rem;
-    }
-
-    .projectChest {
-        flex-direction: column;
     }
 
     .projectDetails {
