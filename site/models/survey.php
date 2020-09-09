@@ -73,6 +73,29 @@ class ProgressToolModelSurvey extends JModelItem
         }
     }
 
+    // TODO getProject() will be unnecessary once authentication() is complete
+    /**
+     * Returns associated array containing data pertaining to the project specified in the parameters.
+     *
+     * @param int $projectID the ID used to identify project.
+     * @return mixed associated array of data.
+     * @since 0.3.0
+     */
+    public function getProject($projectID)
+    {
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+
+        $columns = array('user_id', 'name', 'activated');
+
+        $query
+            ->select($db->quoteName($columns))
+            ->from($db->quoteName('#__pt_project'))
+            ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
+
+        return $db->setQuery($query)->loadAssoc();
+    }
+
     /**
      * Returns the countryID associated with countryString, else if not found returns 1 if not found.
      *
@@ -168,28 +191,6 @@ class ProgressToolModelSurvey extends JModelItem
         }
 
         return $groupedChoices;
-    }
-
-    /**
-     * Returns associated array containing data pertaining to the project specified in the parameters.
-     *
-     * @param int $projectID the ID used to identify project.
-     * @return mixed associated array of data.
-     * @since 0.3.0
-     */
-    public function getProject($projectID)
-    {
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-
-        $columns = array('user_id', 'name', 'activated');
-
-        $query
-            ->select($db->quoteName($columns))
-            ->from($db->quoteName('#__pt_project'))
-            ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
-
-        return $db->setQuery($query)->loadAssoc();
     }
 
     /**

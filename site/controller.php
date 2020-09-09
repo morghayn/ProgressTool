@@ -37,7 +37,7 @@ class ProgressToolController extends JControllerLegacy
      *
      * @since 0.5.0
      */
-    public function getActiveProjectTemplate()
+    public function getProjectTemplate()
     {
         if (!JSession::checkToken('get'))
         {

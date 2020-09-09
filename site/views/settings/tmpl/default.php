@@ -49,6 +49,8 @@ JHtml::_('behavior.formvalidator');
             <span class="icon-cancel"></span><?php echo ' ' . JText::_('JCANCEL') ?>
         </button>
 
+        <div class="gap"></div>
+
         <button type="button" class="buttonSubmit" onclick="Joomla.submitbutton('settings.update')">
             <span class="icon-ok"></span><?php echo ' ' . JText::_('JSAVE') ?>
         </button>

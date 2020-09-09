@@ -58,14 +58,8 @@ class ProgressToolControllerProjectBoard extends JControllerLegacy
             // All good, process selection.
             else
             {
-                if ($model->processSelection($projectID, $approvalID))
-                {
-                    echo new JResponseJson(true, 'project has been approved.');
-                }
-                else
-                {
-                    echo new JResponseJson(false, 'project does not meet the approval criteria yet.');
-                }
+                $status = $model->processSelection($projectID, $approvalID);
+                echo new JResponseJson($status, ($status ? 'project has been approved.' : 'project does not meet the approval criteria yet.'));
             }
         }
     }

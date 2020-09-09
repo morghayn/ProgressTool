@@ -16,9 +16,9 @@
 
         <div class="todoChest" style="border-color: <?php echo $colourHex; ?>">
 
-            <div class="headingChest" style="background-color: <?php echo $colourHex; ?>; cursor: pointer;"
+            <div class="categoryChest" style="background-color: <?php echo $colourHex; ?>; cursor: pointer;"
                  onclick="opensesame('taskList_<?php echo $this->category->id; ?>')">
-                <div class="heading"><?php echo $name; ?></div>
+                <div class="category"><?php echo $name; ?></div>
             </div>
 
             <div class="taskChest" id="taskList_<?php echo $this->category->id; ?>" style="display: block;">

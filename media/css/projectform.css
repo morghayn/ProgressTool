@@ -89,28 +89,32 @@
     flex: 3;
 }
 
-.projectForm .buttonSubmit, .projectForm .buttonCancel {
-    flex: 1;
+.buttonChest > button {
+    flex: 3;
+    margin-top: 2rem;
     color: white;
     padding: 14px 20px;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
-    margin: 15px;
 }
 
-.projectForm .buttonSubmit {
+.gap {
+    display: block;
+    flex: 1;
+}
+
+.buttonChest .buttonSubmit {
     background-color: rgba(186, 214, 89, 1);
 }
 
-.buttonSubmit:hover {
+.buttonChest .buttonSubmit:hover {
     background-color: rgba(186, 214, 89, 0.5);
 }
 
-.projectForm .buttonCancel {
+.buttonChest .buttonCancel {
     background-color: rgba(220, 20, 60, 1);
 }
 
-.buttonCancel:hover {
+.buttonChest .buttonCancel:hover {
     background-color: rgba(220, 20, 60, 0.5);
 }

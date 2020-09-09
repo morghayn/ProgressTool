@@ -4,7 +4,7 @@ $id = $this->project->id;
 $title = $this->project->name;
 $description = $this->project->description;
 $type = $this->project->type;
-$alt = $this->projectCount % 2 == 0 ? 2 : 1;
+$alt = $this->projectCount % 2 == 0 ? 2 : 0;
 
 ?>
 
@@ -23,7 +23,9 @@ $alt = $this->projectCount % 2 == 0 ? 2 : 1;
         </div>
     </div>
 
-    <div class="buttonChest" style="order: <?php echo $alt == 2 ? 1 : $alt; ?>;">
+    <div class="gap"></div>
+
+    <div class="buttonChest" style="order: <?php echo $alt == 2 ? 0 : 2; ?>;">
         <button class="surveyButton" onclick="surveyRedirect(<?php echo $id; ?>)">
             Survey
         </button>

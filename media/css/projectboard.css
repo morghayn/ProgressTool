@@ -1,30 +1,3 @@
-.introductionParagraph {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    border: 1px dotted #000;
-    padding: 1rem;
-    margin: 0 auto 3rem;
-    width: 95%;
-}
-
-.introductionParagraph a {
-    font-weight: 700;
-}
-
-.introductionParagraph .people {
-    font-weight: 700;
-    color: rgb(247, 165, 138);
-}
-
-.introductionParagraph .technology {
-    font-weight: 700;
-    color: rgb(149, 208, 171);
-}
-
-.introductionParagraph .finance {
-    font-weight: 700;
-    color: rgb(150, 144, 198);
-}
 .projectSelection {
     display: flex;
     border: 2px solid #0C4DA0;
@@ -36,25 +9,26 @@
 .projectSelection h2 {
     flex: 1;
     align-self: center;
-    padding: 0.65rem;
-    font-size: 1.15rem;
+    padding: 0.85rem;
+    font-size: 1.25rem;
     margin: 0 auto;
     text-align: center;
     border-right: 2px solid #0C4DA0;
     color: #0C4Da0;
     background: white;
     font-weight: 600;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Open Sans,Ubuntu,Fira Sans,Helvetica Neue,sans-serif;
     line-height: 1;
 }
 
 .projectSelection select {
     height: auto;
     flex: 2;
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     margin: 0 auto;
     border: 0;
     border-radius: 0;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Open Sans,Ubuntu,Fira Sans,Helvetica Neue,sans-serif;
 }
 
 
@@ -92,7 +66,6 @@
     font-size: 2.55rem;
     color: #ffffff;
     border: none;
-    border-radius: 0.2rem;
     background-color: rgba(125, 201, 37, 1);
     font-weight: 600;
 }
@@ -120,17 +93,11 @@
     margin-top: 50px;
 }
 
-.projectDetails, .buttonChest, .projectApproval {
-    margin-right: 1.0rem;
-    margin-left: 1.0rem;
-}
-
 .projectDetails {
     order: 1;
-    flex: 4;
+    flex: 7;
     padding: 1rem;
 
-    border-radius: 10px;
     box-sizing: border-box;
     box-shadow: 4px 4px 17px 0 rgba(0,0,0,0.1);
 
@@ -161,7 +128,6 @@
     display: flex;
     flex-direction: column;
 
-    border-radius: 10px;
     box-sizing: border-box;
     box-shadow: 4px 4px 17px 0 rgba(0,0,0,0.1);
     color: white;
@@ -174,9 +140,15 @@
     flex: 1;
 }
 
+.gap {
+    display: block;
+    flex: 1;
+    order: 1;
+}
+
 .buttonChest {
     order: 2;
-    flex: 2;
+    flex: 4;
     display: flex;
     flex-direction: column;
 }
@@ -185,7 +157,6 @@
     flex: 1;
     margin-top: 10px;
     margin-bottom: 10px;
-    border-radius: 10px;
     border: none;
     font-size: 1.10rem;
     padding: 0.95rem;
@@ -215,10 +186,13 @@
 }
 
 @media only screen and (max-width: 550px) {
+    .gap {
+        display: none;
+    }
+
     .projectChest {
         flex-direction: column;
         background-color: #0C4DA0;
-        border-radius: 10px;
     }
 
     .projectDetails, .buttonChest, .projectApproval {

@@ -128,8 +128,9 @@ class ProgressToolViewProjectStats extends JViewLegacy
     private function prepareDocument()
     {
         $document = JFactory::getDocument();
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterChest.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterchest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/projectstats.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/introductory.css");
         $document->addScript(JURI::root() . "media/com_progresstool/js/projectstats.js");
     }
 }

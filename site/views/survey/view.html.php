@@ -117,9 +117,10 @@ class ProgressToolViewSurvey extends JViewLegacy
     private function prepareDocument()
     {
         $document = JFactory::getDocument();
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterChest.css");
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/optionsChest.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterchest.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/optionschest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/survey.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/introductory.css");
         $document->addScript(JURI::root() . "media/com_progresstool/js/survey.js");
     }
 }
