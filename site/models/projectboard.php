@@ -56,9 +56,9 @@ class ProgressToolModelProjectBoard extends JModelItem
             ->from($db->quoteName('#__pt_project', 'P'))
             ->innerjoin($db->quoteName('#__pt_project_type', 'T') . ' ON P.type_id = T.id')
             ->leftjoin($db->quoteName('#__community_groups_members', 'CGM') . ' ON P.group_id = CGM.groupid')
-            ->where(
-                '(' . $db->quoteName('user_id') . ' = ' . $db->quote($userID) . ') OR (' .
-                $db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID) . ' AND ' . $db->quoteName('CGM.permissions') . ' = 1)')
+            ->where($db->quoteName('user_id') . ' = ' . $db->quote($userID), 'OR')
+            ->where($db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID) . ' AND ' . $db->quoteName('CGM.permissions') . ' = 1')
+            ->group($db->quoteName($columns))
             ->order('P.id DESC');
         // TODO: $query->order('ordering ASC');
 
@@ -161,6 +161,8 @@ class ProgressToolModelProjectBoard extends JModelItem
 
             $db->setQuery($insert)->execute();
         }
+
+        return $this->isProjectApproved($projectID);
     }
 
     /**
@@ -187,7 +189,7 @@ class ProgressToolModelProjectBoard extends JModelItem
         $numberOfQuestions = $db->setQuery($countQuestions)->loadResult();
         $numberOfSelections = $db->setQuery($countSelections)->loadResult();
 
-        return ($numberOfQuestions == $numberOfSelections);
+        return ($numberOfQuestions == $numberOfSelections) ? $this->activateProject($projectID) : false;
     }
 
     /**

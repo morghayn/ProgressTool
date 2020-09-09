@@ -18,8 +18,7 @@ function showSpecific(projectID)
     projectBox.style.display = "block";
     projectsBox.style.display = "none";
 
-    document.getElementById(`projectBox`).innerHTML = document.getElementById(projectID).outerHTML;
-
+    document.getElementById(`projectBox`).innerHTML = getActiveProjectTemplate(projectID, 1);//document.getElementById(projectID).outerHTML;
 }
 
 /**
@@ -40,7 +39,7 @@ function approvalSelect(projectID, approvalID, projectCount)
             {
                 if (result.data === true)
                 {
-                    activateProject(projectID, projectCount)
+                    document.getElementById(projectID).outerHTML = getActiveProjectTemplate(projectID, projectCount)
                 }
             },
             error: () => console.log('Failure to perform affirm(). Contact an dashboard if this failure persists.'),
@@ -56,19 +55,29 @@ function approvalSelect(projectID, approvalID, projectCount)
  * @param projectID the ID of the approved project.
  * @param projectCount the current position of the project on the project board. Used for the alternating design.
  */
-function activateProject(projectID, projectCount)
+function getActiveProjectTemplate(projectID, projectCount)
 {
     let token = jQuery("#token").attr("name");
+    let html = '';
 
     jQuery.ajax(
         {
-            data: {[token]: "1", task: "active", format: "raw", projectID: projectID, projectCount: projectCount},
-            success: (result) => {
-                document.getElementById(projectID).outerHTML = result
-            },
-            error: () => console.log('Failure to perform activateProject(). Contact an dashboard if this failure persists.'),
+            data: {[token]: "1", task: "getActiveProjectTemplate", format: "raw", projectID: projectID, projectCount: projectCount},
+            async: false,
+            success:
+                function (result)
+                {
+                    html = result
+                },
+            error:
+                function ()
+                {
+                    html = '<h2>Failure to perform activateProject(). Contact an administrator if this failure persists.</h2>'
+                }
         }
     );
+
+    return html;
 }
 
 /* Redirects */

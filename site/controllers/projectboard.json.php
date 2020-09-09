@@ -58,11 +58,8 @@ class ProgressToolControllerProjectBoard extends JControllerLegacy
             // All good, process selection.
             else
             {
-                $model->processSelection($projectID, $approvalID);
-
-                if ($model->isProjectApproved($projectID))
+                if ($model->processSelection($projectID, $approvalID))
                 {
-                    $model->activateProject($projectID);
                     echo new JResponseJson(true, 'project has been approved.');
                 }
                 else

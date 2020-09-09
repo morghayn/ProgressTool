@@ -8,19 +8,32 @@ class ProgressToolViewProjectBoard extends JViewLegacy
     /**
      * @var
      * @var
+     * @var
+     * @var
      */
-    protected $project, $projectCount;
+    protected $project, $projectCount, $inactiveProjects, $approvalQuestions;
 
     function display($tpl = null)
     {
-        //$user = JFactory::getUser();
         $model = parent::getModel('projectboard');
-        $input = JFactory::getApplication()->input;
+        $user = JFactory::getUser();
+        $userID = $user->id;
 
+        $input = JFactory::getApplication()->input;
         $projectID = $input->getInt('projectID', 0);
         $this->projectCount = $input->getInt('projectCount', 0);
+
         $this->project = $model->getProject($projectID);
 
-        parent::display('active');
+        if ($this->project->activated == 1)
+        {
+            parent::display('active');
+        }
+        else
+        {
+            $this->inactiveProjects = $model->getInactiveProjects($userID);
+            $this->approvalQuestions = $model->getApprovalQuestions();
+            parent::display('inactive');
+        }
     }
 }
