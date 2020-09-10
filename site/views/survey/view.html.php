@@ -33,8 +33,9 @@ class ProgressToolViewSurvey extends JViewLegacy
         $model = parent::getModel();
         $input = JFactory::getApplication()->input;
         $this->projectID = $input->get('projectID', 1);
-        $this->project = $model->getProject($this->projectID);
-        $this->handleAuthentication();
+       // $test = JLoader::import('Authenticator', JPATH_BASE . '/components/com_progresstool/helpers/authenticator.php');
+        JLoader::register('Authenticator',  JPATH_BASE . '/components/com_progresstool/helpers/authenticator.php');
+        Authenticator::authenticate($this->projectID);
 
         $countryID = $this->getCountryID();
         $this->questions = $model->getQuestions($countryID);
@@ -43,45 +44,6 @@ class ProgressToolViewSurvey extends JViewLegacy
         // Display the view
         parent::display($tpl);
         $this->prepareDocument();
-    }
-
-    /**
-     * Authenticates both user and project. If invalid, user is redirected.
-     *
-     * @since 0.3.0
-     */
-    private function handleAuthentication()
-    {
-        $user = JFactory::getUser();
-
-        // If user is guest.
-        if ($user->get('guest'))
-        {
-        $return = urlencode(base64_encode('index.php?option=com_progresstool&view=projectboard'));
-            JFactory::getApplication()->redirect(
-                'index.php?option=com_users&view=login&return=' . $return,
-                'You must be logged in to use the Progress Tool'
-            );
-        }
-
-
-        // If project does not exist.
-        elseif (!$this->project)
-        {
-            JFactory::getApplication()->redirect(
-                JRoute::_('index.php?option=com_progresstool&view=projectboard', 'You must be logged in to use the Progress Tool.'),
-                'You must be logged in to use the Progress Tool'
-            );
-        }
-
-        // If user should not have access to the project.
-        elseif ($this->project['user_id'] !== $user->id)
-        {
-            JFactory::getApplication()->redirect(
-                JRoute::_('index.php?option=com_progresstool&view=projectboard', 'You must be logged in to use the Progress Tool.'),
-                'You must be logged in to use the Progress Tool'
-            );
-        }
     }
 
     /**

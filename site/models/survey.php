@@ -15,88 +15,6 @@
 class ProgressToolModelSurvey extends JModelItem
 {
     /**
-     * Authenticates both user and project. If invalid, user is redirected.
-     *
-     * @since 0.5.0
-     */
-    private function authenticate($userID, $projectID)
-    {
-        $db = JFactory::getDbo();
-        $authenticate = $db->getQuery(true);
-
-        /**
-         * SELECT IF(COUNT(P.id) != 1, 0, 1) AS status
-         * FROM `gr7dt_pt_project` AS P
-         * LEFT JOIN `gr7dt_community_groups_members` AS CGM ON P.group_id = CGM.groupid
-         * WHERE (P.id = 1 AND P.user_id = 749) OR (P.id = 1 AND CGM.memberid = 749 AND CGM.permissions = 1)
-         * LIMIT 1
-         */
-
-        // If project exists...
-
-        // Then check if user should have access to the project
-        $authenticate
-            ->select('IF(COUNT(P.id) != 1, 0, 1) AS status')
-            ->from($db->quoteName('#__pt_project', 'P'))
-            ->leftjoin($db->quoteName('#__community_groups_members', 'CGM') . ' ON ' . $db->quoteName('P.group_id') . ' = ' . $db->quoteName('CGM.groupid'))
-            ->where(
-                '(' . $db->quoteName('P.id') . ' = ' . $db->quote($projectID) . ' AND ' . $db->quoteName('P.user_id') . ' = ' . $db->quote($userID) . ')' .
-                ' OR ' .
-                '(' . $db->quoteName('P.id') . ' = ' . $db->quote($projectID) . ' AND ' . $db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID) . ' AND ' . $db->quoteName('CGM.permissions') . ' = 1)'
-            )
-            ->setLimit(1);
-
-        //-- 1 = access granted
-        //-- 0 = access denied
-
-        $user = JFactory::getUser();
-
-        // If project does not exist.
-        if (!$this->project) {
-            JFactory::getApplication()->redirect(
-                JRoute::_('index.php?option=com_progresstool&view=projectboard', 'You must be logged in to use the Progress Tool.'),
-                'You must be logged in to use the Progress Tool'
-            );
-        } // If user is guest.
-        elseif ($user->get('guest')) {
-            $return = urlencode(base64_encode('index.php?option=com_progresstool&view=projectboard'));
-            JFactory::getApplication()->redirect(
-                'index.php?option=com_users&view=login&return=' . $return,
-                'You must be logged in to use the Progress Tool'
-            );
-        } // If user should not have access to the project.
-        elseif ($this->project['user_id'] !== $user->id) {
-            JFactory::getApplication()->redirect(
-                JRoute::_('index.php?option=com_progresstool&view=projectboard', 'You must be logged in to use the Progress Tool.'),
-                'You must be logged in to use the Progress Tool'
-            );
-        }
-    }
-
-    // TODO getProject() will be unnecessary once authentication() is complete
-    /**
-     * Returns associated array containing data pertaining to the project specified in the parameters.
-     *
-     * @param int $projectID the ID used to identify project.
-     * @return mixed associated array of data.
-     * @since 0.3.0
-     */
-    public function getProject($projectID)
-    {
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-
-        $columns = array('user_id', 'name', 'activated');
-
-        $query
-            ->select($db->quoteName($columns))
-            ->from($db->quoteName('#__pt_project'))
-            ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
-
-        return $db->setQuery($query)->loadAssoc();
-    }
-
-    /**
      * Returns the countryID associated with countryString, else if not found returns 1 if not found.
      *
      * @param string $countryString the country name.
@@ -185,7 +103,8 @@ class ProgressToolModelSurvey extends JModelItem
     {
         $groupedChoices = array();
 
-        foreach ($rows as $row) {
+        foreach ($rows as $row)
+        {
             // Grouping by questionID.
             $groupedChoices[$row->question_id][] = $row;
         }
@@ -222,7 +141,8 @@ class ProgressToolModelSurvey extends JModelItem
                 ->where($conditions);
             $db->setQuery($delete)->execute();
             $active = false;
-        } else // Else if selection does not exist, insert it.
+        }
+        else // Else if selection does not exist, insert it.
         {
             $insert
                 ->insert($db->quoteName('#__pt_project_choice'))

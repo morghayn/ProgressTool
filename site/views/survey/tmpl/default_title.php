@@ -8,7 +8,7 @@
 
     <div class="titlC">
         <div class="titl">
-            Project: <?php echo $this->project['name']; ?>
+            Progress Survey
         </div>
     </div>
 
