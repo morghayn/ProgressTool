@@ -51,42 +51,70 @@ class ProgressToolModelProjectBoard extends JModelItem
 
         $columns = array('P.id', 'P.name', 'P.description', 'T.type', 'P.activated');
 
+        // conditions for the query.
+        $where = $db->quoteName('P.user_id') . ' = ' . $db->quote($userID);
+        $orwhere =
+            array(
+                $db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID),
+                $db->quoteName('CGM.permissions') . ' = 1'
+            );
+
         $query
             ->select($db->quoteName($columns))
             ->from($db->quoteName('#__pt_project', 'P'))
-            ->innerjoin($db->quoteName('#__pt_project_type', 'T') . ' ON P.type_id = T.id')
             ->leftjoin($db->quoteName('#__community_groups_members', 'CGM') . ' ON P.group_id = CGM.groupid')
-            ->where($db->quoteName('user_id') . ' = ' . $db->quote($userID), 'OR')
-            ->where($db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID) . ' AND ' . $db->quoteName('CGM.permissions') . ' = 1')
-            ->group($db->quoteName($columns))
+            ->innerjoin($db->quoteName('#__pt_project_type', 'T') . ' ON P.type_id = T.id')
+            ->where($where)
+            ->orwhere($orwhere)
+            ->group($db->quoteName('P.id'))
             ->order('P.id DESC');
-        // TODO: $query->order('ordering ASC');
+        /*
+         * Note: for some reason the queries return duplicates on the production site not on my local site
+         * So we must group by projectID to avoid duplicates. I am not aware what is causing this duplication
+         */
 
         return $db->setQuery($query)->loadObjectList();
     }
 
     /**
-     * Returns all inactive projects and their currently active approval selections belonging to a user.
+     * Returns all approval selections made by all inactive projects associated with a user.
      *
      * @param int $userID the ID of the user.
-     * @return array an array of inactive projects and their currently active selections.
+     * @return array an array of approval selections made by all inactive projects associated with a user.
      */
-    public function getInactiveProjects($userID)
+    public function getProjectApprovalSelections($userID)
     {
+        // TODO: fix
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
 
         $columns = array('A.project_id', 'A.approval_id');
-        $conditions = array(
-            $db->quoteName('P.user_id') . ' = ' . $db->quote($userID),
-            $db->quoteName('P.activated') . ' = 0'
-        );
+
+        // conditions for the query.
+        $where =
+            array(
+                $db->quoteName('P.activated') . ' = 0',
+                $db->quoteName('user_id') . ' = ' . $db->quote($userID)
+            );
+        $orwhere =
+            array(
+                $db->quoteName('P.activated') . ' = 0',
+                $db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID),
+                $db->quoteName('CGM.permissions') . ' = 1'
+            );
 
         $query
             ->select($db->quoteName($columns))
             ->from($db->quoteName('#__pt_project', 'P'))
             ->innerjoin($db->quoteName('#__pt_project_approval') . ' AS A ON P.id = A.project_id')
-            ->where($conditions);
+            ->leftjoin($db->quoteName('#__community_groups_members', 'CGM') . ' ON P.group_id = CGM.groupid')
+            ->where($where)
+            ->orwhere($orwhere)
+            ->group($db->quoteName('P.id'));
+        /*
+         * Note: for some reason the queries return duplicates on the production site not on my local site
+         * So we must group by projectID to avoid duplicates. I am not aware what is causing this duplication
+         */
 
         $rows = $db->setQuery($query)->loadObjectList();
         $grouped = array();
@@ -143,14 +171,16 @@ class ProgressToolModelProjectBoard extends JModelItem
             ->setLimit(1);
 
         // If selection exists, delete it.
-        if ($db->setQuery($query)->loadResult()) {
+        if ($db->setQuery($query)->loadResult())
+        {
             $delete
                 ->delete($db->quoteName('#__pt_project_approval'))
                 ->where($conditions);
 
             $db->setQuery($delete)->execute();
         } // If selection does not exist, insert it.
-        else {
+        else
+        {
             $columns = array('project_id', 'approval_id');
             $values = array($projectID, $approvalID);
 
@@ -209,7 +239,8 @@ class ProgressToolModelProjectBoard extends JModelItem
             ->delete($db->quoteName('#__pt_project_approval'))
             ->where($db->quoteName('project_id') . ' = ' . $projectID);
 
-        if ($db->setQuery($delete)->execute()) {
+        if ($db->setQuery($delete)->execute())
+        {
             $update
                 ->update($db->quoteName('#__pt_project'))
                 ->set($db->quoteName('activated') . ' = 1')

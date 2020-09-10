@@ -16,10 +16,10 @@ class ProgressToolViewProjectBoard extends JViewLegacy
 {
     /**
      * @var object list containing projects of the current user.
-     * @var object list containing inactive projects of the current user.
+     * @var array containing all approval selections made by the inactive projects associated with a user.
      * @var object list containing approval questions for inactive projects
      */
-    protected $projects, $inactiveProjects, $approvalQuestions;
+    protected $projects, $projectApprovalSelections, $approvalQuestions;
 
     /**
      * @var
@@ -40,7 +40,7 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         $model = parent::getModel();
 
         $this->projects = $model->getProjects($userID);
-        $this->inactiveProjects = $model->getInactiveProjects($userID);
+        $this->projectApprovalSelections = $model->getProjectApprovalSelections($userID);
         $this->approvalQuestions = $model->getApprovalQuestions();
 
         parent::display($tpl);

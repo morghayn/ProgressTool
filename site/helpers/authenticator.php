@@ -34,12 +34,26 @@ abstract class Authenticator
         $db = JFactory::getDbo();
         $checkAccess = $db->getQuery(true);
 
+        // conditions for the query.
+        $where =
+            array(
+                $db->quoteName('P.id') . ' = ' . $db->quote($projectID),
+                $db->quoteName('P.user_id') . ' = ' . $db->quote($userID)
+            );
+        $orwhere =
+            array(
+                $db->quoteName('P.id') . ' = ' . $db->quote($projectID),
+                $db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID),
+                $db->quoteName('CGM.permissions') . ' = 1'
+
+            );
+
         $checkAccess
             ->select('IF(COUNT(P.id) < 1, 0, 1) AS status')
             ->from($db->quoteName('#__pt_project', 'P'))
             ->leftjoin($db->quoteName('#__community_groups_members', 'CGM') . ' ON ' . $db->quoteName('P.group_id') . ' = ' . $db->quoteName('CGM.groupid'))
-            ->where('(' . $db->quoteName('P.id') . ' = ' . $db->quote($projectID) . ' AND ' . $db->quoteName('P.user_id') . ' = ' . $db->quote($userID) . ')', 'OR')
-            ->where('(' . $db->quoteName('P.id') . ' = ' . $db->quote($projectID) . ' AND ' . $db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID) . ' AND ' . $db->quoteName('CGM.permissions') . ' = 1)');
+            ->where($where)
+            ->orwhere($orwhere);
 
         //-- 1 = access granted //-- 0 = access denied
         return $db->setQuery($checkAccess)->loadResult() == 1;

@@ -15,27 +15,6 @@
 class ProgressToolModelProjectStats extends JModelItem
 {
     /**
-     * Returns the countryID associated with countryString, else if not found returns 1 if not found.
-     *
-     * @param string $countryString the country name.
-     * @return int the countryID.
-     * @since 0.3.0
-     */
-    public function getCountryID($countryString)
-    {
-        $db = JFactory::getDbo();
-        $getCountryID = $db->getQuery(true);
-
-        $getCountryID
-            ->select($db->quoteName('C.id'))
-            ->from($db->quoteName('#__pt_country', 'C'))
-            ->where($db->quoteName('C.country') . ' LIKE ' . $db->quote($countryString));
-
-        $countryID = $db->setQuery($getCountryID)->loadResult();
-        return is_null($countryID) ? 1 : $countryID;
-    }
-
-    /**
      * Retrieves all tasks specific to users country. Includes a column named selected in which the number of choices selected associated with a
      * specific task are counted.
      *

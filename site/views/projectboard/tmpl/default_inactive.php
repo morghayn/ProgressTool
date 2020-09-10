@@ -1,8 +1,13 @@
-<?php defined('_JEXEC') or die; ?>
+<?php
+
+defined('_JEXEC') or die;
+$alt = $this->projectCount % 2 == 0 ? 2 : 0;
+
+?>
 
 <div class="projectChest" id="<?php echo $this->project->id; ?>">
 
-    <div class="projectApproval">
+    <div class="projectApproval" style="order: <?php echo $alt; ?>;">
         <div class="projectTitle">
             <?php echo $this->project->name; ?>
         </div>
@@ -15,8 +20,11 @@
             <?php foreach ($this->approvalQuestions as $question):
                 $param = $this->project->id . ',' . $question->id . ',' . $this->projectCount;
                 $checkStr =
-                    array_key_exists($this->project->id, $this->inactiveProjects)
-                        ? array_key_exists($question->id, $this->inactiveProjects[$this->project->id]) ? 'checked' : '' : '';
+                    array_key_exists($this->project->id, $this->projectApprovalSelections)
+                        ? array_key_exists($question->id, $this->projectApprovalSelections[$this->project->id])
+                        ? 'checked'
+                        : ''
+                        : '';
                 ?>
 
                 <label class="optionChest" style="--outlineColour: #ffffff; --optionColour: #ffffff;">
@@ -32,7 +40,9 @@
         </div>
     </div>
 
-    <div class="buttonChest">
+    <div class="gap"></div>
+
+    <div class="buttonChest" style="order: <?php echo $alt == 2 ? 0 : 2; ?>;">
         <button class="approvalButton" onclick="resourceRedirect()">
             Helpful Resources
         </button>

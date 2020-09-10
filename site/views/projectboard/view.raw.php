@@ -6,23 +6,21 @@ jimport('joomla.application.component.view');
 class ProgressToolViewProjectBoard extends JViewLegacy
 {
     /**
-     * @var
-     * @var
-     * @var
+     * @var object list comprising of data pertaining to the project.
+     * @var int position of the project on the project board.
+     * @var object list of all inactive projects linked to a user.
      * @var
      */
-    protected $project, $projectCount, $inactiveProjects, $approvalQuestions;
+    protected $project, $projectCount, $projectApprovalSelections, $approvalQuestions;
 
     function display($tpl = null)
     {
         $model = parent::getModel('projectboard');
-        $user = JFactory::getUser();
-        $userID = $user->id;
+        $userID = JFactory::getUser()->id;
 
         $input = JFactory::getApplication()->input;
         $projectID = $input->getInt('projectID', 0);
         $this->projectCount = $input->getInt('projectCount', 0);
-
         $this->project = $model->getProject($projectID);
 
         if ($this->project->activated == 1)
@@ -31,7 +29,7 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         }
         else
         {
-            $this->inactiveProjects = $model->getInactiveProjects($userID);
+            $this->projectApprovalSelections = $model->getProjectApprovalSelections($userID);
             $this->approvalQuestions = $model->getApprovalQuestions();
             parent::display('inactive');
         }

@@ -32,44 +32,19 @@ class ProgressToolViewSurvey extends JViewLegacy
     {
         $model = parent::getModel();
         $input = JFactory::getApplication()->input;
-        $this->projectID = $input->get('projectID', 1);
-       // $test = JLoader::import('Authenticator', JPATH_BASE . '/components/com_progresstool/helpers/authenticator.php');
-        //JFactory::getApplication()->enqueueMessage(JPATH_BASE . '/components/com_progresstool/helpers/authenticator.php');
+        $this->projectID = $input->getInt('projectID', 0);
 
         JLoader::register('Authenticator',  JPATH_BASE . '/components/com_progresstool/helpers/authenticator.php');
         Authenticator::authenticate($this->projectID);
-        $countryID = $this->getCountryID();
+
+        JLoader::register('getCountry',  JPATH_BASE . '/components/com_progresstool/helpers/getCountry.php');
+        $countryID = getCountry::getCountryID();
+
         $this->questions = $model->getQuestions($countryID);
         $this->choices = $model->getChoices($this->projectID, $countryID);
 
-        // Display the view
         parent::display($tpl);
         $this->prepareDocument();
-    }
-
-    /**
-     * Returns countryID of the current user. This function is intended to be used in conjunction with JomSocial. If JomSocial is not present,
-     * it will instead return 0.
-     *
-     * @return int the countryID for the current user. If JomSocial is not present, it will return '0'.
-     * @since 0.3.0
-     */
-    private function getCountryID()
-    {
-        if (class_exists('CFactory'))
-        {
-            JFactory::getLanguage()->load('com_community.country', JPATH_SITE, 'en-GB', true);
-            $profileCountry = CFactory::getUser()->getInfo('FIELD_COUNTRY');
-
-            $country = JText::_($profileCountry);
-            return parent::getModel()->getCountryID($country);
-        }
-        else // for testing purposes
-        {
-            $country = "Ireland";
-            return parent::getModel()->getCountryID($country);
-            // TODO: return 0 once testing is complete.
-        }
     }
 
     /**
