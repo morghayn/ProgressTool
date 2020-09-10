@@ -15,11 +15,13 @@ class ProgressToolViewProjectBoard extends JViewLegacy
 
     function display($tpl = null)
     {
-        $model = parent::getModel('projectboard');
-        $userID = JFactory::getUser()->id;
-
         $input = JFactory::getApplication()->input;
         $projectID = $input->getInt('projectID', 0);
+
+        JLoader::register('Authenticator',  JPATH_BASE . '/components/com_progresstool/helpers/authenticator.php');
+        Authenticator::authenticate($projectID);
+
+        $model = parent::getModel('projectboard');
         $this->projectCount = $input->getInt('projectCount', 0);
         $this->project = $model->getProject($projectID);
 
@@ -29,6 +31,7 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         }
         else
         {
+            $userID = JFactory::getUser()->id;
             $this->projectApprovalSelections = $model->getProjectApprovalSelections($userID);
             $this->approvalQuestions = $model->getApprovalQuestions();
             parent::display('inactive');
