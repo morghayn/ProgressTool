@@ -76,7 +76,7 @@ class ProgressToolModelSettings extends JModelAdmin
             ->where($db->quoteName('id') . ' = ' . $db->quote($projectID))
             ->setLimit(1);
 
-        $project =  $db->setQuery($query)->loadObjectList()[0];
+        $project = $db->setQuery($query)->loadObjectList()[0];
         return array(
             "projectID" => $projectID,
             "name" => $project->name,
@@ -108,7 +108,8 @@ class ProgressToolModelSettings extends JModelAdmin
             )
         );
 
-        if (empty($form)) {
+        if (empty($form))
+        {
             $errors = $this->getErrors();
             throw new Exception(implode("\n", $errors), 500);
         }

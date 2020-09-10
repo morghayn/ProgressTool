@@ -15,24 +15,6 @@
 class ProgressToolController extends JControllerLegacy
 {
     /**
-     * Processes a survey choice selection request.
-     * Choice selections are sent from the Survey.
-     *
-     * @since 0.3.0
-     */
-    public function surveySelect()
-    {
-        if (!JSession::checkToken('get'))
-        {
-            echo new JResponseJson(null, JText::_('JINVALID_TOKEN'), true);
-        }
-        else
-        {
-            parent::display();
-        }
-    }
-
-    /**
      * Generates HTML for a newly activated project so that it can be updated without a redirect.
      *
      * @since 0.5.0

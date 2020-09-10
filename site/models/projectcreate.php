@@ -23,6 +23,7 @@ class ProgressToolModelProjectCreate extends JModelAdmin
             'WHERE CGM.memberid = ' . $userID . ' AND CGM.permissions = 1 '
         );
     }
+
     /**
      * Overriding SAVE method
      * @param array $data (data from form)
@@ -72,7 +73,8 @@ class ProgressToolModelProjectCreate extends JModelAdmin
             )
         );
 
-        if (empty($form)) {
+        if (empty($form))
+        {
             $errors = $this->getErrors();
             throw new Exception(implode("\n", $errors), 500);
         }

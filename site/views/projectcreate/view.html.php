@@ -17,26 +17,24 @@ class ProgressToolViewProjectCreate extends JViewLegacy
     protected $form = null;
 
     /**
-     * Display the Hello World view
+     * Display the project creator view.
      *
      * @param string $tpl The name of the layout file to parse.
-     *
      * @return  void
      */
     public function display($tpl = null)
     {
-        $user = JFactory::getUser();
-        $model = parent::getModel();
+        JLoader::register('Authenticator',  JPATH_BASE . '/components/com_progresstool/helpers/authenticator.php');
+        Authenticator::redirectGuests();
 
-        // Get the form to display
+        $model = parent::getModel();
+        $userID = JFactory::getUser()->id;
+        $groupsQuery = $model->getGroupsQuery($userID);
+
         $this->form = $this->get('Form');
-        $groupsQuery = $model->getGroupsQuery($user->id);
         $this->form->setFieldAttribute('group', 'query', $groupsQuery);
 
-        // Call the parent display to display the layout file
         parent::display($tpl);
-
-        // Set properties of the html document
         $this->prepareDocument();
     }
 

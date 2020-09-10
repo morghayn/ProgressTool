@@ -22,7 +22,7 @@ function surveySelect(projectID, choiceID)
 
     jQuery.ajax(
         {
-            data: {[token]: "1", task: "surveySelect", format: "json", data: {projectID: projectID, choiceID: choiceID}},
+            data: {[token]: "1", task: "survey.surveySelect", format: "json", data: {projectID: projectID, choiceID: choiceID}},
             success:
                 function (result, status, xhr)
                 {

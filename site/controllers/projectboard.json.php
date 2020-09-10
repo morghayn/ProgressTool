@@ -15,8 +15,7 @@
 class ProgressToolControllerProjectBoard extends JControllerLegacy
 {
     /**
-     * Processes an approval selection request for an inactive project.
-     * Approval selection requests are sent from the ProjectBoard.
+     * Returns JSON response for an approval selection.
      *
      * @since 0.3.0
      */

@@ -59,12 +59,10 @@ abstract class Authenticator
         return $db->setQuery($checkAccess)->loadResult() == 1;
     }
 
-    public static function authenticate($projectID)
+    public static function redirectGuests()
     {
         $user = JFactory::getUser();
-
         $guestRedirectMessage = 'You must be logged in to use the Progress Tool.';
-        $genericErrorMessage = 'Project authentication failed. Please contact the sites administrator.';
 
         // If user is guest.
         if ($user->get('guest'))
@@ -75,17 +73,25 @@ abstract class Authenticator
                 $guestRedirectMessage
             );
         }
+    }
 
+    public static function authenticate($projectID)
+    {
+        $user = JFactory::getUser();
+
+        $guestRedirectMessage = 'You must be logged in to use the Progress Tool.';
+        $genericErrorMessage = 'Project authentication failed. Please contact the sites administrator.';
+
+        // If user is guest.
+        self::redirectGuests();
 
         // If project does not exist.
-        elseif (!self::projectExists($projectID))
+        if (!self::projectExists($projectID))
         {
             JFactory::getApplication()->redirect(
                 JRoute::_('index.php?option=com_progresstool&view=projectboard', $genericErrorMessage), $genericErrorMessage
             );
         }
-
-
         // If user should does not have rights to access the project.
         elseif (!self::hasAccess($user->id, $projectID))
         {

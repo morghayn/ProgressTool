@@ -22,22 +22,18 @@ class ProgressToolViewProjectBoard extends JViewLegacy
     protected $projects, $projectApprovalSelections, $approvalQuestions;
 
     /**
-     * @var
-     */
-    private $user;
-
-    /**
-     * Renders view.
+     * Renders the project board view.
      *
      * @param null $tpl use default template.
      * @since 0.1.2
      */
     function display($tpl = null)
     {
-        $this->user = JFactory::getUser();
-        $userID = $this->user->id;
-        $this->redirectGuest();
+        JLoader::register('Authenticator',  JPATH_BASE . '/components/com_progresstool/helpers/authenticator.php');
+        Authenticator::redirectGuests();
+
         $model = parent::getModel();
+        $userID = JFactory::getUser()->id;
 
         $this->projects = $model->getProjects($userID);
         $this->projectApprovalSelections = $model->getProjectApprovalSelections($userID);
@@ -45,23 +41,6 @@ class ProgressToolViewProjectBoard extends JViewLegacy
 
         parent::display($tpl);
         $this->prepareDocument();
-    }
-
-    /**
-     * If user not logged in, redirect to login.
-     *
-     * @param object $user the current user object.
-     * @since 0.2.6
-     */
-    private function redirectGuest()
-    {
-        if ($this->user->get('guest'))
-        {
-            $return = urlencode(base64_encode('index.php?option=com_progresstool&view=projectboard'));
-            JFactory::getApplication()->redirect(
-                'index.php?option=com_users&view=login&return=' . $return, 'You must be logged in to use the Progress Tool'
-            );
-        }
     }
 
     /**
