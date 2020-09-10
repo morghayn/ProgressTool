@@ -36,28 +36,6 @@ class ProgressToolModelProjectStats extends JModelItem
     }
 
     /**
-     * Returns an associative array containing data linked to the projectID specified.
-     *
-     * @param int $projectID the ID used to identify project.
-     * @return mixed an associative array of data.
-     * @since 0.3.0
-     */
-    public function getProject($projectID)
-    {
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-
-        $columns = array('user_id', 'name', 'activated');
-
-        $query
-            ->select($db->quoteName($columns))
-            ->from($db->quoteName('#__pt_project'))
-            ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
-
-        return $db->setQuery($query)->loadAssoc();
-    }
-
-    /**
      * Retrieves all tasks specific to users country. Includes a column named selected in which the number of choices selected associated with a
      * specific task are counted.
      *

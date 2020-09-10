@@ -23,25 +23,20 @@ class ProgressToolViewSettings extends JViewLegacy
      */
     public function display($tpl = null)
     {
-        $user = JFactory::getUser();
         $model = parent::getModel();
         $input = JFactory::getApplication()->input;
-
         $projectID = $input->get('projectID', 1);
-        $project = $model->getProject($projectID)[0];
-        $assoc = array(
-            "projectID" => $projectID,
-            "name" => $project->name,
-            "description" => $project->description,
-            "type" => $project->type_id,
-            "group" => $project->group_id
-        );
+
+        JLoader::register('Authenticator',  JPATH_BASE . '/components/com_progresstool/helpers/authenticator.php');
+        Authenticator::authenticate($projectID);
+        $userID = JFactory::getUser()->id;
 
         // Get the form to display
         $this->form = $this->get('Form');
-        $groupsQuery = $model->getGroupsQuery($user->id);
+        $groupsQuery = $model->getGroupsQuery($userID);
         $this->form->setFieldAttribute('group', 'query', $groupsQuery);
-        $this->form->bind($assoc);
+        $project = $model->getProject($projectID);
+        $this->form->bind($project);
 
         // Call the parent display to display the layout file
         parent::display($tpl);

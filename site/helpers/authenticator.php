@@ -3,11 +3,6 @@
 
 abstract class Authenticator
 {
-    public static function hello()
-    {
-        $hello = 'hello';
-        var_dump($hello);
-    }
     /**
      * Returns a boolean to indicate whether a project actually exists. True means it does and false means it does not.
      *
@@ -40,12 +35,11 @@ abstract class Authenticator
         $checkAccess = $db->getQuery(true);
 
         $checkAccess
-            ->select('IF(COUNT(P.id) != 1, 0, 1) AS status')
+            ->select('IF(COUNT(P.id) < 1, 0, 1) AS status')
             ->from($db->quoteName('#__pt_project', 'P'))
             ->leftjoin($db->quoteName('#__community_groups_members', 'CGM') . ' ON ' . $db->quoteName('P.group_id') . ' = ' . $db->quoteName('CGM.groupid'))
             ->where('(' . $db->quoteName('P.id') . ' = ' . $db->quote($projectID) . ' AND ' . $db->quoteName('P.user_id') . ' = ' . $db->quote($userID) . ')', 'OR')
-            ->where('(' . $db->quoteName('P.id') . ' = ' . $db->quote($projectID) . ' AND ' . $db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID) . ' AND ' . $db->quoteName('CGM.permissions') . ' = 1)')
-            ->setLimit(1);
+            ->where('(' . $db->quoteName('P.id') . ' = ' . $db->quote($projectID) . ' AND ' . $db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID) . ' AND ' . $db->quoteName('CGM.permissions') . ' = 1)');
 
         //-- 1 = access granted //-- 0 = access denied
         return $db->setQuery($checkAccess)->loadResult() == 1;

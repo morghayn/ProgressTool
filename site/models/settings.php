@@ -60,7 +60,7 @@ class ProgressToolModelSettings extends JModelAdmin
      * Returns associated array containing data pertaining to the project specified in the parameters.
      *
      * @param int $projectID the ID used to identify project.
-     * @return mixed associated array of data.
+     * @return array associated array of data.
      * @since 0.3.0
      */
     public function getProject($projectID)
@@ -76,7 +76,14 @@ class ProgressToolModelSettings extends JModelAdmin
             ->where($db->quoteName('id') . ' = ' . $db->quote($projectID))
             ->setLimit(1);
 
-        return $db->setQuery($query)->loadObjectList();
+        $project =  $db->setQuery($query)->loadObjectList()[0];
+        return array(
+            "projectID" => $projectID,
+            "name" => $project->name,
+            "description" => $project->description,
+            "type" => $project->type_id,
+            "group" => $project->group_id
+        );
     }
 
     /**

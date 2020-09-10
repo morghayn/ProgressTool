@@ -126,6 +126,9 @@ class ProgressToolModelSurvey extends JModelItem
         $exists = $db->getQuery(true);
         $delete = $db->getQuery(true);
         $insert = $db->getQuery(true);
+        $getQuestionID = $db->getQuery(true);
+        $getUserScore = $db->getQuery(true);
+        $getIsComplete = $db->getQuery(true);
         $conditions = array($db->quoteName('project_id') . ' = ' . $db->quote($projectID), $db->quoteName('choice_id') . ' = ' . $db->quote($choiceID));
 
         $exists
@@ -153,7 +156,6 @@ class ProgressToolModelSurvey extends JModelItem
         }
 
         // Getting questionID.
-        $getQuestionID = $db->getQuery(true);
         $getQuestionID
             ->select($db->quoteName('QC.question_id'))
             ->from($db->quoteName('#__pt_question_choice', 'QC'))
@@ -162,7 +164,6 @@ class ProgressToolModelSurvey extends JModelItem
         $questionID = $db->setQuery($getQuestionID)->loadResult();
 
         // Getting userScore.
-        $getUserScore = $db->getQuery(true);
         $getUserScore
             ->select('IFNULL(SUM(QC.weight), 0) AS userScore')
             ->from($db->quoteName('#__pt_question_choice', 'QC'))
@@ -173,7 +174,6 @@ class ProgressToolModelSurvey extends JModelItem
         $userScore = $db->setQuery($getUserScore)->loadResult();
 
         // Getting isComplete.
-        $getIsComplete = $db->getQuery(true);
         $getIsComplete
             ->select('IF(SUM(QC.weight) = ' . $db->quote($userScore) . ', 1, 0) AS isComplete')
             ->from($db->quoteName('#__pt_question_choice', 'QC'))

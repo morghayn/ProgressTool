@@ -34,9 +34,10 @@ class ProgressToolViewSurvey extends JViewLegacy
         $input = JFactory::getApplication()->input;
         $this->projectID = $input->get('projectID', 1);
        // $test = JLoader::import('Authenticator', JPATH_BASE . '/components/com_progresstool/helpers/authenticator.php');
+        //JFactory::getApplication()->enqueueMessage(JPATH_BASE . '/components/com_progresstool/helpers/authenticator.php');
+
         JLoader::register('Authenticator',  JPATH_BASE . '/components/com_progresstool/helpers/authenticator.php');
         Authenticator::authenticate($this->projectID);
-
         $countryID = $this->getCountryID();
         $this->questions = $model->getQuestions($countryID);
         $this->choices = $model->getChoices($this->projectID, $countryID);

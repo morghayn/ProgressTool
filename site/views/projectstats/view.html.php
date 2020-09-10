@@ -35,15 +35,14 @@ class ProgressToolViewProjectStats extends JViewLegacy
      */
     function display($tpl = null)
     {
-        $input = JFactory::getApplication()->input;
         $model = parent::getModel();
+        $input = JFactory::getApplication()->input;
 
-        $this->user = JFactory::getUser();
-        $this->redirectGuest();
 
         $projectID = $input->get('projectID', 1);
-        $this->project = $model->getProject($projectID);
-        $this->handleAuthentication($projectID);
+        JLoader::register('Authenticator',  JPATH_BASE . '/components/com_progresstool/helpers/authenticator.php');
+        Authenticator::authenticate($projectID);
+        $this->user = JFactory::getUser();
 
         $countryID = $this->getCountryID();
         $this->tasks = $model->getTasks($countryID, $projectID);
@@ -52,47 +51,6 @@ class ProgressToolViewProjectStats extends JViewLegacy
 
         parent::display($tpl);
         $this->prepareDocument();
-    }
-
-    /**
-     * If user is not logged in, they will be redirected to login screen, and then redirected to their ProjectBoard.
-     *
-     * @since 0.3.0
-     */
-    private function redirectGuest()
-    {
-        if ($this->user->get('guest'))
-        {
-            $return = urlencode(base64_encode('index.php?option=com_progresstool&view=projectboard'));
-            JFactory::getApplication()->redirect(
-                'index.php?option=com_users&view=login&return=' . $return,
-                'You must be logged in to use the Progress Tool'
-            );
-        }
-    }
-
-    /**
-     * Authenticates both project and user. First checks to see whether project is exists, then checks if current user should have access to
-     * the project. If invalid, user is redirected to their ProjectBoard.
-     *
-     * @since 0.3.0
-     */
-    private function handleAuthentication($projectID)
-    {
-        if (!$projectID)
-        {
-            JFactory::getApplication()->redirect(
-                JRoute::_('index.php?option=com_progresstool&view=projectboard', 'You must be logged in to use the Progress Tool.'),
-                'You must be logged in to use the Progress Tool'
-            );
-        }
-        elseif ($this->project['user_id'] !== $this->user->id)
-        {
-            JFactory::getApplication()->redirect(
-                JRoute::_('index.php?option=com_progresstool&view=projectboard', 'You must be logged in to use the Progress Tool.'),
-                'You must be logged in to use the Progress Tool'
-            );
-        }
     }
 
     /**
