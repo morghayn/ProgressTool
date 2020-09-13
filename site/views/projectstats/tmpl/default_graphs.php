@@ -1,16 +1,4 @@
-<?php
-
-defined('_JEXEC') or die;
-
-$pTotal = array();
-foreach ($this->categories as $category)
-{
-    $x = $category->total / 100;
-    $y = array_key_exists($category->id, $this->totals) ? intval($this->totals[$category->id] / $x) : 0;
-    array_push($pTotal, $y);
-}
-
-?>
+<?php defined('_JEXEC') or die; ?>
 
 <p class="introductionParagraph">
     The graph below shows the % progression under each heading: <b class="people">People</b>, <b class="technology">Technology</b> and
@@ -29,8 +17,8 @@ foreach ($this->categories as $category)
 </div>
 
 <script>
-    let pTotal = [<?php echo implode(',', $pTotal); ?>];
-    console.log(pTotal);
-    radarChart(pTotal);
-    barChart(pTotal);
+    let categoryCompletionPercent = [<?php echo implode(',', $this->categoryCompletionPercent); ?>];
+    console.log(categoryCompletionPercent);
+    radarChart(categoryCompletionPercent);
+    barChart(categoryCompletionPercent);
 </script>

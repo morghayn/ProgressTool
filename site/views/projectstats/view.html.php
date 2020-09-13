@@ -25,7 +25,7 @@ class ProgressToolViewProjectStats extends JViewLegacy
      * @var
      * @var
      */
-    protected $project, $tasks, $categories, $totals;
+    protected $project, $tasks, $categories, $categoryCompletionPercent;
 
     /**
      * Renders view.
@@ -47,13 +47,10 @@ class ProgressToolViewProjectStats extends JViewLegacy
 
         $this->user = JFactory::getUser();
         $this->tasks = $model->getTasks($countryID, $projectID);
-        $this->categories = $model->getCategories($countryID);
-        $this->totals = $model->getTotals($countryID, $projectID);
-        $this->test = $model->getTest($countryID, $projectID);
-        var_dump($this->test);
-        var_dump($this->categories);
-        var_dump($this->totals);
-        //var_dump($this->tasks);
+        $this->categories = $model->getCategories($countryID, $projectID);
+        $this->categoryCompletionPercent = array();
+        foreach ($this->categories as $category)
+            array_push($this->categoryCompletionPercent, intval(($category->projectTotal / $category->categoryTotal) * 100));
 
         parent::display($tpl);
         $this->prepareDocument();

@@ -71,7 +71,7 @@ class ProgressToolModelProjectStats extends JModelItem
      * @return object list of all the categories within the progress tool.
      * @since 0.3.0
      */
-    public function getCategories($countryID)
+    public function getCategories($countryID, $projectID)
     {
         $db = JFactory::getDbo();
         $getCategories = $db->getQuery(true);
@@ -79,63 +79,14 @@ class ProgressToolModelProjectStats extends JModelItem
         $columns = array('CA.id', 'CA.category', 'CA.colour_hex', 'CA.colour_rgb');
 
         $getCategories
-            ->select($columns)
-            ->select('SUM(QC.weight) AS total')
-            ->from($db->quoteName('#__pt_question_choice', 'QC'))
-            ->innerjoin($db->quoteName('#__pt_question', 'Q') . ' ON ' . $db->quoteName('QC.question_id') . ' = ' . $db->quoteName('Q.id'))
-            ->innerjoin($db->quoteName('#__pt_question_country', 'CO') . ' ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('CO.question_id'))
-            ->innerjoin($db->quoteName('#__pt_category', 'CA') . ' ON ' . $db->quoteName('Q.category_id') . ' = ' . $db->quoteName('CA.id'))
-            ->where($db->quoteName('CO.country_id') . ' = ' . $db->quote($countryID))
-            ->group('CA.id')
-            ->order('CA.id ASC');
-
-        return $db->setQuery($getCategories)->loadObjectList();
-    }
-
-    /**
-     * // TODO documentation here
-     *
-     * @param int $countryID the ID of the country.
-     * @param int $projectID the ID of the project.
-     * @return mixed
-     * @since 0.3.0
-     */
-    public function getTotals($countryID, $projectID)
-    {
-        $db = JFactory::getDbo();
-        $getTotals = $db->getQuery(true);
-
-        $getTotals
-            ->select($db->quoteName('CA.id'))
-            ->select('SUM(QC.weight) AS total')
-            ->from($db->quoteName('#__pt_project_choice', 'PC'))
-            ->innerjoin($db->quoteName('#__pt_question_choice', 'QC') . ' ON ' . $db->quoteName('PC.choice_id') . ' = ' . $db->quoteName('QC.id'))
-            ->innerjoin($db->quoteName('#__pt_question', 'Q') . ' ON ' . $db->quoteName('QC.question_id') . ' = ' . $db->quoteName('Q.id'))
-            ->innerjoin($db->quoteName('#__pt_question_country', 'CO') . ' ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('CO.question_id'))
-            ->innerjoin($db->quoteName('#__pt_category', 'CA') . ' ON ' . $db->quoteName('Q.category_id') . ' = ' . $db->quoteName('CA.id'))
-            ->where($db->quotename('CO.country_id') . ' = ' . $db->quote($countryID))
-            ->where($db->quoteName('PC.project_id') . ' = ' . $db->quote($projectID))
-            ->group('CA.id');
-
-        return $db->setQuery($getTotals)->loadAssocList('id', 'total');
-    }
-
-    public function getTest($countryID, $projectID)
-    {
-        $db = JFactory::getDbo();
-        $getCategories = $db->getQuery(true);
-
-        $columns = array('CA.id', 'CA.category', 'CA.colour_hex', 'CA.colour_rgb');
-
-        $getCategories
-            ->select($columns)
+            ->select($db->quoteName($columns))
             ->select('SUM(QC.weight) AS categoryTotal')
             ->select('SUM((IF(' . $db->quoteName('PC.project_id') . ' = ' . $db->quote($projectID) . ', QC.weight, 0))) AS projectTotal')
             ->from($db->quoteName('#__pt_question_choice', 'QC'))
             ->innerjoin($db->quoteName('#__pt_question', 'Q') . ' ON ' . $db->quoteName('QC.question_id') . ' = ' . $db->quoteName('Q.id'))
             ->innerjoin($db->quoteName('#__pt_question_country', 'CO') . ' ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('CO.question_id'))
             ->innerjoin($db->quoteName('#__pt_category', 'CA') . ' ON ' . $db->quoteName('Q.category_id') . ' = ' . $db->quoteName('CA.id'))
-            ->leftjoin($db->quoteName('#__pt_project_choice', 'PC') . ' ON ' . $db->quoteName('PC.choice_id') . ' = ' . $db->quoteName('QC.id'))
+            ->leftjoin($db->quoteName('#__pt_project_choice', 'PC') . ' ON ' . $db->quoteName('PC.choice_id') . ' = ' . $db->quoteName('QC.id') . ' AND ' . $db->quoteName('PC.project_id') . ' = ' . $db->quote($projectID))
             ->where($db->quoteName('CO.country_id') . ' = ' . $db->quote($countryID))
             ->group('CA.id')
             ->order('CA.id ASC');

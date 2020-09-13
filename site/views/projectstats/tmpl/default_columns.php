@@ -8,31 +8,28 @@
 
 <div class="superChest">
 
-    <?php foreach ($this->categories as $this->category):
-        $category = $this->category;
-        $name = $category->category;
-        $colourHex = $category->colour_hex;
-        $colourRGB = $category->colour_rgb; ?>
+    <?php foreach ($this->categories as $category): ?>
+        <div class="todoChest" style="border-color: <?php echo $category->colour_hex; ?>">
+            <button class="category" style="background-color: <?php echo $category->colour_hex; ?>;" onclick="opensesame('taskList_<?php echo $category->id; ?>')">
+                <?php echo $category->category; ?>
+                <span>(<?php echo $this->categoryCompletionPercent[$category->id - 1];?>%)</span>
+            </button>
 
-        <div class="todoChest" style="border-color: <?php echo $colourHex; ?>">
+            <div class="taskChest" id="taskList_<?php echo $category->id; ?>" style="display: block;">
 
-            <div class="categoryChest" style="background-color: <?php echo $colourHex; ?>; cursor: pointer;"
-                 onclick="opensesame('taskList_<?php echo $this->category->id; ?>')">
-                <div class="category"><?php echo $name; ?></div>
+                <?php foreach ($this->tasks[$category->id] as $task): ?>
+                    <div class="taskChest">
+                        <div class="task">
+                            <?php echo $task->task; ?>
+                        </div>
+                        <div class="box" style="border-color: <?php echo $category->colour_hex; ?>;">
+                            <?php echo $task->criteria_met == 1 ? '<span class="icon-ok"></span>' : ''; ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+
             </div>
-
-            <div class="taskChest" id="taskList_<?php echo $this->category->id; ?>" style="display: block;">
-                <?php
-                $this->count = 0;
-                foreach ($this->tasks[$this->category->id] as $this->task):
-                    $this->count++;
-                    echo $this->loadTemplate('task');
-                endforeach;
-                ?>
-            </div>
-
         </div>
-
     <?php endforeach; ?>
 
 </div>
