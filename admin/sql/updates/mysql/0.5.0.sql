@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS `#__pt_question`;
 DROP TABLE IF EXISTS `#__pt_project`;
 DROP TABLE IF EXISTS `#__pt_approval_question`;
 DROP TABLE IF EXISTS `#__pt_task`;
+DROP TABLE IF EXISTS `#__pt_section`;
 DROP TABLE IF EXISTS `#__pt_category`;
 DROP TABLE IF EXISTS `#__pt_project_type`;
 
@@ -34,10 +35,11 @@ VALUES ('Has the group an idea of what they can do?'),
 
 CREATE TABLE `#__pt_category`
 (
-    `id`         TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `category`   VARCHAR(255)     NOT NULL,
-    `colour_hex` VARCHAR(7)       NOT NULL DEFAULT ('#ffffff'),
-    `colour_rgb` VARCHAR(13)      NOT NULL DEFAULT ('255, 255, 255'),
+    `id`           TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `category`     VARCHAR(255)     NOT NULL,
+    `timeline_url_fragment` VARCHAR(255)     NOT NULL,
+    `colour_hex`   VARCHAR(7)       NOT NULL DEFAULT ('#ffffff'),
+    `colour_rgb`   VARCHAR(13)      NOT NULL DEFAULT ('255, 255, 255'),
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
@@ -45,12 +47,32 @@ CREATE TABLE `#__pt_category`
     DEFAULT CHARSET = utf8mb4
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
-INSERT INTO `#__pt_category` (`id`, `category`, `colour_hex`, `colour_rgb`)
-VALUES (1, 'People', '#f7a58a', '247, 165, 138'), -- RED-ORANGE
-       (2, 'Technology', '#95d0ab', '149, 208, 171'),
-       (3, 'Finance', '#9690c6', '150, 144, 198');
--- PURPLE
--- GREEN
+INSERT INTO `#__pt_category` (`id`, `category`, `timeline_url_fragment`, `colour_hex`, `colour_rgb`)
+VALUES (1, 'People', 'group', '#f7a58a', '247, 165, 138'), -- RED-ORANGE
+       (2, 'Technology', 'technical', '#95d0ab', '149, 208, 171'), -- PURPLE
+       (3, 'Finance', 'financial', '#9690c6', '150, 144, 198'); -- GREEN
+
+/* */
+
+CREATE TABLE `#__pt_section`
+(
+    `id`      TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `section` VARCHAR(255)     NOT NULL,
+    `timeline_url_path` VARCHAR(255)     NOT NULL,
+    PRIMARY KEY (`id`)
+)
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 0
+    DEFAULT CHARSET = utf8mb4
+    DEFAULT COLLATE = utf8mb4_unicode_ci;
+
+INSERT INTO `#__pt_section` (`id`, `section`, `timeline_url_path`)
+VALUES (1, 'Awareness', 'awareness'),
+       (2, 'Emergence', 'emergence'),
+       (3, 'Development', 'development'),
+       (4, 'Post-Development', 'post-development'),
+       (5, 'Construction', 'construction'),
+       (6, 'Operation', 'operation');
 
 /* */
 
@@ -76,8 +98,7 @@ VALUES -- Irish
        (3, 3, 'Has there been exploratory discussions within the community about creating a renewable energy project?'),
        -- Exclude Ireland
        (4, 3, 'Has there been exploratory discussions within the community about creating a renewable energy project?'),
-       (5, 1,
-        'Has a group been formed to manage the energy transition and any renewable energy projects in your community?'),
+       (5, 1, 'Has a group been formed to manage the energy transition and any renewable energy projects in your community?'),
        -- Irish
        (6, 2, 'Has this group pursued any informal evaluation of the area to determine suitability?'),
        -- Exclude Ireland
@@ -91,12 +112,10 @@ VALUES -- Irish
        -- Exclude Ireland
        (11, 3, 'Has there been any meetings with potential partners or mentors?'),
        -- Irish
-       (12, 2,
-        'Has a preliminary evaluation of the territory been completed? Has an Energy Master Plan been carried out for the community?'),
+       (12, 2, 'Has a preliminary evaluation of the territory been completed? Has an Energy Master Plan been carried out for the community?'),
        -- Exclude Ireland
        (13, 2, 'Has a preliminary evaluation of the territory been completed?'),
-       (14, 2,
-        'Following the preliminary evaluation of the territory, has a decision been made regarding project choice?'),
+       (14, 2, 'Following the preliminary evaluation of the territory, has a decision been made regarding project choice?'),
        (15, 2, 'Has a feasibility study been carried out for the selected Renewable Energy Project?'),
        (16, 2, 'Has a land leasing commitment been agreed?'),
        (17, 3, 'Is there a finance plan agreed within the group?'),
@@ -237,9 +256,7 @@ VALUES -- Question 1
 
        -- Question 3
        (9, 3, 'No', 0),
-       (10, 3,
-        'Yes, regarding the type of governance that would be involved e.g. Co-operative or Sustainable Energy Community with SEAI (SEC)',
-        1),
+       (10, 3, 'Yes, regarding the type of governance that would be involved e.g. Co-operative or Sustainable Energy Community with SEAI (SEC)', 1),
        (11, 3, 'Yes, regarding the financial structuring', 1),
        (12, 3, 'Yes, regarding the type of partnerships available and if they would be suitable', 1),
        (13, 3, 'Yes, regarding how to distribute benefits and profits among the local area', 1),
@@ -254,17 +271,14 @@ VALUES -- Question 1
        -- Question 5
        (19, 5, 'No', 0),
        (20, 5, 'No, but there is interest from the community to forms one', 0),
-       (21, 5,
-        'Yes, there is a leading group that has been democratically organized and formed with members of the local community',
-        1),
+       (21, 5, 'Yes, there is a leading group that has been democratically organized and formed with members of the local community', 1),
        (22, 5, 'Yes, legal, technical and financial structuring has been discussed ', 1),
        (23, 5, 'Yes, the goals and the values of the group have been outlined', 1),
        (24, 5, 'Yes, the group has been officially founded as an association', 1),
 
        -- Question 6
        (25, 6, 'No', 0),
-       (26, 6,
-        'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy',
+       (26, 6, 'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy',
         1),
        (27, 6,
         'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel',
@@ -274,8 +288,7 @@ VALUES -- Question 1
 
        -- Question 7
        (30, 7, 'No', 0),
-       (31, 7,
-        'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy',
+       (31, 7, 'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy',
         1),
        (32, 7,
         'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel',
@@ -529,74 +542,71 @@ CREATE TABLE `#__pt_task`
 (
     `id`          SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     `category_id` TINYINT UNSIGNED  NOT NULL,
+    `section_id`  TINYINT UNSIGNED  NOT NULL,
     `task`        VARCHAR(255)      NOT NULL,
     CONSTRAINT id PRIMARY KEY (id),
-    FOREIGN KEY (category_id) REFERENCES `#__pt_category` (id)
+    FOREIGN KEY (category_id) REFERENCES `#__pt_category` (id),
+    FOREIGN KEY (section_id) REFERENCES `#__pt_section` (id)
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 0
     DEFAULT CHARSET = utf8mb4
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
-INSERT INTO `#__pt_task` (`id`, `category_id`, `task`)
-VALUES (1, 1,
-        'Awareness activities about existing Beacon projects, Educational actions of local associations, Private developer prospection'),
-       (2, 1, 'Local initiatives: new ideas + willpower of individuals, citizens, associations and local communities'),
-       (3, 1, 'Leading group'),
-       (4, 1,
+INSERT INTO `#__pt_task` (`id`, `category_id`, `section_id`, `task`)
+VALUES (1, 1, 1, 'Awareness activities about existing Beacon projects, Educational actions of local associations, Private developer prospection'),
+       (2, 1, 1, 'Local initiatives: new ideas + willpower of individuals, citizens, associations and local communities'),
+       (3, 1, 1, 'Leading group'),
+       (4, 1, 2,
         'Masterclasses: democratic organisation of the citizen group, Legal structuring, Technical issues, Initial financial elements, Expansion of the citizen group'),
-       (5, 1,
-        'Brainwork on: goals and values of the group, The type of energy and awareness actions around energy transition'),
-       (6, 1, 'Organisation of the group, Founding of the association'),
-       (7, 1, 'Support of local authorities, to obtain official support from local bodies'),
-       (8, 1, 'Founding of the project society'),
-       (9, 1,
-        'Public meetings and Advanced training: technical training, financing plan, negotiation training, building project management'),
-       (10, 1, 'Setting up of agreements with local authorities'),
-       (11, 1, 'Establish contacts with administrative authorities'),
+       (5, 1, 2, 'Brainwork on: goals and values of the group, The type of energy and awareness actions around energy transition'),
+       (6, 1, 2, 'Organisation of the group, Founding of the association'),
+       (7, 1, 2, 'Support of local authorities, to obtain official support from local bodies'),
+       (8, 1, 3, 'Founding of the project society'),
+       (9, 1, 3, 'Public meetings and Advanced training: technical training, financing plan, negotiation training, building project management'),
+       (10, 1, 3, 'Setting up of agreements with local authorities'),
+       (11, 1, 3, 'Establish contacts with administrative authorities'),
        -- (12, 1, 'Citizen financial mobilisation'),
-       (13, 1, 'Brainwork on the citizen involvement in project management'),
-       (14, 1, 'Project management'),
-       (15, 1, 'Work site visit'),
-       (16, 1, 'Preparation for the operation monitoring'),
-       (17, 1, 'Inauguration'),
-       (18, 1, 'Ongoing communication on operation'),
-       (19, 1,
-        'Management of the cooperative: general assembly, executive board, retain strong bonds with citizens, compensatory measure'),
-       (20, 1, 'Keep in touch with the residents of the project'),
-       (21, 1, 'Educational activities on: renewable energy, environmental effects, Energy savings'),
+       (13, 1, 4, 'Brainwork on the citizen involvement in project management'),
+       (14, 1, 5, 'Project management'),
+       (15, 1, 5, 'Work site visit'),
+       (16, 1, 5, 'Preparation for the operation monitoring'),
+       (17, 1, 6, 'Inauguration'),
+       (18, 1, 6, 'Ongoing communication on operation'),
+       (19, 1, 6, 'Management of the cooperative: general assembly, executive board, retain strong bonds with citizens, compensatory measure'),
+       (20, 1, 6, 'Keep in touch with the residents of the project'),
+       (21, 1, 6, 'Educational activities on: renewable energy, environmental effects, Energy savings'),
 
-       (22, 2, 'Preliminary evaluation of the territory'),
-       (23, 2, 'Project choice'),
-       (24, 2, 'Land leasing commitment'),
-       (25, 2, 'Ongoing analysis and validation: Technical committee, quotations, providers'),
-       (26, 2, 'Technical Studies on a risk-sensitive basis and on the level of funds needed'),
-       (27, 2, 'Technical file for submission for administrative approval'),
-       (28, 2, 'Submission of the file to approval of authorities'),
-       (29, 2, 'Public enquiry / review of the file'),
-       (30, 2, 'Administration approval'),
-       (31, 2, 'Land leasing contracts'),
-       (32, 2, 'Signing of the construction contracts'),
-       (33, 2, 'Construction Site'),
-       (34, 2, 'Commissioning'),
-       (35, 2, 'Environmental monitoring'),
-       (36, 2, 'Preventative maintenance and repairs'),
+       (22, 2, 2, 'Preliminary evaluation of the territory'),
+       (23, 2, 2, 'Project choice'),
+       (24, 2, 2, 'Land leasing commitment'),
+       (25, 2, 3, 'Ongoing analysis and validation: Technical committee, quotations, providers'),
+       (26, 2, 3, 'Technical Studies on a risk-sensitive basis and on the level of funds needed'),
+       (27, 2, 3, 'Technical file for submission for administrative approval'),
+       (28, 2, 3, 'Submission of the file to approval of authorities'),
+       (29, 2, 3, 'Public enquiry / review of the file'),
+       (30, 2, 3, 'Administration approval'),
+       (31, 2, 4, 'Land leasing contracts'),
+       (32, 2, 4, 'Signing of the construction contracts'),
+       (33, 2, 5, 'Construction Site'),
+       (34, 2, 5, 'Commissioning'),
+       (35, 2, 6, 'Environmental monitoring'),
+       (36, 2, 6, 'Preventative maintenance and repairs'),
 
-       (37, 3,
-        'Think thank: type of governance, financial structuring, types of partnerships, how to distribute the benefits'),
-       (38, 3, 'Meeting with potential partner'),
-       (39, 3, 'Preliminary financing plan'),
-       (40, 3,
-        'Financial mobilisation, launch fundraising for development costs, reinforcement of funding partnerships'),
-       (41, 3, 'Preparation of the financial mobilisation for the construction phase'),
-       (42, 3, 'Consolidation of the financial plan'),
-       (43, 3, 'Assessment of the valuation of the risk'),
-       (44, 3, 'Completion of the banking file'),
-       (45, 3, 'Fundraising and bank loan for the construction phase'),
-       (46, 3, 'Financial management accounting'),
-       (47, 3, 'Profit allocation management');
+       (37, 3, 2, 'Think thank: type of governance, financial structuring, types of partnerships, how to distribute the benefits'),
+       (38, 3, 2, 'Meeting with potential partner'),
+       (39, 3, 2, 'Preliminary financing plan'),
+       (40, 3, 3, 'Financial mobilisation, launch fundraising for development costs, reinforcement of funding partnerships'),
+       (41, 3, 3, 'Preparation of the financial mobilisation for the construction phase'),
+       (42, 3, 3, 'Consolidation of the financial plan'),
+       (43, 3, 3, 'Assessment of the valuation of the risk'),
+       (44, 3, 4, 'Completion of the banking file'),
+       (45, 3, 4, 'Fundraising and bank loan for the construction phase'),
+       (46, 3, 6, 'Financial management accounting'),
+       (47, 3, 6, 'Profit allocation management');
 
 /* */
+
 CREATE TABLE `#__pt_task_country`
 (
     `task_id`    SMALLINT UNSIGNED NOT NULL,
@@ -728,7 +738,7 @@ VALUES (1, 2),
        (1, 7),
        (2, 4),
        (2, 8),
-       (3, 20),
+       (3, 21),
        (4, 21),
        (4, 22),
        (5, 23),

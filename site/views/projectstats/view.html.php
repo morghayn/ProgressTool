@@ -52,6 +52,9 @@ class ProgressToolViewProjectStats extends JViewLegacy
         foreach ($this->categories as $category)
             array_push($this->categoryCompletionPercent, intval(($category->projectTotal / $category->categoryTotal) * 100));
 
+        $test = $model->getSectionTotals($countryID, $projectID);
+        var_dump($test);
+
         parent::display($tpl);
         $this->prepareDocument();
     }

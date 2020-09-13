@@ -6,7 +6,7 @@
 
     box-sizing: border-box;
     background-color: #ffffff;
-    border: 0.35em solid #0C4DA0;
+    border: 2px solid #0C4DA0;
 
     box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
     -webkit-box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);

@@ -93,4 +93,44 @@ class ProgressToolModelProjectStats extends JModelItem
 
         return $db->setQuery($getCategories)->loadObjectList();
     }
+
+    /**
+     * @param $countryID
+     * @param $projectID
+     * @since 0.5.0
+     */
+    public function getSectionTotals($countryID, $projectID)
+    {
+        $db = JFactory::getDbo();
+        $getSectionTotals = $db->getQuery(true);
+        $subQuery = $db->getQuery(true);
+
+        $subQueryColumns = array('T.id', 'T.section_id', 'T.task', 'T.category_id');
+
+        $subQuery
+            ->select($subQueryColumns)
+            ->select('IF(TC.criteria <= COUNT(CH.project_id), 1, 0) AS criteria_met')
+            ->from($db->quoteName('#__pt_task', 'T'))
+            ->innerjoin($db->quoteName('#__pt_task_country', 'TC') . ' ON ' . $db->quoteName('T.id') . ' = ' . $db->quoteName('TC.task_id'))
+            ->innerjoin($db->quoteName('#__pt_choice_task', 'CT') . ' ON ' . $db->quoteName('TC.task_id') . ' = ' . $db->quoteName('CT.task_id'))
+            ->leftjoin($db->quoteName('#__pt_project_choice', 'CH') . ' ON CT.choice_id = CH.choice_id AND project_id = ' . $db->quote($projectID))
+            ->where('TC.country_id = ' . $db->quote($countryID))
+            ->group('T.id');
+
+        $columns = array('T.category_id', 'T.section_id', 'S.section');
+
+        $getSectionTotals
+            ->select($db->quoteName($columns))
+            ->select('IF(COUNT(T.id) = SUM(T.criteria_met), 1, 0) AS criteria_met')
+            ->from($db->quoteName('#__pt_section', 'S'))
+            ->innerjoin('(' . $subQuery . ') AS T ON S.id = T.section_id')
+            ->group('S.id, T.category_id')
+            ->order('T.category_id, T.section_id ASC');
+
+        return $this->groupByCategory(
+            $db->setQuery($getSectionTotals)->loadObjectList()
+        );
+    }
+
+
 }
