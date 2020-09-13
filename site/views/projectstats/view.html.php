@@ -49,6 +49,11 @@ class ProgressToolViewProjectStats extends JViewLegacy
         $this->tasks = $model->getTasks($countryID, $projectID);
         $this->categories = $model->getCategories($countryID);
         $this->totals = $model->getTotals($countryID, $projectID);
+        $this->test = $model->getTest($countryID, $projectID);
+        var_dump($this->test);
+        var_dump($this->categories);
+        var_dump($this->totals);
+        //var_dump($this->tasks);
 
         parent::display($tpl);
         $this->prepareDocument();
