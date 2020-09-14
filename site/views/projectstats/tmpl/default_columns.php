@@ -12,7 +12,7 @@
         <div class="todoChest" style="border-color: <?php echo $category->colour_hex; ?>">
             <button class="category" style="background-color: <?php echo $category->colour_hex; ?>;" onclick="opensesame('taskList_<?php echo $category->id; ?>')">
                 <?php echo $category->category; ?>
-                <span>(<?php echo $this->categoryCompletionPercent[$category->id - 1];?>%)</span>
+                <span>(<?php echo $this->categoryCompletionPercent[$category->id - 1]; ?>%)</span>
             </button>
 
             <div class="taskChest" id="taskList_<?php echo $category->id; ?>" style="display: block;">
@@ -32,4 +32,12 @@
         </div>
     <?php endforeach; ?>
 
+</div>
+
+<div class="buttonChest">
+    <?php foreach ($this->timelineRedirects as $timelineRedirect): ?>
+        <button onclick="window.location.href='<?php echo $timelineRedirect['redirect'];?>'" style="background-color: <?php echo $timelineRedirect['colour_hex']; ?>;">
+            <?php echo $timelineRedirect['category']; ?>
+        </button>
+    <?php endforeach; ?>
 </div>

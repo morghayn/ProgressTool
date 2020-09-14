@@ -48,9 +48,9 @@ CREATE TABLE `#__pt_category`
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO `#__pt_category` (`id`, `category`, `timeline_url_fragment`, `colour_hex`, `colour_rgb`)
-VALUES (1, 'People', 'group', '#f7a58a', '247, 165, 138'), -- RED-ORANGE
-       (2, 'Technology', 'technical', '#95d0ab', '149, 208, 171'), -- PURPLE
-       (3, 'Finance', 'financial', '#9690c6', '150, 144, 198'); -- GREEN
+VALUES (1, 'People', '#group', '#f7a58a', '247, 165, 138'), -- RED-ORANGE
+       (2, 'Technology', '#technical', '#95d0ab', '149, 208, 171'), -- PURPLE
+       (3, 'Finance', '#financial', '#9690c6', '150, 144, 198'); -- GREEN
 
 /* */
 
@@ -571,7 +571,7 @@ VALUES (1, 1, 1, 'Awareness activities about existing Beacon projects, Education
        (14, 1, 5, 'Project management'),
        (15, 1, 5, 'Work site visit'),
        (16, 1, 5, 'Preparation for the operation monitoring'),
-       (17, 1, 6, 'Inauguration'),
+       (17, 1, 5, 'Inauguration'),
        (18, 1, 6, 'Ongoing communication on operation'),
        (19, 1, 6, 'Management of the cooperative: general assembly, executive board, retain strong bonds with citizens, compensatory measure'),
        (20, 1, 6, 'Keep in touch with the residents of the project'),
