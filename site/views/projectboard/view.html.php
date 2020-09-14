@@ -29,7 +29,7 @@ class ProgressToolViewProjectBoard extends JViewLegacy
      */
     function display($tpl = null)
     {
-        JLoader::register('Authenticator',  JPATH_BASE . '/components/com_progresstool/helpers/authenticator.php');
+        JLoader::register('Authenticator',  JPATH_BASE . '/components/com_progresstool/helpers/Authenticator.php');
         Authenticator::redirectGuests();
 
         $model = parent::getModel();

@@ -32,7 +32,7 @@ class ProgressToolControllerSurvey extends JControllerLegacy
             $projectID = $data['projectID'];
             $choiceID = $data['choiceID'];
 
-            JLoader::register('Authenticator',  JPATH_BASE . '/components/com_progresstool/helpers/authenticator.php');
+            JLoader::register('Authenticator',  JPATH_BASE . '/components/com_progresstool/helpers/Authenticator.php');
             Authenticator::authenticate($projectID);
 
             $model = parent::getModel('survey');
