@@ -15,6 +15,27 @@
 class ProgressToolModelSurvey extends JModelItem
 {
     /**
+     * Retrieves object list comprising of the categories of the progress tool.
+     *
+     * @return object list of all the categories within the progress tool.
+     * @since 0.3.0
+     */
+    public function getCategories()
+    {
+        $db = JFactory::getDbo();
+        $getCategories = $db->getQuery(true);
+
+        $columns = array('id', 'category', 'colour_hex', 'colour_rgb');
+
+        $getCategories
+            ->select($db->quoteName($columns))
+            ->from($db->quoteName('#__pt_category'))
+            ->order('id ASC');
+
+        return $db->setQuery($getCategories)->loadObjectList();
+    }
+
+    /**
      * Retrieve a list of location specific questions.
      *
      * @param $countryID int country index used to get location specific questions.

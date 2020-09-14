@@ -16,11 +16,12 @@ class ProgressToolViewSurvey extends JViewLegacy
 {
     /**
      * @var int
+     * @var int
      * @var array
      * @var array
      * @var array
      */
-    protected $projectID, $questions, $choices, $project, $timelineRedirects;
+    protected $projectID, $countryID, $categories, $questions, $choices, $project;
 
     /**
      * Renders template for the Survey view.
@@ -38,13 +39,11 @@ class ProgressToolViewSurvey extends JViewLegacy
         Authenticator::authenticate($this->projectID);
 
         JLoader::register('getCountry',  JPATH_BASE . '/components/com_progresstool/helpers/getCountry.php');
-        $countryID = getCountry::getCountryID();
+        $this->countryID = getCountry::getCountryID();
 
-        JLoader::register('GetTimelineRedirects',  JPATH_BASE . '/components/com_progresstool/helpers/GetTimelineRedirects.php');
-        $this->timelineRedirects = GetTimelineRedirects::timelineRedirects($countryID, $this->projectID);
-
-        $this->questions = $model->getQuestions($countryID);
-        $this->choices = $model->getChoices($this->projectID, $countryID);
+        $this->categories = $model->getCategories();
+        $this->questions = $model->getQuestions($this->countryID);
+        $this->choices = $model->getChoices($this->projectID, $this->countryID);
 
         parent::display($tpl);
         $this->prepareDocument();

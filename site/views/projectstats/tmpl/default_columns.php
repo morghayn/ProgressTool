@@ -35,9 +35,11 @@
 </div>
 
 <div class="buttonChest">
-    <?php foreach ($this->timelineRedirects as $timelineRedirect): ?>
-        <button onclick="window.location.href='<?php echo $timelineRedirect['redirect'];?>'" style="background-color: <?php echo $timelineRedirect['colour_hex']; ?>;">
-            <?php echo $timelineRedirect['category']; ?>
+    <?php foreach ($this->categories as $category): ?>
+    <?php $onclick = "timelineRedirect($category->id, $this->projectID, $this->countryID)"; ?>
+        <button onclick="<?php echo $onclick; ?>" style="background-color: <?php echo $category->colour_hex; ?>;">
+            <?php echo $category->category; ?>
         </button>
     <?php endforeach; ?>
 </div>
+

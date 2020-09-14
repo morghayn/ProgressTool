@@ -17,3 +17,12 @@ foreach ($this->questions as $this->question):
 endforeach;
 
 ?>
+
+<div class="buttonChest">
+    <?php foreach ($this->categories as $category): ?>
+        <?php $onclick = "timelineRedirect($category->id, $this->projectID, $this->countryID)"; ?>
+        <button onclick="<?php echo $onclick; ?>" style="background-color: <?php echo $category->colour_hex; ?>;">
+            <?php echo $category->category; ?>
+        </button>
+    <?php endforeach; ?>
+</div>

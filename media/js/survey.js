@@ -1,3 +1,17 @@
+function timelineRedirect(categoryID, projectID, countryID)
+{
+    let token = jQuery("#token").attr("name");
+
+    window.location.href =
+        `?option=com_progresstool` +
+        `&view=projectboard` +
+        `&task=timelineredirect.redirect` +
+        `&` + [token] + `=1` +
+        `&projectID=${projectID}` +
+        `&categoryID=${categoryID}` +
+        `&countryID=${countryID}`;
+}
+
 function opensesame(boxName)
 {
     let x = document.getElementById(boxName);
