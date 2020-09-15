@@ -18,8 +18,9 @@ endforeach;
 <div class="masterChest" style="border-color: <?php echo $colourHex; ?>">
 
     <div class="masterChestHeadingChest" style="background-color: <?php echo $colourHex; ?>;" onclick="opensesame('<?php echo 'cC' . $questionID; ?>')">
-        <h2 class="masterChestHeading"><?php echo $questionCounter . '. ' . $question; ?></h2>
-        <!-- TODO: Put into CSS file -->
+        <h2 class="masterChestHeading">
+            <?php echo $questionCounter . '. ' . $question; ?>
+        </h2>
         <h2 class="scoreBox">
             Score <span id="score_<?php echo $questionID; ?>"><?php echo $userScore; ?></span>/<?php echo $score; ?>
         </h2>
@@ -37,4 +38,5 @@ endforeach;
         </div>
     </div>
 
+    <input type="submit" value="Submit">
 </div>

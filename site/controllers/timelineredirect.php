@@ -34,15 +34,10 @@ class ProgressToolControllerTimelineRedirect extends JControllerLegacy
 
             $categoryGroups = $model->getCategoryGroups($countryID, $projectID);
             $redirects = $model->getRedirects($categoryGroups);
-            //JFactory::getApplication()->enqueueMessage('index.php/' . $redirects[$categoryID]['redirect'], 'error');
 
             if ($redirects[$categoryID]['redirect'] != '')
             {
-                $genericErrorMessage = 'O,,O';
-                JFactory::getApplication()->redirect(
-                    $redirects[$categoryID]['redirect'], $genericErrorMessage
-                );
-                //JRoute::_('index.php/' . $redirects[$categoryID]['redirect'], $genericErrorMessage)
+                JFactory::getApplication()->redirect($redirects[$categoryID]['redirect']);
             }
             else
             {
