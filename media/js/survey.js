@@ -4,7 +4,7 @@ function timelineRedirect(categoryID, projectID, countryID)
 
     window.location.href =
         `?option=com_progresstool` +
-        `&view=projectboard` +
+        `&view=survey` +
         `&task=timelineredirect.redirect` +
         `&` + [token] + `=1` +
         `&projectID=${projectID}` +

@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die; ?>
 
 <p class="introductionParagraph">
-    The lists below show the tasks divided between each heading from the <a href="/test">ECCO timeline</a>, <b class="people">People</b>,
+    The lists below show the tasks divided between each heading from the <a href="/timeline">ECCO timeline</a>, <b class="people">People</b>,
     <b class="technology">Technology</b> and <b class="finance">Finance</b>. The tasks that have been completed by your Community Group are marked as
     green. To collapse the lists click on the title box.
 </p>
@@ -10,7 +10,8 @@
 
     <?php foreach ($this->categories as $category): ?>
         <div class="todoChest" style="border-color: <?php echo $category->colour_hex; ?>">
-            <button class="category" style="background-color: <?php echo $category->colour_hex; ?>;" onclick="opensesame('taskList_<?php echo $category->id; ?>')">
+            <button class="category" style="background-color: <?php echo $category->colour_hex; ?>;"
+                    onclick="opensesame('taskList_<?php echo $category->id; ?>')">
                 <?php echo $category->category; ?>
                 <span>(<?php echo $this->categoryCompletionPercent[$category->id - 1]; ?>%)</span>
             </button>
@@ -34,9 +35,15 @@
 
 </div>
 
+<p class="introductionParagraph">
+    <b>Timeline Redirects</b><br>
+    The three links below are redirects to your current position on the <a href="/timeline">ECCO timeline</a> for the given categories
+    <b class="people">People</b>, <b class="technology">Technology</b> and <b class="finance">Finance</b>.
+</p>
+
 <div class="buttonChest">
     <?php foreach ($this->categories as $category): ?>
-    <?php $onclick = "timelineRedirect($category->id, $this->projectID, $this->countryID)"; ?>
+        <?php $onclick = "timelineRedirect($category->id, $this->projectID, $this->countryID)"; ?>
         <button onclick="<?php echo $onclick; ?>" style="background-color: <?php echo $category->colour_hex; ?>;">
             <?php echo $category->category; ?>
         </button>

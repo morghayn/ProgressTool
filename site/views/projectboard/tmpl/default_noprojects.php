@@ -13,6 +13,6 @@
     all options that apply to your project, feel free to choose more than one option.
     <br><br>
     The score tallied from the survey responses is used to populate a spider diagram, describing the progress
-    under each heading from the <a href="/test">ECCO timeline</a> (<b class="people">People</b>, <b class="technology">Technology</b> and
+    under each heading from the <a href="/timeline">ECCO timeline</a> (<b class="people">People</b>, <b class="technology">Technology</b> and
     <b class="finance">Finance</b>).
 </p>
