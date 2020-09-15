@@ -17,10 +17,10 @@ endforeach;
 
 <div class="masterChest" style="border-color: <?php echo $colourHex; ?>">
 
-    <div class="headingChest" style="background-color: <?php echo $colourHex; ?>;" onclick="opensesame('<?php echo 'cC' . $questionID; ?>')">
-        <h2 class="heading" style="text-align: left; width: 75%;"><?php echo $questionCounter . '. ' . $question; ?></h2>
+    <div class="masterChestHeadingChest" style="background-color: <?php echo $colourHex; ?>;" onclick="opensesame('<?php echo 'cC' . $questionID; ?>')">
+        <h2 class="masterChestHeading"><?php echo $questionCounter . '. ' . $question; ?></h2>
         <!-- TODO: Put into CSS file -->
-        <h2 style="font-weight: 600; box-sizing: border-box; border: 2px solid white; text-align: center; width: 70px; margin: auto 10px auto auto; font-size: 1.20em; line-height: 1; padding: 3px;">
+        <h2 class="scoreBox">
             Score <span id="score_<?php echo $questionID; ?>"><?php echo $userScore; ?></span>/<?php echo $score; ?>
         </h2>
     </div>

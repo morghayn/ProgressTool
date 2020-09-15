@@ -1,13 +1,13 @@
 <?php defined('_JEXEC') or die; ?>
 
-<div class="headC">
+<div class="headingChest">
 
     <button onclick="window.location = '?option=com_progresstool&view=projectboard'" class="buttonBack">
         Back
     </button>
 
-    <div class="titlC">
-        <div class="titl">
+    <div class="headingChestTitleChest">
+        <div class="headingChestTitle">
             Progress Survey
         </div>
     </div>

@@ -2,14 +2,16 @@ function timelineRedirect(categoryID, projectID, countryID)
 {
     let token = jQuery("#token").attr("name");
 
-    window.location.href =
+    //window.location.href =
+    window.open(
         `?option=com_progresstool` +
         `&view=projectstats` +
         `&task=timelineredirect.redirect` +
         `&` + [token] + `=1` +
         `&projectID=${projectID}` +
         `&categoryID=${categoryID}` +
-        `&countryID=${countryID}`;
+        `&countryID=${countryID}`
+    );
 }
 
 function redirectProjectBoard()

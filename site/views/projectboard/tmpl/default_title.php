@@ -1,9 +1,9 @@
 <?php defined('_JEXEC') or die; ?>
 
-<div class="headC">
+<div class="headingChest">
 
-    <div class="titlC">
-        <div class="titl">
+    <div class="headingChestTitleChest">
+        <div class="headingChestTitle">
             Project Board
         </div>
 

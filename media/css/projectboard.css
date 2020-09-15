@@ -1,3 +1,30 @@
+/*
+        ========================================================
+                            ProjectBoard.css
+        ========================================================
+ */
+
+.headingChest {
+    display: flex;
+}
+
+.headingChestTitleChest {
+    display: flex;
+    flex-direction: column;
+    flex: 8;
+    text-align: center;
+    background-color: #0C4DA0;
+}
+
+.headingChestTitle {
+    padding: 1.05rem;
+    line-height: 1;
+    color: #ffffff;
+    font-size: 1.70rem;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
 .projectSelection {
     display: flex;
     border: 2px solid #0C4DA0;
@@ -31,28 +58,6 @@
     border: 0;
     border-radius: 0;
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Open Sans,Ubuntu,Fira Sans,Helvetica Neue,sans-serif;
-}
-
-
-.headC {
-    display: flex;
-}
-
-.titlC {
-    flex: 8;
-    background-color: #0C4DA0;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-}
-
-.titl {
-    padding: 1.05rem;
-    font-size: 1.70rem;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
-    line-height: 1;
-    font-weight: 600;
-    color: #ffffff;
 }
 
 .buttonCreate:before {
