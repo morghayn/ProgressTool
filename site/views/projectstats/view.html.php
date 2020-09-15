@@ -24,8 +24,10 @@ class ProgressToolViewProjectStats extends JViewLegacy
      * @var
      * @var
      * @var
+     * @var
+     * @var
      */
-    protected $project, $tasks, $categories, $categoryCompletionPercent, $timelineRedirects;
+    protected $countryID, $projectID, $project, $tasks, $categories, $categoryCompletionPercent;
 
     /**
      * Renders view.
@@ -37,20 +39,17 @@ class ProgressToolViewProjectStats extends JViewLegacy
     {
         $model = parent::getModel();
         $input = JFactory::getApplication()->input;
-        $projectID = $input->getInt('projectID', 0);
+        $this->projectID = $input->getInt('projectID', 0);
 
         JLoader::register('Authenticator',  JPATH_BASE . '/components/com_progresstool/helpers/Authenticator.php');
-        Authenticator::authenticate($projectID);
+        Authenticator::authenticate($this->projectID);
 
         JLoader::register('getCountry',  JPATH_BASE . '/components/com_progresstool/helpers/getCountry.php');
-        $countryID = getCountry::getCountryID();
-
-        JLoader::register('GetTimelineRedirects',  JPATH_BASE . '/components/com_progresstool/helpers/GetTimelineRedirects.php');
-        $this->timelineRedirects = GetTimelineRedirects::timelineRedirects($countryID, $projectID);
+        $this->countryID = getCountry::getCountryID();
 
         $this->user = JFactory::getUser();
-        $this->tasks = $model->getTasks($countryID, $projectID);
-        $this->categories = $model->getCategories($countryID, $projectID);
+        $this->tasks = $model->getTasks($this->countryID, $this->projectID);
+        $this->categories = $model->getCategories($this->countryID, $this->projectID);
         $this->categoryCompletionPercent = array();
         foreach ($this->categories as $category)
             array_push($this->categoryCompletionPercent, intval(($category->projectTotal / $category->categoryTotal) * 100));

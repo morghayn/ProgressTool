@@ -67,7 +67,7 @@ class ProgressToolModelProjectStats extends JModelItem
      * Retrieves the categories within the progress tool. Returns an additional field -- the total weight among all the choices
      * within that category.
      *
-     * @param $countryID the ID of the country.
+     * @param int $countryID the ID of the country.
      * @return object list of all the categories within the progress tool.
      * @since 0.3.0
      */

@@ -1,25 +1,20 @@
-<?php defined('_JEXEC') or die;
+<?php
 
 /**
  * (Site) Class ProgressToolControllerTimelineRedirect
  *
- * Redirects a user to their position within the timeline
+ * Handles routing for timeline redirection
  *
  * @package ProgressTool
- * @subpackage site
- * @since 0.1.7
+ * @subpackage admin
+ * @since 0.5.0
  *
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
  */
 class ProgressToolControllerTimelineRedirect extends JControllerLegacy
 {
-    /**
-     * Returns JSON response for a survey selection.
-     *
-     * @since 0.1.7
-     */
-    public function redirect()
+    public function redirect($key = null, $urlVar = null)
     {
         if (!JSession::checkToken('get'))
         {
@@ -27,9 +22,33 @@ class ProgressToolControllerTimelineRedirect extends JControllerLegacy
         }
         else
         {
-            JFactory::getApplication()->redirect(
-                JRoute::_('index.php?option=com_progresstool&view=projectboard', $genericErrorMessage), $genericErrorMessage
-            );
+            $model = $this->getModel('timelineredirect');
+            $input = JFactory::getApplication()->input;
+
+            $categoryID = $input->getInt('categoryID', 0);
+            $countryID = $input->getInt('countryID', 0);
+            $projectID = $input->getInt('projectID', 0);
+
+            JLoader::register('Authenticator', JPATH_BASE . '/components/com_progresstool/helpers/Authenticator.php');
+            Authenticator::authenticate($projectID);
+
+            $categoryGroups = $model->getCategoryGroups($countryID, $projectID);
+            $redirects = $model->getRedirects($categoryGroups);
+            //JFactory::getApplication()->enqueueMessage('index.php/' . $redirects[$categoryID]['redirect'], 'error');
+
+            if ($redirects[$categoryID]['redirect'] != '')
+            {
+                $genericErrorMessage = 'O,,O';
+                JFactory::getApplication()->redirect(
+                    $redirects[$categoryID]['redirect'], $genericErrorMessage
+                );
+                //JRoute::_('index.php/' . $redirects[$categoryID]['redirect'], $genericErrorMessage)
+            }
+            else
+            {
+                JFactory::getApplication()->enqueueMessage('You currently are not on the timeline for this section.', 'error');
+            }
+
         }
     }
 }

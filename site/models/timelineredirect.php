@@ -1,29 +1,32 @@
-<?php
+<?php defined('_JEXEC') or die;
 
-
-abstract class GetTimelineRedirects
+/**
+ * (Site) Class ProgressToolModelTimelineRedirect
+ *
+ * Model for timeline redirects.
+ *
+ * @package ProgressTool
+ * @subpackage site
+ * @since 0.5.0
+ *
+ * @author  Morgan Nolan <morgan.nolan@hotmail.com>
+ * @link    https://github.com/morghayn
+ */
+class ProgressToolModelTimelineRedirect extends JModelItem
 {
-    public static function timelineRedirects($countryID, $projectID)
-    {
-        $categoryGroups = self::getCategoryGroups($countryID, $projectID);
-        return self::getRedirects($categoryGroups);
-    }
-
-    public static function getRedirects($categoryGroups)
+    public function getRedirects($categoryGroups)
     {
         $timelineRedirect = array();
         foreach ($categoryGroups As $categoryGroup)
         {
             $redirect = '';
-            $currentCategory = '';
+            $currentCategoryID = '';
             $currentSection = '';
-            $colour_hex = '';
             $flag = false;
 
             foreach ($categoryGroup As $section)
             {
-                $currentCategory = $section->category;
-                $colour_hex = $section->colour_hex;
+                $currentCategoryID = $section->category_id;
 
                 /**
                  * If all tasks have been met within a section on the timeline,
@@ -71,12 +74,10 @@ abstract class GetTimelineRedirects
 
             $tempAssoc = array(
                 "redirect" => ($redirect == '' ? '' : '/timeline/' . $redirect . $categoryGroup[0]->timeline_url_fragment),
-                "category" => $currentCategory,
-                "colour_hex" => $colour_hex,
                 "currentSection" => $currentSection
             );
 
-            $timelineRedirect[$currentCategory] = $tempAssoc;
+            $timelineRedirect[$currentCategoryID] = $tempAssoc;
         }
 
         return $timelineRedirect;
@@ -87,7 +88,7 @@ abstract class GetTimelineRedirects
      * @param int $projectID the ID of the project.
      * @since 0.5.0
      */
-    public static function getCategoryGroups($countryID, $projectID)
+    public function getCategoryGroups($countryID, $projectID)
     {
         $db = JFactory::getDbo();
         $getSectionTotals = $db->getQuery(true);
@@ -105,7 +106,7 @@ abstract class GetTimelineRedirects
             ->where('TC.country_id = ' . $db->quote($countryID))
             ->group('T.id');
 
-        $columns = array('T.category_id', 'T.section_id', 'S.section', 'C.category', 'C.colour_hex', 'C.timeline_url_fragment', 'S.timeline_url_path');
+        $columns = array('T.category_id', 'T.section_id', 'S.section', 'C.timeline_url_fragment', 'S.timeline_url_path');
 
         $getSectionTotals
             ->select($db->quoteName($columns))
@@ -119,7 +120,7 @@ abstract class GetTimelineRedirects
             ->order('T.category_id, T.section_id ASC');
 
         // Returns categoryGroups
-        return self::groupByCategory(
+        return $this->groupByCategory(
             $db->setQuery($getSectionTotals)->loadObjectList()
         );
     }
@@ -130,7 +131,7 @@ abstract class GetTimelineRedirects
      * @param object $rows list of objects which will be grouped.
      * @return array list of objects grouped by categoryID.
      */
-    public static function groupByCategory($rows)
+    public function groupByCategory($rows)
     {
         $grouped = array();
 

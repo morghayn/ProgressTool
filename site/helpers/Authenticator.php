@@ -79,7 +79,6 @@ abstract class Authenticator
     {
         $user = JFactory::getUser();
 
-        $guestRedirectMessage = 'You must be logged in to use the Progress Tool.';
         $genericErrorMessage = 'Project authentication failed. Please contact the sites administrator.';
 
         // If user is guest.
