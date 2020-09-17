@@ -14,9 +14,10 @@ function timelineRedirect(categoryID, projectID, countryID)
     );
 }
 
-function opensesame(boxName)
+function toggleDisplay(elementID)
 {
-    let x = document.getElementById(boxName);
+    let x = document.getElementById(elementID);
+
     if (x.style.display === "none")
     {
         x.style.display = "block";
@@ -67,6 +68,6 @@ function updateQuestionScore(questionID, score, isComplete)
     element.innerHTML = score;
     if (isComplete)
     {
-        opensesame(`cC${questionID}`)
+        toggleDisplay(`cC${questionID}`)
     }
 }

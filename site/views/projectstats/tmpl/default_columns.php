@@ -11,7 +11,7 @@
     <?php foreach ($this->categories as $category): ?>
         <div class="todoChest" style="border-color: <?php echo $category->colour_hex; ?>">
             <button class="category" style="background-color: <?php echo $category->colour_hex; ?>;"
-                    onclick="opensesame('taskList_<?php echo $category->id; ?>')">
+                    onclick="toggleDisplay('taskList_<?php echo $category->id; ?>')">
                 <?php echo $category->category; ?>
                 <span>(<?php echo $this->categoryCompletionPercent[$category->id - 1]; ?>%)</span>
             </button>

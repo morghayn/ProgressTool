@@ -19,9 +19,10 @@ function redirectProjectBoard()
     window.location = '?option=com_progresstool&view=projectboard'
 }
 
-function opensesame(boxName)
+function toggleDisplay(elementID)
 {
-    var x = document.getElementById(boxName);
+    let x = document.getElementById(elementID);
+
     if (x.style.display === "none") {
         x.style.display = "block";
     } else {

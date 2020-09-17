@@ -1,0 +1,131 @@
+.iconChest {
+    margin: 0 auto;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: crimson;
+}
+
+.iconChest:hover {
+    opacity: 0.25;
+}
+
+.masterChest {
+    margin-bottom: 0;
+}
+/**
+.buttonChest {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex: 3;
+}
+ */
+.superChest {
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    /**margin-top: 75px;*/
+}
+
+.editor {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+}
+
+.formChest {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border: 2px solid #0C4DA0;
+
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
+.formChestHeadingChest {
+    cursor: pointer;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    color: #ffffff;
+    background-color: #0C4DA0;
+}
+
+.formChestHeading {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 1.05rem;
+    font-size: 1.35rem;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+    line-height: 1.1;
+    word-wrap: break-word;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.formChest form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.formButtonChest {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.formButtonChest > button, input[type="submit"] {
+    flex: 1;
+    text-align: center;
+    border: none;
+    padding: 0.75rem;
+    font-size: 1.05rem;
+    background-color: lightgreen;
+    color: black;
+    font-weight: 500;
+    margin: 0 5% 0.5rem 5%;
+}
+
+.formButtonChest > button:hover, input[type=submit]:hover {
+    opacity: 0.5;
+}
+
+.formSlot {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.formSlot label {
+    flex: 1;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.formSlot textarea {
+    flex: 3;
+    resize: none;
+    /**overflow: hidden;*/
+    border-radius: 0;
+    margin: 0;
+}
+
+.formSlot input[type=number] {
+    flex: 3;
+    margin: 0;
+}
+
+.formSlot input[type=text] {
+    flex: 3;
+    margin: 0;
+}

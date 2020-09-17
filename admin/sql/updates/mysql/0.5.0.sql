@@ -35,11 +35,11 @@ VALUES ('Has the group an idea of what they can do?'),
 
 CREATE TABLE `#__pt_category`
 (
-    `id`           TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `category`     VARCHAR(255)     NOT NULL,
+    `id`                    TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `category`              VARCHAR(255)     NOT NULL,
     `timeline_url_fragment` VARCHAR(255)     NOT NULL,
-    `colour_hex`   VARCHAR(7)       NOT NULL DEFAULT ('#ffffff'),
-    `colour_rgb`   VARCHAR(13)      NOT NULL DEFAULT ('255, 255, 255'),
+    `colour_hex`            VARCHAR(7)       NOT NULL DEFAULT ('#ffffff'),
+    `colour_rgb`            VARCHAR(13)      NOT NULL DEFAULT ('255, 255, 255'),
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
@@ -48,16 +48,17 @@ CREATE TABLE `#__pt_category`
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO `#__pt_category` (`id`, `category`, `timeline_url_fragment`, `colour_hex`, `colour_rgb`)
-VALUES (1, 'People', '#group', '#f7a58a', '247, 165, 138'), -- RED-ORANGE
+VALUES (1, 'People', '#group', '#f7a58a', '247, 165, 138'),         -- RED-ORANGE
        (2, 'Technology', '#technical', '#95d0ab', '149, 208, 171'), -- PURPLE
-       (3, 'Finance', '#financial', '#9690c6', '150, 144, 198'); -- GREEN
+       (3, 'Finance', '#financial', '#9690c6', '150, 144, 198');
+-- GREEN
 
 /* */
 
 CREATE TABLE `#__pt_section`
 (
-    `id`      TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `section` VARCHAR(255)     NOT NULL,
+    `id`                TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `section`           VARCHAR(255)     NOT NULL,
     `timeline_url_path` VARCHAR(255)     NOT NULL,
     PRIMARY KEY (`id`)
 )
@@ -231,7 +232,7 @@ CREATE TABLE `#__pt_question_choice` /* TODO: Make question_id, choice_id a comp
 (
     `id`          SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     `question_id` SMALLINT UNSIGNED NOT NULL,
-    `choice`      VARCHAR(255)      NOT NULL,
+    `choice`      VARCHAR(255)      NOT NULL DEFAULT 'blank choice',
     `weight`      TINYINT UNSIGNED  NOT NULL DEFAULT '1',
     PRIMARY KEY (`id`),
     FOREIGN KEY (question_id) REFERENCES `#__pt_question` (id)

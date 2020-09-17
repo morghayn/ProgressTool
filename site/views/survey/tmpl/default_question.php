@@ -17,7 +17,7 @@ endforeach;
 
 <div class="masterChest" style="border-color: <?php echo $colourHex; ?>">
 
-    <div class="masterChestHeadingChest" style="background-color: <?php echo $colourHex; ?>;" onclick="opensesame('<?php echo 'cC' . $questionID; ?>')">
+    <div class="masterChestHeadingChest" style="background-color: <?php echo $colourHex; ?>;" onclick="toggleDisplay('<?php echo 'cC' . $questionID; ?>')">
         <h2 class="masterChestHeading">
             <?php echo $questionCounter . '. ' . $question; ?>
         </h2>
@@ -38,5 +38,4 @@ endforeach;
         </div>
     </div>
 
-    <input type="submit" value="Submit">
 </div>

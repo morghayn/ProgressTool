@@ -232,7 +232,7 @@ CREATE TABLE `#__pt_question_choice` /* TODO: Make question_id, choice_id a comp
 (
     `id`          SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     `question_id` SMALLINT UNSIGNED NOT NULL,
-    `choice`      VARCHAR(255)      NOT NULL,
+    `choice`      VARCHAR(255)      NOT NULL DEFAULT 'blank choice',
     `weight`      TINYINT UNSIGNED  NOT NULL DEFAULT '1',
     PRIMARY KEY (`id`),
     FOREIGN KEY (question_id) REFERENCES `#__pt_question` (id)
