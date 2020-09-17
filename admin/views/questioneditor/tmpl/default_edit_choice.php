@@ -17,13 +17,6 @@ $formRedirect = 'index.php?option=com_progresstool&view=questionEditor&task=ques
     <form action="<?php echo $formRedirect; ?>" method="post" class="questionChoiceForm" id="questionChoiceForm" enctype="multipart/form-data">
         <input id="token" type="hidden" name="<?php echo JSession::getFormToken(); ?>" value="1"/>
 
-        <div class="formQuadSlot">
-            <div style="flex: 2;"><p>Name</p></div>
-            <div style="flex: 6;"><p>Choice</p></div>
-            <div style="flex: 1;"><p>Weight</p></div>
-            <div style="flex: 1;"><p>Delete</p></div>
-        </div>
-
         <?php foreach ($this->choices as $choice): ?>
             <?php $choiceID = $choice['id']; ?>
 
