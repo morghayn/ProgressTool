@@ -40,26 +40,24 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
     {
         //JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
-        //$model = $this->getModel('beginner');
+        $model = $this->getModel('questionEditor');
         $app = JFactory::getApplication();
         $input = $app->input;
         $choices = $input->get('choices', array(), 'array');
 
-        $testingChoices = '';
-
-        foreach ($choices as $key => $choice)
+        /*
+        if ($model->updateChoices($choices))
         {
-            $testingChoices .= '\n' . $key . '. ' . $choice;
+            $app->enqueueMessage("success");
         }
+        else
+        {
+            $app->enqueueMessage("failure");
+        }
+        */
 
-        $app->enqueueMessage("updateQuestionChoices() $testingChoices");
-        $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
-    }
-
-    public function updateIcon()
-    {
-        $app = JFactory::getApplication();
-        $app->enqueueMessage("updateIcon()");
+        $test = $model->updateChoices($choices);
+        $app->enqueueMessage($test);
         $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
     }
 
@@ -70,7 +68,7 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
         $input = $app->input;
         $questionID = $input->getInt('questionID', 0);
 
-        if($model->addChoice($questionID))
+        if($model->addNewChoice($questionID))
         {
             $app->enqueueMessage("Choice added");
         }
@@ -87,20 +85,24 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
         $model = $this->getModel('questionEditor');
         $app = JFactory::getApplication();
         $input = $app->input;
-        //$questionID = $input->getInt('questionID', 0);
+        $choiceID = $input->getInt('choiceID', 0);
 
-        /**
-        if($model->addChoice($questionID))
+        if($model->deleteChoice($choiceID))
         {
-            $app->enqueueMessage("Choice added");
+            $app->enqueueMessage("Choice deleted");
         }
         else
         {
-            $app->enqueueMessage("Failed to add choice");
+            $app->enqueueMessage("Failed to delete choice");
         }
-        */
 
-        $app->enqueueMessage("deleteChoice()");
+        $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
+    }
+
+    public function updateIcon()
+    {
+        $app = JFactory::getApplication();
+        $app->enqueueMessage("updateIcon()");
         $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
     }
 

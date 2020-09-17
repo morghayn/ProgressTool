@@ -14,13 +14,6 @@
  */
 class ProgressToolModelQuestionEditor extends JModelLegacy
 {
-    /**
-     * TODO: documentation
-     *
-     * @param $questionID int
-     * @return mixed
-     * @since 0.5.0
-     */
     public function getQuestion($questionID)
     {
         $db = JFactory::getDbo();
@@ -37,13 +30,6 @@ class ProgressToolModelQuestionEditor extends JModelLegacy
         return $db->setQuery($getQuestion)->loadAssoc();
     }
 
-    /**
-     * TODO: documentation
-     *
-     * @param int $questionID
-     * @return mixed
-     * @since 0.5.0
-     */
     public function getChoices($questionID)
     {
         $db = JFactory::getDbo();
@@ -74,18 +60,48 @@ class ProgressToolModelQuestionEditor extends JModelLegacy
         return $db->setQuery($updateQuestion)->execute();
     }
 
-    public function addChoice($questionID)
+    public function updateChoices($choices)
+    {
+        $db = JFactory::getDbo();
+        $updateChoices = $db->getQuery(true);
+
+        $columns = array('id', 'choice', 'weight');
+
+        $updateChoices
+            ->insert($db->quoteName('#__pt_question_choice'))
+            ->columns($db->quoteName($columns));
+
+        foreach ($choices as $key => $choice)
+        {
+            $updateChoices->values($key . ', ' . $db->quote($choice['choice']) . ', ' . $choice['weight']);
+        }
+
+        //return $db->replacePrefix((string) $updateChoices) . " ON DUPLICATE KEY UPDATE `choice` = VALUES(`choice`), `weight` = VALUES(`weight`)";
+        return $db->setQuery($updateChoices . " ON DUPLICATE KEY UPDATE `choice` = VALUES(`choice`), `weight` = VALUES(`weight`)")->execute();
+    }
+
+    public function addNewChoice($questionID)
     {
         $db = JFactory::getDbo();
         $insertChoice = $db->getQuery(true);
 
-        $columns = array('question_id');
-
         $insertChoice
             ->insert($db->quoteName('#__pt_question_choice'))
-            ->columns($db->quoteName($columns))
+            ->columns($db->quoteName('question_id'))
             ->values($db->quote($questionID));
 
         return $db->setQuery($insertChoice)->execute();
+    }
+
+    public function deleteChoice($choiceID)
+    {
+        $db = JFactory::getDbo();
+        $deleteChoice = $db->getQuery(true);
+
+        $deleteChoice
+            ->delete($db->quoteName('#__pt_question_choice'))
+            ->where($db->quoteName('id') . ' = ' . $db->quote($choiceID));
+
+        return $db->setQuery($deleteChoice)->execute();
     }
 }

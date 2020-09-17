@@ -4,21 +4,18 @@ defined('_JEXEC') or die;
 $questionID = $this->question['id'];
 $question = $this->question['question'];
 $colourHex = $this->question['colour_hex'];
+$formRedirect = 'index.php?option=com_progresstool&view=questionEditor&task=questionEditor.updateQuestion';
 
 ?>
 
-<!-- Question Editor -->
 <div class="formChest" style="border-color: <?php echo $colourHex; ?>">
-    <div class="formChestHeadingChest" style="background-color: <?php echo $colourHex; ?>"
-         onclick="toggleDisplay('questionForm', 'questionFormButtonChest')">
+    <div class="formChestHeadingChest" style="background-color: <?php echo $colourHex; ?>" onclick="toggleQuestionForm()">
         <h1 class="formChestHeading">
             Question
         </h1>
     </div>
 
-    <form action="<?php echo JRoute::_('index.php?option=com_progresstool&view=questionEditor&task=questionEditor.updateQuestion'); ?>"
-          method="post" class="questionForm" id="questionForm" enctype="multipart/form-data">
-
+    <form action="<?php echo $formRedirect; ?>" method="post" class="questionForm" id="questionForm" enctype="multipart/form-data">
         <input type="hidden" name="questionID" value="<?php echo $questionID; ?>">
 
         <div class="formSlot">
@@ -31,7 +28,6 @@ $colourHex = $this->question['colour_hex'];
                     maxlength="255"
             ><?php echo $question; ?></textarea>
         </div>
-
     </form>
 
     <div class="formButtonChest" id="questionFormButtonChest">

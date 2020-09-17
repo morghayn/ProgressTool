@@ -3,40 +3,39 @@
 defined('_JEXEC') or die;
 $questionID = $this->question['id'];
 $colourHex = $this->question['colour_hex'];
+$formRedirect = 'index.php?option=com_progresstool&view=questionEditor&task=questionEditor.updateQuestionChoices';
 
 ?>
 
-<!-- Choices Editor -->
 <div class="formChest" style="border-color: <?php echo $colourHex; ?>">
-    <div class="formChestHeadingChest" style="background-color: <?php echo $colourHex; ?>" onclick="toggleQuestionChoice()">
+    <div class="formChestHeadingChest" style="background-color: <?php echo $colourHex; ?>" onclick="toggleQuestionChoiceForm()">
         <h1 class="formChestHeading">
             Choices
         </h1>
     </div>
 
-    <form action="<?php echo JRoute::_('index.php?option=com_progresstool&view=questionEditor&task=questionEditor.updateQuestionChoices'); ?>"
-          method="post" class="questionChoiceForm" id="questionChoiceForm" enctype="multipart/form-data">
+    <form action="<?php echo $formRedirect; ?>" method="post" class="questionChoiceForm" id="questionChoiceForm" enctype="multipart/form-data">
+        <?php foreach ($this->choices as $choice): ?>
 
-        <?php foreach ($this->choices as $this->choice): ?>
-
-            <?php $choiceID = $this->choice['id']; ?>
+            <?php $choiceID = $choice['id']; ?>
             <div class="formSlot">
                 <label for="choice<?php echo $choiceID; ?>">[ID: <?php echo $choiceID; ?>] Choice</label>
 
                 <textarea id="choice<?php echo $choiceID; ?>"
-                          name="choices[<?php echo $choiceID; ?>]"
-                          oninput="updatePreview('previewChoice<?php echo $choiceID;?>', this.value)"
+                          name="choices[<?php echo $choiceID; ?>][choice]"
+                          oninput="updatePreview('previewChoice<?php echo $choiceID; ?>', this.value)"
                           rows="1"
                           maxlength="255"
-                ><?php echo $this->choice['choice']; ?></textarea>
+                ><?php echo $choice['choice']; ?></textarea>
 
-                <button type="button" onclick="deleteChoice(<?php echo $this->choice['id']; ?>)">
+                <input name="choices[<?php echo $choiceID; ?>][weight]" type="text" value="<?php echo $choice['weight']; ?>"/>
+
+                <button type="button" onclick="deleteChoice(<?php echo $choiceID; ?>)">
                     X
                 </button>
             </div>
 
         <?php endforeach; ?>
-
     </form>
 
     <div class="formButtonChest" id="questionChoiceFormButtonChest">

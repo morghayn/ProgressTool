@@ -4,10 +4,22 @@ function toggleDisplay(formID, buttonChestID)
     toggle(document.getElementById(buttonChestID))
 }
 
-function toggleQuestionChoice()
+function toggleQuestionForm()
+{
+    toggle(document.getElementById('questionForm'));
+    toggle(document.getElementById('questionFormButtonChest'))
+}
+
+function toggleQuestionChoiceForm()
 {
     toggle(document.getElementById('questionChoiceForm'));
     toggle(document.getElementById('questionChoiceFormButtonChest'))
+}
+
+function toggleIconForm()
+{
+    toggle(document.getElementById('iconForm'));
+    toggle(document.getElementById('iconFormButtonChest'))
 }
 
 function toggle(x)

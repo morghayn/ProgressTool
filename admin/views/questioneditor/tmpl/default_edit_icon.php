@@ -3,20 +3,18 @@
 defined('_JEXEC') or die;
 $questionID = $this->question['id'];
 $colourHex = $this->question['colour_hex'];
+$formRedirect = 'index.php?option=com_progresstool&view=questionEditor&task=questionEditor.updateIcon';
 
 ?>
 
-<!-- Icon Editor -->
 <div class="formChest" style="border-color: <?php echo $colourHex; ?>">
-    <div class="formChestHeadingChest" style="background-color: <?php echo $colourHex; ?>"
-         onclick="toggleDisplay('iconForm', 'iconFormButtonChest')">
+    <div class="formChestHeadingChest" style="background-color: <?php echo $colourHex; ?>" onclick="toggleIconForm()">
         <h1 class="formChestHeading">
             Icon
         </h1>
     </div>
 
-    <form action="<?php echo JRoute::_('index.php?option=com_progresstool&view=questionEditor&task=questionEditor.updateIcon'); ?>"
-          method="post" class="iconForm" id="iconForm" enctype="multipart/form-data">
+    <form action="<?php echo $formRedirect; ?>" method="post" class="iconForm" id="iconForm" enctype="multipart/form-data">
         <input type="file" name="imageToUpload" id="imageToUpload">
 
         <div class="formSlot">
