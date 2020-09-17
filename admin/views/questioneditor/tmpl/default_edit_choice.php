@@ -15,24 +15,33 @@ $formRedirect = 'index.php?option=com_progresstool&view=questionEditor&task=ques
     </div>
 
     <form action="<?php echo $formRedirect; ?>" method="post" class="questionChoiceForm" id="questionChoiceForm" enctype="multipart/form-data">
-        <?php foreach ($this->choices as $choice): ?>
+        <input id="token" type="hidden" name="<?php echo JSession::getFormToken(); ?>" value="1"/>
 
+        <div class="formQuadSlot">
+            <div style="flex: 2;"><p>Name</p></div>
+            <div style="flex: 6;"><p>Choice</p></div>
+            <div style="flex: 1;"><p>Weight</p></div>
+            <div style="flex: 1;"><p>Delete</p></div>
+        </div>
+
+        <?php foreach ($this->choices as $choice): ?>
             <?php $choiceID = $choice['id']; ?>
-            <div class="formSlot">
+
+            <div class="formQuadSlot">
                 <label for="choice<?php echo $choiceID; ?>">[ID: <?php echo $choiceID; ?>] Choice</label>
 
-                <textarea id="choice<?php echo $choiceID; ?>"
-                          name="choices[<?php echo $choiceID; ?>][choice]"
-                          oninput="updatePreview('previewChoice<?php echo $choiceID; ?>', this.value)"
-                          rows="1"
-                          maxlength="255"
-                ><?php echo $choice['choice']; ?></textarea>
+                <div class="formQuadTextArea">
+                    <textarea id="choice<?php echo $choiceID; ?>"
+                              name="choices[<?php echo $choiceID; ?>][choice]"
+                              oninput="updatePreview('previewChoice<?php echo $choiceID; ?>', this.value)"
+                              rows="4"
+                              maxlength="255"
+                    ><?php echo $choice['choice']; ?></textarea>
+                </div>
 
-                <input name="choices[<?php echo $choiceID; ?>][weight]" type="text" value="<?php echo $choice['weight']; ?>"/>
+                <input name="choices[<?php echo $choiceID; ?>][weight]" type="text" value="<?php echo $choice['weight']; ?>" maxlength="6"/>
 
-                <button type="button" onclick="deleteChoice(<?php echo $choiceID; ?>)">
-                    X
-                </button>
+                <button type="button" onclick="deleteChoice(<?php echo $choiceID; ?>)">X</button>
             </div>
 
         <?php endforeach; ?>

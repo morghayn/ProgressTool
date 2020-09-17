@@ -16,7 +16,7 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
 {
     public function updateQuestion()
     {
-        //JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
         $model = $this->getModel('questionEditor');
         $app = JFactory::getApplication();
@@ -38,31 +38,29 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
 
     public function updateQuestionChoices()
     {
-        //JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
         $model = $this->getModel('questionEditor');
         $app = JFactory::getApplication();
         $input = $app->input;
         $choices = $input->get('choices', array(), 'array');
 
-        /*
         if ($model->updateChoices($choices))
         {
-            $app->enqueueMessage("success");
+            $app->enqueueMessage("Successfully updated the choices.");
         }
         else
         {
-            $app->enqueueMessage("failure");
+            $app->enqueueMessage("Failed to update the choices.");
         }
-        */
 
-        $test = $model->updateChoices($choices);
-        $app->enqueueMessage($test);
         $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
     }
 
     public function addChoice()
     {
+        // TODO: JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+
         $model = $this->getModel('questionEditor');
         $app = JFactory::getApplication();
         $input = $app->input;
@@ -82,6 +80,8 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
 
     public function deleteChoice()
     {
+        // TODO: JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+
         $model = $this->getModel('questionEditor');
         $app = JFactory::getApplication();
         $input = $app->input;
@@ -101,6 +101,8 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
 
     public function updateIcon()
     {
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+
         $app = JFactory::getApplication();
         $app->enqueueMessage("updateIcon()");
         $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
@@ -108,6 +110,8 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
 
     public function removeIcon()
     {
+        //TODO: JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+
         $model = $this->getModel('questionEditor');
         $app = JFactory::getApplication();
         $input = $app->input;

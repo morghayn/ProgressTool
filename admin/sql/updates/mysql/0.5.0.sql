@@ -725,7 +725,7 @@ CREATE TABLE `#__pt_choice_task`
     `choice_id` SMALLINT UNSIGNED NOT NULL,
     CONSTRAINT id PRIMARY KEY (`task_id`, `choice_id`),
     FOREIGN KEY (`task_id`) REFERENCES `#__pt_task` (`id`),
-    FOREIGN KEY (`choice_id`) REFERENCES `#__pt_question_choice` (`id`)
+    FOREIGN KEY (`choice_id`) REFERENCES `#__pt_question_choice` (`id`) ON DELETE CASCADE
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 0

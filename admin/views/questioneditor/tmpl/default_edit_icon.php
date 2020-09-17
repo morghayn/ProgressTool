@@ -15,6 +15,7 @@ $formRedirect = 'index.php?option=com_progresstool&view=questionEditor&task=ques
     </div>
 
     <form action="<?php echo $formRedirect; ?>" method="post" class="iconForm" id="iconForm" enctype="multipart/form-data">
+        <input id="token" type="hidden" name="<?php echo JSession::getFormToken(); ?>" value="1"/>
         <input type="file" name="imageToUpload" id="imageToUpload">
 
         <div class="formSlot">

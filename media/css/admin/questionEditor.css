@@ -103,19 +103,20 @@
 .formSlot {
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: stretch;
+    vertical-align: middle;
 }
 
 .formSlot label {
-    flex: 1;
+    flex: 3;
     margin: 0 auto;
     text-align: center;
+    align-self: center;
 }
 
 .formSlot textarea {
-    flex: 3;
+    flex: 8;
     resize: none;
-    /**overflow: hidden;*/
     padding: 0.5rem;
     border-radius: 0;
     margin: 0;
@@ -124,9 +125,65 @@
 .formSlot input[type=number] {
     flex: 3;
     margin: 0;
+    height: auto;
 }
 
 .formSlot input[type=text] {
     flex: 3;
     margin: 0;
+    height: auto;
+}
+
+/* For the questionChoiceForm */
+
+.formQuadSlot {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    vertical-align: middle;
+}
+
+.formQuadSlot p {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 0.75rem;
+}
+
+.formQuadSlot label {
+    flex: 3;
+    margin: 0 auto;
+    text-align: center;
+    align-self: center;
+}
+
+.formQuadTextArea {
+    flex: 6;
+}
+
+.formQuadSlot textarea {
+    width: 100%;
+    resize: none;
+    /**padding: 0.5rem;*/
+    border-radius: 0;
+    margin: 0;
+    /**overflow: hidden;*/
+    /**text-overflow: ellipsis;*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.formQuadSlot input[type=text] {
+    width: 0;
+    min-width: 0;
+    flex: 1;
+    margin: 0;
+    height: auto;
+}
+
+.formQuadSlot button {
+    flex: 1;
 }

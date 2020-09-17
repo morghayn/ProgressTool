@@ -16,6 +16,7 @@ $formRedirect = 'index.php?option=com_progresstool&view=questionEditor&task=ques
     </div>
 
     <form action="<?php echo $formRedirect; ?>" method="post" class="questionForm" id="questionForm" enctype="multipart/form-data">
+        <input id="token" type="hidden" name="<?php echo JSession::getFormToken(); ?>" value="1"/>
         <input type="hidden" name="questionID" value="<?php echo $questionID; ?>">
 
         <div class="formSlot">
@@ -24,7 +25,7 @@ $formRedirect = 'index.php?option=com_progresstool&view=questionEditor&task=ques
                     id="question<?php echo $questionID; ?>"
                     oninput="updatePreview('previewQuestion', this.value)"
                     name="question"
-                    rows="1"
+                    rows="2"
                     maxlength="255"
             ><?php echo $question; ?></textarea>
         </div>
