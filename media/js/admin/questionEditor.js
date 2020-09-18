@@ -59,24 +59,36 @@ function deleteChoice(choiceID)
     )
 }
 
-function removeIcon(questionID)
+function deleteIcon(questionID)
 {
     window.location.href = (
         `index.php?option=com_progresstool` +
         `&view=questionEditor` +
-        `&task=questionEditor.removeIcon` +
+        `&task=questionEditor.deleteIcon` +
         `&questionID=${questionID}`
     )
 }
 
-function updateIconBottom(questionID, inputValue)
+function updateIconBottom(inputValue)
 {
-    let elem = document.getElementById(`iconChest${questionID}`);
+    let elem = document.getElementById(`iconChest`);
     elem.style.bottom = inputValue + "px";
 }
 
-function updateIconRight(questionID, inputValue)
+function updateIconRight(inputValue)
 {
-    let elem = document.getElementById(`iconChest${questionID}`);
+    let elem = document.getElementById(`iconChest`);
     elem.style.right = inputValue + "px";
+}
+
+function updateIconWidth(inputValue)
+{
+    let elem = document.getElementById(`iconChest`);
+    elem.style.width = inputValue + "px";
+}
+
+function updateIconHeight(inputValue)
+{
+    let elem = document.getElementById(`iconChest`);
+    elem.style.height = inputValue + "px";
 }

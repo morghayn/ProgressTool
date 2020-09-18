@@ -26,7 +26,7 @@ class ProgressToolViewQuestionEditor extends JViewLegacy
     {
         $model = parent::getModel();
 
-        $questionID = 1;
+        $questionID = 2;
         $this->question = $model->getQuestion($questionID);
         $this->choices = $model->getChoices($questionID);
 

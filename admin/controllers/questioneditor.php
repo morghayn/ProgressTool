@@ -66,7 +66,7 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
         $input = $app->input;
         $questionID = $input->getInt('questionID', 0);
 
-        if($model->addNewChoice($questionID))
+        if ($model->addNewChoice($questionID))
         {
             $app->enqueueMessage("Choice added");
         }
@@ -87,7 +87,7 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
         $input = $app->input;
         $choiceID = $input->getInt('choiceID', 0);
 
-        if($model->deleteChoice($choiceID))
+        if ($model->deleteChoice($choiceID))
         {
             $app->enqueueMessage("Choice deleted");
         }
@@ -102,33 +102,70 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
     public function updateIcon()
     {
         JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-
+        $model = $this->getModel('questionEditor');
         $app = JFactory::getApplication();
-        $app->enqueueMessage("updateIcon()");
-        $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
+        $input = $app->input;
+        $data = $input->get('icon', array(), 'ARRAY');
+        $questionID = $input->getInt('questionID', 0);
+        $file = $input->files->get('file_upload');
+
+        if ($file)
+        {
+            // Cleans the name of teh file by removing weird characters
+            $filename = JFile::makeSafe($file['name']);
+
+            $src = $file['tmp_name'];
+            $filePath = '/media/com_progresstool/icons/' . $filename;
+            $dest = JPATH_SITE . '/media/com_progresstool/icons/' . $filename;
+
+            if (JFile::upload($src, $dest))
+            {
+                list($width, $height) = getimagesize(JPATH_SITE . $filePath);
+                $model->addIcon($questionID, $filePath, $width, $height);
+                $app->enqueueMessage(':)');
+                $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
+            }
+            else
+            {
+                $app->enqueueMessage(':(');
+                $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
+            }
+        }
+        else
+        {
+            if ($model->updateIcon($data, $questionID))
+            {
+                $app->enqueueMessage(':)');
+                $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
+            }
+            else
+            {
+                $app->enqueueMessage(':(');
+                $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
+            }
+        }
     }
 
-    public function removeIcon()
+    public function deleteIcon()
     {
         //TODO: JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
         $model = $this->getModel('questionEditor');
         $app = JFactory::getApplication();
         $input = $app->input;
-        //$questionID = $input->getInt('questionID', 0);
+        $questionID = $input->getInt('questionID', 0);
 
-        /**
-        if($model->addChoice($questionID))
+
+        if ($model->deleteIcon($questionID))
         {
-        $app->enqueueMessage("Choice added");
+            $app->enqueueMessage("Icon removed");
         }
         else
         {
-        $app->enqueueMessage("Failed to add choice");
-        }
-         */
 
-        $app->enqueueMessage("removeIcon()");
+            $app->enqueueMessage("Failed to remove icon");
+        }
+
         $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
     }
 }

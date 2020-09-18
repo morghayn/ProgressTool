@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS `#__pt_question_choice`;
 DROP TABLE IF EXISTS `#__pt_question_country`;
 DROP TABLE IF EXISTS `#__pt_task_country`;
 DROP TABLE IF EXISTS `#__pt_country`;
+DROP TABLE IF EXISTS `#__pt_question_icon`;
 DROP TABLE IF EXISTS `#__pt_question`;
 DROP TABLE IF EXISTS `#__pt_project`;
 DROP TABLE IF EXISTS `#__pt_approval_question`;

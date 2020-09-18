@@ -19,13 +19,15 @@ class ProgressToolModelQuestionEditor extends JModelLegacy
         $db = JFactory::getDbo();
         $getQuestion = $db->getQuery(true);
 
-        $columns = array('Q.id', 'Q.question', 'CA.colour_hex', 'CA.colour_rgb');
+        $columns = array('Q.id', 'Q.question', 'CA.colour_hex', 'CA.colour_rgb', 'IMG.filepath', 'IMG.width', 'IMG.height', 'IMG.right_offset', 'IMG.bottom_offset');
 
         $getQuestion
             ->select($db->quoteName($columns))
             ->from($db->quoteName('#__pt_question', 'Q'))
             ->innerjoin($db->quoteName('#__pt_category', 'CA') . ' ON ' . $db->quoteName('Q.category_id') . ' = ' . $db->quoteName('CA.id'))
-            ->where($db->quoteName('Q.id') . ' = ' . $db->quote($questionID));
+            ->leftjoin($db->quoteName('#__pt_question_icon', 'IMG') . ' ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('IMG.question_id'))
+            ->where($db->quoteName('Q.id') . ' = ' . $db->quote($questionID))
+            ->limit(1);
 
         return $db->setQuery($getQuestion)->loadAssoc();
     }
@@ -103,5 +105,49 @@ class ProgressToolModelQuestionEditor extends JModelLegacy
             ->where($db->quoteName('id') . ' = ' . $db->quote($choiceID));
 
         return $db->setQuery($deleteChoice)->execute();
+    }
+
+    public function addIcon($questionID, $filePath, $width, $height)
+    {
+        $db = JFactory::getDbo();
+        $insertChoice = $db->getQuery(true);
+
+        $columns = array('question_id', 'filepath', 'width', 'height');
+        $values = array($questionID, $filePath, $width, $height);
+
+        $insertChoice
+            ->insert($db->quoteName('#__pt_question_icon'))
+            ->columns($db->quoteName($columns))
+            ->values($questionID . ',' . $db->quote($filePath) . ',' . $width . ',' . $height);
+
+        return $db->setQuery($insertChoice)->execute();
+    }
+
+    public function updateIcon($data, $questionID)
+    {
+        $db = JFactory::getDbo();
+        $updateIcon = $db->getQuery(true);
+
+        $updateIcon
+            ->update($db->quoteName('#__pt_question_icon', 'IMG'))
+            ->set($db->quoteName('IMG.right_offset') . ' = ' . $db->quote($data['right']))
+            ->set($db->quoteName('IMG.bottom_offset') . ' = ' . $db->quote($data['bottom']))
+            ->set($db->quoteName('IMG.width') . ' = ' . $db->quote($data['width']))
+            ->set($db->quoteName('IMG.height') . ' = ' . $db->quote($data['height']))
+            ->where($db->quoteName('IMG.question_id') . ' = ' . $db->quote($questionID));
+
+        return $db->setQuery($updateIcon)->execute();
+    }
+
+    public function deleteIcon($questionID)
+    {
+        $db = JFactory::getDbo();
+        $deleteIcon = $db->getQuery(true);
+
+        $deleteIcon
+            ->delete($db->quoteName('#__pt_question_icon'))
+            ->where($db->quoteName('question_id') . ' = ' . $db->quote($questionID));
+
+        return $db->setQuery($deleteIcon)->execute();
     }
 }

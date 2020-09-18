@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS `#__pt_question_choice`;
 DROP TABLE IF EXISTS `#__pt_question_country`;
 DROP TABLE IF EXISTS `#__pt_task_country`;
 DROP TABLE IF EXISTS `#__pt_country`;
+DROP TABLE IF EXISTS `#__pt_question_icon`;
 DROP TABLE IF EXISTS `#__pt_question`;
 DROP TABLE IF EXISTS `#__pt_project`;
 DROP TABLE IF EXISTS `#__pt_approval_question`;
@@ -99,7 +100,8 @@ VALUES -- Irish
        (3, 3, 'Has there been exploratory discussions within the community about creating a renewable energy project?'),
        -- Exclude Ireland
        (4, 3, 'Has there been exploratory discussions within the community about creating a renewable energy project?'),
-       (5, 1, 'Has a group been formed to manage the energy transition and any renewable energy projects in your community?'),
+       (5, 1,
+        'Has a group been formed to manage the energy transition and any renewable energy projects in your community?'),
        -- Irish
        (6, 2, 'Has this group pursued any informal evaluation of the area to determine suitability?'),
        -- Exclude Ireland
@@ -113,10 +115,12 @@ VALUES -- Irish
        -- Exclude Ireland
        (11, 3, 'Has there been any meetings with potential partners or mentors?'),
        -- Irish
-       (12, 2, 'Has a preliminary evaluation of the territory been completed? Has an Energy Master Plan been carried out for the community?'),
+       (12, 2,
+        'Has a preliminary evaluation of the territory been completed? Has an Energy Master Plan been carried out for the community?'),
        -- Exclude Ireland
        (13, 2, 'Has a preliminary evaluation of the territory been completed?'),
-       (14, 2, 'Following the preliminary evaluation of the territory, has a decision been made regarding project choice?'),
+       (14, 2,
+        'Following the preliminary evaluation of the territory, has a decision been made regarding project choice?'),
        (15, 2, 'Has a feasibility study been carried out for the selected Renewable Energy Project?'),
        (16, 2, 'Has a land leasing commitment been agreed?'),
        (17, 3, 'Is there a finance plan agreed within the group?'),
@@ -139,6 +143,27 @@ VALUES -- Irish
        (31, 2, 'Is the group partaking in monitoring the project?'),
        (32, 1, 'Has the community group maintained strong bonds with the local citizens?'),
        (33, 1, 'Has there been further educational activities in your community?');
+
+/* */
+
+CREATE TABLE `#__pt_question_icon`
+(
+    `id`            SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `question_id`   SMALLINT UNSIGNED NOT NULL,
+    `filepath`      VARCHAR(255)      NOT NULL,
+    `width`         SMALLINT UNSIGNED NOT NULL DEFAULT 0,
+    `height`        SMALLINT UNSIGNED NOT NULL DEFAULT 0,
+    `right_offset`  SMALLINT UNSIGNED NOT NULL DEFAULT 0,
+    `bottom_offset` SMALLINT UNSIGNED NOT NULL DEFAULT 0,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`question_id`) REFERENCES `#__pt_question` (id)
+)
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 0
+    DEFAULT CHARSET = utf8mb4
+    DEFAULT COLLATE = utf8mb4_unicode_ci;
+
+-- INSERT INTO `#__pt_question` (`id`, `category_id`, `question`)
 
 /* */
 
@@ -257,7 +282,9 @@ VALUES -- Question 1
 
        -- Question 3
        (9, 3, 'No', 0),
-       (10, 3, 'Yes, regarding the type of governance that would be involved e.g. Co-operative or Sustainable Energy Community with SEAI (SEC)', 1),
+       (10, 3,
+        'Yes, regarding the type of governance that would be involved e.g. Co-operative or Sustainable Energy Community with SEAI (SEC)',
+        1),
        (11, 3, 'Yes, regarding the financial structuring', 1),
        (12, 3, 'Yes, regarding the type of partnerships available and if they would be suitable', 1),
        (13, 3, 'Yes, regarding how to distribute benefits and profits among the local area', 1),
@@ -272,14 +299,17 @@ VALUES -- Question 1
        -- Question 5
        (19, 5, 'No', 0),
        (20, 5, 'No, but there is interest from the community to forms one', 0),
-       (21, 5, 'Yes, there is a leading group that has been democratically organized and formed with members of the local community', 1),
+       (21, 5,
+        'Yes, there is a leading group that has been democratically organized and formed with members of the local community',
+        1),
        (22, 5, 'Yes, legal, technical and financial structuring has been discussed ', 1),
        (23, 5, 'Yes, the goals and the values of the group have been outlined', 1),
        (24, 5, 'Yes, the group has been officially founded as an association', 1),
 
        -- Question 6
        (25, 6, 'No', 0),
-       (26, 6, 'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy',
+       (26, 6,
+        'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy',
         1),
        (27, 6,
         'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel',
@@ -289,7 +319,8 @@ VALUES -- Question 1
 
        -- Question 7
        (30, 7, 'No', 0),
-       (31, 7, 'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy',
+       (31, 7,
+        'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy',
         1),
        (32, 7,
         'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel',
@@ -492,13 +523,14 @@ VALUES ('Solar'),
 
 CREATE TABLE `#__pt_project`
 (
-    `id`          INT UNSIGNED     NOT NULL AUTO_INCREMENT,
-    `user_id`     INT UNSIGNED     NOT NULL,             -- TODO: Foreign key of user table?
-    `group_id`    INT UNSIGNED     NOT NULL DEFAULT '0', -- TODO: Foreign key of community_groups?
-    `name`        VARCHAR(100)     NOT NULL,
-    `description` VARCHAR(255),
-    `type_id`     TINYINT UNSIGNED NOT NULL,
-    `activated`   TINYINT UNSIGNED NOT NULL DEFAULT '0',
+    `id`            INT UNSIGNED     NOT NULL AUTO_INCREMENT,
+    `user_id`       INT UNSIGNED     NOT NULL,             -- TODO: Foreign key of user table?
+    `group_id`      INT UNSIGNED     NOT NULL DEFAULT '0', -- TODO: Foreign key of community_groups?
+    `name`          VARCHAR(100)     NOT NULL,
+    `description`   VARCHAR(255),
+    `type_id`       TINYINT UNSIGNED NOT NULL,
+    `creation_date` TIMESTAMP        NOT NULL,
+    `activated`     TINYINT UNSIGNED NOT NULL DEFAULT '0',
     PRIMARY KEY (`id`),
     FOREIGN KEY (`type_id`) REFERENCES `#__pt_project_type` (`id`)
 )
@@ -555,16 +587,20 @@ CREATE TABLE `#__pt_task`
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO `#__pt_task` (`id`, `category_id`, `section_id`, `task`)
-VALUES (1, 1, 1, 'Awareness activities about existing Beacon projects, Educational actions of local associations, Private developer prospection'),
-       (2, 1, 1, 'Local initiatives: new ideas + willpower of individuals, citizens, associations and local communities'),
+VALUES (1, 1, 1,
+        'Awareness activities about existing Beacon projects, Educational actions of local associations, Private developer prospection'),
+       (2, 1, 1,
+        'Local initiatives: new ideas + willpower of individuals, citizens, associations and local communities'),
        (3, 1, 1, 'Leading group'),
        (4, 1, 2,
         'Masterclasses: democratic organisation of the citizen group, Legal structuring, Technical issues, Initial financial elements, Expansion of the citizen group'),
-       (5, 1, 2, 'Brainwork on: goals and values of the group, The type of energy and awareness actions around energy transition'),
+       (5, 1, 2,
+        'Brainwork on: goals and values of the group, The type of energy and awareness actions around energy transition'),
        (6, 1, 2, 'Organisation of the group, Founding of the association'),
        (7, 1, 2, 'Support of local authorities, to obtain official support from local bodies'),
        (8, 1, 3, 'Founding of the project society'),
-       (9, 1, 3, 'Public meetings and Advanced training: technical training, financing plan, negotiation training, building project management'),
+       (9, 1, 3,
+        'Public meetings and Advanced training: technical training, financing plan, negotiation training, building project management'),
        (10, 1, 3, 'Setting up of agreements with local authorities'),
        (11, 1, 3, 'Establish contacts with administrative authorities'),
        -- (12, 1, 'Citizen financial mobilisation'),
@@ -574,7 +610,8 @@ VALUES (1, 1, 1, 'Awareness activities about existing Beacon projects, Education
        (16, 1, 5, 'Preparation for the operation monitoring'),
        (17, 1, 5, 'Inauguration'),
        (18, 1, 6, 'Ongoing communication on operation'),
-       (19, 1, 6, 'Management of the cooperative: general assembly, executive board, retain strong bonds with citizens, compensatory measure'),
+       (19, 1, 6,
+        'Management of the cooperative: general assembly, executive board, retain strong bonds with citizens, compensatory measure'),
        (20, 1, 6, 'Keep in touch with the residents of the project'),
        (21, 1, 6, 'Educational activities on: renewable energy, environmental effects, Energy savings'),
 
@@ -594,10 +631,12 @@ VALUES (1, 1, 1, 'Awareness activities about existing Beacon projects, Education
        (35, 2, 6, 'Environmental monitoring'),
        (36, 2, 6, 'Preventative maintenance and repairs'),
 
-       (37, 3, 2, 'Think thank: type of governance, financial structuring, types of partnerships, how to distribute the benefits'),
+       (37, 3, 2,
+        'Think thank: type of governance, financial structuring, types of partnerships, how to distribute the benefits'),
        (38, 3, 2, 'Meeting with potential partner'),
        (39, 3, 2, 'Preliminary financing plan'),
-       (40, 3, 3, 'Financial mobilisation, launch fundraising for development costs, reinforcement of funding partnerships'),
+       (40, 3, 3,
+        'Financial mobilisation, launch fundraising for development costs, reinforcement of funding partnerships'),
        (41, 3, 3, 'Preparation of the financial mobilisation for the construction phase'),
        (42, 3, 3, 'Consolidation of the financial plan'),
        (43, 3, 3, 'Assessment of the valuation of the risk'),
