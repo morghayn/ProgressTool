@@ -51,10 +51,10 @@ class ProgressToolViewProjectBoard extends JViewLegacy
     private function prepareDocument()
     {
         $document = JFactory::getDocument();
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterchest.css");
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/optionschest.css");
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/projectboard.css");
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/introductory.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/masterchest.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/optionschest.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/projectboard.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/introductory.css");
         $document->addScript(JURI::root() . "media/com_progresstool/js/projectboard.js");
     }
 }

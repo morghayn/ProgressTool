@@ -23,9 +23,7 @@ $bottomOffset = $filepath ? $this->question['bottom_offset'] : 0;
         <input id="token" type="hidden" name="<?php echo JSession::getFormToken(); ?>" value="1"/>
         <!--<input type="file" name="icon" id="icon">-->
         <?php if (!$filepath): ?>
-
             <input type="file" name="file_upload">
-
         <?php else: ?>
 
             <div class="formSlot">
@@ -35,7 +33,7 @@ $bottomOffset = $filepath ? $this->question['bottom_offset'] : 0;
                         name="icon[bottom]"
                         type="number"
                         value="<?php echo $bottomOffset; ?>"
-                        onclick="updateIconBottom(this.value)"
+                        onchange="updateIconBottom(this.value)"
                 />
             </div>
 
@@ -46,34 +44,38 @@ $bottomOffset = $filepath ? $this->question['bottom_offset'] : 0;
                         name="icon[right]"
                         type="number"
                         value="<?php echo $rightOffset; ?>"
-                        onclick="updateIconRight(this.value)"
+                        onchange="updateIconRight(this.value)"
                 />
             </div>
 
             <div class="formSlot">
-                <label for="width">Width</label>
+                <label for="widthToggle">Width</label>
                 <input
-                        id="width"
+                        id="widthToggle"
                         name="icon[width]"
                         type="number"
                         value="<?php echo $width; ?>"
-                        onclick="updateIconWidth(this.value)"
+                        onchange="updateIconWidth()"
                 />
             </div>
 
             <div class="formSlot">
-                <label for="height">Height</label>
+                <label for="heightToggle">Height</label>
                 <input
-                        id="height"
+                        id="heightToggle"
                         name="icon[height]"
                         type="number"
                         value="<?php echo $height; ?>"
-                        onclick="updateIconHeight(this.value)"
+                        onchange="updateIconHeight()"
                 />
             </div>
 
         <?php endif; ?>
     </form>
+
+    <?php if ($filepath): ?>
+        <label for="lockIconAspectRation">Lock Aspect Ratio</label><input type="checkbox" id="lockIconAspectRation" checked/>
+    <?php endif; ?>
 
     <div class="formButtonChest" id="iconFormButtonChest">
         <input type="submit" value="Submit" form="iconForm"/>

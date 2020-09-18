@@ -15,13 +15,13 @@ $bottomOffset = $filepath ? $this->question['bottom_offset'] : 0;
 ?>
 
 <div class="flexTest" style="position: relative; width: 60%; margin: 0 auto;">
+    <?php if ($filepath): ?>
     <div id="iconChest" class="iconChest" style="width: <?php echo $width; ?>px; height:  <?php echo $height; ?>px; bottom:  <?php echo $bottomOffset; ?>px; right:  <?php echo $rightOffset; ?>px;">
-        <?php if ($filepath): ?>
             <figure id="figurePreview" style="width: 100%; height: 100%; margin: 0;">
                 <img src="<?php echo '../' . $filepath; ?>" alt="yo not loading">
             </figure>
-        <?php endif; ?>
     </div>
+    <?php endif; ?>
 
     <div class="masterChest" style="border-color: <?php echo $colourHex; ?>;">
         <div class="masterChestHeadingChest" style="background-color: <?php echo $colourHex; ?>;">

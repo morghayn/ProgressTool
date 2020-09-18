@@ -48,6 +48,9 @@ class ProgressToolViewPool extends JViewLegacy
     private function prepareDocument()
     {
         $document = JFactory::getDocument();
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/masterchest.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/optionschest.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/survey.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/pool.css");
     }
 }

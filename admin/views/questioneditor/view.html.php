@@ -26,7 +26,9 @@ class ProgressToolViewQuestionEditor extends JViewLegacy
     {
         $model = parent::getModel();
 
-        $questionID = 2;
+        $app = JFactory::getApplication();
+        $input = $app->input;
+        $questionID = $input->getInt('questionID', 0);
         $this->question = $model->getQuestion($questionID);
         $this->choices = $model->getChoices($questionID);
 
@@ -43,9 +45,9 @@ class ProgressToolViewQuestionEditor extends JViewLegacy
     private function prepareDocument()
     {
         $document = JFactory::getDocument();
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/masterchest.css");
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/optionschest.css");
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/survey.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/masterchest.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/optionschest.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/survey.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/questionEditor.css");
 
         $document->addScript(JURI::root() . "media/com_progresstool/js/admin/questionEditor.js");

@@ -33,7 +33,7 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
             $app->enqueueMessage("Failed to update question");
         }
 
-        $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
+        $this->setRedirect("index.php?option=com_progresstool&view=questionEditor&questionID=$questionID");
     }
 
     public function updateQuestionChoices()
@@ -44,6 +44,7 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
         $app = JFactory::getApplication();
         $input = $app->input;
         $choices = $input->get('choices', array(), 'array');
+        $questionID = $input->getInt('questionID', 0);
 
         if ($model->updateChoices($choices))
         {
@@ -54,7 +55,7 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
             $app->enqueueMessage("Failed to update the choices.");
         }
 
-        $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
+        $this->setRedirect("index.php?option=com_progresstool&view=questionEditor&questionID=$questionID");
     }
 
     public function addChoice()
@@ -75,7 +76,7 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
             $app->enqueueMessage("Failed to add choice");
         }
 
-        $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
+        $this->setRedirect("index.php?option=com_progresstool&view=questionEditor&questionID=$questionID");
     }
 
     public function deleteChoice()
@@ -85,6 +86,7 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
         $model = $this->getModel('questionEditor');
         $app = JFactory::getApplication();
         $input = $app->input;
+        $questionID = $input->getInt('questionID', 0);
         $choiceID = $input->getInt('choiceID', 0);
 
         if ($model->deleteChoice($choiceID))
@@ -96,7 +98,7 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
             $app->enqueueMessage("Failed to delete choice");
         }
 
-        $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
+        $this->setRedirect("index.php?option=com_progresstool&view=questionEditor&questionID=$questionID");
     }
 
     public function updateIcon()
@@ -122,26 +124,26 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
             {
                 list($width, $height) = getimagesize(JPATH_SITE . $filePath);
                 $model->addIcon($questionID, $filePath, $width, $height);
-                $app->enqueueMessage(':)');
-                $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
+                //$app->enqueueMessage(':)');
+                $this->setRedirect("index.php?option=com_progresstool&view=questionEditor&questionID=$questionID");
             }
             else
             {
                 $app->enqueueMessage(':(');
-                $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
+                $this->setRedirect("index.php?option=com_progresstool&view=questionEditor&questionID=$questionID");
             }
         }
         else
         {
             if ($model->updateIcon($data, $questionID))
             {
-                $app->enqueueMessage(':)');
-                $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
+                //$app->enqueueMessage(':)');
+                $this->setRedirect("index.php?option=com_progresstool&view=questionEditor&questionID=$questionID");
             }
             else
             {
                 $app->enqueueMessage(':(');
-                $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
+                $this->setRedirect("index.php?option=com_progresstool&view=questionEditor&questionID=$questionID");
             }
         }
     }
@@ -166,6 +168,6 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
             $app->enqueueMessage("Failed to remove icon");
         }
 
-        $this->setRedirect('index.php?option=com_progresstool&view=questionEditor');
+        $this->setRedirect("index.php?option=com_progresstool&view=questionEditor&questionID=$questionID");
     }
 }

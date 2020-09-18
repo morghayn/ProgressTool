@@ -16,6 +16,7 @@ $formRedirect = 'index.php?option=com_progresstool&view=questionEditor&task=ques
 
     <form action="<?php echo $formRedirect; ?>" method="post" class="questionChoiceForm" id="questionChoiceForm" enctype="multipart/form-data">
         <input id="token" type="hidden" name="<?php echo JSession::getFormToken(); ?>" value="1"/>
+        <input type="hidden" name="questionID" value="<?php echo $questionID; ?>">
 
         <?php foreach ($this->choices as $choice): ?>
             <?php $choiceID = $choice['id']; ?>

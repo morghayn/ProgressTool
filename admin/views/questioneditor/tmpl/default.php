@@ -4,5 +4,10 @@
 
 <div class="superChest">
     <?php echo $this->loadTemplate('preview'); ?>
-    <?php echo $this->loadTemplate('editor'); ?>
+
+    <div class="editor">
+        <?php echo $this->loadTemplate('edit_icon'); ?>
+        <?php echo $this->loadTemplate('edit_question'); ?>
+        <?php echo $this->loadTemplate('edit_choice'); ?>
+    </div>
 </div>

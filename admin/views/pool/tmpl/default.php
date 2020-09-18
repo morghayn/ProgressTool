@@ -1,20 +1,11 @@
 <?php defined('_JEXEC') or die; ?>
 
-<div class="fragmentContainer">
+<input id="token" type="hidden" name="<?php echo JSession::getFormToken(); ?>" value="1"/>
 
-    <?php foreach ($this->questions as $question): ?>
-
-        <div style="background-color: <?php echo $question->colour_hex; ?>">
-            <?php echo $question->question; ?>
-        </div>
-
-        <?php foreach ($this->choices[$question->id] as $choice): ?>
-            <div style="background-color: whitesmoke; color: black;">
-                <?php echo $choice->choice; ?>
-            </div>
-        <?php endforeach; ?>
-
+<div style="width: 60%; margin: 0 auto;">
+    <?php $this->questionCounter = 0; ?>
+    <?php foreach ($this->questions as $this->question): ?>
+        <?php $this->questionCounter++; ?>
+        <?php echo $this->loadTemplate('question'); ?>
     <?php endforeach; ?>
-
 </div>
-

@@ -27,7 +27,8 @@ function toggle(x)
     if (x.style.display === "none")
     {
         x.style.display = "flex";
-    } else
+    }
+    else
     {
         x.style.display = "none";
     }
@@ -81,14 +82,56 @@ function updateIconRight(inputValue)
     elem.style.right = inputValue + "px";
 }
 
-function updateIconWidth(inputValue)
+function updateIconWidth()
 {
-    let elem = document.getElementById(`iconChest`);
-    elem.style.width = inputValue + "px";
+    let heightToggle = document.getElementById('heightToggle');
+    let widthToggle = document.getElementById('widthToggle');
+    let aspectLock = document.getElementById('lockIconAspectRation').checked;
+    let iconChest = document.getElementById('iconChest');
+    let newValue = widthToggle.value;
+
+    if (aspectLock)
+    {
+        let width = parseInt(iconChest.style.width);
+        let height = parseInt(iconChest.style.height);
+        let ratio = (height / width);
+        let newHeight = Math.round((newValue * ratio));
+        //let newHeight = (newValue * ratio);
+
+        iconChest.style.width = newValue + "px";
+        iconChest.style.height = newHeight + "px";
+
+        heightToggle.value = newHeight;
+    }
+    else
+    {
+        iconChest.style.width = newValue + "px";
+    }
 }
 
-function updateIconHeight(inputValue)
+function updateIconHeight()
 {
-    let elem = document.getElementById(`iconChest`);
-    elem.style.height = inputValue + "px";
+    let heightToggle = document.getElementById('heightToggle');
+    let widthToggle = document.getElementById('widthToggle');
+    let aspectLock = document.getElementById('lockIconAspectRation').checked;
+    let iconChest = document.getElementById('iconChest');
+    let newValue = heightToggle.value;
+
+    if (aspectLock)
+    {
+        let width = parseInt(iconChest.style.width);
+        let height = parseInt(iconChest.style.height);
+        let ratio = (width / height);
+        let newWidth = Math.round((newValue * ratio));
+        //let newWidth = (newValue * ratio);
+
+        iconChest.style.height = newValue + "px";
+        iconChest.style.width = newWidth + "px";
+
+        widthToggle.value = newWidth;
+    }
+    else
+    {
+        iconChest.style.width = newValue + "px";
+    }
 }

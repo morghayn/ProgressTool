@@ -1,3 +1,22 @@
+.iconChest {
+    margin: 0 auto;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    display: block;
+}
+
+@media only screen and (max-width: 1499px) {
+    .iconChest {
+        display: none;
+    }
+}
+
+.masterChest {
+    position: relative;
+}
+
 .fragmentContainer {
     width: 50%;
     display: flex;
