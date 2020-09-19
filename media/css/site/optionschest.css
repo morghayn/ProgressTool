@@ -1,14 +1,14 @@
 .optionsChest {
     width: 90%;
     height: 100%;
-    margin: 1.1rem auto 1rem auto;
+    margin: 18px auto 18px auto;
 
     display: flex;
     flex-direction: column;
 }
 
 .optionChest {
-    margin: 0.65rem auto 0.65rem 0;
+    margin: 10px auto 10px 0;
     display: inline-flex;
     position: relative;
 }
