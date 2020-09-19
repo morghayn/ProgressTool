@@ -84,7 +84,6 @@ class ProgressToolModelProjectBoard extends JModelItem
      */
     public function getProjectApprovalSelections($userID)
     {
-        // TODO: fix
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
 

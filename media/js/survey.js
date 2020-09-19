@@ -14,19 +14,6 @@ function timelineRedirect(categoryID, projectID, countryID)
     );
 }
 
-function toggleDisplay(elementID)
-{
-    let x = document.getElementById(elementID);
-
-    if (x.style.display === "none")
-    {
-        x.style.display = "block";
-    } else
-    {
-        x.style.display = "none";
-    }
-}
-
 /**
  * Processes a survey choice selection request.
  *
@@ -57,8 +44,9 @@ function surveySelect(projectID, choiceID)
 /**
  * Updates score box of the question parent of the choice selected.
  *
- * @param id the ID of the question, parent of the choice selected.
- * @param score the updated score.
+ * @param questionID
+ * @param score
+ * @param isComplete
  */
 function updateQuestionScore(questionID, score, isComplete)
 {
@@ -68,6 +56,12 @@ function updateQuestionScore(questionID, score, isComplete)
     element.innerHTML = score;
     if (isComplete)
     {
-        toggleDisplay(`cC${questionID}`)
+        toggleChestContent(questionID)
     }
+}
+
+function toggleChestContent(questionID)
+{
+    let content = document.getElementById(`chestContent_${questionID}`)
+    content.style.display = (content.style.display === "none" ? "block" : "none")
 }

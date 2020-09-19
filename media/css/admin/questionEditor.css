@@ -1,26 +1,31 @@
+/** For Icon Chest */
+
 .iconChest {
     margin: 0 auto;
     position: absolute;
     width: 200px;
     height: 200px;
     background-color: white;
+    display: block;
 }
 
-.iconChest:hover {
-    opacity: 0.25;
+@media only screen and (max-width: 1499px) {
+    .iconChest {
+        display: none;
+    }
 }
 
 .masterChest {
-    margin-bottom: 0;
+    position: relative;
 }
-/**
-.buttonChest {
-    width: 80%;
+
+/***/
+
+.masterChest {
+    width: 60%;
     margin: 0 auto;
-    display: flex;
-    flex: 3;
 }
- */
+
 .superChest {
     width: 100%;
     display: flex;

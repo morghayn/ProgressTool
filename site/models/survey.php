@@ -47,15 +47,25 @@ class ProgressToolModelSurvey extends JModelItem
         $db = JFactory::getDbo();
         $getQuestions = $db->getQuery(true);
 
-        $columns = array('Q.id', 'Q.question', 'CA.colour_hex', 'CA.colour_rgb');
+        $columns = array('Q.id', 'Q.question', 'CA.colour_hex', 'CA.colour_rgb', 'IMG.filepath');
+
+        $concat = (
+            "CONCAT(" .
+            "'width:', IMG.width, 'px; ', " .
+            "'height:', IMG.height, 'px; ', " .
+            "'right:', IMG.right_offset, 'px; ', " .
+            "'bottom:', IMG.bottom_offset, 'px; ') AS image_attributes"
+        );
 
         $getQuestions
             ->select($db->quoteName($columns))
+            ->select($concat)
             ->select('SUM(CH.weight) as total')
             ->from($db->quoteName('#__pt_question', 'Q'))
             ->innerjoin($db->quoteName('#__pt_question_country', 'CO') . ' ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('CO.question_id'))
             ->innerjoin($db->quoteName('#__pt_question_choice', 'CH') . ' ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('CH.question_id'))
             ->innerjoin($db->quoteName('#__pt_category', 'CA') . ' ON ' . $db->quoteName('Q.category_id') . ' = ' . $db->quoteName('CA.id'))
+            ->leftjoin($db->quoteName('#__pt_question_icon', 'IMG') . ' ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('IMG.question_id'))
             ->where($db->quoteName('CO.country_id') . ' = ' . $db->quote($countryID))
             ->group($db->quoteName('Q.id'))
             ->order('Q.id ASC');

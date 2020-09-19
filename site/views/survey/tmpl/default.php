@@ -15,7 +15,6 @@ foreach ($this->questions as $this->question):
 
     echo $this->loadTemplate('question');
 endforeach;
-
 ?>
 
 <p class="introductionParagraph">

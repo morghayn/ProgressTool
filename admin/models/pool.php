@@ -28,10 +28,22 @@ class ProgressToolModelPool extends JModelLegacy
         $db = JFactory::getDbo();
         $getQuestions = $db->getQuery(true);
 
-        $columns = array('Q.id', 'Q.question', 'CA.colour_hex', 'CA.colour_rgb', 'IMG.filepath', 'IMG.width', 'IMG.height', 'IMG.right_offset', 'IMG.bottom_offset');
+        $columns = array(
+            'Q.id', 'Q.question', 'CA.colour_hex', 'CA.colour_rgb',
+            'IMG.filepath', 'IMG.width', 'IMG.height', 'IMG.right_offset', 'IMG.bottom_offset'
+        );
+
+        $concat = (
+            "CONCAT(" .
+            "'width:', IMG.width, 'px; ', " .
+            "'height:', IMG.height, 'px; ', " .
+            "'right:', IMG.right_offset, 'px; ', " .
+            "'bottom:', IMG.bottom_offset, 'px; ') AS image_attributes"
+        );
 
         $getQuestions
             ->select($db->quoteName($columns))
+            ->select($concat)
             ->select('SUM(CH.weight) as total')
             ->from($db->quoteName('#__pt_question', 'Q'))
             ->innerjoin($db->quoteName('#__pt_question_country', 'CO') . ' ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('CO.question_id'))
@@ -43,31 +55,6 @@ class ProgressToolModelPool extends JModelLegacy
             ->order('Q.id ASC');
 
         return $db->setQuery($getQuestions)->loadObjectList();
-    }
-
-    public function createQuestion($data)
-    {
-
-    }
-
-    public function getAllQuestions()
-    {
-
-    }
-
-    public function addQuestionToPool($questionID, $countryID)
-    {
-
-    }
-
-    public function updateQuestion()
-    {
-
-    }
-
-    public function excludeQuestion()
-    {
-
     }
 
     // Choices
@@ -114,35 +101,5 @@ class ProgressToolModelPool extends JModelLegacy
         }
 
         return $groupedChoices;
-    }
-
-    public function createChoice($data)
-    {
-
-    }
-
-    public function getAllChoices()
-    {
-
-    }
-
-    public function addChoiceToQuestion($choiceID, $questionID)
-    {
-
-    }
-
-    public function updateChoice()
-    {
-
-    }
-
-    public function excludeChoice()
-    {
-
-    }
-
-    public function deleteChoice()
-    {
-
     }
 }

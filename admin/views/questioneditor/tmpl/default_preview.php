@@ -14,37 +14,36 @@ $bottomOffset = $filepath ? $this->question['bottom_offset'] : 0;
 
 ?>
 
-<div class="flexTest" style="position: relative; width: 60%; margin: 0 auto;">
+<div class="masterChest" style="border-color: <?php echo $colourHex; ?>;">
     <?php if ($filepath): ?>
-    <div id="iconChest" class="iconChest" style="width: <?php echo $width; ?>px; height:  <?php echo $height; ?>px; bottom:  <?php echo $bottomOffset; ?>px; right:  <?php echo $rightOffset; ?>px;">
+        <div id="iconChest" class="iconChest"
+             style="width: <?php echo $width; ?>px; height:  <?php echo $height; ?>px; bottom:  <?php echo $bottomOffset; ?>px; right:  <?php echo $rightOffset; ?>px;">
             <figure id="figurePreview" style="width: 100%; height: 100%; margin: 0;">
-                <img src="<?php echo '../' . $filepath; ?>" alt="yo not loading">
+                <img src="<?php echo JURI::root() . $filepath; ?>" alt="yo not loading">
             </figure>
-    </div>
+        </div>
     <?php endif; ?>
 
-    <div class="masterChest" style="border-color: <?php echo $colourHex; ?>;">
-        <div class="masterChestHeadingChest" style="background-color: <?php echo $colourHex; ?>;">
-            <h2 class="masterChestHeading" style="text-align: left; width: 75%;">
-                <?php echo '[ID: ' . $questionID . '] <span id="previewQuestion">' . $question . '</span>'; ?>
-            </h2>
-        </div>
+    <div class="masterChestHeadingChest" style="background-color: <?php echo $colourHex; ?>;">
+        <h2 class="masterChestHeading" style="text-align: left; width: 75%;">
+            <?php echo '[ID: ' . $questionID . '] <span id="previewQuestion">' . $question . '</span>'; ?>
+        </h2>
+    </div>
 
-        <div class="optionsChest">
-            <?php foreach ($this->choices as $this->choice): ?>
-                <?php $choice = $this->choice['choice']; ?>
-                <?php $choiceID = $this->choice['id']; ?>
+    <div class="optionsChest">
+        <?php foreach ($this->choices as $this->choice): ?>
+            <?php $choice = $this->choice['choice']; ?>
+            <?php $choiceID = $this->choice['id']; ?>
 
-                <label class="optionChest" style="--outlineColour: <?php echo $colourHex; ?>; --optionColour: <?php echo $colourHex; ?>;">
-                    <input class="optionInput" type="checkbox">
-                    <span class="optionLabel" style="--labelColour: <?php echo $colourRGB; ?>;">
-                        <span class="option" id="previewChoice<?php echo $this->choice['id']; ?>">
-                            <?php echo $choice; ?>
-                        </span>
+            <label class="optionChest" style="--outlineColour: <?php echo $colourHex; ?>; --optionColour: <?php echo $colourHex; ?>;">
+                <input class="optionInput" type="checkbox">
+                <span class="optionLabel" style="--labelColour: <?php echo $colourRGB; ?>;">
+                    <span class="option" id="previewChoice<?php echo $this->choice['id']; ?>">
+                        <?php echo $choice; ?>
                     </span>
-                </label>
+                </span>
+            </label>
 
-            <?php endforeach; ?>
-        </div>
+        <?php endforeach; ?>
     </div>
 </div>

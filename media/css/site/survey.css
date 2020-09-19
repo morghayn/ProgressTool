@@ -4,6 +4,29 @@
         ========================================================
  */
 
+/** For Icon Chest */
+
+.iconChest {
+    margin: 0 auto;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    display: block;
+}
+
+@media only screen and (max-width: 1499px) {
+    .iconChest {
+        display: none;
+    }
+}
+
+.masterChest {
+    position: relative;
+}
+
+/***/
+
 .headingChest {
     display: flex;
     width: 100%;
@@ -26,28 +49,6 @@
     font-weight: 600;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
 }
-/***/
-
-.iconChest {
-    margin: 0 auto;
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background-color: white;
-    display: block;
-}
-
-@media only screen and (max-width: 1499px) {
-    .iconChest {
-        display: none;
-    }
-}
-
-.masterChest {
-    position: relative;
-}
-
-/***/
 
 .buttonBack {
     flex: 1;
