@@ -1,3 +1,42 @@
+function addChoice(questionID)
+{
+    let token = jQuery("#token").attr("name");
+
+    window.location.href = (
+        `index.php?option=com_progresstool` +
+        `&view=questionEditor` +
+        `&task=questionEditor.addChoice` +
+        `&${token}=1` +
+        `&questionID=${questionID}`
+    )
+}
+
+function deleteChoice(choiceID)
+{
+    let token = jQuery("#token").attr("name");
+
+    window.location.href = (
+        `?option=com_progresstool` +
+        `&view=questionEditor` +
+        `&task=questionEditor.deleteChoice` +
+        `&${token}=1` +
+        `&choiceID=${choiceID}`
+    )
+}
+
+function deleteIcon(questionID)
+{
+    let token = jQuery("#token").attr("name");
+
+    window.location.href = (
+        `index.php?option=com_progresstool` +
+        `&view=questionEditor` +
+        `&task=questionEditor.deleteIcon` +
+        `&${token}=1` +
+        `&questionID=${questionID}`
+    )
+}
+
 function toggleDisplay(formID, buttonChestID)
 {
     toggle(document.getElementById(formID));
@@ -38,36 +77,6 @@ function updatePreview(elementID, value)
 {
     let elem = document.getElementById(elementID)
     elem.innerText = value;
-}
-
-function addChoice(questionID)
-{
-    window.location.href = (
-        `index.php?option=com_progresstool` +
-        `&view=questionEditor` +
-        `&task=questionEditor.addChoice` +
-        `&questionID=${questionID}`
-    )
-}
-
-function deleteChoice(choiceID)
-{
-    window.location.href = (
-        `?option=com_progresstool` +
-        `&view=questionEditor` +
-        `&task=questionEditor.deleteChoice` +
-        `&choiceID=${choiceID}`
-    )
-}
-
-function deleteIcon(questionID)
-{
-    window.location.href = (
-        `index.php?option=com_progresstool` +
-        `&view=questionEditor` +
-        `&task=questionEditor.deleteIcon` +
-        `&questionID=${questionID}`
-    )
 }
 
 function updateIconBottom(inputValue)

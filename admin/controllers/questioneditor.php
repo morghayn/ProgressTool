@@ -17,89 +17,82 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
     public function updateQuestion()
     {
         JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-
         $model = $this->getModel('questionEditor');
         $app = JFactory::getApplication();
         $input = $app->input;
+
         $questionID = $input->getInt('questionID', 0);
         $question = $input->get('question', '', 'string');
 
-        if ($model->updateQuestion($questionID, $question))
-        {
-            $app->enqueueMessage("Question updated successfully");
-        }
-        else
+        if (!$model->updateQuestion($questionID, $question))
         {
             $app->enqueueMessage("Failed to update question");
         }
 
-        $this->setRedirect("index.php?option=com_progresstool&view=questionEditor&questionID=$questionID");
+        $this->setRedirect(
+            "index.php?option=com_progresstool&view=questionEditor&questionID=$questionID"
+        );
     }
 
     public function updateQuestionChoices()
     {
         JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-
         $model = $this->getModel('questionEditor');
         $app = JFactory::getApplication();
         $input = $app->input;
+
         $choices = $input->get('choices', array(), 'array');
         $questionID = $input->getInt('questionID', 0);
 
-        if ($model->updateChoices($choices))
-        {
-            $app->enqueueMessage("Successfully updated the choices.");
-        }
-        else
+        if (!$model->updateChoices($choices))
         {
             $app->enqueueMessage("Failed to update the choices.");
         }
 
-        $this->setRedirect("index.php?option=com_progresstool&view=questionEditor&questionID=$questionID");
+        $this->setRedirect(
+            "index.php?option=com_progresstool&view=questionEditor&questionID=$questionID"
+        );
     }
 
     public function addChoice()
     {
-        // TODO: JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-
+        JSession::checkToken('get') or jexit(JText::_('JINVALID_TOKEN'));
         $model = $this->getModel('questionEditor');
         $app = JFactory::getApplication();
         $input = $app->input;
+
         $questionID = $input->getInt('questionID', 0);
 
-        if ($model->addNewChoice($questionID))
-        {
-            $app->enqueueMessage("Choice added");
-        }
-        else
+        if (!$model->addNewChoice($questionID))
         {
             $app->enqueueMessage("Failed to add choice");
         }
 
-        $this->setRedirect("index.php?option=com_progresstool&view=questionEditor&questionID=$questionID");
+        $this->setRedirect(
+            "index.php?option=com_progresstool&view=questionEditor&questionID=$questionID"
+        );
     }
 
     public function deleteChoice()
     {
-        // TODO: JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-
+        JSession::checkToken('get') or jexit(JText::_('JINVALID_TOKEN'));
         $model = $this->getModel('questionEditor');
         $app = JFactory::getApplication();
         $input = $app->input;
+
         $questionID = $input->getInt('questionID', 0);
         $choiceID = $input->getInt('choiceID', 0);
 
-        if ($model->deleteChoice($choiceID))
-        {
-            $app->enqueueMessage("Choice deleted");
-        }
-        else
+        if (!$model->deleteChoice($choiceID))
         {
             $app->enqueueMessage("Failed to delete choice");
         }
 
-        $this->setRedirect("index.php?option=com_progresstool&view=questionEditor&questionID=$questionID");
+        $this->setRedirect(
+            "index.php?option=com_progresstool&view=questionEditor&questionID=$questionID"
+        );
     }
+
 
     public function updateIcon()
     {
@@ -113,7 +106,7 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
 
         if ($file)
         {
-            // Cleans the name of teh file by removing weird characters
+            // Removes unwanted characters from filename.
             $filename = JFile::makeSafe($file['name']);
 
             $src = $file['tmp_name'];
@@ -124,7 +117,6 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
             {
                 list($width, $height) = getimagesize(JPATH_SITE . $filePath);
                 $model->addIcon($questionID, $filePath, $width, $height);
-                //$app->enqueueMessage(':)');
                 $this->setRedirect("index.php?option=com_progresstool&view=questionEditor&questionID=$questionID");
             }
             else
@@ -135,39 +127,34 @@ class ProgressToolControllerQuestionEditor extends JControllerLegacy
         }
         else
         {
-            if ($model->updateIcon($data, $questionID))
-            {
-                //$app->enqueueMessage(':)');
-                $this->setRedirect("index.php?option=com_progresstool&view=questionEditor&questionID=$questionID");
-            }
-            else
+            if (!$model->updateIcon($data, $questionID))
             {
                 $app->enqueueMessage(':(');
-                $this->setRedirect("index.php?option=com_progresstool&view=questionEditor&questionID=$questionID");
             }
+
+            $this->setRedirect(
+                "index.php?option=com_progresstool&view=questionEditor&questionID=$questionID"
+            );
+
         }
     }
 
     public function deleteIcon()
     {
-        //TODO: JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-
+        JSession::checkToken('get') or jexit(JText::_('JINVALID_TOKEN'));
         $model = $this->getModel('questionEditor');
         $app = JFactory::getApplication();
         $input = $app->input;
+
         $questionID = $input->getInt('questionID', 0);
 
-
-        if ($model->deleteIcon($questionID))
+        if (!$model->deleteIcon($questionID))
         {
-            $app->enqueueMessage("Icon removed");
-        }
-        else
-        {
-
             $app->enqueueMessage("Failed to remove icon");
         }
 
-        $this->setRedirect("index.php?option=com_progresstool&view=questionEditor&questionID=$questionID");
+        $this->setRedirect(
+            "index.php?option=com_progresstool&view=questionEditor&questionID=$questionID"
+        );
     }
 }

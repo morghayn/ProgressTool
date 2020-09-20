@@ -14,6 +14,8 @@
  */
 class ProgressToolModelQuestionEditor extends JModelLegacy
 {
+    // Question
+
     public function getQuestion($questionID)
     {
         $db = JFactory::getDbo();
@@ -32,6 +34,21 @@ class ProgressToolModelQuestionEditor extends JModelLegacy
         return $db->setQuery($getQuestion)->loadAssoc();
     }
 
+    public function updateQuestion($questionID, $question)
+    {
+        $db = JFactory::getDbo();
+        $updateQuestion = $db->getQuery(true);
+
+        $updateQuestion
+            ->update($db->quoteName('#__pt_question', 'Q'))
+            ->set($db->quoteName('Q.question') . ' = ' . $db->quote($question))
+            ->where($db->quoteName('Q.id') . ' = ' . $db->quote($questionID));
+
+        return $db->setQuery($updateQuestion)->execute();
+    }
+
+    // Choices
+
     public function getChoices($questionID)
     {
         $db = JFactory::getDbo();
@@ -47,19 +64,6 @@ class ProgressToolModelQuestionEditor extends JModelLegacy
             ->order('C.id');
 
         return $db->setQuery($getChoice)->loadAssocList();
-    }
-
-    public function updateQuestion($questionID, $question)
-    {
-        $db = JFactory::getDbo();
-        $updateQuestion = $db->getQuery(true);
-
-        $updateQuestion
-            ->update($db->quoteName('#__pt_question', 'Q'))
-            ->set($db->quoteName('Q.question') . ' = ' . $db->quote($question))
-            ->where($db->quoteName('Q.id') . ' = ' . $db->quote($questionID));
-
-        return $db->setQuery($updateQuestion)->execute();
     }
 
     public function updateChoices($choices)
@@ -106,6 +110,8 @@ class ProgressToolModelQuestionEditor extends JModelLegacy
 
         return $db->setQuery($deleteChoice)->execute();
     }
+
+    // Icon
 
     public function addIcon($questionID, $filePath, $width, $height)
     {
