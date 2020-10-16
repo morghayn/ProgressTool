@@ -9,7 +9,7 @@ $alt = $this->projectCount % 2 == 0 ? 2 : 0;
 ?>
 
 
-<div class="projectChest" id="<?php echo $this->project->id; ?>">
+<div class="projectChest" id="<?php echo $id; ?>">
 
     <div class="projectDetails" style="order: <?php echo $alt; ?>;">
         <div class="projectTitle">
@@ -26,13 +26,13 @@ $alt = $this->projectCount % 2 == 0 ? 2 : 0;
     <div class="gap"></div>
 
     <div class="buttonChest" style="order: <?php echo $alt == 2 ? 0 : 2; ?>;">
-        <button class="surveyButton" onclick="surveyRedirect(<?php echo $id; ?>)">
+        <button class="surveyButton" onclick="window.location = `?option=com_progresstool&view=survey&projectID=${<?php echo $id;?>}`">
             Survey
         </button>
-        <button class="metricsButton" onclick="statsRedirect(<?php echo $id; ?>)">
+        <button class="metricsButton" onclick="window.location = `?option=com_progresstool&view=projectstats&projectID=${<?php echo $id;?>}`">
             Metrics
         </button>
-        <button class="settingsButton" onclick="settingsRedirect(<?php echo $id; ?>)">
+        <button class="settingsButton" onclick="window.location = `?option=com_progresstool&view=settings&projectID=${<?php echo $id;?>}`">
             Settings
         </button>
     </div>

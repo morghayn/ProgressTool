@@ -13,7 +13,8 @@ $alt = $this->projectCount % 2 == 0 ? 2 : 0;
         </div>
 
         <div class="projectType">
-            These initial questions are designed to gauge the viability of the project
+            These prerequisites should be discussed within your group at an early stage to gauge the viability of the project. Tick each question to
+            indicate the points have been discussed and progress to the survey
         </div>
 
         <div class="approvalCheck">
@@ -43,7 +44,7 @@ $alt = $this->projectCount % 2 == 0 ? 2 : 0;
     <div class="gap"></div>
 
     <div class="buttonChest" style="order: <?php echo $alt == 2 ? 0 : 2; ?>;">
-        <button class="approvalButton" onclick="resourceRedirect()">
+        <button class="approvalButton" onclick="window.location = `/oss-resources`">
             Helpful Resources
         </button>
     </div>

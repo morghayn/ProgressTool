@@ -71,25 +71,3 @@ function getProjectTemplate(projectID, projectCount)
 
     return html;
 }
-
-/* Redirects */
-
-function surveyRedirect(projectID)
-{
-    window.location = `?option=com_progresstool&view=survey&projectID=${projectID}`
-}
-
-function statsRedirect(projectID)
-{
-    window.location = `?option=com_progresstool&view=projectstats&projectID=${projectID}`
-}
-
-function settingsRedirect(projectID)
-{
-    window.location = `?option=com_progresstool&view=settings&projectID=${projectID}`
-}
-
-function resourceRedirect()
-{
-    window.location = `/oss-resources`
-}

@@ -11,14 +11,15 @@ echo $this->loadTemplate('title');
 foreach ($this->questions as $this->question):
     $this->colourHex = $this->question->colour_hex;
     $this->colourRGB = $this->question->colour_rgb;
-    $this->questionCounter++; // TODO: Input finish button when questionCounter is 16
+    $this->questionCounter++;
 
     echo $this->loadTemplate('question');
 endforeach;
 ?>
 
 <p class="introductionParagraph">
-    <b>Timeline Redirects</b><br>
+    <b>Timeline Redirects</b>
+    <br>
     The three links below are redirects to your current position on the <a href="/timeline">ECCO timeline</a> for the given categories
     <b class="people">People</b>, <b class="technology">Technology</b> and <b class="finance">Finance</b>.
 </p>
