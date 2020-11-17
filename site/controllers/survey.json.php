@@ -21,23 +21,18 @@ class ProgressToolControllerSurvey extends JControllerLegacy
      */
     public function surveySelect()
     {
-        if (!JSession::checkToken('get'))
-        {
-            echo new JResponseJson(null, JText::_('JINVALID_TOKEN'), true);
-        }
-        else
-        {
-            $input = JFactory::getApplication()->input;
-            $data = $input->get('data', array(), 'ARRAY');
-            $projectID = $data['projectID'];
-            $choiceID = $data['choiceID'];
+        JSession::checkToken('get') or jexit(JText::_('JINVALID_TOKEN'));
 
-            JLoader::register('Authenticator',  JPATH_BASE . '/components/com_progresstool/helpers/Authenticator.php');
-            Authenticator::authenticate($projectID);
+        $input = JFactory::getApplication()->input;
+        $data = $input->get('data', array(), 'ARRAY');
+        $projectID = $data['projectID'];
+        $choiceID = $data['choiceID'];
 
-            $model = parent::getModel('survey');
-            $status = $model->processSelection($projectID, $choiceID);
-            echo new JResponseJson($status);
-        }
+        JLoader::register('Authenticator', JPATH_BASE . '/components/com_progresstool/helpers/Authenticator.php');
+        Authenticator::authenticate($projectID);
+
+        $model = parent::getModel('survey');
+        $status = $model->processSelection($projectID, $choiceID);
+        echo new JResponseJson($status);
     }
 }

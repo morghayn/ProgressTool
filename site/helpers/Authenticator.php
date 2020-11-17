@@ -77,9 +77,8 @@ abstract class Authenticator
 
     public static function authenticate($projectID)
     {
-        $user = JFactory::getUser();
-
         $genericErrorMessage = 'Project authentication failed. Please contact the sites administrator.';
+        $user = JFactory::getUser();
 
         // If user is guest.
         self::redirectGuests();

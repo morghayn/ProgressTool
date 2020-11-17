@@ -22,8 +22,8 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         Authenticator::authenticate($projectID);
 
         $model = parent::getModel('projectboard');
-        $this->projectCount = $input->getInt('projectCount', 0);
         $this->project = $model->getProject($projectID);
+        $this->projectCount = $input->getInt('projectCount', 0);
 
         if ($this->project->activated == 1)
         {

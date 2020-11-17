@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d60041c8-a251-4cad-8193-58868c18249c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/site/views/survey/tmpl/default_timelineredirect.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/js/projectboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/media/js/projectboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/controllers/projectboard.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/site/controllers/projectboard.json.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/controllers/survey.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/site/controllers/survey.json.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/controllers/timelineredirect.php" beforeDir="false" afterPath="$PROJECT_DIR$/site/controllers/timelineredirect.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/helpers/Authenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/site/helpers/Authenticator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/views/projectboard/view.raw.php" beforeDir="false" afterPath="$PROJECT_DIR$/site/views/projectboard/view.raw.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/views/survey/tmpl/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/site/views/survey/tmpl/default.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1kPuf6C5PyoYyc1Xf8U6MLtI2iq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../wamp64/www/messageTest" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d60041c8-a251-4cad-8193-58868c18249c" name="Default Changelist" comment="" />
+      <created>1605614647469</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605614647469</updated>
+      <workItem from="1605614648674" duration="5696000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1605618026330">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1605618026330" />
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1605617137870">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605617137870" />
+    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1605617067644">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1605617067644" />
+  </component>
+</project>

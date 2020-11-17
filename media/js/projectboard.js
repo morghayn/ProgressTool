@@ -64,7 +64,7 @@ function getProjectTemplate(projectID, projectCount)
         {
             data: {[token]: "1", task: "getProjectTemplate", format: "raw", projectID: projectID, projectCount: projectCount},
             async: false,
-            success:(result) =>html = result,
+            success: (result) => html = result,
             error: () => html = '<h2>Failure to perform activateProject(). Contact an administrator if this failure persists.</h2>'
         }
     );

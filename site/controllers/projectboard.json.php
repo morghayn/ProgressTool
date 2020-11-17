@@ -21,45 +21,40 @@ class ProgressToolControllerProjectBoard extends JControllerLegacy
      */
     public function approvalSelect()
     {
-        if (!JSession::checkToken('get'))
+        JSession::checkToken('get') or jexit(JText::_('JINVALID_TOKEN'));
+
+        $user = JFactory::getUser();
+        $model = parent::getModel('projectboard');
+        $input = JFactory::getApplication()->input;
+
+        $projectID = $input->getInt('projectID', 0);
+        $approvalID = $input->getInt('approvalID', 0);
+
+        $project = $model->getProject($projectID);
+
+        // If project does not exist.
+        if (is_null($project))
         {
-            echo new JResponseJson(null, JText::_('JINVALID_TOKEN'), true);
+            echo new JResponseJson(false, 'project does not exist.');
         }
+
+        // If user does not have access to the project.
+        elseif ($project->user_id !== $user->id)
+        {
+            echo new JResponseJson(false, 'project authentication failed.');
+        }
+
+        // If project is already approved.
+        elseif ($project->activated != 0)
+        {
+            echo new JResponseJson(false, 'project is already approved.');
+        }
+
+        // All good, process selection.
         else
         {
-            $user = JFactory::getUser();
-            $model = parent::getModel('projectboard');
-            $input = JFactory::getApplication()->input;
-
-            $projectID = $input->getInt('projectID', 0);
-            $approvalID = $input->getInt('approvalID', 0);
-
-            $project = $model->getProject($projectID);
-
-            // If project does not exist.
-            if (is_null($project))
-            {
-                echo new JResponseJson(false, 'project does not exist.');
-            }
-
-            // If user does not have access to the project.
-            elseif ($project->user_id !== $user->id)
-            {
-                echo new JResponseJson(false, 'project authentication failed.');
-            }
-
-            // If project is already approved.
-            elseif ($project->activated != 0)
-            {
-                echo new JResponseJson(false, 'project is already approved.');
-            }
-
-            // All good, process selection.
-            else
-            {
-                $status = $model->processSelection($projectID, $approvalID);
-                echo new JResponseJson($status, ($status ? 'project has been approved.' : 'project does not meet the approval criteria yet.'));
-            }
+            $status = $model->processSelection($projectID, $approvalID);
+            echo new JResponseJson($status, ($status ? 'project has been approved.' : 'project does not meet the approval criteria yet.'));
         }
     }
 }
