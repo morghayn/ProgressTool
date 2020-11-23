@@ -1,27 +1,4 @@
 /**
- * Shows all projects on the projectboard. Request made by the dropdown box.
- */
-function showAll()
-{
-    window.location = '?option=com_progresstool&view=projectboard'
-}
-
-/**
- * Shows a specific project on the projectboard. Request made by the dropdown box.
- *
- * @param projectID the specific project to be shown.
- */
-function showSpecific(projectID)
-{
-    let projectsBox = document.getElementById(`projectsBox`);
-    let projectBox = document.getElementById(`projectBox`);
-    projectBox.style.display = "block";
-    projectsBox.style.display = "none";
-
-    document.getElementById(`projectBox`).innerHTML = getProjectTemplate(projectID, 1);
-}
-
-/**
  * Processes an approval selection request for an inactive project.
  *
  * @param projectID the ID of the inactive project.
