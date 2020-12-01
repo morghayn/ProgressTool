@@ -58,3 +58,37 @@ function accommodateNoSelector()
     document.getElementById('projectCreate').style.height = '100%'
     document.getElementById('title').style.height = '100%'
 }
+
+/**
+ * Attaches event listeners
+ */
+function attachEventListeners()
+{
+    // Project create button event
+    const projectCreate = document.getElementById('projectCreate')
+    projectCreate.addEventListener("click", () =>
+        window.location = '?option=com_progresstool&view=projectcreate'
+    )
+
+    // Project selection event
+    let projectSelect = document.getElementById('projectSelect')
+    projectSelect.addEventListener("change", () =>
+        {
+            let projectID = projectSelect.options[projectSelect.selectedIndex].value
+            if (projectID > 0)
+            {
+                // Display selected project
+                let projectsBox = document.getElementById(`projectsBox`)
+                let projectBox = document.getElementById(`projectBox`)
+                projectBox.style.display = "block"
+                projectsBox.style.display = "none"
+                document.getElementById(`projectBox`).innerHTML = getProjectTemplate(projectID, 1)
+            }
+            else
+            {
+                // Display all projects
+                window.location = '?option=com_progresstool&view=projectboard'
+            }
+        }
+    )
+}

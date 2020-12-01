@@ -16,7 +16,7 @@ if ($this->projects): // If user has projects... ?>
             $this->projectCount++;
             echo $this->project->activated == 1 ? $this->loadTemplate('active') : $this->loadTemplate('inactive');
         endforeach; ?>
-    </div>;
+    </div>
 
 <?php else: // If user does not have projects... ?>
 
