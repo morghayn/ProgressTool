@@ -1,23 +1,37 @@
-<?php
+<?php defined('_JEXEC') or die; ?>
+<?php $fragments = array('Categories', 'Tasks', 'Projects', 'Metrics'); ?>
 
-defined('_JEXEC') or die;
+<div class="fragCon">
+    <div class="fragmentContainer">
+        <h1>Settings</h1>
+        <?php foreach ($fragments as $fragment): ?>
+            <div class="child">
+                <img src="<?php echo JURI::root() . '/media/com_progresstool/icons/stwigc.png'; ?>" alt="->">
+                <a href="?option=com_progresstool&view=<?php echo $fragment; ?>">
+                    <?php echo $fragment; ?>
+                </a>
+            </div>
+        <?php endforeach; ?>
+    </div>
 
-$fragments = array(
-    'Pools',
-    'Categories',
-    'Tasks',
-    'Projects',
-    'Metrics',
-);
 
-?>
+    <div class="fragmentContainer">
+        <h1>Question Pools</h1>
 
-<a href="?option=com_progresstool&view=dashboard&task=test.mytest">Hello World Test</a>
+        <?php foreach ($this->pools as $pool): ?>
+            <div class="child">
+                <img src="<?php echo JURI::root() . '/media/com_progresstool/icons/stwigc.png'; ?>" alt="->">
+                <a href="?option=com_progresstool&view=pool&pool=<?php echo $pool->id; ?>">
+                    <?php echo $pool->country; ?>
+                </a>
+            </div>
+        <?php endforeach; ?>
 
-<div class="fragmentContainer">
-    <?php foreach ($fragments as $fragment): ?>
-        <a href="?option=com_progresstool&view=<?php echo $fragment; ?>">
-                <?php echo $fragment; ?>
-        </a>
-    <?php endforeach; ?>
+        <div class="child">
+            <img src="<?php echo JURI::root() . '/media/com_progresstool/icons/stwigce.png'; ?>" alt="->">
+            <a href="" style="background-color: lightseagreen;">
+                Create New
+            </a>
+        </div>
+    </div>
 </div>

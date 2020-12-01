@@ -15,6 +15,11 @@
 class ProgressToolViewDashboard extends JViewLegacy
 {
     /**
+     * @var object list comprising of the country name and ID associated with each question pool.
+     */
+    protected $pools;
+
+    /**
      * Renders view.
      *
      * @param string $tpl The name of the template file to parse; automatically searches through the template paths.
@@ -24,6 +29,7 @@ class ProgressToolViewDashboard extends JViewLegacy
     {
         $user = JFactory::getUser();
         $userID = $user->id;
+        $this->pools = $this->get('pools');
 
         //$model = parent::getModel();
         //$this->test = $model->test($userID);

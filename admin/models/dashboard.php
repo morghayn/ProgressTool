@@ -14,6 +14,18 @@
  */
 class ProgressToolModelDashboard extends JModelLegacy
 {
+    public function getPools()
+    {
+        $db = JFactory::getDbo();
+        $getCountries = $db->getQuery(true);
+
+        $getCountries
+            ->select('*')
+            ->from($db->quoteName('#__pt_country'));
+
+        return $db->setQuery($getCountries)->loadObjectList();
+    }
+
     public function test($userID)
     {
         $db = JFactory::getDbo();

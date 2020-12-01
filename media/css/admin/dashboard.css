@@ -1,23 +1,56 @@
-.fragmentContainer {
-    width: 50%;
+body {
+    padding-top: unset;
+}
+
+.fragCon {
     display: flex;
     flex-direction: column;
-    border: 1px dashed #000000;
-    margin: 0 auto;
+    align-items: end;
+}
+
+.fragmentContainer {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+.fragmentContainer h1 {
+    margin: 0;
+    padding: 1.15rem;
+    color: white;
+    background-color: slateblue;
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.fragmentContainer .child {
+    display: flex;
+    height: 4rem;
+}
+
+.fragmentContainer img {
+    flex: 1;
+    width: 10%;
+    height: 100%;
+    image-rendering: crisp-edges;
 }
 
 .fragmentContainer a {
-    margin: 1rem;
-    padding: 1.25rem 0 1.25rem 2rem;
     background-color: #0C4DA0;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #ffffff;
-    border: 2px solid #ffffff;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 90%;
+    /**margin-right: 10%;*/
 }
 
 .fragmentContainer a:hover {
     opacity: 0.5;
     color: #ffffff;
-    border: 2px dashed #000000;
     text-decoration: none;
 }
