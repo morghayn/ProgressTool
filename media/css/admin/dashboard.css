@@ -1,17 +1,13 @@
-body {
-    padding-top: unset;
-}
-
 .fragCon {
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: center;
 }
 
 .fragmentContainer {
     display: flex;
     flex-direction: column;
-    width: 20%;
+    width: 100%;
 }
 
 .fragmentContainer h1 {
