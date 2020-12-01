@@ -7,7 +7,7 @@
  */
 function approvalSelect(projectID, approvalID, projectCount)
 {
-    let token = jQuery("#token").attr("name");
+    let token = jQuery("#token").attr("name")
 
     jQuery.ajax(
         {
@@ -21,7 +21,7 @@ function approvalSelect(projectID, approvalID, projectCount)
             },
             error: () => console.log('Failure to perform affirm(). Contact an dashboard if this failure persists.'),
         }
-    );
+    )
 }
 
 /**
@@ -34,8 +34,8 @@ function approvalSelect(projectID, approvalID, projectCount)
  */
 function getProjectTemplate(projectID, projectCount)
 {
-    let token = jQuery("#token").attr("name");
-    let html = '';
+    let token = jQuery("#token").attr("name")
+    let html = ''
 
     jQuery.ajax(
         {
@@ -44,7 +44,17 @@ function getProjectTemplate(projectID, projectCount)
             success: (result) => html = result,
             error: () => html = '<h2>Failure to perform activateProject(). Contact an administrator if this failure persists.</h2>'
         }
-    );
+    )
 
-    return html;
+    return html
+}
+
+/**
+ * Adjusts style to accommodate the absence of project selector.
+ */
+function accommodateNoSelector()
+{
+    document.getElementById('titleContainer').style.height = '4rem'
+    document.getElementById('projectCreate').style.height = '100%'
+    document.getElementById('title').style.height = '100%'
 }

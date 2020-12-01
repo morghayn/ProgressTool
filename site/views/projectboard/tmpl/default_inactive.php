@@ -1,8 +1,6 @@
-<?php
+<?php defined('_JEXEC') or die;
 
-defined('_JEXEC') or die;
 $alt = $this->projectCount % 2 == 0 ? 2 : 0;
-
 ?>
 
 <div class="projectChest" id="<?php echo $this->project->id; ?>">
