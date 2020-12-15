@@ -1,23 +1,17 @@
-.fragmentContainer {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    border: 1px dashed #000000;
-    margin: 0 auto;
+table {
+    width: 100%;
 }
 
-.fragmentContainer a {
-    margin: 1rem;
-    padding: 1.25rem 0 1.25rem 2rem;
-    background-color: #0C4DA0;
-    font-size: 2rem;
-    color: #ffffff;
-    border: 2px solid #ffffff;
+thead tr th {
+    background-color: cornflowerblue;
+    color: white;
+    padding: 1.25rem;
+    font-size: 1.25rem;
 }
 
-.fragmentContainer a:hover {
-    opacity: 0.5;
-    color: #ffffff;
-    border: 2px dashed #000000;
-    text-decoration: none;
+tbody tr td {
+    text-align: center;
+    background-color: lightskyblue;
+    padding: 1rem;
+    font-size: 1.1rem;
 }
