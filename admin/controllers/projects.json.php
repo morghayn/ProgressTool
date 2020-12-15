@@ -14,5 +14,15 @@
  */
 class ProgressToolControllerProjects extends JControllerLegacy
 {
+    public function delete()
+    {
+        JSession::checkToken('post') or jexit(JText::_('JINVALID_TOKEN'));
 
+        $model = $this->getModel('projects');
+        $input = JFactory::getApplication()->input;
+
+        $projectID = $input->getInt('projectID', 0);
+
+        //echo $projectID;
+    }
 }

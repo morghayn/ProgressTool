@@ -23,13 +23,8 @@
 .fragmentContainer .child {
     display: flex;
     height: 4rem;
-}
-
-.fragmentContainer img {
-    flex: 1;
-    width: 10%;
-    height: 100%;
-    image-rendering: crisp-edges;
+    justify-content: right;
+    background-color: slateblue;
 }
 
 .fragmentContainer a {
@@ -42,7 +37,7 @@
     justify-content: center;
     box-sizing: border-box;
     width: 90%;
-    /**margin-right: 10%;*/
+
 }
 
 .fragmentContainer a:hover {
