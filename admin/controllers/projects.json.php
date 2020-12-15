@@ -18,11 +18,12 @@ class ProgressToolControllerProjects extends JControllerLegacy
     {
         JSession::checkToken('post') or jexit(JText::_('JINVALID_TOKEN'));
 
-        $model = $this->getModel('projects');
-        $input = JFactory::getApplication()->input;
+        /* TODO Delete Project Functionality */
 
-        $projectID = $input->getInt('projectID', 0);
+        //$model = $this->getModel('projects');
+        //$input = JFactory::getApplication()->input;
+        //$projectID = $input->getInt('projectID', 0);
 
-        //echo $projectID;
+        echo json_encode(['Success' => true]);
     }
 }
