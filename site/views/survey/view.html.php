@@ -14,13 +14,6 @@
  */
 class ProgressToolViewSurvey extends JViewLegacy
 {
-    /**
-     * @var int
-     * @var int
-     * @var array
-     * @var array
-     * @var array
-     */
     protected $projectID, $countryID, $categories, $questions, $choices, $project;
 
     /**
@@ -35,8 +28,8 @@ class ProgressToolViewSurvey extends JViewLegacy
         $input = JFactory::getApplication()->input;
         $this->projectID = $input->getInt('projectID', 0);
 
-        JLoader::register('Authenticator',  JPATH_BASE . '/components/com_progresstool/helpers/Authenticator.php');
-        Authenticator::authenticate($this->projectID);
+        JLoader::register('Auth',  JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
+        Auth::authorize($this->projectID);
 
         JLoader::register('getCountry',  JPATH_BASE . '/components/com_progresstool/helpers/getCountry.php');
         $this->countryID = getCountry::getCountryID();

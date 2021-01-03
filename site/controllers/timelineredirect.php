@@ -25,8 +25,8 @@ class ProgressToolControllerTimelineRedirect extends JControllerLegacy
         $countryID = $input->getInt('countryID', 0);
         $projectID = $input->getInt('projectID', 0);
 
-        JLoader::register('Authenticator', JPATH_BASE . '/components/com_progresstool/helpers/Authenticator.php');
-        Authenticator::authenticate($projectID);
+        JLoader::register('Auth', JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
+        Auth::authorize($projectID);
 
         $categoryGroups = $model->getCategoryGroups($countryID, $projectID);
         $redirects = $model->getRedirects($categoryGroups);

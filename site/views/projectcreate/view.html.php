@@ -21,11 +21,12 @@ class ProgressToolViewProjectCreate extends JViewLegacy
      *
      * @param string $tpl The name of the layout file to parse.
      * @return  void
+     * @since 0.5.0
      */
     public function display($tpl = null)
     {
-        JLoader::register('Authenticator',  JPATH_BASE . '/components/com_progresstool/helpers/Authenticator.php');
-        Authenticator::redirectGuests();
+        JLoader::register('Auth',  JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
+        Auth::redirectGuests();
 
         $model = parent::getModel();
         $userID = JFactory::getUser()->id;

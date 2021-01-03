@@ -20,14 +20,15 @@ class ProgressToolViewSettings extends JViewLegacy
      * Renders template for the Settings view.
      *
      * @param string $tpl The name of the layout file to parse.
+     * @since 0.5.0
      */
     public function display($tpl = null)
     {
         $input = JFactory::getApplication()->input;
         $projectID = $input->get('projectID', 1);
 
-        JLoader::register('Authenticator',  JPATH_BASE . '/components/com_progresstool/helpers/Authenticator.php');
-        Authenticator::authenticate($projectID);
+        JLoader::register('Auth',  JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
+        Auth::authorize($projectID);
 
         $model = parent::getModel();
         $userID = JFactory::getUser()->id;

@@ -18,6 +18,7 @@ class ProgressToolViewProjectBoard extends JViewLegacy
      * @var object list containing projects of the current user.
      * @var array containing all approval selections made by the inactive projects associated with a user.
      * @var object list containing approval questions for inactive projects
+     * @since 0.2.6
      */
     protected $projects, $projectApprovalSelections, $approvalQuestions;
 
@@ -29,8 +30,8 @@ class ProgressToolViewProjectBoard extends JViewLegacy
      */
     function display($tpl = null)
     {
-        JLoader::register('Authenticator',  JPATH_BASE . '/components/com_progresstool/helpers/Authenticator.php');
-        Authenticator::redirectGuests();
+        JLoader::register('Auth',  JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
+        Auth::redirectGuests();
 
         $model = parent::getModel();
         $userID = JFactory::getUser()->id;

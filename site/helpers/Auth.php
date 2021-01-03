@@ -1,9 +1,16 @@
 <?php defined('_JEXEC') or die;
 
 
-abstract class Authenticator
+abstract class Auth
 {
-    public static function authenticate($projectID)
+    /**
+     * Authorize user.
+     *
+     * @param $projectID
+     * @throws Exception
+     * @since 0.5
+     */
+    public static function authorize($projectID)
     {
         $genericErrorMessage = 'Project authentication failed. Please contact the sites administrator.';
         $user = JFactory::getUser();
@@ -29,6 +36,7 @@ abstract class Authenticator
 
     /**
      * Redirects guests.
+     * @since 0.5
      */
     public static function redirectGuests()
     {
@@ -47,6 +55,7 @@ abstract class Authenticator
      *
      * @param int $projectID
      * @return bool
+     * @since 0.5
      */
     public static function projectExists($projectID)
     {
@@ -66,6 +75,7 @@ abstract class Authenticator
      * @param int $userID
      * @param int $projectID
      * @return bool
+     * @since 0.5
      */
     public static function hasAccess($userID, $projectID)
     {
