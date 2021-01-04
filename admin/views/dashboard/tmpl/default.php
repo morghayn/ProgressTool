@@ -1,8 +1,8 @@
 <?php defined('_JEXEC') or die; ?>
 <?php $fragments = array('Categories', 'Tasks', 'Projects', 'Metrics'); ?>
 
-<div class="fragCon">
-    <div class="fragmentContainer">
+<div class="navigationFragments">
+    <div class="fragment">
         <h1>Settings</h1>
         <?php foreach ($fragments as $fragment): ?>
             <div class="child">
@@ -14,7 +14,7 @@
     </div>
 
 
-    <div class="fragmentContainer">
+    <div class="fragment">
         <h1>Question Pools</h1>
 
         <?php foreach ($this->pools as $pool): ?>
