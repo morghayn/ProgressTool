@@ -46,6 +46,7 @@ class ProgressToolViewDashboard extends JViewLegacy
     private function prepareDocument()
     {
         $document = JFactory::getDocument();
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/joomlaOverride.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/dashboard.css");
     }
 }
