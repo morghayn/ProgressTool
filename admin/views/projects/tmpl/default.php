@@ -4,18 +4,20 @@
        name="<?php echo JSession::getFormToken(); ?>"
        value="1"/>
 
+<?php echo $this->loadTemplate('modal'); ?>
+
 <table>
     <thead>
         <tr>
-            <th>Project ID</th>
-            <th>User ID</th>
+            <th>ID</th>
+            <th>User</th>
             <th>Project Name</th>
-            <th>Creation Data</th>
+            <th>Creation Date</th>
         </tr>
     </thead>
     <tbody>
         <?php foreach ($this->projects as $project): ?>
-            <tr onclick="alert('TODO MODAL POP UP')// Open a modal with tools">
+            <tr onclick="openModal()">
                 <td><?php echo $project->id; ?></td>
                 <td><?php echo $project->user_id; ?></td>
                 <td><?php echo $project->name; ?></td>

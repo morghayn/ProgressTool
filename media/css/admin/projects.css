@@ -15,3 +15,69 @@ tbody tr td {
     padding: 1rem;
     font-size: 1.1rem;
 }
+
+tbody tr:hover {
+    cursor: pointer;
+}
+
+/*--------------------------------------
+Modal
+---------------------------------------*/
+
+.projectModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.projectModalContent {
+    position: relative;
+    background-color: #fefefe;
+    margin: 20vh auto auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 60rem;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    text-align: center;
+    justify-content: center;
+}
+
+.projectModalContent p {
+    border: 1px solid #707070;
+    width: 20rem;
+    padding: 0.5rem;
+    margin: 1rem auto;
+}
+
+.projectModalHeader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: cornflowerblue;
+}
+
+.projectModalHeader span {
+    margin-right: 10%;
+}
+
+.projectModalHeader h2 {
+    margin-right: 10%;
+}
+
+.projectModalBody {padding: 2px 16px;}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}

@@ -16,6 +16,7 @@ class ProgressToolViewProjects extends JViewLegacy
 {
     /**
      * @var object list of all projects on record.
+     * @since 0.5.0
      */
     protected $projects;
 
@@ -44,5 +45,7 @@ class ProgressToolViewProjects extends JViewLegacy
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/joomlaOverride.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/projects.css");
+        $document->addScript(JURI::root() . "media/com_progresstool/js/admin/projects.js");
+
     }
 }
