@@ -15,7 +15,7 @@
 class ProgressToolViewProjects extends JViewLegacy
 {
     /**
-     * @var object list of all projects on record.
+     * @var array of project objects.
      * @since 0.5.0
      */
     protected $projects;
@@ -23,7 +23,7 @@ class ProgressToolViewProjects extends JViewLegacy
     /**
      * Renders view.
      *
-     * @param string $tpl The name of the template file to parse; automatically searches through the template paths.
+     * @param string $tpl
      * @since 0.5.0
      */
     function display($tpl = null)
@@ -31,8 +31,8 @@ class ProgressToolViewProjects extends JViewLegacy
         $model = parent::getModel();
         $this->projects = $model->getProjects();
 
-        parent::display($tpl);
         $this->prepareDocument();
+        parent::display($tpl);
     }
 
     /**

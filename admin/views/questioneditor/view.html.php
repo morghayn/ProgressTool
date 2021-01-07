@@ -19,22 +19,29 @@ class ProgressToolViewQuestionEditor extends JViewLegacy
     /**
      * Renders view.
      *
-     * @param string $tpl The name of the template file to parse; automatically searches through the template paths.
+     * @param string $tpl
      * @since 0.5.0
      */
     function display($tpl = null)
     {
-        $model = parent::getModel();
+        try
+        {
+            $app = JFactory::getApplication();
+            $input = $app->input;
 
-        $app = JFactory::getApplication();
-        $input = $app->input;
-        $questionID = $input->getInt('questionID', 0);
-        $this->question = $model->getQuestion($questionID);
-        $this->choices = $model->getChoices($questionID);
+            $model = parent::getModel();
+            $questionID = $input->getInt('questionID', 0);
 
-        // Display the view
-        parent::display($tpl);
-        $this->prepareDocument();
+            $this->question = $model->getQuestion($questionID);
+            $this->choices = $model->getChoices($questionID);
+
+            $this->prepareDocument();
+            parent::display($tpl);
+        }
+        catch (Exception $e)
+        {
+            echo 'Something appears to have gone wrong.';
+        }
     }
 
     /**
