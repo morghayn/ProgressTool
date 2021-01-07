@@ -1,0 +1,47 @@
+.navigationFragments {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fragment {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.fragment h1 {
+    margin: 0;
+    padding: 1.15rem;
+    color: white;
+    background-color: #0C4DA0;
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.fragment .child {
+    display: flex;
+    height: 4rem;
+    justify-content: right;
+    background-color: #0C4DA0;
+}
+
+.fragment a {
+    background-color: #0C4DA0;
+    font-size: 1.5rem;
+    color: #ffffff;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 90%;
+
+}
+
+.fragment a:hover {
+    opacity: 0.5;
+    color: #ffffff;
+    text-decoration: none;
+}
