@@ -1,4 +1,73 @@
+/*--------------------------------------------------/
+                                  Joomla Overrides /
+-------------------------------------------------*/
+
 .container-fluid {
     padding-right: 0 !important;
     padding-left: 0 !important;
+}
+
+.header {
+    display: none;
+}
+
+.subhead-collapse.collapse {
+    height: 0 !important;
+    visibility: hidden !important;
+}
+
+/*--------------------------------------------------/
+                                     Admin Sidebar /
+-------------------------------------------------*/
+/* We might replace this custom sidebar
+with with an overrode version of the JHTMLSidebar at some stage...
+or do something with JLayouts. */
+
+.sideNavigation {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #0C4DA0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sideNavigation a {
+    padding: 8px 8px 25px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.sideNavigation a:hover {
+    color: aliceblue;
+}
+
+.openNavigation {
+    font-size:30px;
+    cursor:pointer
+}
+
+.sideNavigation .closeButton {
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    text-align: right;
+    margin-right: 2rem;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+    .sideNavigation {padding-top: 15px;}
+    .sideNavigation a {font-size: 18px;}
 }

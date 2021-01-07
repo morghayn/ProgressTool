@@ -1,15 +1,15 @@
 <?php defined('_JEXEC') or die; ?>
-<?php $fragments = array('Categories', 'Tasks', 'Projects', 'Metrics', 'Pools'); ?>
 
-<div class="navigationFragments">
-    <div class="fragment">
-        <h1>Settings</h1>
-        <?php foreach ($fragments as $fragment): ?>
-            <div class="child">
-                <a href="?option=com_progresstool&view=<?php echo $fragment; ?>">
-                    <?php echo $fragment; ?>
-                </a>
-            </div>
-        <?php endforeach; ?>
-    </div>
+<!-- Sidebar -->
+<?php $fragments = array('Dashboard', 'Projects', 'Pools'); ?>
+<div id="sideNavigation" class="sideNavigation">
+    <a href="javascript:void(0)" class="closeButton" onclick="closeNav()">&times;</a>
+    <?php foreach ($fragments as $fragment): ?>
+        <a href="?option=com_progresstool&view=<?php echo $fragment; ?>"><?php echo $fragment; ?></a>
+    <?php endforeach; ?>
+</div>
+
+<div id="main">
+    <span class="openNavigation" onclick="openNav()">&#9776; navigation</span>
+    <h1>Here we will have metrics and statistics!</h1>
 </div>
