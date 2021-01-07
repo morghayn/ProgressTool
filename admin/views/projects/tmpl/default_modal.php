@@ -1,4 +1,4 @@
-<?php ?>
+<?php defined('_JEXEC') or die; ?>
 
 <div id="projectModal" class="projectModal">
     <!-- Modal content -->

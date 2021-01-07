@@ -43,9 +43,11 @@ class ProgressToolViewProjects extends JViewLegacy
     private function prepareDocument()
     {
         $document = JFactory::getDocument();
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/joomlaOverride.css");
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/projects.css");
-        $document->addScript(JURI::root() . "media/com_progresstool/js/admin/projects.js");
 
+        $document->addScript(JURI::root() . "media/com_progresstool/js/admin/adminBase.js");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/adminBase.css");
+
+        $document->addScript(JURI::root() . "media/com_progresstool/js/admin/projects.js");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/projects.css");
     }
 }
