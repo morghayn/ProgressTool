@@ -15,8 +15,8 @@
 class ProgressToolModelProjectStats extends JModelItem
 {
     /**
-     * Retrieves all tasks specific to users country. Includes a column named selected in which the number of choices selected associated with a
-     * specific task are counted.
+     * Retrieves all tasks specific to users country. Includes a column 'criteria_met', will be 1 to represent true if it has been determined that
+     * the criteria for that task has been met.
      *
      * @param int $countryID the ID of the country.
      * @param int $projectID the ID of the project in which the selections will be counted.
@@ -50,6 +50,7 @@ class ProgressToolModelProjectStats extends JModelItem
      *
      * @param object $rows list of objects which will be grouped.
      * @return array list of objects grouped by categoryID.
+     * @since 0.5.0
      */
     public function groupByCategory($rows)
     {

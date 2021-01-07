@@ -4,10 +4,10 @@
 abstract class getCountry
 {
     /**
-     * Returns the countryID associated with countryString, else if not found returns 1 if not found.
+     * Returns the countryID associated with countryString, else if not found returns 1.
      *
-     * @param string $countryString the country name.
-     * @return int the countryID.
+     * @param string $countryString
+     * @return int
      * @since 0.3.0
      */
     public static function findCountryID($countryString)
@@ -28,7 +28,7 @@ abstract class getCountry
      * Returns country index of the current user. This function is intended to be used in conjunction with JomSocial. If JomSocial is not present,
      * it will instead return 0.
      *
-     * @return int the country index for the current user. If JomSocial is not present, it will return '0'.
+     * @return int
      * @since 0.5.0
      */
     public static function getCountryID()

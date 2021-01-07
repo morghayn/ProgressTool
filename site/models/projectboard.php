@@ -19,6 +19,7 @@ class ProgressToolModelProjectBoard extends JModelItem
      *
      * @param int $projectID ID of the project.
      * @return object project object.
+     * @since 0.5.0
      */
     public function getProject($projectID)
     {
@@ -51,21 +52,16 @@ class ProgressToolModelProjectBoard extends JModelItem
 
         $columns = array('P.id', 'P.name', 'P.description', 'T.type', 'P.activated');
 
-        // conditions for the query.
-        $where = $db->quoteName('P.user_id') . ' = ' . $db->quote($userID);
-        $orwhere =
-            array(
-                $db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID),
-                $db->quoteName('CGM.permissions') . ' = 1'
-            );
-
         $query
             ->select($db->quoteName($columns))
             ->from($db->quoteName('#__pt_project', 'P'))
             ->leftjoin($db->quoteName('#__community_groups_members', 'CGM') . ' ON P.group_id = CGM.groupid')
             ->innerjoin($db->quoteName('#__pt_project_type', 'T') . ' ON P.type_id = T.id')
-            ->where($where)
-            ->orwhere($orwhere)
+            ->where($db->quoteName('P.user_id') . ' = ' . $db->quote($userID))
+            ->orwhere(array(
+                $db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID),
+                $db->quoteName('CGM.permissions') . ' = 1'
+            ))
             ->group($db->quoteName('P.id'))
             ->order('P.id DESC');
         /*
@@ -81,6 +77,7 @@ class ProgressToolModelProjectBoard extends JModelItem
      *
      * @param int $userID the ID of the user.
      * @return array an array of approval selections made by all inactive projects associated with a user.
+     * @since 0.5.0
      */
     public function getProjectApprovalSelections($userID)
     {
@@ -89,26 +86,20 @@ class ProgressToolModelProjectBoard extends JModelItem
 
         $columns = array('A.project_id', 'A.approval_id');
 
-        // conditions for the query.
-        $where =
-            array(
-                $db->quoteName('P.activated') . ' = 0',
-                $db->quoteName('user_id') . ' = ' . $db->quote($userID)
-            );
-        $orwhere =
-            array(
-                $db->quoteName('P.activated') . ' = 0',
-                $db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID),
-                $db->quoteName('CGM.permissions') . ' = 1'
-            );
-
         $query
             ->select($db->quoteName($columns))
             ->from($db->quoteName('#__pt_project', 'P'))
             ->innerjoin($db->quoteName('#__pt_project_approval') . ' AS A ON P.id = A.project_id')
             ->leftjoin($db->quoteName('#__community_groups_members', 'CGM') . ' ON P.group_id = CGM.groupid')
-            ->where($where)
-            ->orwhere($orwhere)
+            ->where(array(
+                $db->quoteName('P.activated') . ' = 0',
+                $db->quoteName('user_id') . ' = ' . $db->quote($userID)
+            ))
+            ->orwhere(array(
+                $db->quoteName('P.activated') . ' = 0',
+                $db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID),
+                $db->quoteName('CGM.permissions') . ' = 1'
+            ))
             ->group($db->quoteName('P.id'));
         /*
          * Note: for some reason the queries return duplicates on the production site not on my local site
@@ -127,7 +118,7 @@ class ProgressToolModelProjectBoard extends JModelItem
     /**
      * Retrieves approval questions.
      *
-     * @return mixed object list of all approval questions.
+     * @return object list of all approval questions.
      * @since 0.2.6
      */
     public function getApprovalQuestions()
@@ -149,6 +140,7 @@ class ProgressToolModelProjectBoard extends JModelItem
      *
      * @param int $projectID ID of the project.
      * @param int $approvalID ID of the approval question.
+     * @return bool
      * @since 0.3.0
      */
     public function processSelection($projectID, $approvalID)
@@ -158,15 +150,13 @@ class ProgressToolModelProjectBoard extends JModelItem
         $delete = $db->getQuery(true);
         $insert = $db->getQuery(true);
 
-        $conditions = array(
-            $db->quoteName('project_id') . ' = ' . $db->quote($projectID),
-            $db->quoteName('approval_id') . ' = ' . $db->quote($approvalID)
-        );
-
         $query
             ->select('COUNT(*)')
             ->from($db->quoteName('#__pt_project_approval'))
-            ->where($conditions)
+            ->where(array(
+                $db->quoteName('project_id') . ' = ' . $db->quote($projectID),
+                $db->quoteName('approval_id') . ' = ' . $db->quote($approvalID)
+            ))
             ->setLimit(1);
 
         // If selection exists, delete it.
@@ -174,7 +164,10 @@ class ProgressToolModelProjectBoard extends JModelItem
         {
             $delete
                 ->delete($db->quoteName('#__pt_project_approval'))
-                ->where($conditions);
+                ->where(array(
+                    $db->quoteName('project_id') . ' = ' . $db->quote($projectID),
+                    $db->quoteName('approval_id') . ' = ' . $db->quote($approvalID)
+                ));
 
             $db->setQuery($delete)->execute();
         } // If selection does not exist, insert it.
@@ -199,6 +192,7 @@ class ProgressToolModelProjectBoard extends JModelItem
      *
      * @param int $projectID ID of the project.
      * @return boolean returns true if project meets criteria, else returns false.
+     * @since 0.5.0
      */
     public function isProjectApproved($projectID)
     {

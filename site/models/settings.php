@@ -94,6 +94,7 @@ class ProgressToolModelSettings extends JModelAdmin
      *
      * @return  mixed    A JForm object on success, false on failure
      *
+     * @throws Exception
      * @since   1.6
      */
     public function getForm($data = array(), $loadData = true)

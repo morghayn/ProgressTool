@@ -19,9 +19,8 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         $input = JFactory::getApplication()->input;
         $projectID = $input->getInt('projectID', 0);
 
-        JLoader::register('Auth',  JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
+        JLoader::register('Auth', JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
         Auth::authorize($projectID);
-
         $model = parent::getModel('projectboard');
         $this->project = $model->getProject($projectID);
         $this->projectCount = $input->getInt('projectCount', 0);
