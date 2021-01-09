@@ -36,6 +36,8 @@ abstract class Auth
 
     /**
      * Redirects guests.
+     *
+     * @throws Exception
      * @since 0.5
      */
     public static function redirectGuests()
