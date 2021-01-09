@@ -23,8 +23,6 @@ $alt = $this->projectCount % 2 == 0 ? 2 : 0;
         </div>
     </div>
 
-    <div class="gap"></div>
-
     <div class="buttonChest" style="order: <?php echo $alt == 2 ? 0 : 2; ?>;">
         <button class="surveyButton" onclick="window.location = `?option=com_progresstool&view=survey&projectID=${<?php echo $id;?>}`">
             Survey

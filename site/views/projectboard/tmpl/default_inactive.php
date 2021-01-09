@@ -39,8 +39,6 @@ $alt = $this->projectCount % 2 == 0 ? 2 : 0;
         </div>
     </div>
 
-    <div class="gap"></div>
-
     <div class="buttonChest" style="order: <?php echo $alt == 2 ? 0 : 2; ?>;">
         <button class="approvalButton" onclick="window.location = `/oss-resources`">
             Helpful Resources
