@@ -1,9 +1,9 @@
-<?php
+<?php defined('_JEXEC') or die;
 
 /**
  * (Site) Class ProgressToolControllerProjectBoard
  *
- * Controller for back-end projectboard functionality.
+ * Controller for back-end project board functionality.
  *
  * @package ProgressTool
  * @subpackage admin
