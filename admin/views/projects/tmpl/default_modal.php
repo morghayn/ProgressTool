@@ -5,8 +5,10 @@
     <div class="projectModalContent">
         <div class="projectModalHeader">
             <span class="closeProjectModal">&times;</span>
-            <h2>Hello World</h2>
+            <h2>Project Editor</h2>
         </div>
-        <p>Hello World</p>
+        <div id="projectEditorTable">
+
+        </div>
     </div>
 </div>
