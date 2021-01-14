@@ -3,7 +3,7 @@ table {
 }
 
 thead tr th {
-    background-color: cornflowerblue;
+    background-color: #0C4DA0;
     color: white;
     padding: 1.25rem;
     font-size: 1.25rem;
@@ -11,7 +11,7 @@ thead tr th {
 
 tbody tr td {
     text-align: center;
-    background-color: lightskyblue;
+    background-color: #b8d4fa;
     padding: 1rem;
     font-size: 1.1rem;
 }
@@ -40,7 +40,7 @@ Modal
 .projectModalContent {
     position: relative;
     background-color: #fefefe;
-    margin: 20vh auto auto;
+    margin: 5vh auto auto;
     padding: 0;
     border: 1px solid #888;
     width: 60rem;
@@ -64,7 +64,7 @@ Modal
     align-items: center;
     justify-content: center;
     color: white;
-    background-color: cornflowerblue;
+    background-color: #0C4DA0;
 }
 
 .projectModalHeader span {
