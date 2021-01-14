@@ -29,24 +29,17 @@ class ProgressToolViewPool extends JViewLegacy
      */
     function display($tpl = null)
     {
-        try
-        {
-            $app = JFactory::getApplication();
-            $input = $app->input;
+        $app = JFactory::getApplication();
+        $input = $app->input;
 
-            $model = parent::getModel();
-            $poolID = $input->getInt('pool', 0);
+        $model = parent::getModel();
+        $poolID = $input->getInt('pool', 0);
 
-            $this->questions = $model->getQuestions($poolID);
-            $this->choices = $model->getChoices($poolID);
+        $this->questions = $model->getQuestions($poolID);
+        $this->choices = $model->getChoices($poolID);
 
-            $this->prepareDocument();
-            parent::display($tpl);
-        }
-        catch (Exception $e)
-        {
-            echo 'Something appears to have gone wrong.';
-        }
+        $this->prepareDocument();
+        parent::display($tpl);
     }
 
     /**
@@ -57,6 +50,11 @@ class ProgressToolViewPool extends JViewLegacy
     private function prepareDocument()
     {
         $document = JFactory::getDocument();
+
+        $document->addScript(JURI::root() . "media/com_progresstool/js/admin/adminBase.js");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/adminBase.css");
+
+        // TODO: put in one file
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/masterchest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/optionschest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/survey.css");
