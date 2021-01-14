@@ -14,6 +14,11 @@
  */
 class ProgressToolModelTimelineRedirect extends JModelItem
 {
+    /**
+     * @param $categoryGroups
+     * @return array
+     * @since 0.5.0
+     */
     public function getRedirects($categoryGroups)
     {
         $timelineRedirect = array();
@@ -60,7 +65,7 @@ class ProgressToolModelTimelineRedirect extends JModelItem
                 {
                     $redirect = $section->timeline_url_path;
                     $currentSection = $section->section;
-                    break; // TODO: should this be continue or break? Which is better for the UX.
+                    continue; // TODO: should this be continue or break? Which is better for the UX.
                 }
                 /**
                  * The project has no tasks done within this section, and has no prior sections completed,
@@ -68,7 +73,7 @@ class ProgressToolModelTimelineRedirect extends JModelItem
                  */
                 else
                 {
-                    break;
+                    continue;
                 }
             }
 
@@ -86,6 +91,7 @@ class ProgressToolModelTimelineRedirect extends JModelItem
     /**
      * @param int $countryID the ID of the country.
      * @param int $projectID the ID of the project.
+     * @return array
      * @since 0.5.0
      */
     public function getCategoryGroups($countryID, $projectID)
@@ -94,7 +100,7 @@ class ProgressToolModelTimelineRedirect extends JModelItem
         $getSectionTotals = $db->getQuery(true);
         $subQuery = $db->getQuery(true);
 
-        $subQueryColumns = array('T.id', 'T.section_id', 'T.task', 'T.category_id');
+        $subQueryColumns = array('T.id', 'T.category_id', 'T.section_id');
 
         $subQuery
             ->select($subQueryColumns)
@@ -130,6 +136,7 @@ class ProgressToolModelTimelineRedirect extends JModelItem
      *
      * @param object $rows list of objects which will be grouped.
      * @return array list of objects grouped by categoryID.
+     * @since 0.5.0
      */
     public function groupByCategory($rows)
     {
