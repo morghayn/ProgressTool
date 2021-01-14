@@ -1,4 +1,5 @@
 <?php defined('_JEXEC') or die; ?>
+
 <input id="token"
        type="hidden"
        name="<?php echo JSession::getFormToken(); ?>"
@@ -9,22 +10,23 @@
 <div id="main">
     <span class="openNavigation" onclick="openNav()">&#9776; navigation</span>
     <?php echo $this->loadTemplate('modal'); ?>
+    <input type="text" id="myInput" onkeyup="searchTable()" placeholder="Search by project or username..">
 
-    <table>
+    <table id="projectTable">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>User</th>
                 <th>Project Name</th>
+                <th>Creator's Username</th>
                 <th>Creation Date</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($this->projects as $project): ?>
-                <tr onclick="openModal()">
+                <tr onclick="openModal('<?php echo $project->id; ?>')">
                     <td><?php echo $project->id; ?></td>
-                    <td><?php echo $project->user_id; ?></td>
                     <td><?php echo $project->name; ?></td>
+                    <td><?php echo $project->username; ?></td>
                     <td><?php echo $project->creation_date; ?></td>
                 </tr>
             <?php endforeach; ?>
