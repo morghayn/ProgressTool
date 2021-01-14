@@ -24,24 +24,17 @@ class ProgressToolViewQuestionEditor extends JViewLegacy
      */
     function display($tpl = null)
     {
-        try
-        {
-            $app = JFactory::getApplication();
-            $input = $app->input;
+        $app = JFactory::getApplication();
+        $input = $app->input;
 
-            $model = parent::getModel();
-            $questionID = $input->getInt('questionID', 0);
+        $model = parent::getModel();
+        $questionID = $input->getInt('questionID', 0);
 
-            $this->question = $model->getQuestion($questionID);
-            $this->choices = $model->getChoices($questionID);
+        $this->question = $model->getQuestion($questionID);
+        $this->choices = $model->getChoices($questionID);
 
-            $this->prepareDocument();
-            parent::display($tpl);
-        }
-        catch (Exception $e)
-        {
-            echo 'Something appears to have gone wrong.';
-        }
+        $this->prepareDocument();
+        parent::display($tpl);
     }
 
     /**
