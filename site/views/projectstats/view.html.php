@@ -14,8 +14,16 @@
  */
 class ProgressToolViewProjectStats extends JViewLegacy
 {
-    private $user;
-    protected $countryID, $projectID, $project, $tasks, $categories, $categoryCompletionPercent;
+    /**
+     * @var integer identifier for the country associated with the current user.
+     * @var integer identifier for the project.
+     * @var array of task objects.
+     * @var array of category objects.
+     * @var array of progress percentages for each category of the progress tool.
+     *
+     * @since 0.5.0
+     */
+    protected $countryID, $projectID, $tasks, $categories, $progress;
 
     /**
      * Renders view.
@@ -25,25 +33,24 @@ class ProgressToolViewProjectStats extends JViewLegacy
      */
     function display($tpl = null)
     {
-        $model = parent::getModel();
         $input = JFactory::getApplication()->input;
         $this->projectID = $input->getInt('projectID', 0);
 
-        JLoader::register('Auth',  JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
+        // Authorizing user access for projectID
+        JLoader::register('Auth', JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
         Auth::authorize($this->projectID);
 
-        JLoader::register('getCountry',  JPATH_BASE . '/components/com_progresstool/helpers/getCountry.php');
+        // Retrieving countryID for the current user
+        JLoader::register('getCountry', JPATH_BASE . '/components/com_progresstool/helpers/getCountry.php');
         $this->countryID = getCountry::getCountryID();
 
-        $this->user = JFactory::getUser();
+        $model = parent::getModel();
         $this->tasks = $model->getTasks($this->countryID, $this->projectID);
         $this->categories = $model->getCategories($this->countryID, $this->projectID);
-        $this->categoryCompletionPercent = array();
-        foreach ($this->categories as $category)
-            array_push($this->categoryCompletionPercent, intval(($category->projectTotal / $category->categoryTotal) * 100));
+        $this->setProgress();
 
-        parent::display($tpl);
         $this->prepareDocument();
+        parent::display($tpl);
     }
 
     /**
@@ -54,9 +61,25 @@ class ProgressToolViewProjectStats extends JViewLegacy
     private function prepareDocument()
     {
         $document = JFactory::getDocument();
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/masterchest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/projectstats.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/introductory.css");
         $document->addScript(JURI::root() . "media/com_progresstool/js/projectstats.js");
+    }
+
+    /**
+     * Calculates and sets the progress percentage of this progress for each category.
+     *
+     * @since 0.5.0
+     */
+    private function setProgress()
+    {
+        $this->progress = array();
+        foreach ($this->categories as $category)
+        {
+            array_push(
+                $this->progress,
+                intval(($category->projectTotal / $category->categoryTotal) * 100)
+            );
+        }
     }
 }
