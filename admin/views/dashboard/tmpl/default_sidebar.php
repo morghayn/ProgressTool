@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die; ?>
 
 <!-- Sidebar -->
-<?php $fragments = array('Dashboard', 'Projects', 'Pools'); ?>
+<?php $fragments = array('Dashboard', 'Projects', 'Countries'); ?>
 <div id="sideNavigation" class="sideNavigation">
     <a href="javascript:void(0)" class="closeButton" onclick="closeNav()">&times;</a>
     <?php foreach ($fragments as $fragment): ?>
