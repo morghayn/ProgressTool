@@ -32,7 +32,41 @@ class ProgressToolControllerSurvey extends JControllerLegacy
         Auth::authorize($projectID);
 
         $model = parent::getModel('survey');
-        $status = $model->processSelection($projectID, $choiceID);
-        echo new JResponseJson($status);
+        $opposingProjectChoices = array();
+        $isSelected = $model->isSelected($projectID, $choiceID);
+        $choice = $model->getChoice($choiceID);
+
+        if ($isSelected)
+        {
+            $model->deselectProjectChoice($projectID, $choice->id);
+        }
+        else
+        {
+            $model->selectProjectChoice($projectID, $choice->id);
+
+            $opposingProjectChoices = $model->getOpposingProjectChoices(
+                $choice->question_id,
+                $projectID,
+                $choice->weight
+            );
+
+            foreach ($opposingProjectChoices as $opposingProjectChoice)
+            {
+                $model->deselectProjectChoice($projectID, $opposingProjectChoice);
+            }
+        }
+
+        $projectQuestionScore = $model->getProjectQuestionScore($choice->question_id, $projectID);
+        $isQuestionComplete = $model->isQuestionComplete($choice->question_id, $projectQuestionScore);
+
+        echo new JResponseJson(
+            array(
+                "isSelected" => !$isSelected,
+                "questionID" => $choice->question_id,
+                "projectQuestionScore" => $projectQuestionScore,
+                "isQuestionComplete" => $isQuestionComplete,
+                "opposingProjectChoices" => $opposingProjectChoices
+            )
+        );
     }
 }

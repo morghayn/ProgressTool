@@ -123,75 +123,174 @@ class ProgressToolModelSurvey extends JModelItem
     }
 
     /**
-     * TODO: Documentation here
+     * Returns true if selection is already active. Returns false if selection is not active.
      *
      * @param $projectID
      * @param $choiceID
-     * @return array
-     * @since 0.3.0
+     * @return bool
+     * @since 0.5.0
      */
-    public function processSelection($projectID, $choiceID)
+    public function isSelected($projectID, $choiceID)
     {
         $db = JFactory::getDbo();
-        $exists = $db->getQuery(true);
-        $delete = $db->getQuery(true);
-        $insert = $db->getQuery(true);
-        $getQuestionID = $db->getQuery(true);
-        $getUserScore = $db->getQuery(true);
-        $getIsComplete = $db->getQuery(true);
-        $conditions = array($db->quoteName('project_id') . ' = ' . $db->quote($projectID), $db->quoteName('choice_id') . ' = ' . $db->quote($choiceID));
+        $isSelected = $db->getQuery(true);
 
-        $exists
+        $isSelected
             ->select('COUNT(*)')
             ->from($db->quoteName('#__pt_project_choice'))
-            ->where($conditions)
+            ->where(
+                array(
+                    $db->quoteName('project_id') . ' = ' . $db->quote($projectID),
+                    $db->quoteName('choice_id') . ' = ' . $db->quote($choiceID)
+                )
+            )
             ->setLimit(1);
 
-        if ($db->setQuery($exists)->loadResult()) // If selection exists, delete it.
-        {
-            $delete
-                ->delete($db->quoteName('#__pt_project_choice'))
-                ->where($conditions);
-            $db->setQuery($delete)->execute();
-            $active = false;
-        }
-        else // Else if selection does not exist, insert it.
-        {
-            $insert
-                ->insert($db->quoteName('#__pt_project_choice'))
-                ->columns($db->quoteName(array('project_id', 'choice_id')))
-                ->values(implode(',', array($projectID, $choiceID)));
-            $db->setQuery($insert)->execute();
-            $active = true;
-        }
+        return $db->setQuery($isSelected)->loadResult() == 1;
+    }
 
-        // Getting questionID.
-        $getQuestionID
-            ->select($db->quoteName('QC.question_id'))
-            ->from($db->quoteName('#__pt_question_choice', 'QC'))
-            ->where($db->quoteName('QC.id') . ' = ' . $db->quote($choiceID))
+    /**
+     * Returns choice object corresponding to choiceID.
+     *
+     * @param $choiceID
+     * @return object choice
+     * @since 0.5.0
+     */
+    public function getChoice($choiceID)
+    {
+        $db = JFactory::getDbo();
+        $getChoice = $db->getQuery(true);
+
+        $getChoice
+            ->select('*')
+            ->from($db->quoteName('#__pt_question_choice'))
+            ->where($db->quoteName('id') . ' = ' . $db->quote($choiceID))
             ->setLimit(1);
-        $questionID = $db->setQuery($getQuestionID)->loadResult();
 
-        // Getting userScore.
-        $getUserScore
+        return $db->setQuery($getChoice)->loadObject();
+    }
+
+    /**
+     * Processes a selection.
+     *
+     * @param $projectID
+     * @param $choiceID
+     * @since 0.5.0
+     */
+    public function selectProjectChoice($projectID, $choiceID)
+    {
+        $db = JFactory::getDbo();
+        $selectChoice = $db->getQuery(true);
+
+        $selectChoice
+            ->insert($db->quoteName('#__pt_project_choice'))
+            ->columns($db->quoteName(array('project_id', 'choice_id')))
+            ->values(implode(',', array($projectID, $choiceID)));
+
+        $db->setQuery($selectChoice)->execute();
+    }
+
+    /**
+     * Retrieves an array containing the choiceIDs of each selection made by the project for the question of opposite weight. (i.e Yes|No)
+     * The function of this is so 'yes choices' may be deselected when a 'no choice' is selected and vise versa.
+     *
+     * @param $questionID
+     * @param $projectID
+     * @param $weight
+     * @return array|integer
+     * @since 0.5.0
+     */
+    public function getOpposingProjectChoices($questionID, $projectID, $weight)
+    {
+        $db = JFactory::getDbo();
+        $getOpposingProjectChoices = $db->getQuery(true);
+
+        $getOpposingProjectChoices
+            ->select($db->quoteName('QC.id'))
+            ->from($db->quoteName('#__pt_project_choice', 'PC'))
+            ->innerjoin($db->quoteName('#__pt_question_choice', 'QC') . ' ON ' . $db->quoteName('QC.id') . ' = ' . $db->quoteName('PC.choice_id'))
+            ->where(
+                array(
+                    $db->quoteName('QC.question_id') . ' = ' . $db->quote($questionID),
+                    $db->quoteName('PC.project_id') . ' = ' . $db->quote($projectID),
+                    $db->quoteName('QC.weight') . ($weight == 0 ? ' > 0' : ' = 0')
+                )
+            );
+
+        return $db->setQuery($getOpposingProjectChoices)->loadColumn();
+    }
+
+    /**
+     * Processes a deselection.
+     *
+     * @param $projectID
+     * @param $choiceID
+     * @since 0.5.0
+     */
+    public function deselectProjectChoice($projectID, $choiceID)
+    {
+        $db = JFactory::getDbo();
+        $deselectChoice = $db->getQuery(true);
+
+        $deselectChoice
+            ->delete($db->quoteName('#__pt_project_choice'))
+            ->where(
+                array(
+                    $db->quoteName('project_id') . ' = ' . $db->quote($projectID),
+                    $db->quoteName('choice_id') . ' = ' . $db->quote($choiceID)
+                )
+            );
+
+        $db->setQuery($deselectChoice)->execute();
+    }
+
+    /**
+     * Returns the updated score for a question. Used after a selection or deselection is made by a project.
+     *
+     * @param $questionID
+     * @param $projectID
+     * @return integer projectQuestionScore
+     * @since 0.5.0
+     */
+    public function getProjectQuestionScore($questionID, $projectID)
+    {
+        $db = JFactory::getDbo();
+        $getProjectQuestionScore = $db->getQuery(true);
+
+        $getProjectQuestionScore
             ->select('IFNULL(SUM(QC.weight), 0) AS userScore')
             ->from($db->quoteName('#__pt_question_choice', 'QC'))
             ->innerjoin($db->quoteName('#__pt_project_choice', 'PC') . ' ON ' . $db->quoteName('QC.id') . ' = ' . $db->quoteName('PC.choice_id'))
-            ->where($db->quoteName('QC.question_id') . ' = ' . $db->quote($questionID))
-            ->where($db->quoteName('PC.project_id') . ' = ' . $db->quote($projectID))
+            ->where(
+                array(
+                    $db->quoteName('QC.question_id') . ' = ' . $db->quote($questionID),
+                    $db->quoteName('PC.project_id') . ' = ' . $db->quote($projectID)
+                )
+            )
             ->setLimit(1);
-        $userScore = $db->setQuery($getUserScore)->loadResult();
 
-        // Getting isComplete.
-        $getIsComplete
-            ->select('IF(SUM(QC.weight) = ' . $db->quote($userScore) . ', 1, 0) AS isComplete')
+        return $db->setQuery($getProjectQuestionScore)->loadResult();
+    }
+
+    /**
+     * Returns true if question is considered complete. Returns false if question is not considered complete.
+     *
+     * @param $questionID
+     * @param $projectQuestionScore
+     * @return bool
+     * @since 0.5.0
+     */
+    public function isQuestionComplete($questionID, $projectQuestionScore)
+    {
+        $db = JFactory::getDbo();
+        $isQuestionComplete = $db->getQuery(true);
+
+        $isQuestionComplete
+            ->select('IF(SUM(QC.weight) = ' . $db->quote($projectQuestionScore) . ', 1, 0) AS isComplete')
             ->from($db->quoteName('#__pt_question_choice', 'QC'))
             ->where($db->quoteName('QC.question_id') . ' = ' . $db->quote($questionID))
             ->setLimit(1);
-        $isComplete = $db->setQuery($getIsComplete)->loadResult() == 1;
 
-
-        return array("active" => $active, "questionID" => $questionID, "userScore" => $userScore, "isComplete" => $isComplete);
+        return $db->setQuery($isQuestionComplete)->loadResult() == 1;
     }
 }

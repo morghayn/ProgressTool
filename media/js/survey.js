@@ -30,7 +30,9 @@ function surveySelect(projectID, choiceID)
             success:
                 function (result, status, xhr)
                 {
-                    updateQuestionScore(result.data.questionID, result.data.userScore, result.data.isComplete);
+                    console.log(result.data);
+                    updateQuestionScore(result.data.questionID, result.data.projectQuestionScore, result.data.isQuestionComplete);
+                    deselectChoices(result.data.opposingProjectChoices)
                 },
             error:
                 function ()
@@ -48,16 +50,24 @@ function surveySelect(projectID, choiceID)
  * @param score
  * @param isComplete
  */
-function updateQuestionScore(questionID, score, isComplete)
+function updateQuestionScore(questionID, projectQuestionScore, isQuestionComplete)
 {
     let elementID = `score_${questionID}`;
     let element = document.getElementById(elementID)
 
-    element.innerHTML = score;
-    if (isComplete)
+    element.innerHTML = projectQuestionScore;
+    if (isQuestionComplete)
     {
         toggleChestContent(questionID)
     }
+}
+
+function deselectChoices(opposingProjectChoices)
+{
+    opposingProjectChoices.forEach(
+        opposingProjectChoice =>
+            document.getElementById(`c${opposingProjectChoice}`).checked = false
+    );
 }
 
 function toggleChestContent(questionID)
