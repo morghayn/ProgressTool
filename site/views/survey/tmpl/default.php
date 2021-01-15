@@ -6,7 +6,7 @@
 
 $this->questionCounter = 0;
 
-echo $this->loadTemplate('title');
+echo $this->loadTemplate('heading');
 
 foreach ($this->questions as $this->question):
     $this->colourHex = $this->question->colour_hex;

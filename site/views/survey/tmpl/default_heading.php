@@ -1,17 +1,11 @@
 <?php defined('_JEXEC') or die; ?>
 
-<div class="headingChest">
-    <button onclick="window.location = '?option=com_progresstool&view=projectboard'" class="buttonBack">
-        Back
-    </button>
-    <button onclick="window.location = `?option=com_progresstool&view=metrics&projectID=${<?php echo $this->projectID; ?>}`" class="buttonMetrics">
-        Metrics
-    </button>
-    <div class="headingChestTitleChest">
-        <div class="headingChestTitle">
-            Progress Survey
-        </div>
-    </div>
+<div class="heading">
+    <a href="?option=com_progresstool&view=projectboard"
+       class="back">Back</a>
+    <a href="?option=com_progresstool&view=metrics&projectID=<?php echo $this->projectID; ?>"
+       class="metrics">Metrics</a>
+    <h1>Progress Survey</h1>
 </div>
 
 <p class="introductionParagraph">

@@ -1,3 +1,83 @@
+/*--------------------------------------------------/
+                                           Heading /
+-------------------------------------------------*/
+
+.heading {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    margin: 0 auto 3rem;
+    height: min-content;
+}
+
+.heading h1,
+.heading .metrics,
+.heading .back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4rem;
+    line-height: 1;
+    font-size: 1.40rem;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+    white-space: nowrap;
+}
+
+.heading h1 {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background-color: #0C4DA0;
+}
+
+.heading .metrics,
+.heading .back {
+    width: 7rem;
+    border: none;
+    color: white;
+    background-color: rgba(62, 106, 239, 1);
+    text-decoration: none;
+}
+
+.heading .back {
+    background-color: rgba(239, 62, 106, 1);
+}
+
+.heading .back:hover {
+    background-color: rgba(244, 113, 146, 0.5);
+}
+
+.heading .back:active {
+    box-shadow: inset 0 3px 4px hsla(0, 0%, 0%, 0.2);
+}
+
+.heading .back:focus {
+    outline: thin dotted #444;
+    outline-offset: -2px;
+}
+
+.heading .metrics {
+    background-color: rgba(62, 106, 239, 1);
+}
+
+.heading .metrics:hover {
+    background-color: rgba(62, 106, 239, 0.5);
+}
+
+.heading .metrics:active {
+    box-shadow: inset 0 3px 4px hsla(0, 0%, 0%, 0.2);
+}
+
+.heading .metrics:focus {
+    outline: thin dotted #444;
+    outline-offset: -2px;
+}
+
 /*
         ========================================================
                               Survey.css
@@ -23,84 +103,6 @@
 
 .masterChest {
     position: relative;
-}
-
-/***/
-
-.headingChest {
-    display: flex;
-    width: 100%;
-    margin: 0 auto 3rem;
-    position: sticky;
-    top: 0;
-    z-index: 4;
-    height: min-content;
-}
-
-.headingChestTitleChest {
-    display: flex;
-    flex: 4;
-    align-items: center;
-    justify-content: center;
-    background-color: #0C4DA0;
-}
-
-.headingChestTitle {
-    padding: 1.05rem;
-    line-height: 1;
-    color: #ffffff;
-    font-size: 1.50rem;
-    font-weight: 600;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
-    white-space: nowrap;
-}
-
-.buttonBack {
-    flex: 1;
-    height: 70px;
-    font-size: 1.50rem;
-    color: #ffffff;
-    border: none;
-    font-weight: 600;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
-    background-color: rgba(239, 62, 106, 1);
-}
-
-.buttonBack:hover {
-    background-color: rgba(244, 113, 146, 0.5);
-}
-
-.buttonBack:active {
-    box-shadow: inset 0 3px 4px hsla(0, 0%, 0%, 0.2);
-}
-
-.buttonBack:focus {
-    outline: thin dotted #444;
-    outline-offset: -2px;
-}
-
-.buttonMetrics {
-    flex: 1;
-    height: 70px;
-    font-size: 1.50rem;
-    color: #ffffff;
-    border: none;
-    font-weight: 600;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
-    background-color: rgba(62, 106, 239, 1);
-}
-
-.buttonMetrics:hover {
-    background-color: rgba(62, 106, 239, 0.5);
-}
-
-.buttonMetrics:active {
-    box-shadow: inset 0 3px 4px hsla(0, 0%, 0%, 0.2);
-}
-
-.buttonMetrics:focus {
-    outline: thin dotted #444;
-    outline-offset: -2px;
 }
 
 .scoreBox {
