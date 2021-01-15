@@ -14,7 +14,7 @@
  */
 class ProgressToolModelCountries extends JModelLegacy
 {
-    public function getPools()
+    public function getCountries()
     {
         $db = JFactory::getDbo();
         $getCountries = $db->getQuery(true);

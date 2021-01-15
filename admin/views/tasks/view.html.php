@@ -28,7 +28,7 @@ class ProgressToolViewTasks extends JViewLegacy
         $input = $app->input;
 
         $model = parent::getModel();
-        $poolID = $input->getInt('pool', 0);
+        $countryID = $input->getInt('countryID', 0);
 
         $this->prepareDocument();
         parent::display($tpl);

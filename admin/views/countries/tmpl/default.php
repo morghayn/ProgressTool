@@ -9,11 +9,11 @@
         <div class="fragment">
             <h1 class="fragmentHeader">Countries</h1>
 
-            <?php foreach ($this->pools as $pool): ?>
+            <?php foreach ($this->countries as $country): ?>
                 <div class="child">
-                    <h1><?php echo $pool->country; ?></h1>
-                    <a href="?option=com_progresstool&view=questions&pool=<?php echo $pool->id; ?>">Questions</a>
-                    <a href="?option=com_progresstool&view=tasks&pool=<?php echo $pool->id; ?>">Tasks</a>
+                    <h1><?php echo $country->country; ?></h1>
+                    <a href="?option=com_progresstool&view=questions&countryID=<?php echo $country->id; ?>">Questions</a>
+                    <a href="?option=com_progresstool&view=tasks&countryID=<?php echo $country->id; ?>">Tasks</a>
                 </div>
             <?php endforeach; ?>
 

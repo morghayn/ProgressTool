@@ -15,10 +15,10 @@
 class ProgressToolViewCountries extends JViewLegacy
 {
     /**
-     * @var array of pool objects.
+     * @var array of country objects.
      * @since 0.5.0
      */
-    protected $pools;
+    protected $countries;
 
     /**
      * Renders view.
@@ -28,7 +28,7 @@ class ProgressToolViewCountries extends JViewLegacy
      */
     function display($tpl = null)
     {
-        $this->pools = $this->get('pools');
+        $this->countries = $this->get('countries');
 
         $this->prepareDocument();
         parent::display($tpl);

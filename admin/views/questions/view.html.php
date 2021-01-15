@@ -33,10 +33,10 @@ class ProgressToolViewQuestions extends JViewLegacy
         $input = $app->input;
 
         $model = parent::getModel();
-        $poolID = $input->getInt('pool', 0);
+        $countryID = $input->getInt('countryID', 0);
 
-        $this->questions = $model->getQuestions($poolID);
-        $this->choices = $model->getChoices($poolID);
+        $this->questions = $model->getQuestions($countryID);
+        $this->choices = $model->getChoices($countryID);
 
         $this->prepareDocument();
         parent::display($tpl);
