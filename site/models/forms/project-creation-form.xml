@@ -4,7 +4,7 @@
 >
     <fieldset
             name="details"
-            label="Project Creation Form"
+            label="Project Details"
     >
         <field
                 name="projectID"

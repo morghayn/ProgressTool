@@ -1,8 +1,6 @@
-/*
-        ========================================================
-                            Button Box
-        ========================================================
- */
+/*--------------------------------------------------/
+                                  Joomla Overrides /
+-------------------------------------------------*/
 
 .form-horizontal .control-group .controls {
     margin-left: 0;
@@ -12,109 +10,152 @@
     width: 100%;
 }
 
+.form-horizontal .control-group {
+    margin: 0 !important;
+}
+
+:root {
+    font-size: 16px !important;
+}
+
+/*--------------------------------------------------/
+                                       projectForm /
+-------------------------------------------------*/
+
 .projectForm {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
+    margin: 0 0 0 0;
+}
+
+.projectForm * {
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
 }
 
-@media only screen and (max-width: 1499px) {
-    .projectForm {
-        width: 100%;
-    }
-}
-
-.projectForm legend {
-    display: block;
-    width: 100%;
-    color: #333333;
-    border: 0;
-    border-bottom: 1px solid #e5e5e5;
+.projectForm h1 {
+    padding: 0.25rem 0;
+    line-height: 1;
     font-size: 1.65rem;
     font-weight: 500;
-    margin-bottom: 0;
-    line-height: 1;
-    padding: 0 0 0.5rem;
+    color: black;
+}
+
+.projectForm :not(h1) {
+    font-size: 0.875rem !important;
+}
+
+.projectForm fieldset {
+    margin: 0;
+    padding: 0 2rem 2rem 2rem;
+    border: 0.05rem solid #0C4DA0;
+    border-radius: 0.2rem;
+    -webkit-box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.1);
+    -moz-box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.1);
+    box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.1);
 }
 
 .projectForm label {
-    width: 100%;
-    font-size: 1.25rem;
-    font-weight: 500;
+    display: block !important;
     text-align: left;
-    margin: 1.5rem auto 0.5rem;
+    margin: 0.75rem auto 0.5rem;
+    line-height: 1;
+}
+
+.projectForm input[type=text],
+.projectForm textarea,
+.projectForm select {
+    width: 100%;
+    margin: 0 auto;
+    border: 0.05rem solid #d9d9d9;
+    border-radius: 0.1rem;
+    box-sizing: border-box;
 }
 
 .projectForm input[type=text] {
-    font-size: 1.15rem;
-    margin: 0 auto;
-    width: 100%;
-    padding: 1rem;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    height: auto;
+    padding: 0.75rem;
 }
 
 .projectForm textarea {
     resize: none;
-    margin: 0 auto;
-    width: 100%;
-    padding: 12px 20px;
+    padding: 0.75rem;
     display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 1.15rem;
 }
 
 .projectForm select {
-    margin: 0 auto;
-    width: 100%;
     height: 100%;
     padding: 0.5rem;
     display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 1.15rem;
 }
 
-.buttonChest {
-    width: 100%;
-    margin: 1.25rem 0 auto;
-    display: flex;
-    flex: 3;
+.projectForm select:focus {
+    outline: none;
 }
 
-.buttonChest > button {
-    flex: 3;
+.projectForm .submitButton {
     margin-top: 2rem;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.875rem;
     color: white;
-    padding: 14px 20px;
-    border: none;
+    background-color: rgba(125, 201, 37, 1);
+    border: 0.05rem solid #707070;
+    border-radius: 0.25rem;
     cursor: pointer;
 }
 
-.gap {
-    display: block;
+.projectForm .submitButton:hover {
+    color: rgba(125, 201, 37, 1);
+    background-color: white;
+    border: 0.05rem solid rgba(125, 201, 37, 1)
+}
+
+/*--------------------------------------------------/
+                                        dangerZone /
+-------------------------------------------------*/
+
+.dangerZone {
+    margin: 2rem 0;
+}
+
+.dangerZone * {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
+.dangerZone h1 {
+    padding: 0.25rem 0;
+    line-height: 1;
+    font-size: 1.65rem;
+    font-weight: 500;
+    color: black;
+}
+
+.dangerZone .dangerContainer {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border: 0.05rem solid crimson;
+    border-radius: 0.2rem;
+    box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.1);
+    -moz-box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.1);
+    -webkit-box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.1);
+}
+
+.dangerContainer p {
     flex: 1;
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.35rem;
 }
 
-.buttonChest .buttonSubmit {
-    background-color: rgba(186, 214, 89, 1);
+.dangerContainer button {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.875rem;
+    color: crimson;
+    background-color: white;
+    border: 0.05rem solid #707070;
+    border-radius: 0.25rem;
 }
 
-.buttonChest .buttonSubmit:hover {
-    background-color: rgba(186, 214, 89, 0.5);
-}
-
-.buttonChest .buttonCancel {
-    background-color: rgba(220, 20, 60, 1);
-}
-
-.buttonChest .buttonCancel:hover {
-    background-color: rgba(220, 20, 60, 0.5);
+.dangerous-stuff button:hover {
+    color: white;
+    background-color: crimson;
+    border: 0.1rem solid crimson;
 }
