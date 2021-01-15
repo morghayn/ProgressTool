@@ -12,7 +12,7 @@
             <?php foreach ($this->pools as $pool): ?>
                 <div class="child">
                     <h1><?php echo $pool->country; ?></h1>
-                    <a href="?option=com_progresstool&view=pool&pool=<?php echo $pool->id; ?>">Questions</a>
+                    <a href="?option=com_progresstool&view=questions&pool=<?php echo $pool->id; ?>">Questions</a>
                     <a href="?option=com_progresstool&view=tasks&pool=<?php echo $pool->id; ?>">Tasks</a>
                 </div>
             <?php endforeach; ?>

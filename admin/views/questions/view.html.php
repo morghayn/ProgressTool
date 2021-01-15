@@ -1,9 +1,9 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * (Admin) Class ProgressToolViewPool
+ * (Admin) Class ProgressToolViewQuestions
  *
- * View for back-end pool functionality.
+ * View for back-end questions functionality.
  *
  * @package ProgressTool
  * @subpackage admin
@@ -12,7 +12,7 @@
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
  */
-class ProgressToolViewPool extends JViewLegacy
+class ProgressToolViewQuestions extends JViewLegacy
 {
     /**
      * @var array of question objects.
@@ -54,10 +54,12 @@ class ProgressToolViewPool extends JViewLegacy
         $document->addScript(JURI::root() . "media/com_progresstool/js/admin/adminBase.js");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/adminBase.css");
 
+        $document->addScript(JURI::root() . "media/com_progresstool/js/admin/questions.js");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/questions.css");
+
         // TODO: put in one file
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/masterchest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/optionschest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/survey.css");
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/pool.css");
     }
 }

@@ -1,9 +1,9 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * (Admin) Class ProgressToolModelPools
+ * (Admin) Class ProgressToolModelQuestions
  *
- * Model for back-end question pools functionality.
+ * Model for back-end question questions functionality.
  *
  * @package ProgressTool
  * @subpackage admin
@@ -12,7 +12,7 @@
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
  */
-class ProgressToolModelPool extends JModelLegacy
+class ProgressToolModelQuestions extends JModelLegacy
 {
     // Questions
 
