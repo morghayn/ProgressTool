@@ -18,4 +18,4 @@
 <?php echo $this->loadTemplate('abstracts'); ?>
 <?php echo $this->loadTemplate('graphs'); ?>
 <?php echo $this->loadTemplate('columns'); ?>
-<?php echo $this->loadTemplate('timelineRedirects'); ?>
+<?php echo $this->loadTemplate('timelineredirects'); ?>
