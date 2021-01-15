@@ -1,5 +1,6 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
 <?php JHtml::_('behavior.formvalidator'); ?>
+<?php echo $this->loadTemplate('heading'); ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_progresstool&view=settings'); ?>"
       method="post" name="adminForm" id="adminForm" class="projectForm" enctype="multipart/form-data">
@@ -24,7 +25,7 @@
         <p>
             <b>Delete this project</b><br>Your project no longer accessible should you choose to delete it.
         </p>
-        <button onclick="alert('I am dangerous!')">
+        <button onclick="alert('This is not yet working. This feature will be implemented by Monday.')">
             Delete this project
         </button>
     </div>
