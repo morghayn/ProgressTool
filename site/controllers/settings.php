@@ -74,9 +74,4 @@ class ProgressToolControllerSettings extends JControllerForm
         $this->setRedirect('index.php?option=com_progresstool&view=projectboard', 'Project has been updated successfully');
         return true;
     }
-
-    public function cancel($key = null)
-    {
-        $this->setRedirect('index.php?option=com_progresstool&view=projectboard', 'You cancelled creating a form.');
-    }
 }
