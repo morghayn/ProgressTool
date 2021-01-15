@@ -63,7 +63,7 @@ class ProgressToolViewProjectStats extends JViewLegacy
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/projectstats.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/introductory.css");
-        $document->addScript(JURI::root() . "media/com_progresstool/js/projectstats.js");
+        $document->addScript(JURI::root() . "media/com_progresstool/js/site/projectstats.js");
     }
 
     /**

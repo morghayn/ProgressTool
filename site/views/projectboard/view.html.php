@@ -56,6 +56,6 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/optionschest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/projectboard.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/introductory.css");
-        $document->addScript(JURI::root() . "media/com_progresstool/js/projectboard.js");
+        $document->addScript(JURI::root() . "media/com_progresstool/js/site/projectboard.js");
     }
 }
