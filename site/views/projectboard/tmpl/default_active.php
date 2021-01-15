@@ -27,7 +27,7 @@ $alt = $this->projectCount % 2 == 0 ? 2 : 0;
         <button class="surveyButton" onclick="window.location = `?option=com_progresstool&view=survey&projectID=${<?php echo $id;?>}`">
             Survey
         </button>
-        <button class="metricsButton" onclick="window.location = `?option=com_progresstool&view=projectstats&projectID=${<?php echo $id;?>}`">
+        <button class="metricsButton" onclick="window.location = `?option=com_progresstool&view=metrics&projectID=${<?php echo $id;?>}`">
             Metrics
         </button>
         <button class="settingsButton" onclick="window.location = `?option=com_progresstool&view=settings&projectID=${<?php echo $id;?>}`">

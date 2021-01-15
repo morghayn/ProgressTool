@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * (Site) Class ProgressToolModelProjectStats
+ * (Site) Class ProgressToolModelMetrics
  *
  * Model for front-end project stats functionality.
  *
@@ -12,7 +12,7 @@
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
  */
-class ProgressToolModelProjectStats extends JModelItem
+class ProgressToolModelMetrics extends JModelItem
 {
     /**
      * Retrieves all tasks specific to users country. Includes a column 'criteria_met', will be 1 to represent true if it has been determined that

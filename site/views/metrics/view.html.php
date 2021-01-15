@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * (Site) Class ProgressToolViewProjectStats
+ * (Site) Class ProgressToolViewMetrics
  *
  * View for front-end project stats functionality.
  *
@@ -12,7 +12,7 @@
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
  */
-class ProgressToolViewProjectStats extends JViewLegacy
+class ProgressToolViewMetrics extends JViewLegacy
 {
     /**
      * @var integer identifier for the country associated with the current user.
@@ -61,9 +61,10 @@ class ProgressToolViewProjectStats extends JViewLegacy
     private function prepareDocument()
     {
         $document = JFactory::getDocument();
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/projectstats.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/introductory.css");
-        $document->addScript(JURI::root() . "media/com_progresstool/js/site/projectstats.js");
+
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/metrics.css");
+        $document->addScript(JURI::root() . "media/com_progresstool/js/site/metrics.js");
     }
 
     /**

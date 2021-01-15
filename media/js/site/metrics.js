@@ -4,7 +4,7 @@ function timelineRedirect(categoryID, projectID, countryID)
 
     window.open(
         `?option=com_progresstool` +
-        `&view=projectstats` +
+        `&view=metrics` +
         `&task=timelineredirect.redirect` +
         `&` + [token] + `=1` +
         `&projectID=${projectID}` +
