@@ -1,5 +1,6 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
 <?php JHtml::_('behavior.formvalidator'); ?>
+<?php echo $this->loadTemplate('heading'); ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_progresstool&view=projectcreate'); ?>"
       method="post" name="adminForm" id="adminForm" class="projectForm" enctype="multipart/form-data">
