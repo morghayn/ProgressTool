@@ -48,6 +48,6 @@ class ProgressToolViewProjectCreate extends JViewLegacy
     {
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/settings.css");
-        $document->addScript(JURI::root() . "media/com_progresstool/forms/settings.js");
+        $document->addScript(JURI::root() . "media/com_progresstool/js/site/settings.js");
     }
 }
