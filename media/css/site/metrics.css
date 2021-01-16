@@ -1,7 +1,14 @@
+/*--------------------------------------------------/
+                                       buttonChest /
+-------------------------------------------------*/
+
 .buttonChest {
     width: 100%;
     display: flex;
     margin: 0 auto 3rem;
+}
+
+.buttonChest * {
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
 }
 
@@ -13,7 +20,7 @@
     color: #ffffff;
     line-height: 1;
     outline: none;
-    font-size: 1.55rem;
+    font-size: 1.4rem;
     font-weight: 600;
     height: 70px;
 }
@@ -102,7 +109,7 @@
 .taskCategory {
     width: 100%;
     margin: 0 auto;
-    font-size: 1.55rem;
+    font-size: 1.4rem;
     line-height: 1;
     word-wrap: break-word;
     font-weight: 600;
