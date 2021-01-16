@@ -55,7 +55,7 @@ function getProjectTemplate(projectID, projectCount)
 function accommodateNoSelector()
 {
     document.getElementById('titleContainer').style.height = '4rem'
-    document.getElementById('projectCreate').style.height = '100%'
+    document.getElementById('create').style.height = '100%'
     document.getElementById('title').style.height = '100%'
 }
 
@@ -65,9 +65,9 @@ function accommodateNoSelector()
 function attachEventListeners()
 {
     // Project create button event
-    const projectCreate = document.getElementById('projectCreate')
-    projectCreate.addEventListener("click", () =>
-        window.location = '?option=com_progresstool&view=projectcreate'
+    const create = document.getElementById('create')
+    create.addEventListener('click', () =>
+        window.location = '?option=com_progresstool&view=create'
     )
 
     // Project selection event
@@ -78,8 +78,8 @@ function attachEventListeners()
             if (projectID > 0)
             {
                 // Display selected project
-                let projects = document.getElementById(`projects`)
-                let projectViewer = document.getElementById(`projectViewer`)
+                let projects = document.getElementById('projects')
+                let projectViewer = document.getElementById('projectViewer')
                 projectViewer.style.display = "block"
                 projects.style.display = "none"
                 projectViewer.innerHTML = getProjectTemplate(projectID, 1)

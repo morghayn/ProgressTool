@@ -1,15 +1,10 @@
-<?php defined('_JEXEC') or die;
+<?php defined('_JEXEC') or die;?>
+<?php echo $this->loadTemplate('title'); ?>
+<input id="token" type="hidden" name="<?php echo JSession::getFormToken(); ?>" value="1"/>
 
-// Title container
-echo $this->loadTemplate('title');
-
-if ($this->projects): // If user has projects... ?>
-
-    <div id="projectViewer">
-        <!-- For displaying a selected project -->
-    </div>
-
-    <div id="projects">
+<?php if ($this->projects): // If user has projects... ?>
+    <div id="projectViewer"><!-- For displaying a selected project --></div>
+    <div id="projects" class="projects">
         <?php
         $this->projectCount = 0;
         foreach ($this->projects as $this->project):
@@ -17,9 +12,7 @@ if ($this->projects): // If user has projects... ?>
             echo $this->project->activated == 1 ? $this->loadTemplate('active') : $this->loadTemplate('inactive');
         endforeach; ?>
     </div>
-
 <?php else: // If user does not have projects... ?>
-
     <p class="introductionParagraph" style="margin-top: 50px;">
         Welcome to the Progress Tool. This tool will use a survey to measure what stage of development your Community
         Energy project is at and will provide guidance on what next steps to take.<br><br>
@@ -33,7 +26,4 @@ if ($this->projects): // If user has projects... ?>
         The score tallied from the survey responses is used to populate a spider diagram, describing the progress under each heading from the
         <a href="/timeline">ECCO timeline</a> (<b class="people">People</b>, <b class="technology">Technology</b> and <b class="finance">Finance</b>).
     </p>
-
 <?php endif; ?>
-
-<input id="token" type="hidden" name="<?php echo JSession::getFormToken(); ?>" value="1"/>

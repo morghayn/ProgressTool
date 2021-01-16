@@ -1,9 +1,9 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * (Site) Class ProgressToolControllerProjectCreate
+ * (Site) Class ProgressToolControllerCreate
  *
- * Controller for back-end projectcreate functionality.
+ * Controller for back-end project creation functionality.
  *
  * @package ProgressTool
  * @subpackage admin
@@ -12,13 +12,13 @@
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
  */
-class ProgressToolControllerProjectCreate extends JControllerForm
+class ProgressToolControllerCreate extends JControllerForm
 {
     public function save($key = null, $urlVar = null)
     {
         JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
-        $model = $this->getModel('projectcreate');
+        $model = $this->getModel('create');
         $app = JFactory::getApplication();
         $input = $app->input;
         $data = $input->get('jform', array(), 'array');

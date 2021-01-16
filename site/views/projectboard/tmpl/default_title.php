@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die; ?>
 
 <div class="titleContainer" id="titleContainer">
-    <button id="projectCreate">Create Project</button>
+    <button id="create">Create Project</button>
     <h1 id="title">Project Board</h1>
 
     <?php if ($this->projects): // Only display project selector if user has projects ?>

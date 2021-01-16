@@ -1,9 +1,9 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * (Site) Class ProgressToolViewProjectCreate
+ * (Site) Class ProgressToolViewCreate
  *
- * View for front-end projectcreate functionality.
+ * View for front-end create functionality.
  *
  * @package ProgressTool
  * @subpackage site
@@ -12,7 +12,7 @@
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
  */
-class ProgressToolViewProjectCreate extends JViewLegacy
+class ProgressToolViewCreate extends JViewLegacy
 {
     protected $form = null;
 

@@ -1,9 +1,9 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * (Site) Class ProgressToolModelProjectCreate
+ * (Site) Class ProgressToolModelCreate
  *
- * Model for front-end projectcreate functionality.
+ * Model for front-end project creation functionality.
  *
  * @package ProgressTool
  * @subpackage site
@@ -12,7 +12,7 @@
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
  */
-class ProgressToolModelProjectCreate extends JModelAdmin
+class ProgressToolModelCreate extends JModelAdmin
 {
     public function getGroupsQuery($userID)
     {
@@ -65,8 +65,8 @@ class ProgressToolModelProjectCreate extends JModelAdmin
     {
         // Get the form.
         $form = $this->loadForm(
-            'com_progresstool.projectcreate',
-            'project-creation-form',
+            'com_progresstool.create',
+            'create',
             array(
                 'control' => 'jform',
                 'load_data' => $loadData
@@ -95,6 +95,6 @@ class ProgressToolModelProjectCreate extends JModelAdmin
     protected function loadFormData()
     {
         // Check the session for previously entered form data.
-        return JFactory::getApplication()->getUserState('com_progresstool.projectcreate.data', array());
+        return JFactory::getApplication()->getUserState('com_progresstool.create.data', array());
     }
 }

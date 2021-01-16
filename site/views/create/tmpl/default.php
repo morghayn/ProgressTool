@@ -2,14 +2,14 @@
 <?php JHtml::_('behavior.formvalidator'); ?>
 <?php echo $this->loadTemplate('heading'); ?>
 
-<form action="<?php echo JRoute::_('index.php?option=com_progresstool&view=projectcreate'); ?>"
+<form action="<?php echo JRoute::_('index.php?option=com_progresstool&view=create'); ?>"
       method="post" name="adminForm" id="adminForm" class="projectForm" enctype="multipart/form-data">
 
     <div class="form-horizontal">
         <h1>Project Details</h1>
         <fieldset class="adminform">
             <?php echo $this->form->renderFieldset('details'); ?>
-            <button type="button" class="submitButton" onclick="Joomla.submitbutton('projectcreate.save')">
+            <button type="button" class="submitButton" onclick="Joomla.submitbutton('create.save')">
                 Create project
             </button>
         </fieldset>

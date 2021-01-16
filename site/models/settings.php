@@ -101,7 +101,7 @@ class ProgressToolModelSettings extends JModelAdmin
     {
         // Get the form.
         $form = $this->loadForm(
-            'com_progresstool.projectcreate',
+            'com_progresstool.create',
             'project-creation-form',
             array(
                 'control' => 'jform',
