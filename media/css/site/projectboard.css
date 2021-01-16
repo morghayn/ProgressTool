@@ -18,7 +18,8 @@
     width: 30%;
     align-self: normal;
     border: none;
-    font-size: 1.2rem;
+    line-height: 1;
+    font-size: 1.3rem;
     font-weight: 600;
     color: #ffffff;
     background-color: rgba(125, 201, 37, 1);
@@ -39,7 +40,7 @@
     align-items: center;
     justify-content: center;
     width: 70%;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 600;
     color: #ffffff;
 }
@@ -51,7 +52,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     line-height: 1;
     font-weight: 600;
     box-sizing: border-box;
@@ -69,7 +70,7 @@
     text-overflow: ellipsis;
     padding: 0.75rem 0 0.75rem 0;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     border: 0;
     border-radius: 0;
     box-sizing: border-box;
