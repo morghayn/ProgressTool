@@ -43,7 +43,6 @@
 
 	<media destination="com_progresstool" folder="media">
 		<folder>css</folder>
-		<folder>forms</folder>
 		<folder>rules</folder>
 		<folder>js</folder>
 		<folder>icons</folder>
