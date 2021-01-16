@@ -51,8 +51,7 @@ class ProgressToolViewSettings extends JViewLegacy
     protected function prepareDocument()
     {
         $document = JFactory::getDocument();
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/projectform.css");
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/introductory.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/settings.css");
         $document->addScript(JURI::root() . "media/com_progresstool/forms/projectcreate.js");
         $document->addScript(JURI::root() . "media/com_progresstool/forms/submitbutton.js");
     }
