@@ -1,6 +1,6 @@
 <?php defined('_JEXEC') or die; ?>
 
-<div class="heading">
+<div class="heading stickyHeading">
     <a href="?option=com_progresstool&view=projectboard"
        class="back">Back</a>
     <a href="?option=com_progresstool&view=metrics&projectID=<?php echo $this->projectID; ?>"
