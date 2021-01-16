@@ -5,11 +5,11 @@ echo $this->loadTemplate('title');
 
 if ($this->projects): // If user has projects... ?>
 
-    <div id="projectBox">
+    <div id="projectViewer">
         <!-- For displaying a selected project -->
     </div>
 
-    <div id="projectsBox">
+    <div id="projects">
         <?php
         $this->projectCount = 0;
         foreach ($this->projects as $this->project):

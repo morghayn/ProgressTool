@@ -78,11 +78,11 @@ function attachEventListeners()
             if (projectID > 0)
             {
                 // Display selected project
-                let projectsBox = document.getElementById(`projectsBox`)
-                let projectBox = document.getElementById(`projectBox`)
-                projectBox.style.display = "block"
-                projectsBox.style.display = "none"
-                document.getElementById(`projectBox`).innerHTML = getProjectTemplate(projectID, 1)
+                let projects = document.getElementById(`projects`)
+                let projectViewer = document.getElementById(`projectViewer`)
+                projectViewer.style.display = "block"
+                projects.style.display = "none"
+                projectViewer.innerHTML = getProjectTemplate(projectID, 1)
             }
             else
             {

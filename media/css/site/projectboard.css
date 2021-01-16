@@ -6,8 +6,11 @@
     height: 7rem;
     display: flex;
     flex-wrap: wrap;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
     background-color: #0C4DA0;
+}
+
+.titleContainer * {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
 }
 
 .titleContainer button {
@@ -15,8 +18,8 @@
     width: 30%;
     align-self: normal;
     border: none;
-    font-size: 1.3rem;
-    font-weight: bold;
+    font-size: 1.2rem;
+    font-weight: 600;
     color: #ffffff;
     background-color: rgba(125, 201, 37, 1);
 }
@@ -36,8 +39,8 @@
     align-items: center;
     justify-content: center;
     width: 70%;
-    font-size: 1.6rem;
-    font-weight: bold;
+    font-size: 1.5rem;
+    font-weight: 600;
     color: #ffffff;
 }
 
@@ -48,9 +51,9 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     line-height: 1;
-    font-weight: bold;
+    font-weight: 600;
     box-sizing: border-box;
     border-left: 0.15rem solid rgb(125, 201, 37);
     border-bottom: 0.15rem solid rgb(125, 201, 37);
@@ -66,7 +69,7 @@
     text-overflow: ellipsis;
     padding: 0.75rem 0 0.75rem 0;
     text-align: center;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     border: 0;
     border-radius: 0;
     box-sizing: border-box;
@@ -92,22 +95,23 @@
     width: 100%;
     display: flex;
     flex: 4;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
     word-break: break-word;
     margin-top: 50px;
     gap: 5rem;
+}
+
+.projectChest * {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
 }
 
 .projectDetails {
     order: 1;
     flex: 7;
     padding: 1rem;
-
-    box-sizing: border-box;
-    box-shadow: 4px 4px 17px 0 rgba(0,0,0,0.1);
-
     color: white;
     background-color: #0C4DA0;
+    box-shadow: 4px 4px 17px 0 rgba(0,0,0,0.1);
+    box-sizing: border-box;
 }
 
 .projectTitle {
@@ -128,15 +132,13 @@
 
 .projectApproval {
     flex: 7;
-    padding: 1rem;
-
     display: flex;
     flex-direction: column;
-
-    box-sizing: border-box;
-    box-shadow: 4px 4px 17px 0 rgba(0,0,0,0.1);
+    padding: 1rem;
     color: white;
     background-color: #0C4DA0;
+    box-shadow: 4px 4px 17px 0 rgba(0,0,0,0.1);
+    box-sizing: border-box;
 }
 
 .approvalCheck {
@@ -156,15 +158,13 @@
 .buttonChest > button {
     flex: 1;
     border: none;
-    font-size: 1.10rem;
+    font-size: 1.2rem;
     padding: 0.95rem;
     color: white;
-
+    background-color: rgba(125, 201, 37, 1);
     -webkit-box-shadow: 4px 4px 17px 0px rgba(0,0,0,0.1);
     -moz-box-shadow: 4px 4px 17px 0px rgba(0,0,0,0.1);
     box-shadow: 4px 4px 17px 0px rgba(0,0,0,0.1);
-
-    background-color: rgba(125, 201, 37, 1);
 }
 
 .buttonChest > button:hover {
