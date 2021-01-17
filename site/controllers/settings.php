@@ -17,18 +17,30 @@ class ProgressToolControllerSettings extends JControllerForm
     public function update($key = null, $urlVar = null)
     {
         JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+
         $model = $this->getModel('settings');
         $app = JFactory::getApplication();
         $input = $app->input;
         $data = $input->get('jform', array(), 'array');
 
-        // Save the form data in user state variable and setup redirect
+
+        // If form is accessed initially without a projectID specified
+        if ($data['projectID'] === 0)
+        {
+            $app->enqueueMessage('Project does not exist', 'error');
+            return false;
+        }
+
+
+        // Save the form data in an user state variable and setup redirect
         $currentUri = (string)JUri::getInstance();
         $context = "$this->option.$this->context.data";
         $app->setUserState($context, $data);
         $this->setRedirect($currentUri);
 
+
         // Setting up form to validate data
+        // If unsuccessful, we enqueue validation errors and redirect back to form
         $form = $model->getForm($data, false);
         if (!$form)
         {
@@ -36,8 +48,6 @@ class ProgressToolControllerSettings extends JControllerForm
             return false;
         }
 
-        // Validating date using form we setup
-        // If unsuccessful, we enqueue validation errors and redirect back to form
         $validData = $model->validate($form, $data);
         if ($validData === false)
         {
@@ -58,6 +68,7 @@ class ProgressToolControllerSettings extends JControllerForm
             return false;
         }
 
+
         // Updating project details
         // If unsuccessful, we save the valid data to the user session and redirect back to form
         $isUpdateSuccessful = $model->update(
@@ -74,6 +85,7 @@ class ProgressToolControllerSettings extends JControllerForm
             $this->setMessage($this->getError(), 'error');
             return false;
         }
+
 
         // Clear the data in the form and redirect
         $app->setUserState($context, null);
