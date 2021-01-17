@@ -49,7 +49,7 @@ class ProgressToolModelSettings extends JModelAdmin
      *
      * @param array $data
      * @param boolean $loadData true if the form is to load its own data, false if not
-     * @return  mixed JForm object on success, false on failure
+     * @return mixed JForm object on success, false on failure
      * @throws Exception
      * @since   0.5.0
      */
