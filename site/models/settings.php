@@ -47,7 +47,7 @@ class ProgressToolModelSettings extends JModelAdmin
                     $db->quoteName('name') . ' = ' . $db->quote($name),
                     $db->quoteName('description') . ' = ' . $db->quote($description),
                     $db->quoteName('type_id') . ' = ' . $db->quote($type),
-                     $db->quoteName('group_id') . ' = ' . $db->quote($groupID)
+                    $db->quoteName('group_id') . ' = ' . $db->quote($groupID)
                 )
             )
             ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
@@ -86,19 +86,16 @@ class ProgressToolModelSettings extends JModelAdmin
     }
 
     /**
-     * Method to get the record form.
+     * Retrieves the form.
      *
-     * @param array $data Data for the form.
-     * @param boolean $loadData True if the form is to load its own data (default case), false if not.
-     *
-     * @return  mixed    A JForm object on success, false on failure
-     *
+     * @param array $data
+     * @param boolean $loadData true if the form is to load its own data, false if not
+     * @return  mixed JForm object on success, false on failure
      * @throws Exception
-     * @since   1.6
+     * @since   0.5.0
      */
     public function getForm($data = array(), $loadData = true)
     {
-        // Get the form.
         $form = $this->loadForm(
             'com_progresstool.update',
             'create',
@@ -126,17 +123,9 @@ class ProgressToolModelSettings extends JModelAdmin
      */
     protected function loadFormData()
     {
-        $app = JFactory::getApplication();
-        return $app->getUserState('com_progresstool.settings.data', array());
+        return JFactory::getApplication()->getUserState('com_progresstool.settings.data', array());
     }
 
-    /**
-     * // TODO: document
-     * Deletes a project. Deletion is setup to cascade so do not worry about referential integrity.
-     *
-     * @param int $projectID the ID of the project.
-     * @since 0.5.0
-     */
     public function deleteProject($projectID)
     {
         $db = JFactory::getDbo();

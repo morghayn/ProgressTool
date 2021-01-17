@@ -15,6 +15,7 @@
 class ProgressToolViewSettings extends JViewLegacy
 {
     protected $form = null;
+    private $userID;
 
     /**
      * Renders template for the Settings view.
@@ -25,22 +26,52 @@ class ProgressToolViewSettings extends JViewLegacy
     public function display($tpl = null)
     {
         $input = JFactory::getApplication()->input;
-        $projectID = $input->get('projectID', 1);
+        $projectID = $input->get('projectID', 0);
+        $this->userID = JFactory::getUser()->id;
 
-        JLoader::register('Auth',  JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
+        if ($projectID !== 0)
+        {
+            $this->initPrefillForm($projectID);
+        }
+        else
+        {
+            $this->onErrorPrefillForm();
+        }
+
+        $this->prepareDocument();
+        parent::display($tpl);
+    }
+
+    /**
+     * Method used to setup form on initial load.
+     *
+     * @param $projectID
+     * @since 0.5.0
+     */
+    private function initPrefillForm($projectID)
+    {
+        JLoader::register('Auth', JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
         Auth::authorize($projectID);
 
         $model = parent::getModel();
-        $userID = JFactory::getUser()->id;
-        $groupsQuery = $model->getGroupsQuery($userID);
+        $groupsQuery = $model->getGroupsQuery($this->userID);
         $project = $model->getProject($projectID);
-
         $this->form = $this->get('Form');
         $this->form->setFieldAttribute('group', 'query', $groupsQuery);
         $this->form->bind($project);
+    }
 
-        parent::display($tpl);
-        $this->prepareDocument();
+    /**
+     * Method used to setup form when an error occurs. Such as a validation error.
+     *
+     * @since 0.5.0
+     */
+    private function onErrorPrefillForm()
+    {
+        $model = parent::getModel();
+        $groupsQuery = $model->getGroupsQuery($this->userID);
+        $this->form = $this->get('Form');
+        $this->form->setFieldAttribute('group', 'query', $groupsQuery);
     }
 
     /**
@@ -48,7 +79,7 @@ class ProgressToolViewSettings extends JViewLegacy
      *
      * @since 0.5.0
      */
-    protected function prepareDocument()
+    private function prepareDocument()
     {
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/settings.css");
