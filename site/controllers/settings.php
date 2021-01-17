@@ -22,6 +22,11 @@ class ProgressToolControllerSettings extends JControllerForm
         $app = JFactory::getApplication();
         $input = $app->input;
         $data = $input->get('jform', array(), 'array');
+        $projectID = $data['projectID'];
+        $name = $data['name'];
+        $description = $data['description'];
+        $type = $data['type'];
+        $groupID = $data['group'];
 
         $currentUri = (string)JUri::getInstance();
         $context = "$this->option.$this->context.data";
@@ -56,8 +61,8 @@ class ProgressToolControllerSettings extends JControllerForm
             return false;
         }
 
-        // Attempt to save the data else handle the case where the save failed.
-        if (!$model->update($validData))
+        // Attempt to update project, else handle failure
+        if (!$model->update($projectID, $name, $description, $type, $groupID))
         {
             // Save the data in the session.
             $app->setUserState($context, $validData);

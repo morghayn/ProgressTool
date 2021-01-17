@@ -25,20 +25,18 @@ class ProgressToolModelSettings extends JModelAdmin
     }
 
     /**
-     * Updates the information of a project. // TODO: document
+     * Updates the project details for the project specified using the POSTed data.
      *
-     * @param $data
+     * @param $projectID
+     * @param $name
+     * @param $description
+     * @param $type
+     * @param $groupID
      * @return mixed
      * @since 0.5.0
      */
-    public function update($data)
+    public function update($projectID, $name, $description, $type, $groupID)
     {
-        $projectID = $data['projectID'];
-        $name = $data['name'];
-        $description = $data['description'];
-        $type = $data['type'];
-        $groupID = $data['group'];
-
         $db = JFactory::getDbo();
         $update = $db->getQuery(true);
 
@@ -46,10 +44,10 @@ class ProgressToolModelSettings extends JModelAdmin
             ->update($db->quoteName('#__pt_project'))
             ->set(
                 array(
-                    $db->quoteName('group_id') . ' = ' . $db->quote($groupID),
                     $db->quoteName('name') . ' = ' . $db->quote($name),
                     $db->quoteName('description') . ' = ' . $db->quote($description),
-                    $db->quoteName('type_id') . ' = ' . $db->quote($type)
+                    $db->quoteName('type_id') . ' = ' . $db->quote($type),
+                     $db->quoteName('group_id') . ' = ' . $db->quote($groupID)
                 )
             )
             ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
