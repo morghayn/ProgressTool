@@ -14,52 +14,11 @@
  */
 class ProgressToolModelSettings extends JModelAdmin
 {
-    public function getGroupsQuery($userID)
-    {
-        return (
-            'SELECT CG.id, CG.name ' .
-            'FROM #__community_groups AS CG ' .
-            'INNER JOIN #__community_groups_members AS CGM ON CG.id = CGM.groupid ' .
-            'WHERE memberid = ' . $userID . ' AND CGM.permissions = 1 '
-        );
-    }
-
     /**
-     * Updates the project details for the project specified using the POSTed data.
+     * Returns associative array containing the project details of the project associated with projectID passed through parameters.
      *
-     * @param $projectID
-     * @param $name
-     * @param $description
-     * @param $type
-     * @param $groupID
-     * @return mixed
-     * @since 0.5.0
-     */
-    public function update($projectID, $name, $description, $type, $groupID)
-    {
-        $db = JFactory::getDbo();
-        $update = $db->getQuery(true);
-
-        $update
-            ->update($db->quoteName('#__pt_project'))
-            ->set(
-                array(
-                    $db->quoteName('name') . ' = ' . $db->quote($name),
-                    $db->quoteName('description') . ' = ' . $db->quote($description),
-                    $db->quoteName('type_id') . ' = ' . $db->quote($type),
-                    $db->quoteName('group_id') . ' = ' . $db->quote($groupID)
-                )
-            )
-            ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
-
-        return $db->setQuery($update)->execute();
-    }
-
-    /**
-     * Returns associated array containing data pertaining to the project specified in the parameters.
-     *
-     * @param int $projectID the ID used to identify project.
-     * @return array associated array of data.
+     * @param int $projectID
+     * @return array
      * @since 0.3.0
      */
     public function getProject($projectID)
@@ -67,7 +26,7 @@ class ProgressToolModelSettings extends JModelAdmin
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
 
-        $columns = array('group_id', 'name', 'description', 'type_id');
+        $columns = array('id', 'name', 'description', 'type_id', 'group_id');
 
         $query
             ->select($db->quoteName($columns))
@@ -77,7 +36,7 @@ class ProgressToolModelSettings extends JModelAdmin
 
         $project = $db->setQuery($query)->loadObjectList()[0];
         return array(
-            "projectID" => $projectID,
+            "projectID" => $project->id,
             "name" => $project->name,
             "description" => $project->description,
             "type" => $project->type_id,
@@ -126,6 +85,49 @@ class ProgressToolModelSettings extends JModelAdmin
         return JFactory::getApplication()->getUserState('com_progresstool.settings.data', array());
     }
 
+    /**
+     * Updates the project details using the data provided.
+     *
+     * @param $projectID
+     * @param $name
+     * @param $description
+     * @param $type
+     * @param $groupID
+     * @return mixed
+     * @since 0.5.0
+     */
+    public function update($projectID, $name, $description, $type, $groupID)
+    {
+        $db = JFactory::getDbo();
+        $update = $db->getQuery(true);
+
+        $update
+            ->update($db->quoteName('#__pt_project'))
+            ->set(
+                array(
+                    $db->quoteName('name') . ' = ' . $db->quote($name),
+                    $db->quoteName('description') . ' = ' . $db->quote($description),
+                    $db->quoteName('type_id') . ' = ' . $db->quote($type),
+                    $db->quoteName('group_id') . ' = ' . $db->quote($groupID)
+                )
+            )
+            ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
+
+        return $db->setQuery($update)->execute();
+    }
+
+    // TODO: Document
+    public function getGroupsQuery($userID)
+    {
+        return (
+            'SELECT CG.id, CG.name ' .
+            'FROM #__community_groups AS CG ' .
+            'INNER JOIN #__community_groups_members AS CGM ON CG.id = CGM.groupid ' .
+            'WHERE memberid = ' . $userID . ' AND CGM.permissions = 1 '
+        );
+    }
+
+    // TODO: Document
     public function deleteProject($projectID)
     {
         $db = JFactory::getDbo();

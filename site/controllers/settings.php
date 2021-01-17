@@ -14,6 +14,15 @@
  */
 class ProgressToolControllerSettings extends JControllerForm
 {
+    /**
+     * Updates project details using the data provided.
+     *
+     * @param null $key
+     * @param null $urlVar
+     * @return bool
+     * @throws Exception
+     * @since 0.5.0
+     */
     public function update($key = null, $urlVar = null)
     {
         JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
@@ -23,7 +32,6 @@ class ProgressToolControllerSettings extends JControllerForm
         $input = $app->input;
         $data = $input->get('jform', array(), 'array');
 
-
         // If form is accessed initially without a projectID specified
         if ($data['projectID'] === 0)
         {
@@ -31,23 +39,19 @@ class ProgressToolControllerSettings extends JControllerForm
             return false;
         }
 
-
         // Save the form data in an user state variable and setup redirect
         $currentUri = (string)JUri::getInstance();
         $context = "$this->option.$this->context.data";
         $app->setUserState($context, $data);
         $this->setRedirect($currentUri);
 
-
-        // Setting up form to validate data
-        // If unsuccessful, we enqueue validation errors and redirect back to form
+        // Setting up form to validate data. If unsuccessful, we enqueue validation errors and redirect back
         $form = $model->getForm($data, false);
         if (!$form)
         {
             $app->enqueueMessage($model->getError(), 'error');
             return false;
         }
-
         $validData = $model->validate($form, $data);
         if ($validData === false)
         {
@@ -68,9 +72,7 @@ class ProgressToolControllerSettings extends JControllerForm
             return false;
         }
 
-
-        // Updating project details
-        // If unsuccessful, we save the valid data to the user session and redirect back to form
+        // Attempt to update project. If unsuccessful, save the valid data and redirect back to form
         $isUpdateSuccessful = $model->update(
             $data['projectID'],
             $data['name'],
@@ -78,6 +80,7 @@ class ProgressToolControllerSettings extends JControllerForm
             $data['type'],
             $data['group']
         );
+
         if (!$isUpdateSuccessful)
         {
             $app->setUserState($context, $validData);
@@ -86,8 +89,7 @@ class ProgressToolControllerSettings extends JControllerForm
             return false;
         }
 
-
-        // Clear the data in the form and redirect
+        // Task has been successful, clear the data in the form and redirect
         $app->setUserState($context, null);
         $this->setRedirect('index.php?option=com_progresstool&view=projectboard', 'Project has been updated successfully');
         return true;

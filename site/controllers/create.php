@@ -14,6 +14,15 @@
  */
 class ProgressToolControllerCreate extends JControllerForm
 {
+    /**
+     * Creates a new project entry using the data provided.
+     *
+     * @param null $key
+     * @param null $urlVar
+     * @return bool
+     * @throws Exception
+     * @since 0.5.0
+     */
     public function save($key = null, $urlVar = null)
     {
         JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
@@ -23,14 +32,13 @@ class ProgressToolControllerCreate extends JControllerForm
         $input = $app->input;
         $data = $input->get('jform', array(), 'array');
 
+        // Save the form data in an user state variable and setup redirect
         $currentUri = (string)JUri::getInstance();
         $context = "$this->option.$this->context.data";
-
-        // save the form data and set up the redirect back to the same form, to avoid repeating them under every error condition
         $app->setUserState($context, $data);
         $this->setRedirect($currentUri);
 
-        // Validate the posted data. First we need to set up an instance of the form ...
+        // Setting up form to validate data. If unsuccessful, we enqueue validation errors and redirect back to form
         $form = $model->getForm($data, false);
         if (!$form)
         {
@@ -41,35 +49,41 @@ class ProgressToolControllerCreate extends JControllerForm
         $validData = $model->validate($form, $data);
         if ($validData === false)
         {
-            // Get the validation messages.
             $errors = $model->getErrors();
 
-            // Display up to three validation messages to the user.
-            for ($i = 0, $n = count($errors); $i < $n && $i < 3; $i++)
+            foreach ($errors as $error)
             {
-                $app->enqueueMessage(
-                    ($errors[$i] instanceof Exception ? $errors[$i]->getMessage() : $errors[$i]),
-                    'warning'
-                );
+                if ($error instanceof \Exception)
+                {
+                    $app->enqueueMessage($error->getMessage(), 'warning');
+                }
+                else
+                {
+                    $app->enqueueMessage($error, 'warning');
+                }
             }
 
             return false;
         }
 
-        // Attempt to save the data else handle the case where the save failed.
-        if (!$model->save($validData))
-        {
-            // Save the data in the session.
-            $app->setUserState($context, $validData);
+        // Attempt to save project. If unsuccessful, save the valid data and redirect back to form
+        $isSaveSuccessful = $model->save(
+            JFactory::getUser()->id,
+            $data['name'],
+            $data['description'],
+            $data['type'],
+            $data['group']
+        );
 
-            // Redirect back to the edit screen.
+        if (!$isSaveSuccessful)
+        {
+            $app->setUserState($context, $validData);
             $this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_SAVE_FAILED', $model->getError()));
             $this->setMessage($this->getError(), 'error');
-            $this->setRedirect($currentUri);
             return false;
         }
 
-        // clear the data in the form and redirect
+        // Task has been successful, clear the data in the form and redirect
         $app->setUserState($context, null);
         $this->setRedirect('index.php?option=com_progresstool&view=projectboard', 'New project created successfully');
         return true;
