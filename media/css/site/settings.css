@@ -95,6 +95,87 @@
     outline-offset: -2px;
 }
 
+/*--------------------------------------
+Modal
+---------------------------------------*/
+
+.pdModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.pdModal .content {
+    position: relative;
+    background-color: #fefefe;
+    margin: 5vh auto auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 60rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    text-align: center;
+    justify-content: center;
+}
+
+.pdModal .content p {
+    border: 1px solid #707070;
+    width: 20rem;
+    padding: 0.5rem;
+    margin: 1rem auto;
+}
+
+.pdModal .heading {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #0C4DA0;
+}
+
+.pdModal .heading h1 {
+    margin-left: 3.5rem;
+}
+
+.pdModal .heading span {
+    height: 3.5rem;
+    width: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    font-size: 2.25rem;
+    color: white;
+    background-color: crimson;
+    cursor: pointer;
+}
+
+.pdModal .heading span:hover {
+    color: crimson;
+    background-color: white;
+    border: 0.1rem solid crimson;
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
 /*--------------------------------------------------/
                                        projectForm /
 -------------------------------------------------*/

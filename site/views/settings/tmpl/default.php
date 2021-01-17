@@ -1,6 +1,7 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
 <?php JHtml::_('behavior.formvalidator'); ?>
 <?php echo $this->loadTemplate('heading'); ?>
+<?php echo $this->loadTemplate('modal'); ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_progresstool&view=settings'); ?>"
       method="post" name="adminForm" id="adminForm" class="projectForm" enctype="multipart/form-data">
@@ -22,11 +23,7 @@
 <div class="dangerZone">
     <h1>Danger Zone</h1>
     <div class="dangerContainer">
-        <p>
-            <b>Delete this project</b><br>Your project no longer accessible should you choose to delete it.
-        </p>
-        <button onclick="alert('This is not yet working. This feature will be implemented by Monday.')">
-            Delete this project
-        </button>
+        <p><b>Deactivate this project</b><br>Your project will no longer be accessible should you choose to deactivate it.</p>
+        <button onclick="openModal()">Deactivate this project</button>
     </div>
 </div>
