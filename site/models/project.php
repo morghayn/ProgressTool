@@ -154,14 +154,29 @@ class ProgressToolModelProject extends JModelAdmin
         );
     }
 
-    // TODO: Document
-    public function deleteProject($projectID)
+    /**
+     * Deactivates project.
+     *
+     * @param $projectID
+     * @param $deactivationReason
+     * @return mixed
+     * @since 0.5.0
+     */
+    public function deactivate($projectID, $deactivationReason)
     {
         $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
+        $update = $db->getQuery(true);
 
-        // TODO: project deactivation (not actually deleting the project.)
+        $update
+            ->update($db->quoteName('#__pt_project'))
+            ->set(
+                array(
+                    $db->quoteName('deactivated') . ' = 1',
+                    $db->quoteName('deactivation_reason') . ' = ' . $db->quote($deactivationReason),
+                )
+            )
+            ->where($db->quoteName('id') . ' = ' . $db->quote($projectID));
 
-        $db->setQuery($query)->execute();
+        return $db->setQuery($update)->execute();
     }
 }

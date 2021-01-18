@@ -195,17 +195,20 @@ class ProgressToolControllerProject extends JControllerForm
 
         // TODO: Validate
             // If validation successful
+        $model->deactivate($project['id'], $project['deactivation_reason']);
         $app->enqueueMessage('Your project has been deactivated.', 'warning');
         $this->setRedirect(
             'index.php?option=com_progresstool&view=projectboard'
         );
 
             // If validation unsuccessful
+        /*
         $app->enqueueMessage('Confirmation input incorrect.', 'error');
         $app->enqueueMessage('Deactivation reason must not be empty.', 'error');
         $this->setRedirect(
             'index.php?option=com_progresstool&view=settings&projectID=' . $project['id']
         );
+        */
 
         return true;
     }
