@@ -27,14 +27,14 @@ class ProgressToolControllerProject extends JControllerForm
     {
         JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
-        $model = $this->getModel('create');
+        $model = JModelLegacy::getInstance('Project', 'ProgressToolModel');
         $app = JFactory::getApplication();
         $input = $app->input;
         $data = $input->get('jform', array(), 'array');
 
         // Save the form data in an user state variable and setup redirect
         $currentUri = (string)JUri::getInstance();
-        $context = "$this->option.$this->context.data";
+        $context = "com_progresstool.project.data";
         $app->setUserState($context, $data);
         $this->setRedirect($currentUri);
 
@@ -102,7 +102,7 @@ class ProgressToolControllerProject extends JControllerForm
     {
         JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
-        $model = $this->getModel('settings');
+        $model = JModelLegacy::getInstance('Project', 'ProgressToolModel');
         $app = JFactory::getApplication();
         $input = $app->input;
         $data = $input->get('jform', array(), 'array');
@@ -120,7 +120,7 @@ class ProgressToolControllerProject extends JControllerForm
 
         // Save the form data in an user state variable and setup redirect
         $currentUri = (string)JUri::getInstance();
-        $context = "$this->option.$this->context.data";
+        $context = "com_progresstool.project.data";
         $app->setUserState($context, $data);
         $this->setRedirect($currentUri);
 

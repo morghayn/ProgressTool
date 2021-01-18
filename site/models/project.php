@@ -3,7 +3,7 @@
 /**
  * (Site) Class ProgressToolModelSettings
  *
- * Model for front-end project settings functionality.
+ * Model for front-end project form functionality.
  *
  * @package ProgressTool
  * @subpackage site
@@ -12,7 +12,7 @@
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
  */
-class ProgressToolModelSettings extends JModelAdmin
+class ProgressToolModelProject extends JModelAdmin
 {
     /**
      * Returns associative array containing the project details of the project associated with projectID passed through parameters.
@@ -56,7 +56,7 @@ class ProgressToolModelSettings extends JModelAdmin
     public function getForm($data = array(), $loadData = true)
     {
         $form = $this->loadForm(
-            'com_progresstool.update',
+            'com_progresstool.project',
             'project',
             array(
                 'control' => 'jform',
@@ -82,7 +82,34 @@ class ProgressToolModelSettings extends JModelAdmin
      */
     protected function loadFormData()
     {
-        return JFactory::getApplication()->getUserState('com_progresstool.settings.data', array());
+        return JFactory::getApplication()->getUserState('com_progresstool.project.data', array());
+    }
+
+    /**
+     * Creates a new project entry using the data provided.
+     *
+     * @param array $userID
+     * @param $name
+     * @param $description
+     * @param $type
+     * @param $groupID
+     * @return bool|mixed
+     * @since 0.5.0
+     */
+    public function create($userID, $name, $description, $type, $groupID)
+    {
+        $db = JFactory::getDbo();
+        $insert = $db->getQuery(true);
+
+        $columns = array('user_id', 'group_id', 'name', 'description', 'type_id', 'creation_date');
+        $values = array($userID, $db->quote($groupID), $db->quote($name), $db->quote($description), $db->quote($type), 'NOW()');
+
+        $insert
+            ->insert($db->quoteName('#__pt_project'))
+            ->columns($db->quoteName($columns))
+            ->values(implode(',', $values));
+
+        return $db->setQuery($insert)->execute();
     }
 
     /**

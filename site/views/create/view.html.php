@@ -28,15 +28,23 @@ class ProgressToolViewCreate extends JViewLegacy
         JLoader::register('Auth',  JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
         Auth::redirectGuests();
 
-        $model = parent::getModel();
-        $userID = JFactory::getUser()->id;
-        $groupsQuery = $model->getGroupsQuery($userID);
-
-        $this->form = $this->get('Form');
-        $this->form->setFieldAttribute('group', 'query', $groupsQuery);
-
-        parent::display($tpl);
+        $this->initForm(JFactory::getUser()->id);
         $this->prepareDocument();
+        parent::display($tpl);
+    }
+
+    /**
+     * Initializes project form.
+     *
+     * @param $userID
+     * @since 0.5.0
+     */
+    public function initForm($userID)
+    {
+        $model = JModelLegacy::getInstance('Project', 'ProgressToolModel');
+        $groupsQuery = $model->getGroupsQuery($userID);
+        $this->form = $model->getForm();
+        $this->form->setFieldAttribute('group', 'query', $groupsQuery);
     }
 
     /**

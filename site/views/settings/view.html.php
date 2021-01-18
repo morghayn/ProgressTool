@@ -15,7 +15,6 @@
 class ProgressToolViewSettings extends JViewLegacy
 {
     protected $form = null;
-    private $userID;
 
     /**
      * Renders template for the Settings view.
@@ -27,53 +26,31 @@ class ProgressToolViewSettings extends JViewLegacy
     {
         $input = JFactory::getApplication()->input;
         $projectID = $input->get('projectID', 0);
-        $this->userID = JFactory::getUser()->id;
 
-        if ($projectID !== 0)
-        {
-            $this->initPrefillForm($projectID);
-        }
-        else
-        {
-            $this->onErrorPrefillForm();
-        }
+        JLoader::register('Auth', JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
+        Auth::authorize($projectID);
 
+        $this->initForm($projectID, JFactory::getUser()->id);
         $this->prepareDocument();
         parent::display($tpl);
     }
 
     /**
-     * Method used to setup form on initial load.
+     * Initializes project form.
      *
      * @param $projectID
+     * @param $userID
      * @since 0.5.0
      */
-    private function initPrefillForm($projectID)
+    private function initForm($projectID, $userID)
     {
-        JLoader::register('Auth', JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
-        Auth::authorize($projectID);
-
-        $model = parent::getModel();
-        $groupsQuery = $model->getGroupsQuery($this->userID);
+        $model = JModelLegacy::getInstance('Project', 'ProgressToolModel');
+        $groupsQuery = $model->getGroupsQuery($userID);
         $project = $model->getProject($projectID);
 
-        $this->form = $this->getForm();
+        $this->form = $model->getForm();
         $this->form->setFieldAttribute('group', 'query', $groupsQuery);
         $this->form->bind($project);
-    }
-
-    /**
-     * Method used to setup form when an error occurs. Such as a validation error.
-     *
-     * @since 0.5.0
-     */
-    private function onErrorPrefillForm()
-    {
-        $model = parent::getModel();
-        $groupsQuery = $model->getGroupsQuery($this->userID);
-
-        $this->form = $this->getForm();
-        $this->form->setFieldAttribute('group', 'query', $groupsQuery);
     }
 
     /**
