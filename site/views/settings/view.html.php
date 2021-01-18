@@ -49,7 +49,7 @@ class ProgressToolViewSettings extends JViewLegacy
         $this->project = $model->getProject($projectID);
 
         $this->form = $model->getForm();
-        $this->form->setFieldAttribute('group', 'query', $groupsQuery);
+        $this->form->setFieldAttribute('group_id', 'query', $groupsQuery);
         $this->form->bind($this->project);
     }
 

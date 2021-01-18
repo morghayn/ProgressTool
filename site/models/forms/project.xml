@@ -1,62 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<form
-        addrulepath="media/com_progresstool/rules"
->
-    <fieldset
-            name="details"
-            label="Project Details"
-    >
-        <field
-                name="projectID"
-                type="hidden"
-                default="0"
-        />
-        <!--validate="name"-->
-        <field
-                name="name"
-                type="text"
-                label="Name"
-                hint="Project Name"
-                class="textField"
-                maxlength="100"
-                required="true"
-                description="Your project name can be 35 characters long."
-        />
-        <field
-                name="description"
-                type="textarea"
-                rows="4"
-                cols="80"
-                maxlength="255"
-                label="Description"
-                hint="Project Description"
-                description="Your project description can be 255 characters long."
-                required="true"
-        >
-        </field>
-        <field
-                name="type"
-                type="sql"
-                default="10"
-                label="Type"
-                query="SELECT id, type FROM #__pt_project_type"
-                key_field="id"
-                value_field="type"
-                description="Please pick a category that most suits your project."
-                required="true"
-        >
-        </field>
-        <field
-                name="group"
-                type="sql"
-                default="10"
-                label="Associated Group"
-                query="SELECT id, type FROM #__pt_project_type"
-                key_field="id"
-                value_field="name"
-                description="Associate this project with a group page you own or administrate. This will share the project with other owners and administrators of that group."
-                required="true"
-        >
+<form addrulepath="media/com_progresstool/rules">
+    <fieldset name="details"
+              label="Project Details">
+        <field name="id"
+               type="hidden"
+               default="0"/>
+        <field name="name"
+               type="text"
+               label="Name"
+               hint="Project Name"
+               class="textField"
+               maxlength="100"
+               required="true"
+               description="Your project name can be 35 characters long."/>
+        <field name="description"
+               type="textarea"
+               rows="4"
+               cols="80"
+               maxlength="255"
+               label="Description"
+               hint="Project Description"
+               description="Your project description can be 255 characters long."
+               required="true"/>
+        <field name="type_id"
+               type="sql"
+               default="10"
+               label="Type"
+               query="SELECT id, type FROM #__pt_project_type"
+               key_field="id"
+               value_field="type"
+               description="Please pick a category that most suits your project."
+               required="true"/>
+        <field name="group_id"
+               type="sql"
+               default="10"
+               label="Associated Group"
+               query="SELECT id, type FROM #__pt_project_type"
+               key_field="id"
+               value_field="name"
+               description="Associate this project with a group page you own or administrate. This will share the project with other owners and administrators of that group."
+               required="true">
             <option value="0">No group</option>
         </field>
     </fieldset>

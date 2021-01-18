@@ -36,11 +36,11 @@ class ProgressToolModelProject extends JModelAdmin
 
         $project = $db->setQuery($query)->loadObjectList()[0];
         return array(
-            "projectID" => $project->id,
+            "id" => $project->id,
             "name" => $project->name,
             "description" => $project->description,
-            "type" => $project->type_id,
-            "group" => $project->group_id
+            "type_id" => $project->type_id,
+            "group_id" => $project->group_id
         );
     }
 

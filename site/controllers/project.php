@@ -30,23 +30,23 @@ class ProgressToolControllerProject extends JControllerForm
         $model = JModelLegacy::getInstance('Project', 'ProgressToolModel');
         $app = JFactory::getApplication();
         $input = $app->input;
-        $data = $input->get('jform', array(), 'array');
+        $project = $input->get('jform', array(), 'array');
 
         // Save the form data in an user state variable and setup redirect
         $currentUri = (string)JUri::getInstance();
         $context = "com_progresstool.project.data";
-        $app->setUserState($context, $data);
+        $app->setUserState($context, $project);
         $this->setRedirect($currentUri);
 
         // Setting up form to validate data. If unsuccessful, we enqueue validation errors and redirect back to form
-        $form = $model->getForm($data, false);
+        $form = $model->getForm($project, false);
         if (!$form)
         {
             $app->enqueueMessage($model->getError(), 'error');
             return false;
         }
 
-        $validData = $model->validate($form, $data);
+        $validData = $model->validate($form, $project);
         if ($validData === false)
         {
             $errors = $model->getErrors();
@@ -69,10 +69,10 @@ class ProgressToolControllerProject extends JControllerForm
         // Attempt to save project. If unsuccessful, save the valid data and redirect back to form
         $isSaveSuccessful = $model->create(
             JFactory::getUser()->id,
-            $data['name'],
-            $data['description'],
-            $data['type'],
-            $data['group']
+            $project['name'],
+            $project['description'],
+            $project['type_id'],
+            $project['group_id']
         );
 
         if (!$isSaveSuccessful)
@@ -105,14 +105,14 @@ class ProgressToolControllerProject extends JControllerForm
         $model = JModelLegacy::getInstance('Project', 'ProgressToolModel');
         $app = JFactory::getApplication();
         $input = $app->input;
-        $data = $input->get('jform', array(), 'array');
+        $project = $input->get('jform', array(), 'array');
 
         // Authorizing update request
         JLoader::register('Auth', JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
-        Auth::authorize($data['projectID']);
+        Auth::authorize($project['id']);
 
         // If form is accessed initially without a projectID specified
-        if ($data['projectID'] === 0)
+        if ($project['id'] === 0)
         {
             $app->enqueueMessage('Project does not exist', 'error');
             return false;
@@ -121,17 +121,17 @@ class ProgressToolControllerProject extends JControllerForm
         // Save the form data in an user state variable and setup redirect
         $currentUri = (string)JUri::getInstance();
         $context = "com_progresstool.project.data";
-        $app->setUserState($context, $data);
+        $app->setUserState($context, $project);
         $this->setRedirect($currentUri);
 
         // Setting up form to validate data. If unsuccessful, we enqueue validation errors and redirect back
-        $form = $model->getForm($data, false);
+        $form = $model->getForm($project, false);
         if (!$form)
         {
             $app->enqueueMessage($model->getError(), 'error');
             return false;
         }
-        $validData = $model->validate($form, $data);
+        $validData = $model->validate($form, $project);
         if ($validData === false)
         {
             $errors = $model->getErrors();
@@ -153,11 +153,11 @@ class ProgressToolControllerProject extends JControllerForm
 
         // Attempt to update project. If unsuccessful, save the valid data and redirect back to form
         $isUpdateSuccessful = $model->update(
-            $data['projectID'],
-            $data['name'],
-            $data['description'],
-            $data['type'],
-            $data['group']
+            $project['id'],
+            $project['name'],
+            $project['description'],
+            $project['type_id'],
+            $project['group_id']
         );
 
         if (!$isUpdateSuccessful)

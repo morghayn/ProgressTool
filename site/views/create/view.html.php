@@ -44,7 +44,7 @@ class ProgressToolViewCreate extends JViewLegacy
         $model = JModelLegacy::getInstance('Project', 'ProgressToolModel');
         $groupsQuery = $model->getGroupsQuery($userID);
         $this->form = $model->getForm();
-        $this->form->setFieldAttribute('group', 'query', $groupsQuery);
+        $this->form->setFieldAttribute('group_id', 'query', $groupsQuery);
     }
 
     /**
