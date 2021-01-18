@@ -126,13 +126,6 @@ Modal
     justify-content: center;
 }
 
-.pdModal .content p {
-    border: 1px solid #707070;
-    width: 20rem;
-    padding: 0.5rem;
-    margin: 1rem auto;
-}
-
 .pdModal .heading {
     width: 100%;
     display: flex;
@@ -278,6 +271,21 @@ Modal
     padding: 0 2rem 2rem 2rem;
 }
 
+.deactivationForm .dangerButton {
+    margin-top: 2rem;
+}
+
+.deactivationForm .abstract {
+    font-size: 1.1rem !important;
+    margin: 0;
+    color: crimson;
+}
+
+.deactivationForm .abstract b {
+    font-size: 1.1rem !important;
+    color: black;
+}
+
 /*--------------------------------------------------/
                                         dangerZone /
 -------------------------------------------------*/
@@ -329,4 +337,41 @@ Modal
     color: white;
     background-color: crimson;
     border: 0.05rem solid crimson;
+}
+
+/*--------------------------------------------------/
+                                          abstract /
+-------------------------------------------------*/
+
+.abstract {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    border: 1px dotted #000;
+    padding: 1rem;
+    margin: 0 auto 3rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.abstract a {
+    font-weight: 700;
+}
+
+.abstract .people {
+    font-weight: 700;
+    color: rgb(247, 165, 138);
+}
+
+.abstract .technology {
+    font-weight: 700;
+    color: rgb(149, 208, 171);
+}
+
+.abstract .finance {
+    font-weight: 700;
+    color: rgb(150, 144, 198);
+}
+
+.graphsAbstract {
+    display: none;
 }

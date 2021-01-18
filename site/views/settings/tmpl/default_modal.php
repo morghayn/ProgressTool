@@ -13,7 +13,7 @@
             <div class="form-horizontal">
                 <fieldset>
                     <input type="hidden" name="projectID" id="projectID" value="<?php echo $this->project['id']; ?>">
-                    <p>Type in <b><?php echo $this->project['name']; ?></b> to confirm project deactivation.</p>
+                    <p class="abstract">Type in <b><?php echo $this->project['name']; ?></b> to confirm project deactivation.</p>
                     <div class="control-group">
                         <div class="control-label">
                             <label id="jform_confirmation-lbl" for="jform_confirmation" class="hasPopover required" title=""
