@@ -67,7 +67,7 @@ class ProgressToolControllerProject extends JControllerForm
         }
 
         // Attempt to save project. If unsuccessful, save the valid data and redirect back to form
-        $isSaveSuccessful = $model->save(
+        $isSaveSuccessful = $model->create(
             JFactory::getUser()->id,
             $data['name'],
             $data['description'],
@@ -172,5 +172,10 @@ class ProgressToolControllerProject extends JControllerForm
         $app->setUserState($context, null);
         $this->setRedirect('index.php?option=com_progresstool&view=projectboard', 'Project has been updated successfully');
         return true;
+    }
+
+    public function deactivate()
+    {
+
     }
 }

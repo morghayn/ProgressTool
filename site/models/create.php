@@ -66,7 +66,7 @@ class ProgressToolModelCreate extends JModelAdmin
      * @return bool|mixed
      * @since 0.5.0
      */
-    public function save($userID, $name, $description, $type, $groupID)
+    public function create($userID, $name, $description, $type, $groupID)
     {
         $db = JFactory::getDbo();
         $insert = $db->getQuery(true);
