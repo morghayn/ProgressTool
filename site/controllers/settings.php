@@ -32,6 +32,10 @@ class ProgressToolControllerSettings extends JControllerForm
         $input = $app->input;
         $data = $input->get('jform', array(), 'array');
 
+        // Authorizing update request
+        JLoader::register('Auth', JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
+        Auth::authorize($data['projectID']);
+
         // If form is accessed initially without a projectID specified
         if ($data['projectID'] === 0)
         {
