@@ -57,11 +57,14 @@ class ProgressToolModelProjectBoard extends JModelItem
             ->from($db->quoteName('#__pt_project', 'P'))
             ->leftjoin($db->quoteName('#__community_groups_members', 'CGM') . ' ON P.group_id = CGM.groupid')
             ->innerjoin($db->quoteName('#__pt_project_type', 'T') . ' ON P.type_id = T.id')
-            ->where($db->quoteName('P.user_id') . ' = ' . $db->quote($userID))
+            ->where(
+                $db->quoteName('P.user_id') . ' = ' . $db->quote($userID),
+            )
             ->orwhere(array(
                 $db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID),
                 $db->quoteName('CGM.permissions') . ' = 1'
             ))
+            ->andwhere($db->quoteName('P.deactivated') . ' != 1')
             ->group($db->quoteName('P.id'))
             ->order('P.id DESC');
         /*
