@@ -3,8 +3,7 @@
 <?php echo $this->loadTemplate('heading'); ?>
 <?php echo $this->loadTemplate('modal'); ?>
 
-<form action="<?php echo JRoute::_('index.php?option=com_progresstool&view=settings'); ?>"
-      method="post" name="adminForm" id="adminForm" class="projectForm" enctype="multipart/form-data">
+<form method="post" name="adminForm" id="adminForm" class="projectForm" enctype="multipart/form-data">
 
     <div class="form-horizontal">
         <h1>Project Details</h1>
