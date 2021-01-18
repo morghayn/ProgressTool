@@ -85,7 +85,10 @@ class ProgressToolControllerProject extends JControllerForm
 
         // Task has been successful, clear the data in the form and redirect
         $app->setUserState($context, null);
-        $this->setRedirect('index.php?option=com_progresstool&view=projectboard', 'New project created successfully');
+        $this->setRedirect(
+            'index.php?option=com_progresstool&view=projectboard',
+            'New project created successfully'
+        );
         return true;
     }
 
@@ -170,12 +173,40 @@ class ProgressToolControllerProject extends JControllerForm
 
         // Task has been successful, clear the data in the form and redirect
         $app->setUserState($context, null);
-        $this->setRedirect('index.php?option=com_progresstool&view=projectboard', 'Project has been updated successfully');
+        $this->setRedirect(
+            'index.php?option=com_progresstool&view=projectboard',
+            'Project has been updated successfully'
+        );
         return true;
     }
 
-    public function deactivate()
+    public function deactivate($key = null, $urlVar = null)
     {
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
+        $model = JModelLegacy::getInstance('Project', 'ProgressToolModel');
+        $app = JFactory::getApplication();
+        $input = $app->input;
+        $project = $input->get('project', array(), 'array');
+
+        // Authorizing deactivation request
+        JLoader::register('Auth', JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
+        Auth::authorize($project['id']);
+
+        // TODO: Validate
+            // If validation successful
+        $app->enqueueMessage('Your project has been deactivated.', 'warning');
+        $this->setRedirect(
+            'index.php?option=com_progresstool&view=projectboard'
+        );
+
+            // If validation unsuccessful
+        $app->enqueueMessage('Confirmation input incorrect.', 'error');
+        $app->enqueueMessage('Deactivation reason must not be empty.', 'error');
+        $this->setRedirect(
+            'index.php?option=com_progresstool&view=settings&projectID=' . $project['id']
+        );
+
+        return true;
     }
 }
