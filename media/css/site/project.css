@@ -200,7 +200,7 @@ Modal
     font-size: 0.875rem !important;
 }
 
-.projectForm fieldset {
+.projectForm .adminform {
     margin: 0;
     padding: 0 2rem 2rem 2rem;
     border: 0.05rem solid #0C4DA0;
@@ -263,6 +263,19 @@ Modal
     color: rgba(125, 201, 37, 1);
     background-color: white;
     border: 0.05rem solid rgba(125, 201, 37, 1)
+}
+
+/*--------------------------------------------------/
+                                  deactivationForm /
+-------------------------------------------------*/
+
+.deactivationForm {
+    margin: 0 0 2rem 0;
+}
+
+.deactivationForm fieldset {
+    margin: 0;
+    padding: 0 2rem 2rem 2rem;
 }
 
 /*--------------------------------------------------/

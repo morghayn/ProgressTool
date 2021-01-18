@@ -8,11 +8,12 @@
         </div>
 
         <form action="<?php echo JRoute::_('index.php?option=com_progresstool&view=settings&task=project.deactivate'); ?>"
-              method="post" class="projectForm deactivate" enctype="multipart/form-data">
+              method="post" class="projectForm deactivationForm" enctype="multipart/form-data">
 
             <div class="form-horizontal">
-                <fieldset class="adminform">
-                    <input type="hidden" name="projectID" id="projectID" value="<?php echo $this->project['projectID']; ?>">
+                <fieldset>
+                    <input type="hidden" name="projectID" id="projectID" value="<?php echo $this->project['id']; ?>">
+                    <p>Type in <b><?php echo $this->project['name']; ?></b> to confirm project deactivation.</p>
                     <div class="control-group">
                         <div class="control-label">
                             <label id="jform_confirmation-lbl" for="jform_confirmation" class="hasPopover required" title=""
