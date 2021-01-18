@@ -14,7 +14,7 @@
  */
 class ProgressToolViewSettings extends JViewLegacy
 {
-    protected $form = null;
+    protected $form = null, $project;
 
     /**
      * Renders template for the Settings view.
@@ -46,11 +46,11 @@ class ProgressToolViewSettings extends JViewLegacy
     {
         $model = JModelLegacy::getInstance('Project', 'ProgressToolModel');
         $groupsQuery = $model->getGroupsQuery($userID);
-        $project = $model->getProject($projectID);
+        $this->project = $model->getProject($projectID);
 
         $this->form = $model->getForm();
         $this->form->setFieldAttribute('group', 'query', $groupsQuery);
-        $this->form->bind($project);
+        $this->form->bind($this->project);
     }
 
     /**

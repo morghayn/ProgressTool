@@ -23,6 +23,6 @@
     <h1>Danger Zone</h1>
     <div class="dangerContainer">
         <p><b>Deactivate this project</b><br>Your project will no longer be accessible should you choose to deactivate it.</p>
-        <button onclick="openModal()">Deactivate this project</button>
+        <button class="dangerButton" onclick="openModal()">Deactivate this project</button>
     </div>
 </div>

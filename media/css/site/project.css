@@ -303,7 +303,7 @@ Modal
     line-height: 1.35rem;
 }
 
-.dangerContainer button {
+.dangerButton {
     padding: 0.4rem 0.75rem;
     font-size: 0.875rem;
     color: crimson;
@@ -312,8 +312,8 @@ Modal
     border-radius: 0.25rem;
 }
 
-.dangerContainer button:hover {
+.dangerButton:hover {
     color: white;
     background-color: crimson;
-    border: 0.1rem solid crimson;
+    border: 0.05rem solid crimson;
 }
