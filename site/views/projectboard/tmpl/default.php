@@ -13,7 +13,7 @@
         endforeach; ?>
     </div>
 <?php else: // If user does not have projects... ?>
-    <p class="introductionParagraph" style="margin-top: 50px;">
+    <p class="abstract" style="margin-top: 50px;">
         Welcome to the Progress Tool. This tool will use a survey to measure what stage of development your Community
         Energy project is at and will provide guidance on what next steps to take.<br><br>
 

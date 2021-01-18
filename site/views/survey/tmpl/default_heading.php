@@ -8,7 +8,7 @@
     <h1>Progress Survey</h1>
 </div>
 
-<p class="introductionParagraph">
+<p class="abstract">
     This survey is used to measure the development of a project under each heading of
     <b class="people">People</b>, <b class="technology">Technology</b> and <b class="finance">Finance</b>.
     The results are shown in ‘<a href="?option=com_progresstool&view=metrics&projectID=<?php echo $this->projectID; ?>">Metrics</a>’,

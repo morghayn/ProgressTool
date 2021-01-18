@@ -1,6 +1,6 @@
 <?php defined('_JEXEC') or die; ?>
 
-<p class="introductionParagraph">
+<p class="abstract">
     <b>Timeline Redirects</b><br>The three links below are redirects to your current position on the <a href="/timeline">ECCO timeline</a> for the
     given categories<b class="people">People</b>, <b class="technology">Technology</b> and <b class="finance">Finance</b>.
 </p>

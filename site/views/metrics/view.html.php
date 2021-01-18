@@ -61,8 +61,6 @@ class ProgressToolViewMetrics extends JViewLegacy
     private function prepareDocument()
     {
         $document = JFactory::getDocument();
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/introductory.css");
-
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/metrics.css");
         $document->addScript(JURI::root() . "media/com_progresstool/js/site/metrics.js");
     }

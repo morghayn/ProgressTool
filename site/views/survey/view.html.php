@@ -53,7 +53,6 @@ class ProgressToolViewSurvey extends JViewLegacy
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/masterchest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/optionschest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/survey.css");
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/introductory.css");
         $document->addScript(JURI::root() . "media/com_progresstool/js/site/survey.js");
     }
 }
