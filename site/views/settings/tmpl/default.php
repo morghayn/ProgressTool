@@ -10,7 +10,7 @@
         <h1>Project Details</h1>
         <fieldset class="adminform">
             <?php echo $this->form->renderFieldset('details'); ?>
-            <button type="button" class="submitButton" onclick="Joomla.submitbutton('settings.update')">
+            <button type="button" class="submitButton" onclick="Joomla.submitbutton('project.update')">
                 Update project details
             </button>
         </fieldset>
