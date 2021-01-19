@@ -199,9 +199,26 @@ class ProgressToolControllerProject extends JControllerForm
             )
         )['project'];
 
+        // Setting error redirect
+        $this->setRedirect(
+            'index.php?option=com_progresstool&view=settings&projectID=' . $project['id']
+        );
+
         // Authorizing deactivation request
         JLoader::register('Auth', JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
         Auth::authorize($project['id']);
+
+        // Validating deactivation_reason
+        if (is_null($project['deactivation_reason']))
+        {
+            $app->enqueueMessage('Deactivation reason must not be empty.', 'error');
+            return false;
+        }
+        elseif (strlen($project['deactivation_reason']) > 255)
+        {
+            $app->enqueueMessage('Deactivation reason must not be greater than 255 characters.', 'error');
+            return false;
+        }
 
         // Validating confirmation
         $confirmation = $model->getProject($project['id'])['name'];
@@ -217,10 +234,6 @@ class ProgressToolControllerProject extends JControllerForm
         else
         {
             $app->enqueueMessage('Confirmation input incorrect.', 'error');
-            //$app->enqueueMessage('Deactivation reason must not be empty.', 'error');
-            $this->setRedirect(
-                'index.php?option=com_progresstool&view=settings&projectID=' . $project['id']
-            );
             return false;
         }
     }
