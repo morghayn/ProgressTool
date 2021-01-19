@@ -50,8 +50,8 @@ or do something with JLayouts. */
 }
 
 .openNavigation {
-    font-size:30px;
-    cursor:pointer
+    font-size: 30px;
+    cursor: pointer
 }
 
 .sideNavigation .closeButton {
@@ -68,6 +68,11 @@ or do something with JLayouts. */
 }
 
 @media screen and (max-height: 450px) {
-    .sideNavigation {padding-top: 15px;}
-    .sideNavigation a {font-size: 18px;}
+    .sideNavigation {
+        padding-top: 15px;
+    }
+
+    .sideNavigation a {
+        font-size: 18px;
+    }
 }

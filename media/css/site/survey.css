@@ -81,7 +81,7 @@
     outline-offset: -2px;
 }
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 720px) {
     .heading h1,
     .heading .metrics,
     .heading .back {

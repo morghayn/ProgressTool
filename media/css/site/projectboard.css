@@ -226,7 +226,7 @@
     border-color: #000000;
 }
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 720px) {
     .project {
         flex-direction: column;
         background-color: #0C4DA0;
