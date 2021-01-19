@@ -5,7 +5,8 @@
 .buttonChest {
     width: 100%;
     display: flex;
-    margin: 0 auto 3rem;
+    gap: 2rem;
+    margin-bottom: 3rem;
 }
 
 .buttonChest * {
@@ -13,16 +14,13 @@
 }
 
 .buttonChest > button {
-    margin: 0 auto;
-    width: 30%;
-    border: none;
-    background-color: rgba(12, 77, 160, 1);
-    color: #ffffff;
-    line-height: 1;
-    outline: none;
+    flex: 1;
+    height: 3.5rem;
     font-size: 1.4rem;
     font-weight: 600;
-    height: 3.5rem;
+    color: #ffffff;
+    background-color: rgba(12, 77, 160, 1);
+    border: none;
 }
 
 .buttonChest > button:hover {
@@ -35,6 +33,17 @@
 
 .buttonChest .projectBoard:hover {
     background-color: rgba(244, 113, 146, 0.5);
+}
+
+@media only screen and (max-width: 720px) {
+    .buttonChest {
+        flex-direction: column;
+        gap: unset;
+    }
+
+    .buttonChest > button {
+        flex: unset;
+    }
 }
 
 /*--------------------------------------------------/
@@ -84,6 +93,13 @@
     margin: 0 auto;
 }
 
+@media only screen and (max-width: 720px) {
+    .graphContainer {
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
 /*--------------------------------------------------/
                                       Task Columns /
 -------------------------------------------------*/
@@ -92,14 +108,13 @@
     display: flex;
     margin: 0 auto;
     align-items: flex-start;
-    width: 100%;
+    gap: 2rem;
     font-family: -apple-system, BlinkMacSystemFont, Segoe\ UI, Roboto, Open\ Sans, Ubuntu, Fira\ Sans, Helvetica\ Neue, sans-serif;
+    margin-bottom: 3.5rem;
 }
 
 .taskColumn {
-    width: 30%;
-    display: inline-block;
-    margin: 0 auto 50px;
+    flex: 1;
     box-sizing: border-box;
     background-color: #fff;
     border: 2px solid #0c4da0;
@@ -107,17 +122,13 @@
 
 .taskCategory {
     width: 100%;
-    margin: 0 auto;
+    height: 4rem;
     font-size: 1.4rem;
-    line-height: 1;
-    word-wrap: break-word;
     font-weight: 600;
     color: #ffffff;
-
-    border: none;
     background-color: #0c4da0;
-    outline: none;
-    height: 70px;
+    word-wrap: break-word;
+    border: none;
 }
 
 .taskCategory span {
@@ -157,14 +168,10 @@
     color: green;
 }
 
-@media only screen and (max-width: 575px) {
-    .graphContainer {
-        width: 100%;
-        margin: 0 auto;
-    }
-
+@media only screen and (max-width: 720px) {
     .taskColumns {
-        display: inline-block;
+        flex-direction: column;
+        gap: 3rem;
     }
 
     .taskColumn {
