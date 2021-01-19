@@ -9,7 +9,7 @@
         <h1>Project Details</h1>
         <fieldset class="adminform">
             <?php echo $this->form->renderFieldset('details'); ?>
-            <button type="button" class="submitButton" onclick="Joomla.submitbutton('project.create')">
+            <button type="button" class="submitButton" onclick="submitProjectForm('project.create')">
                 Create project
             </button>
         </fieldset>
