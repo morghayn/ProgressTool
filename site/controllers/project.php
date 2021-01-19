@@ -187,20 +187,25 @@ class ProgressToolControllerProject extends JControllerForm
         $model = JModelLegacy::getInstance('Project', 'ProgressToolModel');
         $app = JFactory::getApplication();
         $input = $app->input;
-        $project = $input->get('project', array(), 'array');
+
+        // Getting POST data and sanitizing it
+        $project = $project = $app->input->getArray(
+            array(
+                'project' => array(
+                    'id' => 'INT',
+                    'confirmation' => 'STRING',
+                    'deactivation_reason' => 'STRING'
+                )
+            )
+        )['project'];
 
         // Authorizing deactivation request
         JLoader::register('Auth', JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
         Auth::authorize($project['id']);
 
-        // TODO: Validate
-        // Validate deactivation reason
-        //var_dump($project);
-        //return true;
-
         // Validating confirmation
         $confirmation = $model->getProject($project['id'])['name'];
-        if($confirmation == $project['confirmation'])
+        if ($confirmation == $project['confirmation'])
         {
             $model->deactivate($project['id'], $project['deactivation_reason']);
             $app->enqueueMessage('Your project has been deactivated.', 'warning');
