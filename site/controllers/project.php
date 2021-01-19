@@ -194,22 +194,29 @@ class ProgressToolControllerProject extends JControllerForm
         Auth::authorize($project['id']);
 
         // TODO: Validate
-            // If validation successful
-        $model->deactivate($project['id'], $project['deactivation_reason']);
-        $app->enqueueMessage('Your project has been deactivated.', 'warning');
-        $this->setRedirect(
-            'index.php?option=com_progresstool&view=projectboard'
-        );
+        // Validate deactivation reason
+        //var_dump($project);
+        //return true;
 
-            // If validation unsuccessful
-        /*
-        $app->enqueueMessage('Confirmation input incorrect.', 'error');
-        $app->enqueueMessage('Deactivation reason must not be empty.', 'error');
-        $this->setRedirect(
-            'index.php?option=com_progresstool&view=settings&projectID=' . $project['id']
-        );
-        */
-
-        return true;
+        // Validating confirmation
+        $confirmation = $model->getProject($project['id'])['name'];
+        if($confirmation == $project['confirmation'])
+        {
+            $model->deactivate($project['id'], $project['deactivation_reason']);
+            $app->enqueueMessage('Your project has been deactivated.', 'warning');
+            $this->setRedirect(
+                'index.php?option=com_progresstool&view=projectboard'
+            );
+            return true;
+        }
+        else
+        {
+            $app->enqueueMessage('Confirmation input incorrect.', 'error');
+            //$app->enqueueMessage('Deactivation reason must not be empty.', 'error');
+            $this->setRedirect(
+                'index.php?option=com_progresstool&view=settings&projectID=' . $project['id']
+            );
+            return false;
+        }
     }
 }
