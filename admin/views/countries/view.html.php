@@ -53,6 +53,9 @@ class ProgressToolViewCountries extends JViewLegacy
         $this->heading = $heading->render(
             array(
                 "page" => "Countries",
+                "additions" => array(
+                    '<span class="create" onclick="createCountry()">&plus;</span>'
+                )
             )
         );
     }
@@ -84,7 +87,7 @@ class ProgressToolViewCountries extends JViewLegacy
         $document->addScript(JURI::root() . "media/com_progresstool/js/admin/adminBase.js");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/adminBase.css");
 
-        $document->addScript(JURI::root() . "media/com_progresstool/css/admin/countries.css");
+        $document->addScript(JURI::root() . "media/com_progresstool/js/admin/countries.js");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/countries.css");
     }
 }
