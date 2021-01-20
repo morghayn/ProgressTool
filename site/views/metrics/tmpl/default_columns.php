@@ -15,9 +15,7 @@
             <div class="taskList" id="<?php echo 'tl' . $category->id; ?>">
                 <?php foreach ($this->tasks[$category->id] as $task): ?>
                     <div class="task">
-                        <div class="taskText">
-                            <?php echo $task->task; ?>
-                        </div>
+                        <p><?php echo $task->task; ?></p>
                         <div class="taskCheckbox" style="border-color: <?php echo $category->colour_hex; ?>;">
                             <?php echo $task->criteria_met == 1 ? '<span class="icon-ok"></span>' : ''; ?>
                         </div>

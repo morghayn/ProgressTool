@@ -85,7 +85,7 @@
     .heading h1,
     .heading .metrics,
     .heading .back {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
 
     .heading .metrics,
@@ -99,7 +99,7 @@
 -------------------------------------------------*/
 
 .abstract {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     line-height: 1.5;
     border: 1px dotted #000;
     padding: 1rem;

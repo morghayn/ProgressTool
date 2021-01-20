@@ -51,7 +51,7 @@
 -------------------------------------------------*/
 
 .abstract {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     line-height: 1.5;
     border: 1px dotted #000;
     padding: 1rem;
@@ -151,9 +151,10 @@
     padding-top: .75rem;
 }
 
-.task .taskText {
+.task p {
     width: 80%;
     margin-left: 5%;
+    font-size: 1rem;
 }
 
 .task .taskCheckbox {
