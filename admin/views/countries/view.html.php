@@ -15,10 +15,11 @@
 class ProgressToolViewCountries extends JViewLegacy
 {
     /**
+     * @var JLayoutFile administrator sidebar
      * @var array of country objects.
-     * @since 0.5.0
+     * @since 0.5.5
      */
-    protected $countries;
+    protected $sidebar, $countries;
 
     /**
      * Renders view.
@@ -30,8 +31,22 @@ class ProgressToolViewCountries extends JViewLegacy
     {
         $this->countries = $this->get('countries');
 
+        $this->setSidebar();
         $this->prepareDocument();
         parent::display($tpl);
+    }
+
+    /**
+     * Loads the administrator sidebar.
+     *
+     * @since 0.5.5
+     */
+    private function setSidebar()
+    {
+        $this->sidebar = new JLayoutFile(
+            'sidebar',
+            JPATH_ADMINISTRATOR . 'components/com_progresstool/layouts'
+        );
     }
 
     /**

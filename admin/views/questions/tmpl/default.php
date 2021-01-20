@@ -1,4 +1,5 @@
 <?php defined('_JEXEC') or die; ?>
+<?php echo $this->sidebar->render(); ?>
 
 <input id="token"
        type="hidden"
@@ -6,8 +7,6 @@
        value="1"/>
 
 <div id="main">
-    <?php echo $this->loadTemplate('sidebar'); ?>
-
     <span class="openNavigation" onclick="openNav()">&#9776; navigation</span>
 
     <div style="width: 60%; margin: 0 auto;">

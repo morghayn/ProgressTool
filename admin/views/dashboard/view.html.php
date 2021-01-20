@@ -15,6 +15,12 @@
 class ProgressToolViewDashboard extends JViewLegacy
 {
     /**
+     * @var JLayoutFile administrator sidebar
+     * @since 0.5.5
+     */
+    protected $sidebar;
+
+    /**
      * Renders view.
      *
      * @param string $tpl
@@ -22,8 +28,22 @@ class ProgressToolViewDashboard extends JViewLegacy
      */
     function display($tpl = null)
     {
+        $this->setSidebar();
         $this->prepareDocument();
         parent::display();
+    }
+
+    /**
+     * Loads the administrator sidebar.
+     *
+     * @since 0.5.5
+     */
+    private function setSidebar()
+    {
+        $this->sidebar = new JLayoutFile(
+            'sidebar',
+            JPATH_ADMINISTRATOR . 'components/com_progresstool/layouts'
+        );
     }
 
     /**

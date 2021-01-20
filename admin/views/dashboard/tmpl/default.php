@@ -1,6 +1,5 @@
 <?php defined('_JEXEC') or die; ?>
-
-<?php echo $this->loadTemplate('sidebar'); ?>
+<?php echo $this->sidebar->render(); ?>
 
 <!-- Main -->
 <div id="main">
