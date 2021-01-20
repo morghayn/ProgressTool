@@ -7,7 +7,6 @@
 
     <div class="navigationFragments">
         <div class="fragment">
-            <h1 class="fragmentHeader">Countries</h1>
             <?php foreach ($this->countries as $country): ?>
                 <div class="child">
                     <h1><?php echo $country->country; ?></h1>

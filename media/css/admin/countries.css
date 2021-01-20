@@ -10,17 +10,6 @@
     width: 100%;
 }
 
-.fragmentHeader {
-    margin: 0;
-    padding: 1.15rem;
-    color: white;
-    background-color: #0C4DA0;
-    font-size: 1.75rem;
-    font-weight: 500;
-    line-height: 1;
-    text-align: center;
-}
-
 .fragment .child {
     display: flex;
     height: 4rem;
