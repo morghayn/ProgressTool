@@ -16,5 +16,5 @@ foreach ($this->questions as $this->question):
     echo $this->loadTemplate('question');
 endforeach;
 
-echo $this->loadTemplate('timelineredirect');
+echo $this->loadTemplate('timelineredirects');
 ?>
