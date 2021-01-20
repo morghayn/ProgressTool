@@ -33,6 +33,11 @@ body {
     .navbar-fixed-top {
         position: absolute !important;
     }
+
+    .btn,
+    .btn-subhead {
+        display: none !important;
+    }
 }
 
 /*--------------------------------------------------/

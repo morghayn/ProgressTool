@@ -14,6 +14,7 @@ $alt = $this->projectCount % 2 == 0 ? 2 : 0;
         <div class="approvalCheck">
             <?php foreach ($this->approvalQuestions as $question):
                 $param = $this->project->id . ',' . $question->id . ',' . $this->projectCount;
+                // TODO: fix this
                 $checkStr =
                     array_key_exists($this->project->id, $this->projectApprovalSelections)
                         ? array_key_exists($question->id, $this->projectApprovalSelections[$this->project->id])
@@ -25,11 +26,14 @@ $alt = $this->projectCount % 2 == 0 ? 2 : 0;
                     <input class="optionInput" onclick="approvalSelect(<?php echo $param; ?>)" type="checkbox" <?php echo $checkStr; ?>>
                     <span class="optionLabel" style="--labelColour: 255, 255, 255; color: #ffffff;">
                             <span class="option" style="color: #ffffff;">
-                                <?php echo $question->question; ?>
+                                <?php echo $question->question; ?><span class="disclaimer">*</span>
                             </span>
                         </span>
                 </label>
             <?php endforeach; ?>
+            <p class="disclaimer">
+                It is highly advised to read these selections.
+            </p>
         </div>
     </div>
 
