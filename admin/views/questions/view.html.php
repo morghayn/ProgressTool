@@ -15,12 +15,13 @@
 class ProgressToolViewQuestions extends JViewLegacy
 {
     /**
+     * @var JLayoutFile administrator heading
      * @var JLayoutFile administrator sidebar
-     * @var array of question objects.
-     * @var array of choice objects.
+     * @var array of question objects
+     * @var array of choice objects
      * @since 0.5.5
      */
-    protected $questions, $choices;
+    protected $heading, $questions, $choices;
 
     /**
      * Renders view.
@@ -39,22 +40,44 @@ class ProgressToolViewQuestions extends JViewLegacy
         $this->questions = $model->getQuestions($countryID);
         $this->choices = $model->getChoices($countryID);
 
+        $this->setHeading();
         $this->setSidebar();
         $this->prepareDocument();
         parent::display($tpl);
     }
 
     /**
-     * Loads the administrator sidebar.
+     * Sets the administrator heading.
+     *
+     * @since 0.5.5
+     */
+    private function setHeading()
+    {
+        $heading = new JLayoutFile(
+            'heading',
+            JPATH_ADMINISTRATOR . 'components/com_progresstool/layouts'
+        );
+
+        $this->heading = $heading->render(
+            array(
+                "page" => "Questions",
+            )
+        );
+    }
+
+    /**
+     * Sets the administrator sidebar.
      *
      * @since 0.5.5
      */
     private function setSidebar()
     {
-        $this->sidebar = new JLayoutFile(
+        $sidebar = new JLayoutFile(
             'sidebar',
             JPATH_ADMINISTRATOR . 'components/com_progresstool/layouts'
         );
+
+        $this->sidebar = $sidebar->render();
     }
 
     /**

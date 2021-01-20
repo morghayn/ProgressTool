@@ -1,13 +1,9 @@
 <?php defined('_JEXEC') or die; ?>
-<?php echo $this->sidebar->render(); ?>
 
-<input id="token"
-       type="hidden"
-       name="<?php echo JSession::getFormToken(); ?>"
-       value="1"/>
-
+<!-- Main -->
 <div id="main">
-    <span class="openNavigation" onclick="openNav()">&#9776; navigation</span>
+    <?php echo $this->heading; ?>
+    <?php echo $this->sidebar; ?>
 
     <div style="width: 60%; margin: 0 auto;">
         <?php $this->questionCounter = 0; ?>
@@ -17,3 +13,6 @@
         <?php endforeach; ?>
     </div>
 </div>
+
+<!-- CSRF Token -->
+<input id="token" type="hidden" name="<?php echo JSession::getFormToken(); ?>" value="1"/>

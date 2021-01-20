@@ -1,16 +1,12 @@
 <?php defined('_JEXEC') or die; ?>
-<?php echo $this->sidebar->render(); ?>
 
-<input id="token"
-       type="hidden"
-       name="<?php echo JSession::getFormToken(); ?>"
-       value="1"/>
-
+<!-- Main -->
 <div id="main">
-    <span class="openNavigation" onclick="openNav()">&#9776; navigation</span>
+    <?php echo $this->heading; ?>
+    <?php echo $this->sidebar; ?>
     <?php echo $this->loadTemplate('modal'); ?>
-    <input type="text" id="myInput" onkeyup="searchTable()" placeholder="Search by project or username..">
 
+    <input type="text" id="myInput" onkeyup="searchTable()" placeholder="Search by project or username..">
     <table id="projectTable">
         <thead>
             <tr>
@@ -32,6 +28,9 @@
         </tbody>
     </table>
 </div>
+
+<!-- CSRF Token -->
+<input id="token" type="hidden" name="<?php echo JSession::getFormToken(); ?>" value="1"/>
 
 
 <!-- Put this in a modal -->

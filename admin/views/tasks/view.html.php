@@ -1,9 +1,9 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * (Admin) Class ProgressToolViewPool
+ * (Admin) Class ProgressToolViewTasks
  *
- * View for back-end pool functionality.
+ * View for back-end tasks functionality.
  *
  * @package ProgressTool
  * @subpackage admin
@@ -15,10 +15,11 @@
 class ProgressToolViewTasks extends JViewLegacy
 {
     /**
+     * @var JLayoutFile administrator heading
      * @var JLayoutFile administrator sidebar
      * @since 0.5.5
      */
-    protected $sidebar;
+    protected $heading, $sidebar;
 
     /**
      * Renders view.
@@ -34,22 +35,44 @@ class ProgressToolViewTasks extends JViewLegacy
         $model = parent::getModel();
         $countryID = $input->getInt('countryID', 0);
 
+        $this->setHeading();
         $this->setSidebar();
         $this->prepareDocument();
         parent::display($tpl);
     }
 
     /**
-     * Loads the administrator sidebar.
+     * Sets the administrator heading.
+     *
+     * @since 0.5.5
+     */
+    private function setHeading()
+    {
+        $heading = new JLayoutFile(
+            'heading',
+            JPATH_ADMINISTRATOR . 'components/com_progresstool/layouts'
+        );
+
+        $this->heading = $heading->render(
+            array(
+                "page" => "Tasks",
+            )
+        );
+    }
+
+    /**
+     * Sets the administrator sidebar.
      *
      * @since 0.5.5
      */
     private function setSidebar()
     {
-        $this->sidebar = new JLayoutFile(
+        $sidebar = new JLayoutFile(
             'sidebar',
             JPATH_ADMINISTRATOR . 'components/com_progresstool/layouts'
         );
+
+        $this->sidebar = $sidebar->render();
     }
 
     /**

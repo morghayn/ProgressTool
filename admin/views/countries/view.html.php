@@ -1,9 +1,9 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * (Admin) Class ProgressToolViewPool
+ * (Admin) Class ProgressToolViewCountries
  *
- * View for back-end pools functionality.
+ * View for back-end countries functionality.
  *
  * @package ProgressTool
  * @subpackage admin
@@ -15,11 +15,12 @@
 class ProgressToolViewCountries extends JViewLegacy
 {
     /**
+     * @var JLayoutFile administrator heading
      * @var JLayoutFile administrator sidebar
-     * @var array of country objects.
+     * @var array of country objects
      * @since 0.5.5
      */
-    protected $sidebar, $countries;
+    protected $heading, $sidebar, $countries;
 
     /**
      * Renders view.
@@ -31,22 +32,44 @@ class ProgressToolViewCountries extends JViewLegacy
     {
         $this->countries = $this->get('countries');
 
+        $this->setHeading();
         $this->setSidebar();
         $this->prepareDocument();
         parent::display($tpl);
     }
 
     /**
-     * Loads the administrator sidebar.
+     * Sets the administrator heading.
+     *
+     * @since 0.5.5
+     */
+    private function setHeading()
+    {
+        $heading = new JLayoutFile(
+            'heading',
+            JPATH_ADMINISTRATOR . 'components/com_progresstool/layouts'
+        );
+
+        $this->heading = $heading->render(
+            array(
+                "page" => "Countries",
+            )
+        );
+    }
+
+    /**
+     * Sets the administrator sidebar.
      *
      * @since 0.5.5
      */
     private function setSidebar()
     {
-        $this->sidebar = new JLayoutFile(
+        $sidebar = new JLayoutFile(
             'sidebar',
             JPATH_ADMINISTRATOR . 'components/com_progresstool/layouts'
         );
+
+        $this->sidebar = $sidebar->render();
     }
 
     /**

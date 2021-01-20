@@ -15,11 +15,12 @@
 class ProgressToolViewProjects extends JViewLegacy
 {
     /**
+     * @var JLayoutFile administrator heading
      * @var JLayoutFile administrator sidebar
-     * @var array of project objects.
+     * @var array of project objects
      * @since 0.5.5
      */
-    protected $sidebar, $projects;
+    protected $heading, $sidebar, $projects;
 
     /**
      * Renders view.
@@ -32,22 +33,44 @@ class ProgressToolViewProjects extends JViewLegacy
         $model = parent::getModel();
         $this->projects = $model->getProjects();
 
+        $this->setHeading();
         $this->setSidebar();
         $this->prepareDocument();
         parent::display($tpl);
     }
 
     /**
-     * Loads the administrator sidebar.
+     * Sets the administrator heading.
+     *
+     * @since 0.5.5
+     */
+    private function setHeading()
+    {
+        $heading = new JLayoutFile(
+            'heading',
+            JPATH_ADMINISTRATOR . 'components/com_progresstool/layouts'
+        );
+
+        $this->heading = $heading->render(
+            array(
+                "page" => "Projects",
+            )
+        );
+    }
+
+    /**
+     * Sets the administrator sidebar.
      *
      * @since 0.5.5
      */
     private function setSidebar()
     {
-        $this->sidebar = new JLayoutFile(
+        $sidebar = new JLayoutFile(
             'sidebar',
             JPATH_ADMINISTRATOR . 'components/com_progresstool/layouts'
         );
+
+        $this->sidebar = $sidebar->render();
     }
 
     /**

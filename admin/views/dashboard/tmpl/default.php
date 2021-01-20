@@ -1,8 +1,8 @@
 <?php defined('_JEXEC') or die; ?>
-<?php echo $this->sidebar->render(); ?>
 
 <!-- Main -->
 <div id="main">
-    <span class="openNavigation" onclick="openNav()">&#9776; navigation</span>
+    <?php echo $this->heading; ?>
+    <?php echo $this->sidebar; ?>
     <h1>Here we will have metrics and statistics!</h1>
 </div>
