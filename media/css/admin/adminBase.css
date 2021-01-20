@@ -45,6 +45,8 @@ body {
     flex-wrap: nowrap;
     margin: 0 auto 3rem;
     height: min-content;
+    align-items: center;
+    background-color: #0C4DA0;
 }
 
 .heading h1,
@@ -66,7 +68,6 @@ body {
     margin: 0;
     padding: 0;
     color: white;
-    background-color: #0C4DA0;
 }
 
 .heading .openSidebar,
@@ -78,7 +79,6 @@ body {
     justify-content: center;
     font-size: 2rem;
     color: white;
-    background-color: #0C4DA0;
     cursor: pointer
 }
 
@@ -90,6 +90,10 @@ body {
 .heading .create {
     font-size: 2.5rem;
     background-color: mediumseagreen;
+}
+
+.searchBar {
+    margin: 0 auto !important;
 }
 
 /*--------------------------------------------------/

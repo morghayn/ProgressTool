@@ -54,6 +54,9 @@ class ProgressToolViewProjects extends JViewLegacy
         $this->heading = $heading->render(
             array(
                 "page" => "Projects",
+                "additions" => array(
+                    '<input class="searchBar" type="text" id="myInput" onkeyup="searchTable()" placeholder="Search by project or username..">'
+                )
             )
         );
     }

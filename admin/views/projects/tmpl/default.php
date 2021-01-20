@@ -6,7 +6,6 @@
     <?php echo $this->sidebar; ?>
     <?php echo $this->loadTemplate('modal'); ?>
 
-    <input type="text" id="myInput" onkeyup="searchTable()" placeholder="Search by project or username..">
     <table id="projectTable">
         <thead>
             <tr>
