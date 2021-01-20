@@ -54,18 +54,27 @@ body {
     background-color: #0C4DA0;
 }
 
-.heading span {
+.heading .openSidebar,
+.heading .create {
     height: 3.5rem;
     width: 3.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 2rem;
     color: white;
     background-color: #0C4DA0;
+    cursor: pointer
 }
 
-.heading span:hover {
+.heading .openSidebar:hover,
+.heading .create:hover {
     opacity: 0.5;
+}
+
+.heading .create {
+    font-size: 2.5rem;
+    background-color: mediumseagreen;
 }
 
 /*--------------------------------------------------/
@@ -99,11 +108,6 @@ or do something with JLayouts. */
 
 .sideNavigation a:hover {
     color: aliceblue;
-}
-
-.openNavigation {
-    font-size: 30px;
-    cursor: pointer
 }
 
 .sideNavigation .closeButton {
