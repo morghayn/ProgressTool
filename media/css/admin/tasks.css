@@ -11,6 +11,11 @@
 
 .task .heading {
     margin: 0 auto !important;
+    cursor: pointer;
+}
+
+.task .heading:hover {
+    opacity: 0.5;
 }
 
 .task .heading .id {
