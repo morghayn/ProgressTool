@@ -66,27 +66,6 @@ class ProgressToolModelTasks extends JModelLegacy
             ->where('TC.country_id = ' . $db->quote($countryID))
             ->group('T.id');
 
-        return $this->groupByCategory(
-            $db->setQuery($getTasks)->loadObjectList()
-        );
-    }
-
-    /**
-     * A utility function that groups object lists by categoryID.
-     *
-     * @param object $rows list of objects which will be grouped.
-     * @return array list of objects grouped by categoryID.
-     * @since 0.5.5
-     */
-    public function groupByCategory($rows)
-    {
-        $grouped = array();
-
-        foreach ($rows as $row)
-        {
-            $grouped[$row->category_id][] = $row;
-        }
-
-        return $grouped;
+        return $db->setQuery($getTasks)->loadObjectList();
     }
 }
