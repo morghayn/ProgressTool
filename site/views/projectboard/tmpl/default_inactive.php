@@ -32,7 +32,7 @@ $alt = $this->projectCount % 2 == 0 ? 2 : 0;
                 </label>
             <?php endforeach; ?>
             <p class="disclaimer">
-                It is highly advised to read these selections.
+                The survey will not be available until you have checked these boxes.
             </p>
         </div>
     </div>
