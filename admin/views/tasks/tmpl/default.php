@@ -6,6 +6,7 @@
     <?php echo $this->sidebar; ?>
 
     <h1>Here we will display tasks</h1>
+    <?php var_dump($this->tasks); ?>
 </div>
 
 <!-- CSRF Token -->

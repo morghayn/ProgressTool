@@ -17,9 +17,10 @@ class ProgressToolViewTasks extends JViewLegacy
     /**
      * @var JLayoutFile administrator heading
      * @var JLayoutFile administrator sidebar
+     * @object comprising of tasks of objects
      * @since 0.5.5
      */
-    protected $heading, $sidebar;
+    protected $heading, $sidebar, $tasks, $categories;
 
     /**
      * Renders view.
@@ -32,8 +33,11 @@ class ProgressToolViewTasks extends JViewLegacy
         $app = JFactory::getApplication();
         $input = $app->input;
 
-        $model = parent::getModel();
         $countryID = $input->getInt('countryID', 0);
+
+        $model = parent::getModel();
+        $this->categories = $model->getCategories();
+        $this->tasks = $model->getTasks($countryID);
 
         $this->setHeading();
         $this->setSidebar();
