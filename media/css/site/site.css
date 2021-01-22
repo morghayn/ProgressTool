@@ -1,0 +1,1070 @@
+/*--------------------------------------------------/
+                                  Joomla Overrides /
+-------------------------------------------------*/
+
+.form-horizontal .control-group .controls {
+    margin-left: 0;
+}
+
+.form-horizontal .control-group .control-label {
+    width: 100%;
+}
+
+.form-horizontal .control-group {
+    margin: 0 !important;
+}
+
+:root {
+    font-size: 16px !important;
+}
+
+/*--------------------------------------------------/
+                                           Heading /
+-------------------------------------------------*/
+
+.heading {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 0 auto 3rem;
+    height: min-content;
+}
+
+.heading * {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
+.stickyHeading {
+    position: sticky;
+    top: 0;
+    z-index: 4;
+}
+
+.heading h1,
+.heading .metrics,
+.heading .back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.5rem;
+    /*line-height: 1;*/
+    font-size: 1.4rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.heading h1 {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background-color: #0C4DA0;
+}
+
+.heading .metrics,
+.heading .back {
+    width: 7rem;
+    border: none;
+    color: white;
+    background-color: rgba(62, 106, 239, 1);
+    text-decoration: none;
+}
+
+.heading .back {
+    background-color: rgba(239, 62, 106, 1);
+}
+
+.heading .back:hover {
+    background-color: rgba(244, 113, 146, 0.5);
+}
+
+.heading .back:active {
+    box-shadow: inset 0 3px 4px hsla(0, 0%, 0%, 0.2);
+}
+
+.heading .back:focus {
+    outline: thin dotted #444;
+    outline-offset: -2px;
+}
+
+.heading .metrics {
+    background-color: rgba(62, 106, 239, 1);
+}
+
+.heading .metrics:hover {
+    background-color: rgba(62, 106, 239, 0.5);
+}
+
+.heading .metrics:active {
+    box-shadow: inset 0 3px 4px hsla(0, 0%, 0%, 0.2);
+}
+
+.heading .metrics:focus {
+    outline: thin dotted #444;
+    outline-offset: -2px;
+}
+
+@media only screen and (max-width: 720px) {
+    .heading h1,
+    .heading .metrics,
+    .heading .back {
+        font-size: 1.4rem;
+    }
+
+    .heading .metrics,
+    .heading .back {
+        width: 5.5rem;
+    }
+}
+
+/*--------------------------------------------------/
+                                          abstract /
+-------------------------------------------------*/
+
+.abstract {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    border: 1px dotted #000;
+    padding: 1rem;
+    margin: 0 auto 3rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.abstract * {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
+.abstract a {
+    font-weight: 700;
+}
+
+.abstract .people {
+    font-weight: 700;
+    color: rgb(247, 165, 138);
+}
+
+.abstract .technology {
+    font-weight: 700;
+    color: rgb(149, 208, 171);
+}
+
+.abstract .finance {
+    font-weight: 700;
+    color: rgb(150, 144, 198);
+}
+
+.graphsAbstract {
+    display: none;
+}
+
+/*--------------------------------------------------/
+                                    titleContainer /
+-------------------------------------------------*/
+
+.titleContainer {
+    height: 7rem;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto 3rem;
+    background-color: #0C4DA0;
+}
+
+.titleContainer * {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
+.titleContainer button {
+    height: 50%;
+    width: 30%;
+    align-self: normal;
+    border: none;
+    line-height: 1;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: rgba(125, 201, 37, 1);
+}
+
+.titleContainer button:hover {
+    background-color: rgba(125, 201, 37, 0.5);
+}
+
+.titleContainer button:active {
+    box-shadow: inset 0 3px 4px hsla(0, 0%, 0%, 0.2);
+}
+
+.titleContainer h1 {
+    height: 50%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.titleContainer label {
+    height: 50%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.3rem;
+    line-height: 1;
+    font-weight: 600;
+    box-sizing: border-box;
+    border-left: 0.15rem solid rgb(125, 201, 37);
+    border-bottom: 0.15rem solid rgb(125, 201, 37);
+    color: #0C4DA0;
+    background-color: #ffffff;
+}
+
+.titleContainer select {
+    height: 50%;
+    width: 70%;
+    margin: 0 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0.75rem 0 0.75rem 0;
+    text-align: center;
+    font-size: 1.3rem;
+    border: 0;
+    border-radius: 0;
+    box-sizing: border-box;
+    border-bottom: 0.15rem solid rgb(125, 201, 37);
+    border-right: 0.15rem solid rgb(125,201,37);
+}
+
+.titleContainer select:hover {
+    background-color: beige;
+}
+
+.titleContainer select:focus {
+    outline: none;
+}
+
+/*--------------------------------------------------/
+                                          abstract /
+-------------------------------------------------*/
+
+.abstract {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    border: 1px dotted #000;
+    padding: 1rem;
+    margin: 0 auto 3rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.abstract * {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
+.abstract a {
+    font-weight: 700;
+}
+
+.abstract .people {
+    font-weight: 700;
+    color: rgb(247, 165, 138);
+}
+
+.abstract .technology {
+    font-weight: 700;
+    color: rgb(149, 208, 171);
+}
+
+.abstract .finance {
+    font-weight: 700;
+    color: rgb(150, 144, 198);
+}
+
+.graphsAbstract {
+    display: none;
+}
+
+/*--------------------------------------------------/
+                                           project /
+-------------------------------------------------*/
+
+.projects {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    margin: 0 auto 3rem;
+}
+
+.project {
+    width: 100%;
+    display: flex;
+    flex: 4;
+    word-break: break-word;
+    gap: 5rem;
+}
+
+.project * {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
+.project .details {
+    order: 1;
+    flex: 7;
+    padding: 1rem;
+    color: white;
+    background-color: #0C4DA0;
+    box-shadow: 4px 4px 17px 0 rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+.project .title {
+    line-height: 1;
+    font-size: 2rem;
+}
+
+.project .type {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.project .description {
+    line-height: 1;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+.project .approval {
+    flex: 7;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    color: white;
+    background-color: #0C4DA0;
+    box-shadow: 4px 4px 17px 0 rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+.project .approval .disclaimer {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: red;
+    margin: 0.5rem 0 0;
+    line-height: 1;
+}
+
+.approvalCheck {
+    margin-top: 10px;
+    padding: 1rem;
+    flex: 1;
+}
+
+.project .buttons {
+    order: 2;
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.project .buttons > button {
+    flex: 1;
+    border: none;
+    font-size: 1.2rem;
+    padding: 0.85rem;
+    color: white;
+    background-color: rgba(125, 201, 37, 1);
+    -webkit-box-shadow: 4px 4px 17px 0 rgba(0,0,0,0.1);
+    -moz-box-shadow: 4px 4px 17px 0 rgba(0,0,0,0.1);
+    box-shadow: 4px 4px 17px 0 rgba(0,0,0,0.1);
+}
+
+.project .buttons > button:hover {
+    background-color: rgba(125, 201, 37, 0.5);
+}
+
+.project .buttons .settings {
+    background-color: rgba(150, 150, 150, 1);
+}
+
+.project .buttons .settings:hover {
+    background-color: rgba(150, 150, 150, 0.5);
+}
+
+.optionInput:not(:disabled) ~ .optionLabel .option::before {
+    border-color: #000000;
+}
+
+@media only screen and (max-width: 720px) {
+    .project {
+        flex-direction: column;
+        background-color: #0C4DA0;
+        gap: 1rem;
+    }
+
+    .project .details,
+    .project .approval,
+    .project .buttons {
+        margin: 0.5rem;
+    }
+
+    .project .details {
+        order: 1 !important;
+    }
+
+    .project .description,
+    .approvalCheck {
+        padding: 0.5rem;
+    }
+
+    .project .buttons {
+        order: 2 !important;
+    }
+
+    .project .details,
+    .project .approval,
+    .project .buttons > button{
+        box-shadow: 0 0 0 0 rgba(0,0,0,0);
+    }
+}
+
+/*--------------------------------------------------/
+                                       buttonChest /
+-------------------------------------------------*/
+
+.buttonChest {
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.buttonChest * {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
+.buttonChest > button {
+    flex: 1;
+    height: 3.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: rgba(12, 77, 160, 1);
+    border: none;
+}
+
+.buttonChest > button:hover {
+    background-color: rgba(12, 77, 160, 0.5);
+}
+
+.buttonChest .projectBoard {
+    background-color: rgba(239, 62, 106, 1);
+}
+
+.buttonChest .projectBoard:hover {
+    background-color: rgba(244, 113, 146, 0.5);
+}
+
+@media only screen and (max-width: 720px) {
+    .buttonChest {
+        flex-direction: column;
+        gap: unset;
+    }
+
+    .buttonChest > button {
+        flex: unset;
+    }
+}
+
+/*--------------------------------------------------/
+                                            Graphs /
+-------------------------------------------------*/
+
+.graphs {
+    width: 90%;
+    display: none;
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 720px) {
+    .graphContainer {
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+/*--------------------------------------------------/
+                                      Task Columns /
+-------------------------------------------------*/
+
+.taskColumns {
+    display: flex;
+    margin: 0 auto 3.5rem;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.taskColumn {
+    flex: 1;
+    box-sizing: border-box;
+    background-color: #fff;
+    border: 2px solid #0c4da0;
+}
+
+.taskColumn * {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe\ UI, Roboto, Open\ Sans, Ubuntu, Fira\ Sans, Helvetica\ Neue, sans-serif;
+}
+
+.taskCategory {
+    width: 100%;
+    height: 4rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #0c4da0;
+    word-wrap: break-word;
+    border: none;
+}
+
+.taskCategory span {
+    font-size: 1rem;
+    display: block;
+    word-break: keep-all;
+    padding: 0.2rem;
+}
+
+.taskList {
+    display: block;
+    padding-bottom: .75rem;
+    padding-top: .75rem;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    padding-bottom: .75rem;
+    padding-top: .75rem;
+}
+
+.task p {
+    width: 80%;
+    margin-left: 5%;
+    font-size: 1rem;
+}
+
+.task .taskCheckbox {
+    margin-right: 5%;
+    margin-left: 5%;
+    width: 25px;
+    height: 25px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: green;
+}
+
+@media only screen and (max-width: 720px) {
+    .taskColumns {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .taskColumn {
+        width: 100%;
+    }
+}
+
+/*--------------------------------------------------/
+                                       projectForm /
+-------------------------------------------------*/
+
+.projectForm {
+    margin: 0 0 5rem 0;
+}
+
+.projectForm * {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
+.projectForm h1 {
+    padding: 0.25rem 0;
+    line-height: 1;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: black;
+}
+
+.projectForm :not(h1) {
+    font-size: 0.875rem !important;
+}
+
+.projectForm .adminform {
+    margin: 0;
+    padding: 0 2rem 2rem 2rem;
+    border: 0.05rem solid #0C4DA0;
+    border-radius: 0.2rem;
+    -webkit-box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+.projectForm label {
+    display: block !important;
+    text-align: left;
+    margin: 0.75rem auto 0.5rem;
+    line-height: 1;
+}
+
+.projectForm input[type=text],
+.projectForm textarea,
+.projectForm select {
+    width: 100%;
+    margin: 0 auto;
+    border: 0.05rem solid #d9d9d9;
+    border-radius: 0.1rem;
+    box-sizing: border-box;
+}
+
+.projectForm input[type=text] {
+    height: auto;
+    padding: 0.75rem;
+}
+
+.projectForm textarea {
+    resize: none;
+    padding: 0.75rem;
+    display: inline-block;
+}
+
+.projectForm select {
+    height: 100%;
+    padding: 0.5rem;
+    display: inline-block;
+}
+
+.projectForm select:focus {
+    outline: none;
+}
+
+.projectForm .submitButton {
+    margin-top: 2rem;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.875rem;
+    color: white;
+    background-color: rgba(125, 201, 37, 1);
+    border: 0.05rem solid #707070;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.projectForm .submitButton:hover {
+    color: rgba(125, 201, 37, 1);
+    background-color: white;
+    border: 0.05rem solid rgba(125, 201, 37, 1)
+}
+
+/*--------------------------------------
+Modal
+---------------------------------------*/
+
+.pdModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.pdModal .content {
+    position: relative;
+    background-color: #fefefe;
+    margin: 5vh auto auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    text-align: center;
+    justify-content: center;
+}
+
+.pdModal .heading {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #0C4DA0;
+}
+
+.pdModal .heading h1 {
+    margin-left: 3.5rem;
+}
+
+.pdModal .heading span {
+    height: 3.5rem;
+    width: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    font-size: 2.25rem;
+    color: white;
+    background-color: crimson;
+    cursor: pointer;
+}
+
+.pdModal .heading span:hover {
+    color: crimson;
+    background-color: white;
+    border: 0.1rem solid crimson;
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+/*--------------------------------------------------/
+                                  deactivationForm /
+-------------------------------------------------*/
+
+.deactivationForm {
+    margin: 0 0 2rem 0;
+}
+
+.deactivationForm fieldset {
+    margin: 0;
+    padding: 0 2rem 2rem 2rem;
+}
+
+.deactivationForm .dangerButton {
+    margin-top: 2rem;
+}
+
+.deactivationForm .abstract {
+    margin: 0;
+    color: crimson;
+}
+
+.deactivationForm .abstract b {
+    font-size: 1.1rem !important;
+    color: black;
+}
+
+/*--------------------------------------------------/
+                                        dangerZone /
+-------------------------------------------------*/
+
+.dangerZone {
+    margin: 2rem 0;
+}
+
+.dangerZone * {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
+.dangerZone h1 {
+    padding: 0.25rem 0;
+    line-height: 1;
+    font-size: 1.65rem;
+    font-weight: 500;
+    color: black;
+}
+
+.dangerZone .dangerContainer {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border: 0.05rem solid crimson;
+    border-radius: 0.2rem;
+    box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+.dangerContainer p {
+    flex: 1;
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.35rem;
+}
+
+.dangerButton {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.875rem;
+    color: crimson;
+    background-color: white;
+    border: 0.05rem solid #707070;
+    border-radius: 0.25rem;
+}
+
+.dangerButton:hover {
+    color: white;
+    background-color: crimson;
+    border: 0.05rem solid crimson;
+}
+
+/*--------------------------------------------------/
+                                       masterChest /
+-------------------------------------------------*/
+
+.masterChest {
+    position: relative;
+}
+
+.masterChest {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: auto auto 5em auto;
+
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border: 2px solid #0C4DA0;
+
+    box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
+    -webkit-box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
+    -moz-box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
+
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
+.masterChestHeadingChest {
+    cursor: pointer;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    color: #ffffff;
+    background-color: #0C4DA0;
+}
+
+.masterChestHeading {
+    width: 75%;
+    text-align: left;
+    margin: 0 auto;
+    padding: 1.05rem;
+    font-size: 1.35rem;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+    line-height: 1.1;
+    word-wrap: break-word;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.masterChest .iconChest {
+    margin: 0 auto;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    display: block;
+}
+
+@media only screen and (max-width: 1499px) {
+    .iconChest {
+        display: none;
+    }
+}
+
+.masterChest .scoreBox {
+    font-weight: 600;
+    box-sizing: border-box;
+    border: 2px solid white;
+    text-align: center;
+    width: 70px;
+    margin: auto 10px auto auto;
+    font-size: 1.20em;
+    line-height: 1;
+    padding: 3px;
+}
+
+/*--------------------------------------------------/
+                                      optionsChest /
+-------------------------------------------------*/
+
+.optionsChest {
+    width: 90%;
+    height: 100%;
+    margin: 18px auto 18px auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.optionChest {
+    margin: 10px auto 10px 0;
+    display: inline-flex;
+    position: relative;
+}
+
+.option {
+    margin: auto;
+    color: #000000;
+    line-height: 1.25;
+    font-size: 1.15em;
+    font-weight: 500;
+}
+
+.option::before {
+    opacity: 0;
+}
+
+.optionInput {
+    /* The pattern by Sara Soueidan https://www.sarasoueidan.com/blog/inclusively-hiding-and-styling-checkboxes-and-radio-buttons/ */
+    width: 37px;
+    height: 37px;
+    opacity: 0;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+}
+
+/* 1. Calculation of the gap for the custom checkbox */
+.optionLabel {
+    display: inline-flex;
+    min-height: 37.5px;
+    padding-left: calc(37.5px + 1.15em);
+}
+
+.optionInput:not(:disabled) ~ .optionLabel {
+    cursor: pointer;
+}
+
+/* 1. Ems helps to calculate size of the checkbox */
+.optionLabel::before,
+.optionLabel::after {
+    content: "";
+    box-sizing: border-box;
+
+    /** Size of checkbox... */
+    width: 1em;
+    height: 1em;
+    font-size: 37.5px; /* 1 */
+
+    /* can put margin-top here to move box, but then tick positioning is skewed */
+    position: absolute;
+    left: 0;
+}
+
+.optionLabel::before {
+    border: 2px solid var(--optionColour);
+    z-index: 2;
+}
+
+.optionInput:not(:disabled) ~ .optionLabel::after {
+    background-color: var(--optionColour);
+    opacity: 0;
+}
+
+.optionInput:not(:disabled):checked ~ .optionLabel::after {
+    opacity: 1;
+}
+
+/* The arrow size and position depends from sizes of square because I needed an arrow correct positioning from the top left corner of the element option
+    1. Ems helps to calculate size and position of the arrow */
+.optionInput:not(:disabled) ~ .optionLabel .option::before {
+    content: "";
+    width: 0;
+    height: 0;
+    font-size: 37.5px; /* 1 */
+
+    border-left-width: 0;
+    border-bottom-width: 0;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-color: #ffffff;
+
+    position: absolute;
+    /** Useless? */
+    top: .5428em;
+    left: .25em;
+    z-index: 3;
+
+    transform-origin: left top;
+    transform: rotate(-40deg) skew(10deg);
+}
+
+.optionInput:not(:disabled):checked ~ .optionLabel .option::before {
+    width: .4em;
+    height: .2em;
+    border-left-width: 2px;
+    border-bottom-width: 2px;
+}
+
+/*--------------------------------------------------/
+                               optionsChest States /
+-------------------------------------------------*/
+
+/* focus state */
+.optionChest:focus-within {
+    outline: 2px solid var(--outlineColour);
+    outline-offset: 6px;
+}
+
+.optionLabel::before,
+.optionLabel::after {
+    border-radius: 4px;
+    background-color: rgba(var(--labelColour), 0.10);
+}
+
+/* The animation of switching states */
+.optionInput:not(:disabled) ~ .optionLabel::before,
+.optionInput:not(:disabled) ~ .optionLabel::after {
+    opacity: 1;
+    transform-origin: center center;
+    will-change: transform;
+    transition: transform .2s ease-out;
+}
+
+.optionInput:not(:disabled) ~ .optionLabel::before {
+    transform: rotateY(0deg);
+    transition-delay: .2s;
+}
+
+.optionInput:not(:disabled) ~ .optionLabel::after {
+    transform: rotateY(90deg);
+}
+
+.optionInput:not(:disabled):checked ~ .optionLabel::before {
+    transform: rotateY(-90deg);
+    transition-delay: 0s;
+}
+
+.optionInput:not(:disabled):checked ~ .optionLabel::after {
+    transform: rotateY(0deg);
+    transition-delay: .2s;
+}
+
+.optionInput:not(:disabled):checked ~ .optionLabel .option::before {
+    opacity: 1;
+    transition: opacity .1s ease-out .3s, width .1s ease-out .5s, height .2s ease-out .3s;
+}
+
+/* disabled state */
+.optionInput:disabled ~ .optionLabel {
+    opacity: 0.24;
+    cursor: not-allowed;
+}
