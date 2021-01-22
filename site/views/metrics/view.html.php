@@ -54,18 +54,6 @@ class ProgressToolViewMetrics extends JViewLegacy
     }
 
     /**
-     * Prepares document by adding stylesheets and scripts.
-     *
-     * @since 0.5.0
-     */
-    private function prepareDocument()
-    {
-        $document = JFactory::getDocument();
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/site.css");
-        $document->addScript(JURI::root() . "media/com_progresstool/js/site/metrics.js");
-    }
-
-    /**
      * Calculates and sets the progress percentage of this progress for each category.
      *
      * @since 0.5.0
@@ -80,5 +68,17 @@ class ProgressToolViewMetrics extends JViewLegacy
                 intval(($category->projectTotal / $category->categoryTotal) * 100)
             );
         }
+    }
+
+    /**
+     * Prepares document by adding stylesheets and scripts.
+     *
+     * @since 0.5.0
+     */
+    private function prepareDocument()
+    {
+        $document = JFactory::getDocument();
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site.css");
+        $document->addScript(JURI::root() . "media/com_progresstool/js/site/metrics.js");
     }
 }

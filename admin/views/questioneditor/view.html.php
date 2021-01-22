@@ -45,7 +45,7 @@ class ProgressToolViewQuestionEditor extends JViewLegacy
     private function prepareDocument()
     {
         $document = JFactory::getDocument();
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/admin.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin.css");
         $document->addScript(JURI::root() . "media/com_progresstool/js/admin/questionEditor.js");
     }
 }
