@@ -1,0 +1,813 @@
+/*--------------------------------------------------/
+                                  Joomla Overrides /
+-------------------------------------------------*/
+
+body {
+    padding-top: 11px !important;
+}
+
+.container-fluid {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+.header {
+    display: none;
+}
+
+.subhead-collapse.collapse {
+    height: 0 !important;
+    visibility: hidden !important;
+}
+
+@media screen and (max-width: 767px) {
+    body {
+        padding: 12px 0 0 0 !important;
+    }
+
+    .navbar {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .navbar-fixed-top {
+        position: fixed !important;
+    }
+
+    .btn,
+    .btn-subhead {
+        display: none !important;
+    }
+}
+
+/*--------------------------------------------------/
+                                           Heading /
+-------------------------------------------------*/
+
+.heading {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 0 auto 3rem;
+    height: min-content;
+    align-items: center;
+    background-color: #0C4DA0;
+}
+
+.heading * {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
+.heading h1,
+.heading .metrics,
+.heading .back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.5rem;
+    /*line-height: 1;*/
+    font-size: 1.4rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.heading h1 {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.heading .openSidebar,
+.heading .create {
+    height: 3.5rem;
+    width: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer
+}
+
+.heading .openSidebar:hover,
+.heading .create:hover {
+    opacity: 0.5;
+}
+
+.heading .create {
+    font-size: 2.5rem;
+    background-color: mediumseagreen;
+}
+
+.searchBar {
+    margin: 0 auto !important;
+}
+
+/*--------------------------------------------------/
+                                     Admin Sidebar /
+-------------------------------------------------*/
+/* We might replace this custom sidebar
+with with an overrode version of the JHTMLSidebar at some stage...
+or do something with JLayouts. */
+
+.sideNavigation {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #0C4DA0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sideNavigation a {
+    padding: 8px 8px 25px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.sideNavigation a:hover {
+    color: aliceblue;
+}
+
+.sideNavigation .closeButton {
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    text-align: right;
+    margin-right: 2rem;
+}
+
+#main {
+    transition: margin-left .5s;
+    /*padding: 16px;*/
+}
+
+@media screen and (max-height: 450px) {
+    .sideNavigation {
+        padding-top: 15px;
+    }
+
+    .sideNavigation a {
+        font-size: 18px;
+    }
+}
+
+/*--------------------------------------------------/
+                                             cards /
+-------------------------------------------------*/
+
+.cards {
+    display: flex;
+    gap: 3.5rem;
+    align-items:center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.card h1 {
+    width: 100%;
+    height: 3.5rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background-color: #0C4DA0;
+}
+
+.card a {
+    width: 100%;
+    height: 3.5rem;
+    background-color: dodgerblue;
+    font-size: 1.5rem;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.card a:hover {
+    opacity: 0.5;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/*--------------------------------------------------/
+                                             tasks /
+-------------------------------------------------*/
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.task {
+    width: 80%;
+}
+
+.task .heading {
+    margin: 0 auto !important;
+    cursor: pointer;
+}
+
+.task .heading:hover {
+    opacity: 0.5;
+}
+
+.task .heading .id {
+    width: 5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: white;
+}
+
+.task .heading h1 {
+    /*margin-right: 5rem;*/
+    justify-content: left;
+    white-space: unset !important;
+    word-break: break-word;
+    min-height: 3.5rem;
+    height: auto !important;
+    padding: 0.4rem;
+}
+
+/*--------------------------------------------------/
+                                      projectTable /
+-------------------------------------------------*/
+
+table {
+    width: 100%;
+}
+
+thead tr th {
+    background-color: #0C4DA0;
+    color: white;
+    padding: 1.25rem;
+    font-size: 1.25rem;
+}
+
+tbody tr td {
+    text-align: center;
+    background-color: #b8d4fa;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+tbody tr:hover {
+    cursor: pointer;
+}
+
+/*--------------------------------------------------/
+                                      projectModal /
+-------------------------------------------------*/
+
+.projectModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.projectModalContent {
+    position: relative;
+    background-color: #fefefe;
+    margin: 5vh auto auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 60rem;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    text-align: center;
+    justify-content: center;
+}
+
+.projectModalContent p {
+    border: 1px solid #707070;
+    width: 20rem;
+    padding: 0.5rem;
+    margin: 1rem auto;
+}
+
+.projectModalHeader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #0C4DA0;
+}
+
+.projectModalHeader span {
+    margin-right: 10%;
+}
+
+.projectModalHeader h2 {
+    margin-right: 10%;
+}
+
+.projectModalBody {padding: 2px 16px;}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+
+/*--------------------------------------------------/
+                                       masterChest /
+-------------------------------------------------*/
+
+.masterChest {
+    position: relative;
+}
+
+.masterChest {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: auto auto 5em auto;
+
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border: 2px solid #0C4DA0;
+
+    box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
+    -webkit-box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
+    -moz-box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
+
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
+.masterChestHeadingChest {
+    cursor: pointer;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    color: #ffffff;
+    background-color: #0C4DA0;
+}
+
+.masterChestHeading {
+    width: 75%;
+    text-align: left;
+    margin: 0 auto;
+    padding: 1.05rem;
+    font-size: 1.35rem;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+    line-height: 1.1;
+    word-wrap: break-word;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.masterChest .iconChest {
+    margin: 0 auto;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    display: block;
+}
+
+@media only screen and (max-width: 1499px) {
+    .iconChest {
+        display: none;
+    }
+}
+
+.masterChest .scoreBox {
+    font-weight: 600;
+    box-sizing: border-box;
+    border: 2px solid white;
+    text-align: center;
+    width: 70px;
+    margin: auto 10px auto auto;
+    font-size: 1.20em;
+    line-height: 1;
+    padding: 3px;
+}
+
+/*--------------------------------------------------/
+                                      optionsChest /
+-------------------------------------------------*/
+
+.optionsChest {
+    width: 90%;
+    height: 100%;
+    margin: 18px auto 18px auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.optionChest {
+    margin: 10px auto 10px 0;
+    display: inline-flex;
+    position: relative;
+}
+
+.option {
+    margin: auto;
+    color: #000000;
+    line-height: 1.25;
+    font-size: 1.15em;
+    font-weight: 500;
+}
+
+.option::before {
+    opacity: 0;
+}
+
+.optionInput {
+    /* The pattern by Sara Soueidan https://www.sarasoueidan.com/blog/inclusively-hiding-and-styling-checkboxes-and-radio-buttons/ */
+    width: 37px;
+    height: 37px;
+    opacity: 0;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+}
+
+/* 1. Calculation of the gap for the custom checkbox */
+.optionLabel {
+    display: inline-flex;
+    min-height: 37.5px;
+    padding-left: calc(37.5px + 1.15em);
+}
+
+.optionInput:not(:disabled) ~ .optionLabel {
+    cursor: pointer;
+}
+
+/* 1. Ems helps to calculate size of the checkbox */
+.optionLabel::before,
+.optionLabel::after {
+    content: "";
+    box-sizing: border-box;
+
+    /** Size of checkbox... */
+    width: 1em;
+    height: 1em;
+    font-size: 37.5px; /* 1 */
+
+    /* can put margin-top here to move box, but then tick positioning is skewed */
+    position: absolute;
+    left: 0;
+}
+
+.optionLabel::before {
+    border: 2px solid var(--optionColour);
+    z-index: 2;
+}
+
+.optionInput:not(:disabled) ~ .optionLabel::after {
+    background-color: var(--optionColour);
+    opacity: 0;
+}
+
+.optionInput:not(:disabled):checked ~ .optionLabel::after {
+    opacity: 1;
+}
+
+/* The arrow size and position depends from sizes of square because I needed an arrow correct positioning from the top left corner of the element option
+    1. Ems helps to calculate size and position of the arrow */
+.optionInput:not(:disabled) ~ .optionLabel .option::before {
+    content: "";
+    width: 0;
+    height: 0;
+    font-size: 37.5px; /* 1 */
+
+    border-left-width: 0;
+    border-bottom-width: 0;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-color: #ffffff;
+
+    position: absolute;
+    /** Useless? */
+    top: .5428em;
+    left: .25em;
+    z-index: 3;
+
+    transform-origin: left top;
+    transform: rotate(-40deg) skew(10deg);
+}
+
+.optionInput:not(:disabled):checked ~ .optionLabel .option::before {
+    width: .4em;
+    height: .2em;
+    border-left-width: 2px;
+    border-bottom-width: 2px;
+}
+
+/*--------------------------------------------------/
+                               optionsChest States /
+-------------------------------------------------*/
+
+/* focus state */
+.optionChest:focus-within {
+    outline: 2px solid var(--outlineColour);
+    outline-offset: 6px;
+}
+
+.optionLabel::before,
+.optionLabel::after {
+    border-radius: 4px;
+    background-color: rgba(var(--labelColour), 0.10);
+}
+
+/* The animation of switching states */
+.optionInput:not(:disabled) ~ .optionLabel::before,
+.optionInput:not(:disabled) ~ .optionLabel::after {
+    opacity: 1;
+    transform-origin: center center;
+    will-change: transform;
+    transition: transform .2s ease-out;
+}
+
+.optionInput:not(:disabled) ~ .optionLabel::before {
+    transform: rotateY(0deg);
+    transition-delay: .2s;
+}
+
+.optionInput:not(:disabled) ~ .optionLabel::after {
+    transform: rotateY(90deg);
+}
+
+.optionInput:not(:disabled):checked ~ .optionLabel::before {
+    transform: rotateY(-90deg);
+    transition-delay: 0s;
+}
+
+.optionInput:not(:disabled):checked ~ .optionLabel::after {
+    transform: rotateY(0deg);
+    transition-delay: .2s;
+}
+
+.optionInput:not(:disabled):checked ~ .optionLabel .option::before {
+    opacity: 1;
+    transition: opacity .1s ease-out .3s, width .1s ease-out .5s, height .2s ease-out .3s;
+}
+
+/* disabled state */
+.optionInput:disabled ~ .optionLabel {
+    opacity: 0.24;
+    cursor: not-allowed;
+}
+
+/*--------------------------------------------------/
+                                    questionEditor /
+-------------------------------------------------*/
+
+.iconChest {
+    margin: 0 auto;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    display: block;
+}
+
+@media only screen and (max-width: 1499px) {
+    .iconChest {
+        display: none;
+    }
+}
+
+.masterChest {
+    position: relative;
+}
+
+/***/
+
+.masterChest {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.superChest {
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    /**margin-top: 75px;*/
+}
+
+.editor {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+}
+
+.formChest {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border: 2px solid #0C4DA0;
+
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
+.formChestHeadingChest {
+    cursor: pointer;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    color: #ffffff;
+    background-color: #0C4DA0;
+}
+
+.formChestHeading {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 1.05rem;
+    font-size: 1.35rem;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+    line-height: 1.1;
+    word-wrap: break-word;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.formChest form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.formButtonChest {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.formButtonChest > button, input[type="submit"] {
+    flex: 1;
+    text-align: center;
+    border: none;
+    padding: 0.75rem;
+    font-size: 1.05rem;
+    background-color: lightgreen;
+    color: black;
+    font-weight: 500;
+    margin: 0 5% 0.5rem 5%;
+}
+
+.formButtonChest > button:hover, input[type=submit]:hover {
+    opacity: 0.5;
+}
+
+.formSlot {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    vertical-align: middle;
+}
+
+.formSlot label {
+    flex: 3;
+    margin: 0 auto;
+    text-align: center;
+    align-self: center;
+}
+
+.formSlot textarea {
+    flex: 8;
+    resize: none;
+    padding: 0.5rem;
+    border-radius: 0;
+    margin: 0;
+}
+
+.formSlot input[type=number] {
+    flex: 3;
+    margin: 0;
+    height: auto;
+}
+
+.formSlot input[type=text] {
+    flex: 3;
+    margin: 0;
+    height: auto;
+}
+
+/* For the questionChoiceForm */
+
+.formQuadSlot {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    vertical-align: middle;
+}
+
+.formQuadSlot p {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 0.75rem;
+}
+
+.formQuadSlot label {
+    flex: 3;
+    margin: 0 auto;
+    text-align: center;
+    align-self: center;
+}
+
+.formQuadTextArea {
+    flex: 6;
+}
+
+.formQuadSlot textarea {
+    width: 100%;
+    resize: none;
+    /**padding: 0.5rem;*/
+    border-radius: 0;
+    margin: 0;
+    /**overflow: hidden;*/
+    /**text-overflow: ellipsis;*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.formQuadSlot input[type=text] {
+    width: 0;
+    min-width: 0;
+    flex: 1;
+    margin: 0;
+    height: auto;
+}
+
+.formQuadSlot button {
+    flex: 1;
+}
+
+/*--------------------------------------------------/
+                                         questions /
+-------------------------------------------------*/
+/** For Icon Chest */
+
+.iconChest {
+    margin: 0 auto;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    display: block;
+}
+
+@media only screen and (max-width: 1499px) {
+    .iconChest {
+        display: none;
+    }
+}
+
+.masterChest {
+    position: relative;
+}
+
+/***/
