@@ -91,7 +91,7 @@ class ProgressToolViewTasks extends JViewLegacy
         $document->addScript(JURI::root() . "media/com_progresstool/js/admin/adminBase.js");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/adminBase.css");
 
+        $document->addScript(JURI::root() . "media/com_progresstool/js/admin/tasks.js");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/tasks.css");
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/js/admin/tasks.js");;
     }
 }
