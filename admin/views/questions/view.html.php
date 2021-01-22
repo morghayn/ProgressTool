@@ -96,7 +96,6 @@ class ProgressToolViewQuestions extends JViewLegacy
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin/questions.css");
 
         // TODO: put in one file
-        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/masterchest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/optionschest.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/site/survey.css");
     }
