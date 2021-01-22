@@ -394,8 +394,8 @@
     background-color: rgba(150, 150, 150, 0.5);
 }
 
-.optionInput:not(:disabled) ~ .optionLabel .option::before {
-    border-color: #000000;
+.project .optionInput:not(:disabled) ~ .optionLabel .option::before {
+    border-color: #000000 !important;
 }
 
 @media only screen and (max-width: 720px) {
