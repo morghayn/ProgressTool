@@ -63,12 +63,12 @@ function deselectChoices(opposingProjectChoices)
 {
     opposingProjectChoices.forEach(
         opposingProjectChoice =>
-            document.getElementById(`c${opposingProjectChoice}`).checked = false
+            document.getElementById(`qcid-${opposingProjectChoice}`).checked = false
     );
 }
 
 function toggleQuestion(questionID)
 {
-    let content = document.getElementById(`qcid-${questionID}`)
+    let content = document.getElementById(`qid-${questionID}`)
     content.style.display = (content.style.display === "none" ? "block" : "none")
 }

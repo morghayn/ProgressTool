@@ -891,10 +891,10 @@ Modal
 }
 
 /*--------------------------------------------------/
-                                      optionsChest /
+                                           choices /
 -------------------------------------------------*/
 
-.optionsChest {
+.choices {
     width: 90%;
     height: 100%;
     margin: 18px auto 18px auto;
@@ -903,7 +903,7 @@ Modal
     flex-direction: column;
 }
 
-.optionChest {
+.choice {
     margin: 10px auto 10px 0;
     display: inline-flex;
     position: relative;
@@ -921,7 +921,7 @@ Modal
     opacity: 0;
 }
 
-.optionInput {
+.choice input {
     /* The pattern by Sara Soueidan https://www.sarasoueidan.com/blog/inclusively-hiding-and-styling-checkboxes-and-radio-buttons/ */
     width: 37px;
     height: 37px;
@@ -940,7 +940,7 @@ Modal
     padding-left: calc(37.5px + 1.15em);
 }
 
-.optionInput:not(:disabled) ~ .optionLabel {
+.choice input:not(:disabled) ~ .optionLabel {
     cursor: pointer;
 }
 
@@ -965,18 +965,18 @@ Modal
     z-index: 2;
 }
 
-.optionInput:not(:disabled) ~ .optionLabel::after {
+.choice input:not(:disabled) ~ .optionLabel::after {
     background-color: var(--optionColour);
     opacity: 0;
 }
 
-.optionInput:not(:disabled):checked ~ .optionLabel::after {
+.choice input:not(:disabled):checked ~ .optionLabel::after {
     opacity: 1;
 }
 
 /* The arrow size and position depends from sizes of square because I needed an arrow correct positioning from the top left corner of the element option
     1. Ems helps to calculate size and position of the arrow */
-.optionInput:not(:disabled) ~ .optionLabel .option::before {
+.choice input:not(:disabled) ~ .optionLabel .option::before {
     content: "";
     width: 0;
     height: 0;
@@ -998,7 +998,7 @@ Modal
     transform: rotate(-40deg) skew(10deg);
 }
 
-.optionInput:not(:disabled):checked ~ .optionLabel .option::before {
+.choice input:not(:disabled):checked ~ .optionLabel .option::before {
     width: .4em;
     height: .2em;
     border-left-width: 2px;
@@ -1006,11 +1006,11 @@ Modal
 }
 
 /*--------------------------------------------------/
-                               optionsChest States /
+                                     choice states /
 -------------------------------------------------*/
 
 /* focus state */
-.optionChest:focus-within {
+.choice:focus-within {
     outline: 2px solid var(--outlineColour);
     outline-offset: 6px;
 }
@@ -1022,40 +1022,40 @@ Modal
 }
 
 /* The animation of switching states */
-.optionInput:not(:disabled) ~ .optionLabel::before,
-.optionInput:not(:disabled) ~ .optionLabel::after {
+.choice input:not(:disabled) ~ .optionLabel::before,
+.choice input:not(:disabled) ~ .optionLabel::after {
     opacity: 1;
     transform-origin: center center;
     will-change: transform;
     transition: transform .2s ease-out;
 }
 
-.optionInput:not(:disabled) ~ .optionLabel::before {
+.choice input:not(:disabled) ~ .optionLabel::before {
     transform: rotateY(0deg);
     transition-delay: .2s;
 }
 
-.optionInput:not(:disabled) ~ .optionLabel::after {
+.choice input:not(:disabled) ~ .optionLabel::after {
     transform: rotateY(90deg);
 }
 
-.optionInput:not(:disabled):checked ~ .optionLabel::before {
+.choice input:not(:disabled):checked ~ .optionLabel::before {
     transform: rotateY(-90deg);
     transition-delay: 0s;
 }
 
-.optionInput:not(:disabled):checked ~ .optionLabel::after {
+.choice input:not(:disabled):checked ~ .optionLabel::after {
     transform: rotateY(0deg);
     transition-delay: .2s;
 }
 
-.optionInput:not(:disabled):checked ~ .optionLabel .option::before {
+.choice input:not(:disabled):checked ~ .optionLabel .option::before {
     opacity: 1;
     transition: opacity .1s ease-out .3s, width .1s ease-out .5s, height .2s ease-out .3s;
 }
 
 /* disabled state */
-.optionInput:disabled ~ .optionLabel {
+.choice input:disabled ~ .optionLabel {
     opacity: 0.24;
     cursor: not-allowed;
 }
