@@ -29,7 +29,7 @@ CREATE TABLE `#__pt_approval_question`
 
 INSERT INTO `#__pt_approval_question` (`question`)
 VALUES ('Has the group an idea of what they can do?'),
-       ('Will the project be viable? Will the income generated cover the costs of the project?'),
+       ('Has the group thought about how to finance the project?"'),
        ('Has the group sought advice from other groups, and are they interested to do so?');
 
 /**/
@@ -129,12 +129,12 @@ VALUES -- Irish
        (19, 2, 'Has a technical committee been established within the group?'),
        -- Exclude Ireland
        (20, 1, 'Has a technical committee been established within the group?'),
-       (21, 3, 'Has the group organized to raise equity for construction or other projects?'),
+       (21, 3, 'Has the group began planning how to raise equity for the project?'),
        (22, 2,
         'Is there a technical file for planning permission to be submitted for administration approval? This file will contain a report from any studies carried out and other documents required by authorities to give planning permission for the project.'),
        (23, 2, 'Was the file approved?'),
        (24, 3, 'Is the financial plan finalized?'),
-       (25, 3, 'Has there been fundraising measures or bank loans for the construction phase?'),
+       (25, 3, 'How will the construction phase of the project be financed?'),
        (26, 2, 'Has the construction contracts been signed?'),
        (27, 1, 'Has a plan for project management been agreed upon?'),
        (28, 2, 'Has construction commenced?'),
@@ -163,38 +163,37 @@ CREATE TABLE `#__pt_question_icon`
     DEFAULT CHARSET = utf8mb4
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
-INSERT INTO `#__pt_question_icon` (`question_id`, `filepath`, `width`, `height`, `right_offset`, `bottom_offset`) VALUES
-(1, '/media/com_progresstool/icons/Illustrations_Reflexions.jpg', 250, 169, 32, 59),
-(2, '/media/com_progresstool/icons/Illustrations_Reflexions.jpg', 250, 169, 32, 59),
-(3, '/media/com_progresstool/icons/Illustrations_Formations.jpg', 225, 168, 40, 30),
-(4, '/media/com_progresstool/icons/Illustrations_Formations.jpg', 225, 168, 40, 30),
-(5, '/media/com_progresstool/icons/Illustrations_Lien.jpg', 200, 177, 50, 8),
-(8, '/media/com_progresstool/icons/Illustrations_MobilisationFinance.jpg', 250, 180, 35, 20),
-(9, '/media/com_progresstool/icons/Illustrations_MobilisationFinance.jpg', 250, 180, 35, 20),
-(10, '/media/com_progresstool/icons/Illustrations_Inauguration.jpg', 368, 175, 70, 55),
-(11, '/media/com_progresstool/icons/Illustrations_Inauguration.jpg', 368, 175, 70, 55),
-(12, '/media/com_progresstool/icons/Illustrations_Compta.jpg', 250, 250, 45, 5),
-(13, '/media/com_progresstool/icons/Illustrations_Compta.jpg', 250, 250, 45, 5),
-(14, '/media/com_progresstool/icons/Illustrations_Compta.jpg', 200, 200, 65, 5),
-(15, '/media/com_progresstool/icons/Illustrations_Administratif.jpg', 155, 151, 75, 55),
-(16, '/media/com_progresstool/icons/Illustrations_Chantier.jpg', 284, 150, 32, 57),
-(17, '/media/com_progresstool/icons/Illustrations_MobilisationFinance.jpg', 265, 189, 30, 123),
-(18, '/media/com_progresstool/icons/Illustrations_InitiativesLocale02.jpg', 235, 197, 58, 166),
-(19, '/media/com_progresstool/icons/Illustrations_Inauguration.jpg', 350, 167, 60, 115),
-(20, '/media/com_progresstool/icons/Illustrations_Inauguration.jpg', 350, 167, 60, 115),
-(21, '/media/com_progresstool/icons/Illustrations_Chantier.jpg', 312, 165, 55, 43),
-(22, '/media/com_progresstool/icons/Illustrations_Compta.jpg', 215, 215, 50, 65),
-(23, '/media/com_progresstool/icons/Illustrations_PouceOK.jpg', 113, 113, 100, 75),
-(24, '/media/com_progresstool/icons/Illustrations_MobilisationFinance.jpg', 265, 191, 90, 75),
-(25, '/media/com_progresstool/icons/Illustrations_Banque.jpg', 375, 173, 55, 56),
-(26, '/media/com_progresstool/icons/Illustrations_VisiteChantier.jpg', 400, 198, 46, 4),
-(27, '/media/com_progresstool/icons/Illustrations_Management.jpg', 200, 213, 25, 13),
-(28, '/media/com_progresstool/icons/Illustrations_Chantier.jpg', 365, 193, 29, 20),
-(29, '/media/com_progresstool/icons/Illustrations_VisiteChantier.jpg', 375, 186, 14, 16),
-(30, '/media/com_progresstool/icons/Illustrations_Argent01.jpg', 150, 169, 65, 15),
-(31, '/media/com_progresstool/icons/Illustrations_Formations.jpg', 245, 182, 50, 50),
-(32, '/media/com_progresstool/icons/Illustrations_Lien.jpg', 175, 155, 35, 0),
-(33, '/media/com_progresstool/icons/Illustrations_AvionPapier.jpg', 350, 262, 0, 0);
+INSERT INTO `#__pt_question_icon` (`question_id`, `filepath`, `width`, `height`, `right_offset`, `bottom_offset`)
+VALUES (1, '/media/com_progresstool/icons/Illustrations_Reflexions.jpg', 250, 169, 32, 59),
+       (2, '/media/com_progresstool/icons/Illustrations_Reflexions.jpg', 250, 169, 32, 59),
+       (3, '/media/com_progresstool/icons/Illustrations_Formations.jpg', 225, 168, 40, 30),
+       (4, '/media/com_progresstool/icons/Illustrations_Formations.jpg', 225, 168, 40, 30),
+       (5, '/media/com_progresstool/icons/Illustrations_Lien.jpg', 200, 177, 50, 8),
+       (8, '/media/com_progresstool/icons/Illustrations_MobilisationFinance.jpg', 250, 180, 35, 20),
+       (9, '/media/com_progresstool/icons/Illustrations_MobilisationFinance.jpg', 250, 180, 35, 20),
+       (10, '/media/com_progresstool/icons/Illustrations_Inauguration.jpg', 368, 175, 70, 55),
+       (11, '/media/com_progresstool/icons/Illustrations_Inauguration.jpg', 368, 175, 70, 55),
+       (12, '/media/com_progresstool/icons/Illustrations_Compta.jpg', 250, 250, 45, 5),
+       (13, '/media/com_progresstool/icons/Illustrations_Compta.jpg', 250, 250, 45, 5),
+       (14, '/media/com_progresstool/icons/Illustrations_Compta.jpg', 200, 200, 65, 5),
+       (15, '/media/com_progresstool/icons/Illustrations_Administratif.jpg', 155, 151, 75, 55),
+       (16, '/media/com_progresstool/icons/Illustrations_Chantier.jpg', 284, 150, 32, 57),
+       (17, '/media/com_progresstool/icons/Illustrations_MobilisationFinance.jpg', 265, 189, 30, 123),
+       (18, '/media/com_progresstool/icons/Illustrations_InitiativesLocale02.jpg', 235, 197, 58, 166),
+       (20, '/media/com_progresstool/icons/Illustrations_Inauguration.jpg', 350, 167, 60, 115),
+       (21, '/media/com_progresstool/icons/Illustrations_Chantier.jpg', 312, 165, 55, 43),
+       (22, '/media/com_progresstool/icons/Illustrations_Compta.jpg', 215, 215, 50, 65),
+       (23, '/media/com_progresstool/icons/Illustrations_PouceOK.jpg', 113, 113, 100, 75),
+       (24, '/media/com_progresstool/icons/Illustrations_MobilisationFinance.jpg', 265, 191, 90, 75),
+       (25, '/media/com_progresstool/icons/Illustrations_Banque.jpg', 375, 173, 55, 56),
+       (26, '/media/com_progresstool/icons/Illustrations_VisiteChantier.jpg', 400, 198, 46, 4),
+       (27, '/media/com_progresstool/icons/Illustrations_Management.jpg', 200, 213, 25, 13),
+       (28, '/media/com_progresstool/icons/Illustrations_Chantier.jpg', 365, 193, 29, 20),
+       (29, '/media/com_progresstool/icons/Illustrations_VisiteChantier.jpg', 375, 186, 14, 16),
+       (30, '/media/com_progresstool/icons/Illustrations_Argent01.jpg', 150, 169, 65, 15),
+       (31, '/media/com_progresstool/icons/Illustrations_Formations.jpg', 245, 182, 50, 50),
+       (32, '/media/com_progresstool/icons/Illustrations_Lien.jpg', 175, 155, 35, 0),
+       (33, '/media/com_progresstool/icons/Illustrations_AvionPapier.jpg', 350, 262, 0, 0);
 
 /* */
 
@@ -554,14 +553,16 @@ VALUES ('Solar'),
 
 CREATE TABLE `#__pt_project`
 (
-    `id`            INT UNSIGNED     NOT NULL AUTO_INCREMENT,
-    `user_id`       INT UNSIGNED     NOT NULL,             -- TODO: Foreign key of user table?
-    `group_id`      INT UNSIGNED     NOT NULL DEFAULT '0', -- TODO: Foreign key of community_groups?
-    `name`          VARCHAR(100)     NOT NULL,
-    `description`   VARCHAR(255),
-    `type_id`       TINYINT UNSIGNED NOT NULL,
-    `creation_date` TIMESTAMP        NOT NULL,
-    `activated`     TINYINT UNSIGNED NOT NULL DEFAULT '0',
+    `id`                  INT UNSIGNED     NOT NULL AUTO_INCREMENT,
+    `user_id`             INT UNSIGNED     NOT NULL,             -- TODO: Foreign key of user table?
+    `group_id`            INT UNSIGNED     NOT NULL DEFAULT '0', -- TODO: Foreign key of community_groups?
+    `name`                VARCHAR(100)     NOT NULL,
+    `description`         VARCHAR(255),
+    `type_id`             TINYINT UNSIGNED NOT NULL,
+    `creation_date`       TIMESTAMP        NOT NULL,
+    `activated`           TINYINT UNSIGNED NOT NULL DEFAULT '0',
+    `deactivated`         TINYINT UNSIGNED NOT NULL DEFAULT '0',
+    `deactivation_reason` VARCHAR(255),
     PRIMARY KEY (`id`),
     FOREIGN KEY (`type_id`) REFERENCES `#__pt_project_type` (`id`)
 )
