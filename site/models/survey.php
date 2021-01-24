@@ -60,7 +60,7 @@ class ProgressToolModelSurvey extends JModelItem
         $getQuestions
             ->select($db->quoteName($columns))
             ->select($concat)
-            ->select('SUM(CH.weight) as total')
+            ->select('SUM(CH.weight) as score')
             ->from($db->quoteName('#__pt_question', 'Q'))
             ->innerjoin($db->quoteName('#__pt_question_country', 'CO') . ' ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('CO.question_id'))
             ->innerjoin($db->quoteName('#__pt_question_choice', 'CH') . ' ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('CH.question_id'))

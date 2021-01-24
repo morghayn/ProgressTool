@@ -2,7 +2,6 @@ function timelineRedirect(categoryID, projectID, countryID)
 {
     let token = jQuery("#token").attr("name");
 
-    //window.location.href =
     window.open(
         `?option=com_progresstool` +
         `&view=survey` +
@@ -47,18 +46,16 @@ function surveySelect(projectID, choiceID)
  * Updates score box of the question parent of the choice selected.
  *
  * @param questionID
- * @param score
- * @param isComplete
+ * @param projectQuestionScore
+ * @param isQuestionComplete
  */
 function updateQuestionScore(questionID, projectQuestionScore, isQuestionComplete)
 {
-    let elementID = `score_${questionID}`;
-    let element = document.getElementById(elementID)
+    document.getElementById(`qsid-${questionID}`).innerHTML = projectQuestionScore;
 
-    element.innerHTML = projectQuestionScore;
     if (isQuestionComplete)
     {
-        toggleChestContent(questionID)
+        toggleQuestion(questionID)
     }
 }
 
@@ -70,8 +67,8 @@ function deselectChoices(opposingProjectChoices)
     );
 }
 
-function toggleChestContent(questionID)
+function toggleQuestion(questionID)
 {
-    let content = document.getElementById(`chestContent_${questionID}`)
+    let content = document.getElementById(`qcid-${questionID}`)
     content.style.display = (content.style.display === "none" ? "block" : "none")
 }
