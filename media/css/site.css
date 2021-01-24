@@ -394,7 +394,7 @@
     background-color: rgba(150, 150, 150, 0.5);
 }
 
-.project .optionInput:not(:disabled) ~ .optionLabel .option::before {
+.project input:not(:disabled) ~ .box .text::before {
     border-color: #000000 !important;
 }
 
@@ -909,7 +909,7 @@ Modal
     position: relative;
 }
 
-.option {
+.text {
     margin: auto;
     color: #000000;
     line-height: 1.25;
@@ -917,7 +917,7 @@ Modal
     font-weight: 500;
 }
 
-.option::before {
+.text::before {
     opacity: 0;
 }
 
@@ -934,19 +934,19 @@ Modal
 }
 
 /* 1. Calculation of the gap for the custom checkbox */
-.optionLabel {
+.box {
     display: inline-flex;
     min-height: 37.5px;
     padding-left: calc(37.5px + 1.15em);
 }
 
-.choice input:not(:disabled) ~ .optionLabel {
+.choice input:not(:disabled) ~ .box {
     cursor: pointer;
 }
 
 /* 1. Ems helps to calculate size of the checkbox */
-.optionLabel::before,
-.optionLabel::after {
+.box::before,
+.box::after {
     content: "";
     box-sizing: border-box;
 
@@ -960,23 +960,23 @@ Modal
     left: 0;
 }
 
-.optionLabel::before {
+.box::before {
     border: 2px solid var(--optionColour);
     z-index: 2;
 }
 
-.choice input:not(:disabled) ~ .optionLabel::after {
+.choice input:not(:disabled) ~ .box::after {
     background-color: var(--optionColour);
     opacity: 0;
 }
 
-.choice input:not(:disabled):checked ~ .optionLabel::after {
+.choice input:not(:disabled):checked ~ .box::after {
     opacity: 1;
 }
 
 /* The arrow size and position depends from sizes of square because I needed an arrow correct positioning from the top left corner of the element option
     1. Ems helps to calculate size and position of the arrow */
-.choice input:not(:disabled) ~ .optionLabel .option::before {
+.choice input:not(:disabled) ~ .box .text::before {
     content: "";
     width: 0;
     height: 0;
@@ -998,7 +998,7 @@ Modal
     transform: rotate(-40deg) skew(10deg);
 }
 
-.choice input:not(:disabled):checked ~ .optionLabel .option::before {
+.choice input:not(:disabled):checked ~ .box .text::before {
     width: .4em;
     height: .2em;
     border-left-width: 2px;
@@ -1015,47 +1015,47 @@ Modal
     outline-offset: 6px;
 }
 
-.optionLabel::before,
-.optionLabel::after {
+.box::before,
+.box::after {
     border-radius: 4px;
     background-color: rgba(var(--labelColour), 0.10);
 }
 
 /* The animation of switching states */
-.choice input:not(:disabled) ~ .optionLabel::before,
-.choice input:not(:disabled) ~ .optionLabel::after {
+.choice input:not(:disabled) ~ .box::before,
+.choice input:not(:disabled) ~ .box::after {
     opacity: 1;
     transform-origin: center center;
     will-change: transform;
     transition: transform .2s ease-out;
 }
 
-.choice input:not(:disabled) ~ .optionLabel::before {
+.choice input:not(:disabled) ~ .box::before {
     transform: rotateY(0deg);
     transition-delay: .2s;
 }
 
-.choice input:not(:disabled) ~ .optionLabel::after {
+.choice input:not(:disabled) ~ .box::after {
     transform: rotateY(90deg);
 }
 
-.choice input:not(:disabled):checked ~ .optionLabel::before {
+.choice input:not(:disabled):checked ~ .box::before {
     transform: rotateY(-90deg);
     transition-delay: 0s;
 }
 
-.choice input:not(:disabled):checked ~ .optionLabel::after {
+.choice input:not(:disabled):checked ~ .box::after {
     transform: rotateY(0deg);
     transition-delay: .2s;
 }
 
-.choice input:not(:disabled):checked ~ .optionLabel .option::before {
+.choice input:not(:disabled):checked ~ .box .text::before {
     opacity: 1;
     transition: opacity .1s ease-out .3s, width .1s ease-out .5s, height .2s ease-out .3s;
 }
 
 /* disabled state */
-.choice input:disabled ~ .optionLabel {
+.choice input:disabled ~ .box {
     opacity: 0.24;
     cursor: not-allowed;
 }
