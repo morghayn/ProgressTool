@@ -19,7 +19,8 @@ class ProgressToolViewDashboard extends JViewLegacy
      * @var JLayoutFile administrator sidebar
      * @since 0.5.5
      */
-    protected $heading, $sidebar;
+    protected $heading, $sidebar,
+        $projectCount, $selectionCount, $activatedCount, $deactivatedCount;
 
     /**
      * Renders view.
@@ -29,6 +30,12 @@ class ProgressToolViewDashboard extends JViewLegacy
      */
     function display($tpl = null)
     {
+        $model = parent::getModel();
+        $this->projectCount = $model->getProjectCount();
+        $this->selectionCount = $model->getSelectionCount();
+        $this->activatedCount = $model->getActivatedCount();
+        $this->deactivatedCount = $model->getDeactivatedCount();
+
         $this->setHeading();
         $this->setSidebar();
         $this->prepareDocument();

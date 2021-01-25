@@ -105,6 +105,46 @@ body {
 }
 
 /*--------------------------------------------------/
+                                          statChip /
+-------------------------------------------------*/
+
+.statChips {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    gap: 5rem;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.statChip {
+    width: 10rem;
+    height: 15rem;
+    color: #ffffff;
+    background-color: #0C4DA0;
+}
+
+.statChip h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0C4DA0;
+    margin: 1rem auto;
+    font-size: 3.5rem;
+    background-color: white;
+    line-height: 1;
+    width: 7.5rem;
+    height: 7.5rem;
+    border-radius: 15rem;
+}
+
+.statChip h2 {
+    margin: auto 1rem;
+}
+
+/*--------------------------------------------------/
                                      Admin Sidebar /
 -------------------------------------------------*/
 /* We might replace this custom sidebar
@@ -232,19 +272,7 @@ or do something with JLayouts. */
     opacity: 0.5;
 }
 
-.task .heading .id {
-    width: 5rem;
-    height: 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    color: white;
-}
-
 .task .heading h1 {
-    /*margin-right: 5rem;*/
-    justify-content: left;
     white-space: unset !important;
     word-break: break-word;
     min-height: 3.5rem;
@@ -519,8 +547,10 @@ tbody tr:hover {
     cursor: text;
 }
 
-.superChest .question h1:hover {
-    box-shadow: black;
+.superChest .question h1:hover,
+.superChest .question h1:focus {
+    background-color: white;
+    color: black;
 }
 
 /*--------------------------------------------------/
@@ -553,7 +583,8 @@ tbody tr:hover {
     box-sizing: border-box;
 }
 
-.question .heading h1 {
+.question .heading h1,
+.task .heading h1 {
     flex: 3;
     height: auto;
     min-height: 2.5rem;
@@ -564,7 +595,8 @@ tbody tr:hover {
     white-space: unset;
 }
 
-.question .heading h2 {
+.question .heading h2,
+.task .heading h2 {
     font-weight: 600;
     box-sizing: border-box;
     border: 2px solid white;
