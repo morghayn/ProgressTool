@@ -31,7 +31,6 @@ endforeach;
             foreach ($this->choices[$this->questionID] as $this->choice):
                 $this->choiceID = $this->choice->id;
                 $this->isChecked = is_null($this->choice->project_id) ? '' : 'checked';
-
                 echo $this->loadTemplate('choice');
             endforeach;
             ?>

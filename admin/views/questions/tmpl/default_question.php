@@ -7,6 +7,8 @@ $question = $this->question->question;
 $questionID = $this->question->id;
 $colourHex = $this->question->colour_hex;
 $colourRGB = $this->question->colour_rgb;
+$this->colourHex = $this->question->colour_hex;
+$this->colourRGB = $this->question->colour_rgb;
 
 // For Icon
 $filepath = $this->question->filepath;
@@ -16,7 +18,8 @@ $imageAttributes = $filepath ? $this->question->image_attributes : '';
 
 <div class="masterChest" style="border-color: <?php echo $colourHex; ?>;">
 
-    <div class="masterChestHeadingChest" style="background-color: <?php echo $colourHex; ?>;" onclick="window.open('?option=com_progresstool&view=questionEditor&questionID=<?php echo $questionID; ?>')">
+    <div class="masterChestHeadingChest" style="background-color: <?php echo $colourHex; ?>;"
+         onclick="window.open('?option=com_progresstool&view=questionEditor&questionID=<?php echo $questionID; ?>')">
         <h2 class="masterChestHeading">
             <?php echo $questionCounter . '. ' . $question; ?>
         </h2>
