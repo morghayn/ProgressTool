@@ -76,44 +76,46 @@ class ProgressToolModelProjectBoard extends JModelItem
     }
 
     /**
-     * Returns all approval selections made by all inactive projects associated with a user.
+     * Returns approval selections made by all inactive projects associated with a user.
      *
-     * @param int $userID the ID of the user.
-     * @return array an array of approval selections made by all inactive projects associated with a user.
-     * @since 0.5.0
+     * @param int $userID
+     * @return array
+     * @since 0.5.5
      */
-    public function getProjectApprovalSelections($userID)
+    public function getSelections($userID)
     {
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
 
-        $columns = array('A.project_id', 'A.approval_id');
-
         $query
-            ->select($db->quoteName($columns))
+            ->select(array('P.id', 'A.approval_id'))
             ->from($db->quoteName('#__pt_project', 'P'))
-            ->innerjoin($db->quoteName('#__pt_project_approval') . ' AS A ON P.id = A.project_id')
+            ->leftJoin($db->quoteName('#__pt_project_approval') . ' AS A ON P.id = A.project_id')
             ->leftjoin($db->quoteName('#__community_groups_members', 'CGM') . ' ON P.group_id = CGM.groupid')
-            ->where(array(
-                $db->quoteName('P.activated') . ' = 0',
-                $db->quoteName('user_id') . ' = ' . $db->quote($userID)
-            ))
-            ->orwhere(array(
-                $db->quoteName('P.activated') . ' = 0',
-                $db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID),
-                $db->quoteName('CGM.permissions') . ' = 1'
-            ))
-            ->group($db->quoteName('P.id'));
+            ->where(
+                array(
+                    $db->quoteName('P.activated') . ' = 0',
+                    $db->quoteName('user_id') . ' = ' . $db->quote($userID)
+                )
+            )
+            ->orWhere(
+                array(
+                    $db->quoteName('P.activated') . ' = 0',
+                    $db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID),
+                    $db->quoteName('CGM.permissions') . ' = 1'
+                )
+            );
         /*
          * Note: for some reason the queries return duplicates on the production site not on my local site
          * So we must group by projectID to avoid duplicates. I am not aware what is causing this duplication
          */
 
         $rows = $db->setQuery($query)->loadObjectList();
-        $grouped = array();
 
         foreach ($rows as $row)
-            $grouped[$row->project_id][$row->approval_id] = 1;
+        {
+            $grouped[$row->id][$row->approval_id] = 1;
+        }
 
         return $grouped;
     }

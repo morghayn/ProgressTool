@@ -20,7 +20,7 @@ class ProgressToolViewProjectBoard extends JViewLegacy
      * @var object list containing approval questions for inactive projects
      * @since 0.2.6
      */
-    protected $projects, $projectApprovalSelections, $approvalQuestions;
+    protected $projects, $selections, $approvalQuestions;
 
     /**
      * Renders the project board view.
@@ -37,7 +37,7 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         $userID = JFactory::getUser()->id;
 
         $this->projects = $model->getProjects($userID);
-        $this->projectApprovalSelections = $model->getProjectApprovalSelections($userID);
+        $this->selections = $model->getSelections($userID);
         $this->approvalQuestions = $model->getApprovalQuestions();
 
         parent::display($tpl);

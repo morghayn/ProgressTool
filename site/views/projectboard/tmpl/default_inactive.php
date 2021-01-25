@@ -9,18 +9,10 @@
             indicate the points have been discussed and progress to the survey
         </div>
         <div class="approvalCheck">
-            <?php foreach ($this->approvalQuestions as $question):
-                $param = $this->project->id . ',' . $question->id . ',' . $this->count;
-                // TODO: fix this
-                $checkStr =
-                    array_key_exists($this->project->id, $this->projectApprovalSelections)
-                        ? array_key_exists($question->id, $this->projectApprovalSelections[$this->project->id])
-                        ? 'checked'
-                        : ''
-                        : '';
-                ?>
+            <?php foreach ($this->approvalQuestions as $question): ?>
                 <label class="choice" style="--outlineColour: #ffffff; --optionColour: #ffffff;">
-                    <input onclick="approvalSelect(<?php echo $param; ?>)" type="checkbox" <?php echo $checkStr; ?>>
+                    <input onclick="approvalSelect(<?php echo $this->project->id . ',' . $question->id . ',' . $this->count; ?>)"
+                           type="checkbox" <?php echo array_key_exists($question->id, $this->selections[$this->project->id]) ? 'checked' : ''; ?>>
                     <span class="box" style="--labelColour: 255, 255, 255; color: #ffffff;">
                         <span class="text" style="color: #ffffff;">
                             <?php echo $question->question; ?><span class="disclaimer">*</span>
