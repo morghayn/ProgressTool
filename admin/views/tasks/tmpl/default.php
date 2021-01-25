@@ -6,16 +6,10 @@
     <?php echo $this->sidebar; ?>
 
     <div class="tasks">
-        <?php foreach ($this->tasks as $task): ?>
-            <?php $this->colourHex = $this->categories[--$task->category_id]->colour_hex; ?>
-            <?php $tedid = 'tedid-' . $task->id; ?>
-
-            <div class="task">
-                <div class="heading" style="background-color: <?php echo $this->colourHex; ?>">
-                    <h2>ID:<?php echo $task->id; ?></h2>
-                    <h1><?php echo $task->task; ?></h1>
-                 </div>
-            </div>
+        <?php foreach ($this->tasks as $this->task): ?>
+            <?php $this->tedid = 'tedid-' . $this->task->id; ?>
+            <?php $this->colourHex = $this->categories[--$this->task->category_id]->colour_hex; ?>
+            <?php echo $this->loadTemplate('task'); ?>
         <?php endforeach; ?>
     </div>
 </div>
