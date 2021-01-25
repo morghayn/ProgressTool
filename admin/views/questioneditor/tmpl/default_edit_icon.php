@@ -1,14 +1,14 @@
 <?php
 
 defined('_JEXEC') or die;
-$questionID = $this->question['id'];
-$colourHex = $this->question['colour_hex'];
+$questionID = $this->question->id;
+$colourHex = $this->question->colour_hex;
 $formRedirect = "index.php?option=com_progresstool&view=questionEditor&task=questionEditor.updateIcon&questionID=$questionID";
-$filepath = $this->question['filepath'];
-$width = $filepath ? $this->question['width'] : 200;
-$height = $filepath ? $this->question['height'] : 200;
-$rightOffset = $filepath ? $this->question['right_offset'] : 0;
-$bottomOffset = $filepath ? $this->question['bottom_offset'] : 0;
+$filepath = $this->question->filepath;
+$width = $filepath ? $this->question->width : 200;
+$height = $filepath ? $this->question->height : 200;
+$rightOffset = $filepath ? $this->question->right_offset : 0;
+$bottomOffset = $filepath ? $this->question->bottom_offset : 0;
 
 ?>
 

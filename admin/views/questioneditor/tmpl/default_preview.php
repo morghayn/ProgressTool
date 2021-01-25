@@ -2,48 +2,36 @@
 
 defined('_JEXEC') or die;
 
-$question = $this->question['question'];
-$questionID = $this->question['id'];
-$colourHex = $this->question['colour_hex'];
-$colourRGB = $this->question['colour_rgb'];
-$filepath = $this->question['filepath'];
-$width = $filepath ? $this->question['width'] : 200;
-$height = $filepath ? $this->question['height'] : 200;
-$rightOffset = $filepath ? $this->question['right_offset'] : 0;
-$bottomOffset = $filepath ? $this->question['bottom_offset'] : 0;
-
+$question = $this->question->question;
+$this->questionID = $this->question->id;
+$this->colourHex = $this->question->colour_hex;
+$this->colourRGB = $this->question->colour_rgb;
+$filepath = $this->question->filepath;
+$imageAttributes = $filepath ? $this->question->image_attributes : '';
 ?>
 
-<div class="masterChest" style="border-color: <?php echo $colourHex; ?>;">
+<div class="question" style="border-color: <?php echo $this->colourHex; ?>">
+    <div class="heading" style="background-color: <?php echo $this->colourHex; ?>;" onclick="toggleQuestion('<?php echo $this->questionID; ?>')">
+        <h1><?php echo '[ID: ' . $this->questionID . '] <span id="previewQuestion">' . $question . '</span>'; ?></h1>
+    </div>
+
     <?php if ($filepath): ?>
-        <div id="iconChest" class="iconChest"
-             style="width: <?php echo $width; ?>px; height:  <?php echo $height; ?>px; bottom:  <?php echo $bottomOffset; ?>px; right:  <?php echo $rightOffset; ?>px;">
+        <div id="iconChest" class="iconChest" style="<?php echo $imageAttributes; ?>">
             <figure id="figurePreview" style="width: 100%; height: 100%; margin: 0;">
-                <img src="<?php echo JURI::root() . $filepath; ?>" alt="yo not loading">
+                <img src="<?php echo JURI::root() . $filepath; ?>" alt="Progress Tool Icon">
             </figure>
         </div>
     <?php endif; ?>
 
-    <div class="masterChestHeadingChest" style="background-color: <?php echo $colourHex; ?>;">
-        <h2 class="masterChestHeading" style="text-align: left; width: 75%;">
-            <?php echo '[ID: ' . $questionID . '] <span id="previewQuestion">' . $question . '</span>'; ?>
-        </h2>
-    </div>
-
-    <div class="optionsChest">
+    <div class="choices">
         <?php foreach ($this->choices as $this->choice): ?>
-            <?php $choice = $this->choice['choice']; ?>
-            <?php $choiceID = $this->choice['id']; ?>
+            <label class="choice" style="--outlineColour: <?php echo $this->colourHex; ?>; --optionColour: <?php echo $this->colourHex; ?>;">
+                <input type="checkbox">
 
-            <label class="optionChest" style="--outlineColour: <?php echo $colourHex; ?>; --optionColour: <?php echo $colourHex; ?>;">
-                <input class="optionInput" type="checkbox">
-                <span class="optionLabel" style="--labelColour: <?php echo $colourRGB; ?>;">
-                    <span class="option" id="previewChoice<?php echo $this->choice['id']; ?>">
-                        <?php echo $choice; ?>
-                    </span>
+                <span class="box" style="--labelColour: <?php echo $this->colourRGB; ?>;">
+                    <span class="text"><?php echo $this->choice->choice; ?></span>
                 </span>
             </label>
-
         <?php endforeach; ?>
     </div>
 </div>

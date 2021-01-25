@@ -23,31 +23,26 @@ class ProgressToolModelQuestionEditor extends JModelLegacy
 
         $columns = array('Q.id', 'Q.question', 'CA.colour_hex', 'CA.colour_rgb', 'IMG.filepath', 'IMG.width', 'IMG.height', 'IMG.right_offset', 'IMG.bottom_offset');
 
+        $concat = (
+            "CONCAT(" .
+            "'width:', IMG.width, 'px; ', " .
+            "'height:', IMG.height, 'px; ', " .
+            "'right:', IMG.right_offset, 'px; ', " .
+            "'bottom:', IMG.bottom_offset, 'px; ') AS image_attributes"
+        );
+
         $getQuestion
             ->select($db->quoteName($columns))
+            ->select($concat)
             ->from($db->quoteName('#__pt_question', 'Q'))
             ->innerjoin($db->quoteName('#__pt_category', 'CA') . ' ON ' . $db->quoteName('Q.category_id') . ' = ' . $db->quoteName('CA.id'))
             ->leftjoin($db->quoteName('#__pt_question_icon', 'IMG') . ' ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('IMG.question_id'))
             ->where($db->quoteName('Q.id') . ' = ' . $db->quote($questionID))
             ->limit(1);
 
-        return $db->setQuery($getQuestion)->loadAssoc();
+        return $db->setQuery($getQuestion)->loadObject();
     }
 
-    public function updateQuestion($questionID, $question)
-    {
-        $db = JFactory::getDbo();
-        $updateQuestion = $db->getQuery(true);
-
-        $updateQuestion
-            ->update($db->quoteName('#__pt_question', 'Q'))
-            ->set($db->quoteName('Q.question') . ' = ' . $db->quote($question))
-            ->where($db->quoteName('Q.id') . ' = ' . $db->quote($questionID));
-
-        return $db->setQuery($updateQuestion)->execute();
-    }
-
-    // Choices
 
     public function getChoices($questionID)
     {
@@ -63,7 +58,20 @@ class ProgressToolModelQuestionEditor extends JModelLegacy
             ->where($db->quoteName('Q.id') . ' = ' . $db->quote($questionID))
             ->order('C.id');
 
-        return $db->setQuery($getChoice)->loadAssocList();
+        return $db->setQuery($getChoice)->loadObjectList();
+    }
+
+    public function updateQuestion($questionID, $question)
+    {
+        $db = JFactory::getDbo();
+        $updateQuestion = $db->getQuery(true);
+
+        $updateQuestion
+            ->update($db->quoteName('#__pt_question', 'Q'))
+            ->set($db->quoteName('Q.question') . ' = ' . $db->quote($question))
+            ->where($db->quoteName('Q.id') . ' = ' . $db->quote($questionID));
+
+        return $db->setQuery($updateQuestion)->execute();
     }
 
     public function updateChoices($choices)
@@ -77,9 +85,9 @@ class ProgressToolModelQuestionEditor extends JModelLegacy
             ->insert($db->quoteName('#__pt_question_choice'))
             ->columns($db->quoteName($columns));
 
-        foreach ($choices as $key => $choice)
+        foreach ($choices as $choice)
         {
-            $updateChoices->values($key . ', ' . $db->quote($choice['choice']) . ', ' . $choice['weight']);
+            $updateChoices->values($choice->id . ', ' . $db->quote($choice->choice) . ', ' . $choice->weight);
         }
 
         //return $db->replacePrefix((string) $updateChoices) . " ON DUPLICATE KEY UPDATE `choice` = VALUES(`choice`), `weight` = VALUES(`weight`)";
@@ -136,6 +144,7 @@ class ProgressToolModelQuestionEditor extends JModelLegacy
 
         $updateIcon
             ->update($db->quoteName('#__pt_question_icon', 'IMG'))
+            // TODO Must fix this, we are not using asoc anymore
             ->set($db->quoteName('IMG.right_offset') . ' = ' . $db->quote($data['right']))
             ->set($db->quoteName('IMG.bottom_offset') . ' = ' . $db->quote($data['bottom']))
             ->set($db->quoteName('IMG.width') . ' = ' . $db->quote($data['width']))

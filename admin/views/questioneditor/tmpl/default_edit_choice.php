@@ -1,8 +1,8 @@
 <?php
 
 defined('_JEXEC') or die;
-$questionID = $this->question['id'];
-$colourHex = $this->question['colour_hex'];
+$questionID = $this->question->id;
+$colourHex = $this->question->colour_hex;
 $formRedirect = 'index.php?option=com_progresstool&view=questionEditor&task=questionEditor.updateQuestionChoices';
 
 ?>
@@ -19,7 +19,7 @@ $formRedirect = 'index.php?option=com_progresstool&view=questionEditor&task=ques
         <input type="hidden" name="questionID" value="<?php echo $questionID; ?>">
 
         <?php foreach ($this->choices as $choice): ?>
-            <?php $choiceID = $choice['id']; ?>
+            <?php $choiceID = $choice->id; ?>
 
             <div class="formQuadSlot">
                 <label for="choice<?php echo $choiceID; ?>">[ID: <?php echo $choiceID; ?>] Choice</label>
@@ -30,10 +30,10 @@ $formRedirect = 'index.php?option=com_progresstool&view=questionEditor&task=ques
                               oninput="updatePreview('previewChoice<?php echo $choiceID; ?>', this.value)"
                               rows="4"
                               maxlength="255"
-                    ><?php echo $choice['choice']; ?></textarea>
+                    ><?php echo $choice->choice; ?></textarea>
                 </div>
 
-                <input name="choices[<?php echo $choiceID; ?>][weight]" type="text" value="<?php echo $choice['weight']; ?>" maxlength="6"/>
+                <input name="choices[<?php echo $choiceID; ?>][weight]" type="text" value="<?php echo $choice->weight; ?>" maxlength="6"/>
 
                 <button type="button" onclick="deleteChoice(<?php echo $choiceID; ?>)">X</button>
             </div>

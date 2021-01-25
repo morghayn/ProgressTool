@@ -1,9 +1,9 @@
 <?php
 
 defined('_JEXEC') or die;
-$questionID = $this->question['id'];
-$question = $this->question['question'];
-$colourHex = $this->question['colour_hex'];
+$questionID = $this->question->id;
+$question = $this->question->question;
+$colourHex = $this->question->colour_hex;
 $formRedirect = 'index.php?option=com_progresstool&view=questionEditor&task=questionEditor.updateQuestion';
 
 ?>

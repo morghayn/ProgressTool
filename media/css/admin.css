@@ -504,32 +504,6 @@ tbody tr:hover {
     flex: 1;
 }
 
-.iconChest {
-    margin: 0 auto;
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background-color: white;
-    display: block;
-}
-
-@media only screen and (max-width: 1499px) {
-    .iconChest {
-        display: none;
-    }
-}
-
-.masterChest {
-    position: relative;
-}
-
-/***/
-
-.masterChest {
-    width: 60%;
-    margin: 0 auto;
-}
-
 .superChest {
     width: 100%;
     display: flex;
@@ -537,28 +511,16 @@ tbody tr:hover {
     /**margin-top: 75px;*/
 }
 
-/*--------------------------------------------------/
-                                         questions /
--------------------------------------------------*/
-/** For Icon Chest */
-
-.iconChest {
+.superChest .question {
     margin: 0 auto;
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background-color: white;
-    display: block;
 }
 
-@media only screen and (max-width: 1499px) {
-    .iconChest {
-        display: none;
-    }
+.superChest .question h1 {
+    cursor: text;
 }
 
-.masterChest {
-    position: relative;
+.superChest .question h1:hover {
+    box-shadow: black;
 }
 
 /*--------------------------------------------------/
@@ -608,7 +570,7 @@ tbody tr:hover {
     border: 2px solid white;
     text-align: center;
     width: 70px;
-    margin: auto 10px auto auto;
+    margin: auto auto auto 10px;
     font-size: 1.1rem;
     line-height: 1;
     padding: 3px;
