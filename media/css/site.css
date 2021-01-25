@@ -306,9 +306,6 @@
 
 .project * {
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
-    --outlineColour: #ffffff;
-    --optionColour: #ffffff;
-    --labelColour: 255, 255, 255;
     color: #ffffff;
 }
 
@@ -337,6 +334,15 @@
 .project .text {
     font-size: 1rem;
     color: #ffffff;
+}
+
+.project .choice {
+    --outlineColour: #ffffff;
+    --optionColour: #ffffff;
+}
+
+.project .box {
+    --labelColour: 255, 255, 255;
 }
 
 .project .disclaimer {
