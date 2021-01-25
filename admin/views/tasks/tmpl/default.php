@@ -7,11 +7,14 @@
 
     <div class="tasks">
         <?php foreach ($this->tasks as $task): ?>
-            <div class="task" onclick="openTaskEditor('teid_<?php echo $task->id; ?>')">
-                <div class="heading" style="background-color: <?php echo $this->categories[--$task->category_id]->colour_hex; ?>">
-                    <span class="id">ID:<?php echo $task->id; ?></span>
+            <?php $this->colourHex = $this->categories[--$task->category_id]->colour_hex; ?>
+            <?php $tedid = 'tedid-' . $task->id; ?>
+
+            <div class="task">
+                <div class="heading" style="background-color: <?php echo $this->colourHex; ?>">
+                    <h2>ID:<?php echo $task->id; ?></h2>
                     <h1><?php echo $task->task; ?></h1>
-                </div>
+                 </div>
             </div>
         <?php endforeach; ?>
     </div>
