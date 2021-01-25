@@ -105,46 +105,6 @@ body {
 }
 
 /*--------------------------------------------------/
-                                          statChip /
--------------------------------------------------*/
-
-.statChips {
-    width: 80%;
-    margin: 0 auto;
-    display: flex;
-    gap: 5rem;
-    flex-wrap: wrap;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-}
-
-.statChip {
-    width: 10rem;
-    height: 15rem;
-    color: #ffffff;
-    background-color: #0C4DA0;
-}
-
-.statChip h1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #0C4DA0;
-    margin: 1rem auto;
-    font-size: 3.5rem;
-    background-color: white;
-    line-height: 1;
-    width: 7.5rem;
-    height: 7.5rem;
-    border-radius: 15rem;
-}
-
-.statChip h2 {
-    margin: auto 1rem;
-}
-
-/*--------------------------------------------------/
                                      Admin Sidebar /
 -------------------------------------------------*/
 /* We might replace this custom sidebar
@@ -198,6 +158,46 @@ or do something with JLayouts. */
     .sideNavigation a {
         font-size: 18px;
     }
+}
+
+/*--------------------------------------------------/
+                                          statChip /
+-------------------------------------------------*/
+
+.statChips {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    gap: 5rem;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.statChip {
+    width: 10rem;
+    height: 15rem;
+    color: #ffffff;
+    background-color: #0C4DA0;
+}
+
+.statChip h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0C4DA0;
+    margin: 1rem auto;
+    font-size: 3.5rem;
+    background-color: white;
+    line-height: 1;
+    width: 7.5rem;
+    height: 7.5rem;
+    border-radius: 15rem;
+}
+
+.statChip h2 {
+    margin: auto 1rem;
 }
 
 /*--------------------------------------------------/
@@ -371,12 +371,13 @@ tbody tr:hover {
 /*--------------------------------------------------/
                                     questionEditor /
 -------------------------------------------------*/
-
+/*
 .editor {
     display: flex;
     flex-direction: column;
     width: 35%;
 }
+ */
 
 .formChest {
     width: 100%;
