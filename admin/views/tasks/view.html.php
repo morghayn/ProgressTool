@@ -20,7 +20,7 @@ class ProgressToolViewTasks extends JViewLegacy
      * @object comprising of tasks of objects
      * @since 0.5.5
      */
-    protected $heading, $sidebar, $tasks, $categories;
+    protected $heading, $sidebar, $tasks, $categories, $choices, $countryID;
 
     /**
      * Renders view.
@@ -33,11 +33,14 @@ class ProgressToolViewTasks extends JViewLegacy
         $app = JFactory::getApplication();
         $input = $app->input;
 
-        $countryID = $input->getInt('countryID', 0);
+        $this->countryID = $input->getInt('countryID', 0);
 
         $model = parent::getModel();
         $this->categories = $model->getCategories();
-        $this->tasks = $model->getTasks($countryID);
+        $this->tasks = $model->getTasks($this->countryID);
+        $this->choices = $model->getChoices($this->countryID);
+
+        //var_dump($this->countryID);
 
         $this->setHeading();
         $this->setSidebar();

@@ -68,4 +68,38 @@ class ProgressToolModelTasks extends JModelLegacy
 
         return $db->setQuery($getTasks)->loadObjectList();
     }
+
+    public function getChoices($countryID)
+    {
+        $db = JFactory::getDbo();
+        $getChoices = $db->getQuery(true);
+
+        $getChoices
+            ->select(
+                array(
+                    'T.task_id',
+                    'CH.id',
+                    'CH.question_id',
+                    'CH.choice',
+                    'CH.weight'
+                )
+            )
+            ->from($db->quoteName('#__pt_choice_task', 'T'))
+            ->innerJoin($db->quoteName('#__pt_question_choice', 'CH') . ' ON CH.id = T.choice_id')
+            ->innerjoin($db->quoteName('#__pt_question', 'Q') . ' ON Q.id = CH.question_id')
+            ->innerjoin($db->quoteName('#__pt_question_country', 'CO') . ' ON CO.question_id = Q.id')
+            ->where($db->quoteName('CO.country_id') . ' = ' . $db->quote($countryID));
+
+
+        $choices = array();
+        $rows = $db->setQuery($getChoices)->loadObjectList();
+
+        // Grouping by task_id
+        foreach ($rows as $row)
+        {
+            $choices[$row->task_id][$row->id] = $row;
+        }
+
+        return $choices;
+    }
 }
