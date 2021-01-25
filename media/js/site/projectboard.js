@@ -30,16 +30,16 @@ function approvalSelect(projectID, approvalID, count)
  * The AJAX will receive this HTML and replace the old inactive project template with the active project template.
  *
  * @param projectID the ID of the approved project.
- * @param projectCount the current position of the project on the project board. Used for the alternating design.
+ * @param count the current position of the project on the project board. Used for the alternating design.
  */
-function getProjectTemplate(projectID, projectCount)
+function getProjectTemplate(projectID, count)
 {
     let token = jQuery("#token").attr("name")
     let html = ''
 
     jQuery.ajax(
         {
-            data: {[token]: "1", task: "getProjectTemplate", format: "raw", projectID: projectID, projectCount: projectCount},
+            data: {[token]: "1", task: "getProjectTemplate", format: "raw", projectID: projectID, count: count},
             async: false,
             success: (result) => html = result,
             error: () => html = '<h2>Failure to perform activateProject(). Contact an administrator if this failure persists.</h2>'

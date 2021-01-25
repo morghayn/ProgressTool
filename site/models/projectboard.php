@@ -111,6 +111,7 @@ class ProgressToolModelProjectBoard extends JModelItem
          */
 
         $rows = $db->setQuery($query)->loadObjectList();
+        $grouped = array();
 
         foreach ($rows as $row)
         {
