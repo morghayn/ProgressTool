@@ -340,291 +340,9 @@ tbody tr:hover {
     to {top: 0; opacity: 1}
 }
 
-
-/*--------------------------------------------------/
-                                       masterChest /
--------------------------------------------------*/
-
-.masterChest {
-    position: relative;
-}
-
-.masterChest {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: auto auto 5em auto;
-
-    box-sizing: border-box;
-    background-color: #ffffff;
-    border: 2px solid #0C4DA0;
-
-    box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
-    -webkit-box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
-    -moz-box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
-
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
-}
-
-.masterChestHeadingChest {
-    cursor: pointer;
-    margin: 0 auto;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
-    color: #ffffff;
-    background-color: #0C4DA0;
-}
-
-.masterChestHeading {
-    width: 75%;
-    text-align: left;
-    margin: 0 auto;
-    padding: 1.05rem;
-    font-size: 1.35rem;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
-    line-height: 1.1;
-    word-wrap: break-word;
-    font-weight: 600;
-    color: #ffffff;
-}
-
-.masterChest .iconChest {
-    margin: 0 auto;
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background-color: white;
-    display: block;
-}
-
-@media only screen and (max-width: 1499px) {
-    .iconChest {
-        display: none;
-    }
-}
-
-.masterChest .scoreBox {
-    font-weight: 600;
-    box-sizing: border-box;
-    border: 2px solid white;
-    text-align: center;
-    width: 70px;
-    margin: auto 10px auto auto;
-    font-size: 1.20em;
-    line-height: 1;
-    padding: 3px;
-}
-
-/*--------------------------------------------------/
-                                      optionsChest /
--------------------------------------------------*/
-
-.optionsChest {
-    width: 90%;
-    height: 100%;
-    margin: 18px auto 18px auto;
-
-    display: flex;
-    flex-direction: column;
-}
-
-.optionChest {
-    margin: 10px auto 10px 0;
-    display: inline-flex;
-    position: relative;
-}
-
-.option {
-    margin: auto;
-    color: #000000;
-    line-height: 1.25;
-    font-size: 1.15em;
-    font-weight: 500;
-}
-
-.option::before {
-    opacity: 0;
-}
-
-.optionInput {
-    /* The pattern by Sara Soueidan https://www.sarasoueidan.com/blog/inclusively-hiding-and-styling-checkboxes-and-radio-buttons/ */
-    width: 37px;
-    height: 37px;
-    opacity: 0;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 0;
-}
-
-/* 1. Calculation of the gap for the custom checkbox */
-.optionLabel {
-    display: inline-flex;
-    min-height: 37.5px;
-    padding-left: calc(37.5px + 1.15em);
-}
-
-.optionInput:not(:disabled) ~ .optionLabel {
-    cursor: pointer;
-}
-
-/* 1. Ems helps to calculate size of the checkbox */
-.optionLabel::before,
-.optionLabel::after {
-    content: "";
-    box-sizing: border-box;
-
-    /** Size of checkbox... */
-    width: 1em;
-    height: 1em;
-    font-size: 37.5px; /* 1 */
-
-    /* can put margin-top here to move box, but then tick positioning is skewed */
-    position: absolute;
-    left: 0;
-}
-
-.optionLabel::before {
-    border: 2px solid var(--optionColour);
-    z-index: 2;
-}
-
-.optionInput:not(:disabled) ~ .optionLabel::after {
-    background-color: var(--optionColour);
-    opacity: 0;
-}
-
-.optionInput:not(:disabled):checked ~ .optionLabel::after {
-    opacity: 1;
-}
-
-/* The arrow size and position depends from sizes of square because I needed an arrow correct positioning from the top left corner of the element option
-    1. Ems helps to calculate size and position of the arrow */
-.optionInput:not(:disabled) ~ .optionLabel .option::before {
-    content: "";
-    width: 0;
-    height: 0;
-    font-size: 37.5px; /* 1 */
-
-    border-left-width: 0;
-    border-bottom-width: 0;
-    border-left-style: solid;
-    border-bottom-style: solid;
-    border-color: #ffffff;
-
-    position: absolute;
-    /** Useless? */
-    top: .5428em;
-    left: .25em;
-    z-index: 3;
-
-    transform-origin: left top;
-    transform: rotate(-40deg) skew(10deg);
-}
-
-.optionInput:not(:disabled):checked ~ .optionLabel .option::before {
-    width: .4em;
-    height: .2em;
-    border-left-width: 2px;
-    border-bottom-width: 2px;
-}
-
-/*--------------------------------------------------/
-                               optionsChest States /
--------------------------------------------------*/
-
-/* focus state */
-.optionChest:focus-within {
-    outline: 2px solid var(--outlineColour);
-    outline-offset: 6px;
-}
-
-.optionLabel::before,
-.optionLabel::after {
-    border-radius: 4px;
-    background-color: rgba(var(--labelColour), 0.10);
-}
-
-/* The animation of switching states */
-.optionInput:not(:disabled) ~ .optionLabel::before,
-.optionInput:not(:disabled) ~ .optionLabel::after {
-    opacity: 1;
-    transform-origin: center center;
-    will-change: transform;
-    transition: transform .2s ease-out;
-}
-
-.optionInput:not(:disabled) ~ .optionLabel::before {
-    transform: rotateY(0deg);
-    transition-delay: .2s;
-}
-
-.optionInput:not(:disabled) ~ .optionLabel::after {
-    transform: rotateY(90deg);
-}
-
-.optionInput:not(:disabled):checked ~ .optionLabel::before {
-    transform: rotateY(-90deg);
-    transition-delay: 0s;
-}
-
-.optionInput:not(:disabled):checked ~ .optionLabel::after {
-    transform: rotateY(0deg);
-    transition-delay: .2s;
-}
-
-.optionInput:not(:disabled):checked ~ .optionLabel .option::before {
-    opacity: 1;
-    transition: opacity .1s ease-out .3s, width .1s ease-out .5s, height .2s ease-out .3s;
-}
-
-/* disabled state */
-.optionInput:disabled ~ .optionLabel {
-    opacity: 0.24;
-    cursor: not-allowed;
-}
-
 /*--------------------------------------------------/
                                     questionEditor /
 -------------------------------------------------*/
-
-.iconChest {
-    margin: 0 auto;
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background-color: white;
-    display: block;
-}
-
-@media only screen and (max-width: 1499px) {
-    .iconChest {
-        display: none;
-    }
-}
-
-.masterChest {
-    position: relative;
-}
-
-/***/
-
-.masterChest {
-    width: 60%;
-    margin: 0 auto;
-}
-
-.superChest {
-    width: 100%;
-    display: flex;
-    align-items: baseline;
-    /**margin-top: 75px;*/
-}
 
 .editor {
     display: flex;
@@ -786,6 +504,39 @@ tbody tr:hover {
     flex: 1;
 }
 
+.iconChest {
+    margin: 0 auto;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    display: block;
+}
+
+@media only screen and (max-width: 1499px) {
+    .iconChest {
+        display: none;
+    }
+}
+
+.masterChest {
+    position: relative;
+}
+
+/***/
+
+.masterChest {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.superChest {
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    /**margin-top: 75px;*/
+}
+
 /*--------------------------------------------------/
                                          questions /
 -------------------------------------------------*/
@@ -810,4 +561,241 @@ tbody tr:hover {
     position: relative;
 }
 
-/***/
+/*--------------------------------------------------/
+                                          question /
+-------------------------------------------------*/
+
+.question {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: auto auto 5em auto;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border: 2px solid #0C4DA0;
+    box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
+    -webkit-box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
+    -moz-box-shadow: 14px 15px 25px 0 rgba(80, 123, 251, 0.35);
+}
+
+.question * {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+    word-wrap: break-word;
+}
+
+.question .heading {
+    margin: 0 auto;
+    cursor: pointer;
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+
+.question .heading h1 {
+    flex: 3;
+    height: auto;
+    min-height: 2.5rem;
+    margin: 0 2.5%;
+    font-size: 1.25rem;
+    justify-content: left;
+    background-color: unset;
+    white-space: unset;
+}
+
+.question .heading h2 {
+    font-weight: 600;
+    box-sizing: border-box;
+    border: 2px solid white;
+    text-align: center;
+    width: 70px;
+    margin: auto 10px auto auto;
+    font-size: 1.1rem;
+    line-height: 1;
+    padding: 3px;
+    color: white;
+}
+
+.question .iconChest {
+    margin: 0 auto;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    display: block;
+}
+
+@media only screen and (max-width: 1499px) {
+    .question .iconChest {
+        display: none;
+    }
+}
+
+/*--------------------------------------------------/
+                                           choices /
+-------------------------------------------------*/
+
+.choices {
+    width: 90%;
+    height: 100%;
+    margin: 18px auto 18px auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.choice {
+    margin: 10px auto 10px 0;
+    display: inline-flex;
+    position: relative;
+}
+
+.text {
+    margin: auto;
+    color: #000000;
+    line-height: 1.25;
+    font-size: 1.15em;
+    font-weight: 500;
+}
+
+.text::before {
+    opacity: 0;
+}
+
+.choice input {
+    /* The pattern by Sara Soueidan https://www.sarasoueidan.com/blog/inclusively-hiding-and-styling-checkboxes-and-radio-buttons/ */
+    width: 37px;
+    height: 37px;
+    opacity: 0;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+}
+
+/* 1. Calculation of the gap for the custom checkbox */
+.box {
+    display: inline-flex;
+    min-height: 37.5px;
+    padding-left: calc(37.5px + 1.15em);
+}
+
+.choice input:not(:disabled) ~ .box {
+    cursor: pointer;
+}
+
+/* 1. Ems helps to calculate size of the checkbox */
+.box::before,
+.box::after {
+    content: "";
+    box-sizing: border-box;
+
+    /** Size of checkbox... */
+    width: 1em;
+    height: 1em;
+    font-size: 37.5px; /* 1 */
+
+    /* can put margin-top here to move box, but then tick positioning is skewed */
+    position: absolute;
+    left: 0;
+}
+
+.box::before {
+    border: 2px solid var(--optionColour);
+    z-index: 2;
+}
+
+.choice input:not(:disabled) ~ .box::after {
+    background-color: var(--optionColour);
+    opacity: 0;
+}
+
+.choice input:not(:disabled):checked ~ .box::after {
+    opacity: 1;
+}
+
+/* The arrow size and position depends from sizes of square because I needed an arrow correct positioning from the top left corner of the element option
+    1. Ems helps to calculate size and position of the arrow */
+.choice input:not(:disabled) ~ .box .text::before {
+    content: "";
+    width: 0;
+    height: 0;
+    font-size: 37.5px; /* 1 */
+
+    border-left-width: 0;
+    border-bottom-width: 0;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-color: #ffffff;
+
+    position: absolute;
+    /** Useless? */
+    top: .5428em;
+    left: .25em;
+    z-index: 3;
+
+    transform-origin: left top;
+    transform: rotate(-40deg) skew(10deg);
+}
+
+.choice input:not(:disabled):checked ~ .box .text::before {
+    width: .4em;
+    height: .2em;
+    border-left-width: 2px;
+    border-bottom-width: 2px;
+}
+
+/*--------------------------------------------------/
+                                     choice states /
+-------------------------------------------------*/
+
+/* focus state */
+.choice:focus-within {
+    outline: 2px solid var(--outlineColour);
+    outline-offset: 6px;
+}
+
+.box::before,
+.box::after {
+    border-radius: 4px;
+    background-color: rgba(var(--labelColour), 0.10);
+}
+
+/* The animation of switching states */
+.choice input:not(:disabled) ~ .box::before,
+.choice input:not(:disabled) ~ .box::after {
+    opacity: 1;
+    transform-origin: center center;
+    will-change: transform;
+    transition: transform .2s ease-out;
+}
+
+.choice input:not(:disabled) ~ .box::before {
+    transform: rotateY(0deg);
+    transition-delay: .2s;
+}
+
+.choice input:not(:disabled) ~ .box::after {
+    transform: rotateY(90deg);
+}
+
+.choice input:not(:disabled):checked ~ .box::before {
+    transform: rotateY(-90deg);
+    transition-delay: 0s;
+}
+
+.choice input:not(:disabled):checked ~ .box::after {
+    transform: rotateY(0deg);
+    transition-delay: .2s;
+}
+
+.choice input:not(:disabled):checked ~ .box .text::before {
+    opacity: 1;
+    transition: opacity .1s ease-out .3s, width .1s ease-out .5s, height .2s ease-out .3s;
+}
+
+/* disabled state */
+.choice input:disabled ~ .box {
+    opacity: 0.24;
+    cursor: not-allowed;
+}

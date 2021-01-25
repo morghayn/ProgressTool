@@ -6,9 +6,11 @@
     <?php echo $this->sidebar; ?>
 
     <div style="width: 60%; margin: 0 auto;">
-        <?php $this->questionCounter = 0; ?>
+        <?php $this->count = 0; ?>
         <?php foreach ($this->questions as $this->question): ?>
-            <?php $this->questionCounter++; ?>
+            <?php $this->count++; ?>
+            <?php $this->colourHex = $this->question->colour_hex; ?>
+            <?php $this->colourRGB = $this->question->colour_rgb; ?>
             <?php echo $this->loadTemplate('question'); ?>
         <?php endforeach; ?>
     </div>
