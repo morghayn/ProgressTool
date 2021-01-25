@@ -40,8 +40,8 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         $this->selections = $model->getSelections($userID);
         $this->approvalQuestions = $model->getApprovalQuestions();
 
-        parent::display($tpl);
         $this->prepareDocument();
+        parent::display($tpl);
     }
 
     /**

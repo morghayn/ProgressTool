@@ -1,8 +1,17 @@
-<?php
-defined('_JEXEC') or die;
+<?php defined('_JEXEC') or die;
 
-jimport('joomla.application.component.view');
-
+/**
+ * (Site) Class ProgressToolViewProjectBoard
+ *
+ * View for front-end project board functionality.
+ *
+ * @package ProgressTool
+ * @subpackage site
+ * @since 0.5.5
+ *
+ * @author  Morgan Nolan <morgan.nolan@hotmail.com>
+ * @link    https://github.com/morghayn
+ */
 class ProgressToolViewProjectBoard extends JViewLegacy
 {
     /**
@@ -12,18 +21,26 @@ class ProgressToolViewProjectBoard extends JViewLegacy
      * @var object list of all approval questions.
      * @since 0.5.0
      */
-    protected $project, $projectCount, $projectApprovalSelections, $approvalQuestions;
+    protected $project, $count, $selections, $approvalQuestions;
 
+    /**
+     * Renders an inactive or active project depending on it's activation status.
+     *
+     * @param null $tpl
+     * @return mixed|void
+     * @since 0.5.5
+     */
     function display($tpl = null)
     {
         $input = JFactory::getApplication()->input;
         $projectID = $input->getInt('projectID', 0);
+        $this->count = $input->getInt('count', 0);
 
         JLoader::register('Auth', JPATH_BASE . '/components/com_progresstool/helpers/Auth.php');
         Auth::authorize($projectID);
+
         $model = parent::getModel('projectboard');
         $this->project = $model->getProject($projectID);
-        $this->projectCount = $input->getInt('projectCount', 0);
 
         if ($this->project->activated == 1)
         {
@@ -31,8 +48,7 @@ class ProgressToolViewProjectBoard extends JViewLegacy
         }
         else
         {
-            $userID = JFactory::getUser()->id;
-            $this->projectApprovalSelections = $model->getProjectApprovalSelections($userID);
+            $this->selections = $model->getSelections(JFactory::getUser()->id);
             $this->approvalQuestions = $model->getApprovalQuestions();
             parent::display('inactive');
         }

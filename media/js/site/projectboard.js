@@ -3,9 +3,9 @@
  *
  * @param projectID the ID of the inactive project.
  * @param approvalID the ID of the approval selection made.
- * @param projectCount the current position of the project on the project board. Used for the alternating design.
+ * @param count the current position of the project on the project board. Used for the alternating design.
  */
-function approvalSelect(projectID, approvalID, projectCount)
+function approvalSelect(projectID, approvalID, count)
 {
     let token = jQuery("#token").attr("name")
 
@@ -16,7 +16,7 @@ function approvalSelect(projectID, approvalID, projectCount)
             {
                 if (result.data === true)
                 {
-                    document.getElementById(projectID).outerHTML = getProjectTemplate(projectID, projectCount)
+                    document.getElementById(projectID).outerHTML = getProjectTemplate(projectID, count)
                 }
             },
             error: () => console.log('Failure to perform affirm(). Contact an dashboard if this failure persists.'),

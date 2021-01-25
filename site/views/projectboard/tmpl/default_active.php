@@ -3,9 +3,9 @@
 <div class="project" id="<?php echo $this->project->id; ?>">
 
     <div class="details" style="order: <?php echo $this->count % 2 ? 0 : 2; ?>;">
-        <div class="title"><?php echo $this->project->name; ?></div>
-        <div class="type"><?php echo $this->project->type; ?></div>
-        <div class="description"><?php echo $this->project->description; ?></div>
+        <h1><?php echo $this->project->name; ?></h1>
+        <h2><?php echo $this->project->type; ?></h2>
+        <p><?php echo $this->project->description; ?></p>
     </div>
 
     <div class="buttons" style="order: <?php echo $this->count % 2 ? 2 : 0; ?>;">
