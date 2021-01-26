@@ -7,8 +7,9 @@
 
     <div class="tasks">
         <?php foreach ($this->tasks as $this->task): ?>
-            <?php $this->tedid = 'tedid-' . $this->task->id; ?>
             <?php $this->colourHex = $this->categories[--$this->task->category_id]->colour_hex; ?>
+            <?php $this->taskid = 'taskid-' . $this->task->id; ?>
+
             <?php echo $this->loadTemplate('task'); ?>
         <?php endforeach; ?>
     </div>
