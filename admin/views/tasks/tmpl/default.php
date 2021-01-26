@@ -5,8 +5,10 @@
     <?php echo $this->heading; ?>
     <?php echo $this->sidebar; ?>
 
-    <button onclick="openAllTaskEditors()">Open All Task Editors</button>
-    <button onclick="closeAllTaskEditors()">Close All Task Editors</button>
+    <div style="width: 100%; margin: 2rem 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;">
+        <button onclick="openAllTaskEditors()">Open All Task Editors</button>
+        <button onclick="closeAllTaskEditors()">Close All Task Editors</button>
+    </div>
 
     <div class="tasks">
         <?php foreach ($this->tasks as $this->task): ?>

@@ -281,9 +281,8 @@ or do something with JLayouts. */
 }
 
 .task .editor {
-    /* temporaray blank space for styling */
     height: auto;
-    display: block;
+    display: none;
 }
 
 .task .editor .choices {

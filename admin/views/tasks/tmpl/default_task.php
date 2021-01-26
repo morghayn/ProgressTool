@@ -35,4 +35,4 @@
 </div>
 
 <!-- For testing purposes -->
-<button onclick="buildTaskObject('<?php echo $this->taskid; ?>')">Test buildTaskObject()</button>
+<!--<button onclick="buildTaskObject('<?php //echo $this->taskid; ?>')">Test buildTaskObject()</button>-->
