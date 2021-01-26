@@ -1,19 +1,28 @@
 <?php defined('_JEXEC') or die; ?>
 
 <div id="<?php echo $this->taskid; ?>" class="task" onclick="openTaskEditor(this.id)" style="border-color: <?php echo $this->colourHex; ?>">
+
+    <!-- Heading -->
     <div class="heading" style="background-color: <?php echo $this->colourHex; ?>">
-        <h2>ID:<?php echo $this->task->id; ?></h2>
+        <h2>TID:<?php echo $this->task->id; ?></h2>
         <h1 id="task" contenteditable="true"><?php echo $this->task->task; ?></h1>
     </div>
+
+    <!-- Editor -->
     <div class="editor">
+
         <!-- Work in progress -->
         <?php if (array_key_exists($this->task->id, $this->choices)): ?>
             <div class="choices">
                 <?php foreach ($this->choices[$this->task->id] as $this->choice): ?>
-                    <h2><?php echo $this->choice->id . '. ' . $this->choice->choice; ?></h2>
+                    <div class="choice">
+                        <h3>CID:<?php echo $this->choice->id; ?></h3>
+                        <h2><?php echo $this->choice->choice; ?></h2>
+                    </div>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
+
     </div>
 </div>
 
