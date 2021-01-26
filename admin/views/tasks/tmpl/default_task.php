@@ -1,9 +1,11 @@
 <?php defined('_JEXEC') or die; ?>
 
-<form id="<?php echo $this->taskid; ?>" class="task">
+<form id="<?php echo $this->taskid; ?>" class="task" style="border-color: <?php echo $this->colourHex; ?>">
     <div class="heading" style="background-color: <?php echo $this->colourHex; ?>">
         <h2>ID:<?php echo $this->task->id; ?></h2>
         <h1><?php echo $this->task->task; ?></h1>
     </div>
+    <div class="editor">
+        <!-- Work in progress -->
+    </div>
 </form>
-

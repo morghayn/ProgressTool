@@ -262,6 +262,8 @@ or do something with JLayouts. */
 .task {
     width: 80%;
     margin: 0;
+    border: 0.15rem solid #000000;
+    box-sizing: border-box;
 }
 
 .task .heading {
@@ -280,6 +282,13 @@ or do something with JLayouts. */
     height: auto !important;
     padding: 0.4rem;
 }
+
+.task .editor {
+    /* temporaray blank space for styling */
+    height: 5rem;
+}
+
+
 
 /*--------------------------------------------------/
                                       projectTable /
