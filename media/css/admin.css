@@ -286,6 +286,7 @@ or do something with JLayouts. */
 .task .editor {
     /* temporaray blank space for styling */
     height: 5rem;
+    display: none;
 }
 
 

@@ -1,4 +1,7 @@
-function openTaskEditor(teid)
+function openTaskEditor(taskid)
 {
-    alert(teid)
+    let task = document.querySelector('#' + taskid)
+    let taskEditor = task.querySelector('.editor')
+
+    taskEditor.style.display = taskEditor.style.display === 'block' ? 'none' : 'block'
 }
