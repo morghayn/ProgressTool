@@ -261,6 +261,7 @@ or do something with JLayouts. */
 
 .task {
     width: 80%;
+    margin: 0;
 }
 
 .task .heading {
