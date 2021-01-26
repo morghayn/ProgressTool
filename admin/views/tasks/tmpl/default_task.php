@@ -7,6 +7,15 @@
     </div>
     <div class="editor">
         <!-- Work in progress -->
-        <button onclick="buildTaskObject('<?php echo $this->taskid; ?>')">Test buildTaskObject()</button>
+        <?php if (array_key_exists($this->task->id, $this->choices)): ?>
+            <div class="choices">
+                <?php foreach ($this->choices[$this->task->id] as $this->choice): ?>
+                    <h2><?php echo $this->choice->id . '. ' . $this->choice->choice; ?></h2>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
     </div>
 </div>
+
+<!-- For testing purposes -->
+<button onclick="buildTaskObject('<?php echo $this->taskid; ?>')">Test buildTaskObject()</button>
