@@ -290,6 +290,21 @@ or do something with JLayouts. */
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+}
+
+.task .editor .choices button {
+    margin: 0 0 auto auto;
+    padding: 0.4rem 0.75rem;
+    font-size: 1.1rem;
+    color: mediumseagreen;
+    background-color: white;
+    border: 0.1rem solid #707070;
+}
+
+.task .editor .choices button:hover {
+    color: white;
+    background-color: mediumseagreen;
 }
 
 .task .editor .choice {

@@ -20,6 +20,7 @@
                         <h2><?php echo $this->choice->choice; ?></h2>
                     </div>
                 <?php endforeach; ?>
+                <button>Add New Choice</button>
             </div>
         <?php endif; ?>
 
