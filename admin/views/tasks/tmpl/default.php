@@ -5,6 +5,9 @@
     <?php echo $this->heading; ?>
     <?php echo $this->sidebar; ?>
 
+    <button onclick="openAllTaskEditors()">Open All Task Editors</button>
+    <button onclick="closeAllTaskEditors()">Close All Task Editors</button>
+
     <div class="tasks">
         <?php foreach ($this->tasks as $this->task): ?>
             <?php $this->colourHex = $this->categories[--$this->task->category_id]->colour_hex; ?>

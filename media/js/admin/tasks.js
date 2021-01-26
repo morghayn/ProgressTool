@@ -26,3 +26,15 @@ function buildTaskObject(taskid)
 
     alert(JSON.stringify(taskObject))
 }
+
+function openAllTaskEditors()
+{
+    let taskEditors = document.querySelectorAll('.editor')
+    taskEditors.forEach(e => e.style.display = 'block')
+}
+
+function closeAllTaskEditors()
+{
+    let taskEditors = document.querySelectorAll('.editor')
+    taskEditors.forEach(e => e.style.display = 'none')
+}
