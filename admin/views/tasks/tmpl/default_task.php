@@ -7,5 +7,6 @@
     </div>
     <div class="editor">
         <!-- Work in progress -->
+        <button onclick="buildTaskObject('<?php echo $this->taskid; ?>')">Test buildTaskObject()</button>
     </div>
 </div>
