@@ -14,6 +14,19 @@
  */
 class ProgressToolModelTest extends JModelLegacy
 {
+    public function getProjects()
+    {
+        $db = JFactory::getDbo();
+        $getProjects = $db->getQuery(true);
+
+        $getProjects
+            ->select($db->quoteName('P.id'))
+            ->from($db->quoteName('#__pt_project', 'P'))
+            ->where($db->quoteName('deactivated') . ' != 1');
+
+        return $db->setQuery($getProjects)->loadColumn();
+    }
+
     /**
      * Retrieves the categories within the progress tool. Returns an additional field -- the total weight among all the choices
      * within that category.

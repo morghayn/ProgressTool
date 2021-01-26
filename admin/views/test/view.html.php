@@ -14,7 +14,7 @@
  */
 class ProgressToolViewTest extends JViewLegacy
 {
-    protected $categories, $progress;
+    protected $categories, $progress, $progresses, $projects;
 
     /**
      * Renders view.
@@ -28,8 +28,10 @@ class ProgressToolViewTest extends JViewLegacy
         $input = $app->input;
 
         $model = parent::getModel();
-        $this->categories = $model->getCategories($this->countryID, $this->projectID);
+
+        $this->projects = $model->getProjects();
         $this->setProgress();
+        var_dump($this->progresses);
 
         $this->prepareDocument();
         parent::display($tpl);
@@ -42,13 +44,22 @@ class ProgressToolViewTest extends JViewLegacy
      */
     private function setProgress()
     {
-        $this->progress = array();
-        foreach ($this->categories as $category)
+        $model = parent::getModel();
+        $this->progresses = array();
+
+        foreach($this->projects as $projectID)
         {
-            array_push(
-                $this->progress,
-                intval(($category->projectTotal / $category->categoryTotal) * 100)
-            );
+            $this->categories = $model->getCategories(1, $projectID);
+            $this->progress = array();
+            foreach ($this->categories as $category)
+            {
+                array_push(
+                    $this->progress,
+                    intval(($category->projectTotal / $category->categoryTotal) * 100)
+                );
+            }
+
+            array_push($this->progresses, $this->progress);
         }
     }
 
@@ -61,6 +72,7 @@ class ProgressToolViewTest extends JViewLegacy
     {
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin.css");
+        $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/test.css");
         $document->addScript(JURI::root() . "media/com_progresstool/js/admin/adminBase.js");
         $document->addScript(JURI::root() . "media/com_progresstool/js/admin/test.js");
     }

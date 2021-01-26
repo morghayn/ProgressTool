@@ -1,0 +1,17 @@
+* {
+    --backgroundColor: 255,255,255;
+}
+
+.category {
+    background-color: rgba(var(--backgroundColour), 0.25);
+    height: 30vh;
+    width: 100%;
+}
+
+.project {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 30rem;
+    background-color: rgba(var(--backgroundColour), 1);
+    border: 2px solid black;
+}
