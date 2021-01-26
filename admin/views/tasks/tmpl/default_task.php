@@ -16,11 +16,16 @@
             <div id="choices" class="choices">
                 <?php foreach ($this->choices[$this->task->id] as $this->choice): ?>
                     <div class="choice">
+                        <button>Remove</button>
                         <h3 id="<?php echo $this->choice->id; ?>">CID:<?php echo $this->choice->id; ?></h3>
                         <h2><?php echo $this->choice->choice; ?></h2>
                     </div>
                 <?php endforeach; ?>
-                <button>Add New Choice</button>
+
+                <div class="buttons">
+                    <button class="add">Add Choice</button>
+                    <button class="save">Save</button>
+                </div>
             </div>
         <?php endif; ?>
 

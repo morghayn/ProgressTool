@@ -294,12 +294,19 @@ or do something with JLayouts. */
 }
 
 .task .editor .choices button {
-    margin: 0 0 auto auto;
     padding: 0.4rem 0.75rem;
     font-size: 1.1rem;
     color: mediumseagreen;
     background-color: white;
     border: 0.1rem solid #707070;
+}
+
+.task .editor .choices .buttons {
+    margin: 1rem 0 auto auto;
+}
+
+.task .editor .choices .save {
+    margin-left: 1rem;
 }
 
 .task .editor .choices button:hover {
@@ -314,10 +321,24 @@ or do something with JLayouts. */
     cursor: pointer;
 }
 
+.task .editor .choice button {
+    display: none;
+    color: crimson;
+}
+
+.task .editor .choice button:hover {
+    color: white;
+    background-color: crimson;
+}
+
 .task .editor .choice:hover {
     background-color: aliceblue;
     border: 0.1rem solid #000000;
     box-sizing: border-box;
+}
+
+.task .editor .choice:hover > button {
+    display: block;
 }
 
 .task .editor .choice h2 {
@@ -325,6 +346,8 @@ or do something with JLayouts. */
     font-weight: 500;
     font-size: 1.1rem;
     margin: 0 2.5%;
+    display: flex;
+    align-items: center;
 }
 
 .task .editor .choice h3 {
