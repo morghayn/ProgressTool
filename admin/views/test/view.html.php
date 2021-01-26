@@ -14,6 +14,8 @@
  */
 class ProgressToolViewTest extends JViewLegacy
 {
+    protected $categories, $progress;
+
     /**
      * Renders view.
      *
@@ -25,8 +27,29 @@ class ProgressToolViewTest extends JViewLegacy
         $app = JFactory::getApplication();
         $input = $app->input;
 
+        $model = parent::getModel();
+        $this->categories = $model->getCategories($this->countryID, $this->projectID);
+        $this->setProgress();
+
         $this->prepareDocument();
         parent::display($tpl);
+    }
+
+    /**
+     * Calculates and sets the progress percentage of this progress for each category.
+     *
+     * @since 0.5.0
+     */
+    private function setProgress()
+    {
+        $this->progress = array();
+        foreach ($this->categories as $category)
+        {
+            array_push(
+                $this->progress,
+                intval(($category->projectTotal / $category->categoryTotal) * 100)
+            );
+        }
     }
 
     /**
