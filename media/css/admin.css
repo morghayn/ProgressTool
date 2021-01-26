@@ -261,7 +261,6 @@ or do something with JLayouts. */
 
 .task {
     width: 80%;
-    margin: 0;
     border: 0.15rem solid #000000;
     box-sizing: border-box;
 }
@@ -276,11 +275,12 @@ or do something with JLayouts. */
 }
 
 .task .heading h1 {
+    height: auto !important;
+    min-height: 3.5rem;
+    padding: 0.4rem;
+    line-height: 1;
     white-space: unset !important;
     word-break: break-word;
-    min-height: 3.5rem;
-    height: auto !important;
-    padding: 0.4rem;
 }
 
 .task .editor {
@@ -288,8 +288,6 @@ or do something with JLayouts. */
     height: 5rem;
     display: none;
 }
-
-
 
 /*--------------------------------------------------/
                                       projectTable /
