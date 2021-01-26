@@ -7,6 +7,12 @@ function openTaskEditor(taskid)
     taskEditor.style.display = 'block';
 }
 
+function removeChoice(choiceid)
+{
+    let choiceElement = document.getElementById(choiceid)
+    choiceElement.outerHTML = ''
+}
+
 function buildTaskObject(taskid)
 {
     // empty task object

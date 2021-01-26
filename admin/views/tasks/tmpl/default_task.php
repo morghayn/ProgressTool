@@ -14,9 +14,11 @@
         <!-- Work in progress -->
         <?php if (array_key_exists($this->task->id, $this->choices)): ?>
             <div id="choices" class="choices">
+
                 <?php foreach ($this->choices[$this->task->id] as $this->choice): ?>
-                    <div class="choice">
-                        <button>Remove</button>
+                    <?php $this->choiceid = 'choiceid-' . $this->choice->id; ?>
+                    <div id="<?php echo $this->choiceid; ?>" class="choice">
+                        <button onclick="removeChoice('<?php echo $this->choiceid; ?>')">Remove</button>
                         <h3 id="<?php echo $this->choice->id; ?>">CID:<?php echo $this->choice->id; ?></h3>
                         <h2><?php echo $this->choice->choice; ?></h2>
                     </div>
