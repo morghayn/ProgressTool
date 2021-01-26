@@ -13,10 +13,10 @@
 
         <!-- Work in progress -->
         <?php if (array_key_exists($this->task->id, $this->choices)): ?>
-            <div class="choices">
+            <div id="choices" class="choices">
                 <?php foreach ($this->choices[$this->task->id] as $this->choice): ?>
                     <div class="choice">
-                        <h3>CID:<?php echo $this->choice->id; ?></h3>
+                        <h3 id="<?php echo $this->choice->id; ?>">CID:<?php echo $this->choice->id; ?></h3>
                         <h2><?php echo $this->choice->choice; ?></h2>
                     </div>
                 <?php endforeach; ?>
