@@ -1,13 +1,13 @@
 <?php defined('_JEXEC') or die; ?>
 
-<div id="projectModal" class="projectModal">
+<div id="ptModal" class="ptModal">
     <!-- Modal content -->
-    <div class="projectModalContent">
-        <div class="projectModalHeader">
-            <span class="closeProjectModal">&times;</span>
+    <div class="ptModalContent">
+        <div class="ptModalHeader">
+            <span class="ptCloseModal">&times;</span>
             <h2>Project Editor</h2>
         </div>
-        <div id="projectEditorTable">
+        <div id="ptTable">
 
         </div>
     </div>

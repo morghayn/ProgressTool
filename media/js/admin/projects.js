@@ -35,10 +35,10 @@ function loadProjectEditorTable(projectID)
             success: (result) =>
             {
                 // TODO check if result actually exists first...
-                let projectEditorTable = document.getElementById("projectEditorTable")
+                let projectEditorTable = document.getElementById("ptTable")
                 projectEditorTable.innerHTML = result
             },
-            error: () => console.log('Failure to perform affirm(). Contact an dashboard if this failure persists.'),
+            error: () => console.log('Failed to retrieve project table.'),
         }
     )
 }
@@ -47,17 +47,29 @@ function loadProjectEditorTable(projectID)
 function openModal(projectID)
 {
     // Get the modal
-    let modal = document.getElementById("projectModal")
+    let modal = document.getElementById("ptModal")
     modal.style.display = "block"
 
     // Populating project editor table
     loadProjectEditorTable(projectID)
 
     // Get the <span> element that closes the modal
-    let span = document.getElementsByClassName("closeProjectModal")[0]
+    let span = document.getElementsByClassName("ptCloseModal")[0]
+
+    // Making heading not sticky
+    const heading = document.querySelector('#heading');
+    if (heading.classList.contains("stickyHeading"))
+    {
+        heading.classList.remove("stickyHeading");
+
+    }
 
     // When the user clicks on <span> (x), close the modal
-    span.onclick = () => modal.style.display = "none"
+    span.onclick = () =>
+    {
+        modal.style.display = "none"
+        heading.classList.add("stickyHeading")
+    }
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = (event) =>
@@ -65,6 +77,7 @@ function openModal(projectID)
         if (event.target === modal)
         {
             modal.style.display = "none"
+            heading.classList.add("stickyHeading")
         }
     }
 }
