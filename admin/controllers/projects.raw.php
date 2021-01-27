@@ -33,7 +33,7 @@ class ProgressToolControllerProjects extends JControllerLegacy
             $table .= '<td>' . $value . '</td>';
             $table .= '</tr>';
         endforeach;
-        $table .= '</table></tr>';
+        $table .= '</table>';
         return $table;
     }
 }
