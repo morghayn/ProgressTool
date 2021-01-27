@@ -41,13 +41,14 @@ class ProgressToolModelTasks extends JModelLegacy
     }
 
     /**
-     * Returns object list comprising of task objects.
+     * Returns array of task objects and nests associated choices accordingly.
      *
      * @param $countryID
+     * @param $choices
      * @return array
      * @since 0.5.5
      */
-    public function getTasks($countryID)
+    public function getTasks($countryID, $choices)
     {
         $db = JFactory::getDbo();
         $getTasks = $db->getQuery(true);
@@ -57,18 +58,41 @@ class ProgressToolModelTasks extends JModelLegacy
                 array(
                     'T.id',
                     'T.task',
-                    'T.category_id'
+                    'T.category_id',
+                    'TC.criteria'
                 )
             )
             ->from($db->quoteName('#__pt_task', 'T'))
-            ->innerjoin($db->quoteName('#__pt_task_country', 'TC') . ' ON ' . $db->quoteName('T.id') . ' = ' . $db->quoteName('TC.task_id'))
-            ->innerjoin($db->quoteName('#__pt_choice_task', 'CT') . ' ON ' . $db->quoteName('TC.task_id') . ' = ' . $db->quoteName('CT.task_id'))
+            ->innerJoin($db->quoteName('#__pt_task_country', 'TC') . ' ON ' . $db->quoteName('T.id') . ' = ' . $db->quoteName('TC.task_id'))
+            ->innerJoin($db->quoteName('#__pt_choice_task', 'CT') . ' ON ' . $db->quoteName('TC.task_id') . ' = ' . $db->quoteName('CT.task_id'))
             ->where('TC.country_id = ' . $db->quote($countryID))
             ->group('T.id');
 
-        return $db->setQuery($getTasks)->loadObjectList();
+        // setting the index for tasks in the tasks object as the task id
+        $tasks = array();
+        $sequentiallyOrderedTasks = $db->setQuery($getTasks)->loadObjectList();
+        foreach ($sequentiallyOrderedTasks as $task):
+            $tasks[$task->id] = $task;
+            $tasks[$task->id]->choices = array();
+        endforeach;
+
+        // adding choice objects to each task within tasks object
+        foreach ($choices as $choice):
+            if (array_key_exists($choice->task_id, $tasks)):
+                $tasks[$choice->task_id]->choices[$choice->id] = $choice;
+            endif;
+        endforeach;
+
+        return $tasks;
     }
 
+    /**
+     * Retrieves choices associated with tasks of a particular country.
+     *
+     * @param $countryID
+     * @return array
+     * @since 0.5.5
+     */
     public function getChoices($countryID)
     {
         $db = JFactory::getDbo();
@@ -86,20 +110,22 @@ class ProgressToolModelTasks extends JModelLegacy
             )
             ->from($db->quoteName('#__pt_choice_task', 'T'))
             ->innerJoin($db->quoteName('#__pt_question_choice', 'CH') . ' ON CH.id = T.choice_id')
-            ->innerjoin($db->quoteName('#__pt_question', 'Q') . ' ON Q.id = CH.question_id')
-            ->innerjoin($db->quoteName('#__pt_question_country', 'CO') . ' ON CO.question_id = Q.id')
+            ->innerJoin($db->quoteName('#__pt_question', 'Q') . ' ON Q.id = CH.question_id')
+            ->innerJoin($db->quoteName('#__pt_question_country', 'CO') . ' ON CO.question_id = Q.id')
             ->where($db->quoteName('CO.country_id') . ' = ' . $db->quote($countryID));
 
+        return $db->setQuery($getChoices)->loadObjectList();
+        /*
+                $choices = array();
+                $rows = $db->setQuery($getChoices)->loadObjectList();
 
-        $choices = array();
-        $rows = $db->setQuery($getChoices)->loadObjectList();
+                // Grouping by task_id
+                foreach ($rows as $row)
+                {
+                    $choices[$row->task_id][$row->id] = $row;
+                }
 
-        // Grouping by task_id
-        foreach ($rows as $row)
-        {
-            $choices[$row->task_id][$row->id] = $row;
-        }
-
-        return $choices;
+                return $choices;
+        */
     }
 }

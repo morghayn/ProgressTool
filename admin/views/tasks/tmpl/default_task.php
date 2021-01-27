@@ -11,25 +11,26 @@
     <!-- Editor -->
     <div class="editor">
 
-        <!-- Work in progress -->
-        <?php if (array_key_exists($this->task->id, $this->choices)): ?>
-            <div id="choices" class="choices">
+        <div id="choices" class="choices">
+            <h1>Choices</h1>
 
-                <?php foreach ($this->choices[$this->task->id] as $this->choice): ?>
-                    <?php $this->choiceid = 'choiceid-' . $this->choice->id; ?>
-                    <div id="<?php echo $this->choiceid; ?>" class="choice">
-                        <button onclick="removeChoice('<?php echo $this->choiceid; ?>')">Remove</button>
-                        <h3 id="<?php echo $this->choice->id; ?>">CID:<?php echo $this->choice->id; ?></h3>
-                        <h2><?php echo $this->choice->choice; ?></h2>
-                    </div>
-                <?php endforeach; ?>
+            <h2>Criteria: <?php echo $this->task->criteria; ?></h2>
 
-                <div class="buttons">
-                    <button class="add">Add Choice</button>
-                    <button class="save">Save</button>
+            <?php foreach ($this->task->choices as $this->choice): ?>
+                <?php $this->choiceid = 'choiceid-' . $this->choice->id; ?>
+
+                <div id="<?php echo $this->choiceid; ?>" class="choice">
+                    <button onclick="removeChoice('<?php echo $this->choiceid; ?>')">Remove</button>
+                    <h3 id="<?php echo $this->choice->id; ?>">CID:<?php echo $this->choice->id; ?></h3>
+                    <h2><?php echo $this->choice->choice; ?></h2>
                 </div>
+            <?php endforeach; ?>
+
+            <div class="buttons">
+                <button class="add">Add Choice</button>
+                <button class="save">Save</button>
             </div>
-        <?php endif; ?>
+        </div>
 
     </div>
 </div>
