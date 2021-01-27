@@ -116,4 +116,33 @@ class ProgressToolModelTasks extends JModelLegacy
 
         return $db->setQuery($getChoices)->loadObjectList();
     }
+
+    /**
+     * Retrieves choices a particular country.
+     *
+     * @param $countryID
+     * @return array
+     * @since 0.5.5
+     */
+    public function getChoices($countryID)
+    {
+        $db = JFactory::getDbo();
+        $getChoices = $db->getQuery(true);
+
+        $getChoices
+            ->select(
+                array(
+                    'CH.id',
+                    'CH.question_id',
+                    'CH.choice',
+                    'CH.weight'
+                )
+            )
+            ->from($db->quoteName('#__pt_question_choice', 'CH'))
+            ->innerJoin($db->quoteName('#__pt_question', 'Q') . ' ON Q.id = CH.question_id')
+            ->innerJoin($db->quoteName('#__pt_question_country', 'CO') . ' ON CO.question_id = Q.id')
+            ->where($db->quoteName('CO.country_id') . ' = ' . $db->quote($countryID));
+
+        return $db->setQuery($getChoices)->loadObjectList();
+    }
 }
