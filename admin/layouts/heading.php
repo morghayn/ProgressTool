@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die; ?>
 
 <!-- Heading -->
-<div class="heading">
+<div class="heading stickyHeading">
     <span class="openSidebar" onclick="openNav()">&#9776;</span>
 
     <?php if (array_key_exists('additions', $displayData)): ?>
