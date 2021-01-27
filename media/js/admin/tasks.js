@@ -7,10 +7,25 @@ function openTaskEditor(taskid)
     taskEditor.style.display = 'block';
 }
 
-function removeChoice(choiceid)
+function removeChoice(taskID, choiceID)
 {
-    let choiceElement = document.getElementById(choiceid)
-    choiceElement.outerHTML = ''
+    let token = jQuery("#token").attr("name")
+
+    jQuery.ajax(
+        {
+            type: 'POST',
+            data: {[token]: "1", task: "tasks.removeChoice", format: "json", taskID: taskID, choiceID: choiceID},
+            success: () =>
+            {
+                let choiceElement = document.getElementById('choiceid-' + choiceID)
+                choiceElement.outerHTML = ''
+            },
+            error: () =>
+            {
+                console.log('Failed to remove choice.')
+            },
+        }
+    )
 }
 
 function buildTaskObject(taskid)

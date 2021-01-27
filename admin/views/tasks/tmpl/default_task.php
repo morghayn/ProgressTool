@@ -12,15 +12,16 @@
     <div class="editor">
 
         <div id="choices" class="choices">
+            <h1>Criteria: <?php echo $this->task->criteria; ?></h1>
             <h1>Choices</h1>
-
-            <h2>Criteria: <?php echo $this->task->criteria; ?></h2>
 
             <?php foreach ($this->task->choices as $this->choice): ?>
                 <?php $this->choiceid = 'choiceid-' . $this->choice->id; ?>
 
                 <div id="<?php echo $this->choiceid; ?>" class="choice">
-                    <button onclick="removeChoice('<?php echo $this->choiceid; ?>')">Remove</button>
+                    <button onclick="removeChoice('<?php echo $this->task->id . "','" . $this->choice->id; ?>')">
+                        Remove
+                    </button>
                     <h3 id="<?php echo $this->choice->id; ?>">CID:<?php echo $this->choice->id; ?></h3>
                     <h2><?php echo $this->choice->choice; ?></h2>
                 </div>
