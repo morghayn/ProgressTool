@@ -37,8 +37,7 @@ class ProgressToolViewTasks extends JViewLegacy
 
         $model = parent::getModel();
         $this->categories = $model->getCategories();
-        $this->choices = $model->getChoices($this->countryID);
-        $this->tasks = $model->getTasks($this->countryID, $this->choices);
+        $this->tasks = $model->getTasks($this->countryID);
 
         $this->setHeading();
         $this->setSidebar();

@@ -44,11 +44,10 @@ class ProgressToolModelTasks extends JModelLegacy
      * Returns array of task objects and nests associated choices accordingly.
      *
      * @param $countryID
-     * @param $choices
      * @return array
      * @since 0.5.5
      */
-    public function getTasks($countryID, $choices)
+    public function getTasks($countryID)
     {
         $db = JFactory::getDbo();
         $getTasks = $db->getQuery(true);
@@ -77,6 +76,7 @@ class ProgressToolModelTasks extends JModelLegacy
         endforeach;
 
         // adding choice objects to each task within tasks object
+        $choices = $this->getTaskChoices($countryID);
         foreach ($choices as $choice):
             if (array_key_exists($choice->task_id, $tasks)):
                 $tasks[$choice->task_id]->choices[$choice->id] = $choice;
@@ -93,7 +93,7 @@ class ProgressToolModelTasks extends JModelLegacy
      * @return array
      * @since 0.5.5
      */
-    public function getChoices($countryID)
+    public function getTaskChoices($countryID)
     {
         $db = JFactory::getDbo();
         $getChoices = $db->getQuery(true);
@@ -115,17 +115,5 @@ class ProgressToolModelTasks extends JModelLegacy
             ->where($db->quoteName('CO.country_id') . ' = ' . $db->quote($countryID));
 
         return $db->setQuery($getChoices)->loadObjectList();
-        /*
-                $choices = array();
-                $rows = $db->setQuery($getChoices)->loadObjectList();
-
-                // Grouping by task_id
-                foreach ($rows as $row)
-                {
-                    $choices[$row->task_id][$row->id] = $row;
-                }
-
-                return $choices;
-        */
     }
 }
