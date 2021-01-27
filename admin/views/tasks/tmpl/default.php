@@ -4,6 +4,7 @@
 <div id="main">
     <?php echo $this->heading; ?>
     <?php echo $this->sidebar; ?>
+    <?php echo $this->loadTemplate('modal'); ?>
 
     <div class="tasks">
         <?php foreach ($this->tasks as $this->task): ?>

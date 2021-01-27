@@ -28,7 +28,7 @@
             <?php endforeach; ?>
 
             <div class="buttons">
-                <button class="add">Add Choice</button>
+                <button class="add" onclick="openModal()">Add Choice</button>
                 <button class="save">Save</button>
             </div>
         </div>

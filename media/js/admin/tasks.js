@@ -11,6 +11,18 @@ function openTaskEditor(taskID)
     taskEditor.style.display = 'block';
 }
 
+function openAllTaskEditors()
+{
+    let taskEditors = document.querySelectorAll('.editor')
+    taskEditors.forEach(e => e.style.display = 'block')
+}
+
+function closeAllTaskEditors()
+{
+    let taskEditors = document.querySelectorAll('.editor')
+    taskEditors.forEach(e => e.style.display = 'none')
+}
+
 /**
  * AJAX post to controller requesting for a choice to be removed.
  *
@@ -38,6 +50,34 @@ function removeChoice(taskID, choiceID)
     )
 }
 
+function openModal()
+{
+    let modal = document.getElementById("ptModal")
+    modal.style.display = "block"
+
+    const heading = document.querySelector('#heading');
+    if (heading.classList.contains("stickyHeading"))
+    {
+        heading.classList.remove("stickyHeading");
+
+    }
+
+    let span = document.getElementsByClassName("ptCloseModal")[0]
+    span.onclick = () =>
+    {
+        modal.style.display = "none"
+        heading.classList.add("stickyHeading")
+    }
+    window.onclick = (event) =>
+    {
+        if (event.target === modal)
+        {
+            modal.style.display = "none"
+            heading.classList.add("stickyHeading")
+        }
+    }
+}
+
 function buildTaskObject(taskid)
 {
     // empty task object
@@ -56,16 +96,4 @@ function buildTaskObject(taskid)
     choices.forEach(e => taskObject.choices.push(e.id))
 
     alert(JSON.stringify(taskObject))
-}
-
-function openAllTaskEditors()
-{
-    let taskEditors = document.querySelectorAll('.editor')
-    taskEditors.forEach(e => e.style.display = 'block')
-}
-
-function closeAllTaskEditors()
-{
-    let taskEditors = document.querySelectorAll('.editor')
-    taskEditors.forEach(e => e.style.display = 'none')
 }
