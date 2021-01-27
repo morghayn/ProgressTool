@@ -293,6 +293,7 @@ or do something with JLayouts. */
 }
 
 .task .editor .choices button {
+    height: 100%;
     padding: 0.4rem 0.75rem;
     font-size: 1.1rem;
     color: mediumseagreen;
@@ -318,6 +319,8 @@ or do something with JLayouts. */
     margin: 0;
     padding: 1rem;
     cursor: pointer;
+    align-items: center;
+    justify-content: center;
 }
 
 .task .editor .choice button {
