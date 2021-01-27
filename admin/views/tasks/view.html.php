@@ -61,6 +61,10 @@ class ProgressToolViewTasks extends JViewLegacy
         $this->heading = $heading->render(
             array(
                 "page" => "Tasks",
+                "additions" => array(
+                    '<button onclick="openAllTaskEditors()">O</button>',
+                    '<button onclick="closeAllTaskEditors()">C</button>'
+                )
             )
         );
     }
