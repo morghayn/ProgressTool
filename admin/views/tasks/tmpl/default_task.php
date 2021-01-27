@@ -1,6 +1,6 @@
 <?php defined('_JEXEC') or die; ?>
 
-<div id="<?php echo $this->taskid; ?>" class="task" onclick="openTaskEditor(this.id)" style="border-color: <?php echo $this->colourHex; ?>">
+<div id="<?php echo $this->taskID; ?>" class="task" onclick="openTaskEditor(this.id)" style="border-color: <?php echo $this->colourHex; ?>">
 
     <!-- Heading -->
     <div class="heading" style="background-color: <?php echo $this->colourHex; ?>">
@@ -16,9 +16,9 @@
             <h1>Choices</h1>
 
             <?php foreach ($this->task->choices as $this->choice): ?>
-                <?php $this->choiceid = 'choiceid-' . $this->choice->id; ?>
+                <?php $this->choiceID = 'choiceid-' . $this->choice->id; ?>
 
-                <div id="<?php echo $this->choiceid; ?>" class="choice">
+                <div id="<?php echo $this->choiceID; ?>" class="choice">
                     <button onclick="removeChoice('<?php echo $this->task->id . "','" . $this->choice->id; ?>')">
                         Remove
                     </button>

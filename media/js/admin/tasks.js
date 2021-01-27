@@ -1,12 +1,22 @@
-function openTaskEditor(taskid)
+/**
+ * Sets style of task editor for a particular task to 'block'.
+ *
+ * @param taskID
+ */
+function openTaskEditor(taskID)
 {
-    let task = document.querySelector('#' + taskid)
+    let task = document.querySelector('#' + taskID)
     let taskEditor = task.querySelector('.editor')
 
-    //taskEditor.style.display = taskEditor.style.display === 'block' ? 'none' : 'block'
     taskEditor.style.display = 'block';
 }
 
+/**
+ * AJAX post to controller requesting for a choice to be removed.
+ *
+ * @param taskID
+ * @param choiceID
+ */
 function removeChoice(taskID, choiceID)
 {
     let token = jQuery("#token").attr("name")
