@@ -25,7 +25,7 @@ class ProgressToolControllerProjects extends JControllerLegacy
     public function getTable($projectID)
     {
         $model = $this->getModel('projects');
-        $project = $model->getProject($projectID);
+        $project = $model->getProjectForTable($projectID);
         $table = '<table>';
         foreach ($project as $key => $value):
             $table .= '<tr>';

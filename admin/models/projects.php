@@ -75,4 +75,33 @@ class ProgressToolModelProjects extends JModelLegacy
 
         return $db->setQuery($getProjects)->loadAssoc();
     }
+
+    public function getProjectForTable($projectID)
+    {
+        $db = JFactory::getDbo();
+        $getProjects = $db->getQuery(true);
+
+        $columns = array(
+            $db->quoteName('P.id', 'ID'),
+            $db->quoteName('P.user_id', 'User ID'),
+            $db->quoteName('P.group_id', 'Group ID'),
+            $db->quoteName('P.name', 'Project Name'),
+            $db->quoteName('P.description', 'Project Description'),
+            $db->quoteName('P.type_id', 'Type ID'),
+            $db->quoteName('P.creation_date', 'Creation Date'),
+            $db->quoteName('P.activated', 'Activated'),
+            //'U.name',
+            $db->quoteName('U.username', 'Creator\'s Username'),
+            $db->quoteName('U.email', 'Creator\' Email')
+        );
+
+        $getProjects
+            ->select($columns)
+            ->from($db->quoteName('#__pt_project', 'P'))
+            ->innerjoin($db->quoteName('#__users', 'U') . 'ON P.user_id = U.id')
+            ->where($db->quoteName('P.id') . ' = ' . $db->quote($projectID))
+            ->setLimit(1);
+
+        return $db->setQuery($getProjects)->loadAssoc();
+    }
 }
