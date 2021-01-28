@@ -56,6 +56,9 @@ class ProgressToolViewProjects extends JViewLegacy
                 "page" => "Projects",
                 "additions" => array(
                     '<input class="searchBar" type="text" id="myInput" onkeyup="searchTable()" placeholder="Search by project or username..">'
+                ),
+                "overrides" => array(
+                    'margin: 0 auto'
                 )
             )
         );
