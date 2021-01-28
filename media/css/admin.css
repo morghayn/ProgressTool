@@ -395,11 +395,21 @@ tbody tr td {
     text-align: center;
     padding: 1rem;
     font-size: 1.1rem;
+    border-right: 0.1rem solid #e6f3ff;
+    border-left: 0.1rem solid #e6f3ff;
     border-bottom: 0.1rem solid aliceblue;
 }
 
+table td:first-child {
+    border-left: none;
+}
+
+table td:last-child {
+    border-right: none;
+}
+
 tbody tr:hover {
-    background-color: #7fffd4;
+    background-color: #c6e2ff;
 }
 
 tbody tr:hover {
