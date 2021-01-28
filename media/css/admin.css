@@ -390,9 +390,9 @@ thead tr th {
 
 tbody tr td {
     text-align: center;
-    background-color: #b8d4fa;
     padding: 1rem;
     font-size: 1.1rem;
+    border-bottom: 0.1rem solid aliceblue;
 }
 
 tbody tr:hover {
@@ -417,17 +417,15 @@ tbody tr:hover {
 }
 
 .ptModalContent {
+    width: 75vw;
+    height: 85vh;
+    overflow-y: auto;
     position: relative;
-    background-color: #fefefe;
     margin: 5vh auto auto;
-    padding: 0;
-    border: 1px solid #888;
-    width: 60rem;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     animation-name: animatetop;
     animation-duration: 0.4s;
-    text-align: center;
-    justify-content: center;
+    background-color: #fefefe;
+    border: 0.4rem solid #0C4DA0;
 }
 
 .ptModalContent p {
