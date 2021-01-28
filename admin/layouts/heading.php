@@ -1,7 +1,18 @@
 <?php defined('_JEXEC') or die; ?>
 
+<?php
+// Retrieving any style overrides
+$styleOverride = '';
+if (array_key_exists('overrides', $displayData)):
+    foreach ($displayData['overrides'] as $override):
+        $styleOverride .= ($override . ';');
+    endforeach;
+endif;
+?>
+
+
 <!-- Heading -->
-<div id="heading" class="heading stickyHeading">
+<div id="heading" class="heading stickyHeading" style="<?php echo $styleOverride; ?>">
     <span class="openSidebar" onclick="openNav()">&#9776;</span>
 
     <?php if (array_key_exists('additions', $displayData)): ?>
