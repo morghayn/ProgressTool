@@ -399,6 +399,10 @@ tbody tr td {
 }
 
 tbody tr:hover {
+    background-color: #7fffd4;
+}
+
+tbody tr:hover {
     cursor: pointer;
 }
 
