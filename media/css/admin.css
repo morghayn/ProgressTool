@@ -418,14 +418,15 @@ tbody tr:hover {
 
 .ptModalContent {
     width: 75vw;
-    height: 85vh;
+    min-height: 20vh;
+    max-height: 85vh;
     overflow-y: auto;
     position: relative;
     margin: 5vh auto auto;
     animation-name: animatetop;
     animation-duration: 0.4s;
     background-color: #fefefe;
-    border: 0.4rem solid #0C4DA0;
+    border: 0.25rem solid #f08080;
 }
 
 .ptModalContent p {
@@ -441,7 +442,7 @@ tbody tr:hover {
     align-items: center;
     justify-content: center;
     color: white;
-    background-color: #0C4DA0;
+    background-color: #f08080;
 }
 
 .ptModalHeader span {
