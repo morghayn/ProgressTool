@@ -381,8 +381,11 @@ table {
     width: 100%;
 }
 
-thead tr th {
+thead tr {
     background-color: #0C4DA0;
+}
+
+thead tr th {
     color: white;
     padding: 1.25rem;
     font-size: 1.25rem;

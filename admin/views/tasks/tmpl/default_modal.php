@@ -9,7 +9,7 @@
         <div id="ptTable">
             <table>
                 <thead>
-                    <tr>
+                    <tr style="background-color: #f08080;">
                         <th>ID</th>
                         <th>QuestionID</th>
                         <th>Choice</th>
