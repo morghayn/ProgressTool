@@ -16,6 +16,11 @@ class ProgressToolControllerStatistics extends JControllerLegacy
 {
     public function getStatistics()
     {
+        JSession::checkToken('get') or jexit(JText::_('JINVALID_TOKEN'));
 
+        $model = $this->getModel('statistics');
+        $statistics = $model->getStatistics();
+
+        echo json_encode($statistics);
     }
 }
