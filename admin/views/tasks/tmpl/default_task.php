@@ -11,11 +11,23 @@
     <!-- Editor -->
     <div class="editor">
 
-        <div id="choices" class="choices">
-            <h1>Criteria: <?php echo $this->task->criteria; ?></h1>
+        <h1>Criteria: <?php echo $this->task->criteria; ?></h1>
+        <div class="logic">
             <h1>Logic: <?php echo $this->task->logic_id; ?></h1>
-            <h1>Choices</h1>
+            <label class="choice" style="--outlineColour: <?php echo $this->colourHex; ?>; --optionColour: <?php echo $this->colourHex; ?>;">
+                <input type="checkbox">
+                <!--id="qcid-<?php //echo $this->choiceID; ?>" type="checkbox" <?php //echo $this->isChecked; ?>
+                       onclick="surveySelect('')">-->
 
+                <span class="box" style="--labelColour: <?php echo $this->colourRGB; ?>;">
+                    <span class="text">OR</span>
+                </span>
+            </label>
+        </div>
+
+
+        <div id="choices" class="choices">
+            <h1>Choices</h1>
             <?php foreach ($this->task->choices as $this->choice): ?>
                 <?php $this->choiceID = 'choiceid-' . $this->choice->id; ?>
 
