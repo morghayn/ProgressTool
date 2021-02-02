@@ -1,6 +1,6 @@
 <?php defined('_JEXEC') or die; ?>
 
-<div id="<?php echo $this->taskID; ?>" class="task" onclick="openTaskEditor(this.id)" style="border-color: <?php echo $this->colourHex; ?>">
+<div id="<?php echo $this->taskID; ?>" class="task" onclick="toggleTaskEditor(this.id)" style="border-color: <?php echo $this->colourHex; ?>">
 
     <!-- Heading -->
     <div class="heading" style="background-color: <?php echo $this->colourHex; ?>">

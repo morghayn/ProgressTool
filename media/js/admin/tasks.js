@@ -3,12 +3,12 @@
  *
  * @param taskID
  */
-function openTaskEditor(taskID)
+function toggleTaskEditor(taskID)
 {
     let task = document.querySelector('#' + taskID)
     let taskEditor = task.querySelector('.editor')
 
-    taskEditor.style.display = 'block';
+    taskEditor.style.display = taskEditor.style.display === 'block' ? 'none' : 'block';
 }
 
 function openAllTaskEditors()
