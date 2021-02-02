@@ -293,7 +293,7 @@ or do something with JLayouts. */
 
 .task .editor {
     height: auto;
-    display: none;
+    display: block;
 }
 
 .task .editor .choices {
