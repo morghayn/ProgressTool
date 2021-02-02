@@ -13,6 +13,7 @@
 
         <div id="choices" class="choices">
             <h1>Criteria: <?php echo $this->task->criteria; ?></h1>
+            <h1>Logic: <?php echo $this->task->logic_id; ?></h1>
             <h1>Choices</h1>
 
             <?php foreach ($this->task->choices as $this->choice): ?>
@@ -23,6 +24,7 @@
                         Remove
                     </button>
                     <h3 id="<?php echo $this->choice->id; ?>">CID:<?php echo $this->choice->id; ?></h3>
+                    <h3>W:<?php echo $this->choice->weight; ?></h3>
                     <h2><?php echo $this->choice->choice; ?></h2>
                 </div>
             <?php endforeach; ?>

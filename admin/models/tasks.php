@@ -58,7 +58,8 @@ class ProgressToolModelTasks extends JModelLegacy
                     'T.id',
                     'T.task',
                     'T.category_id',
-                    'TC.criteria'
+                    'TC.criteria',
+                    'TC.logic_id'
                 )
             )
             ->from($db->quoteName('#__pt_task', 'T'))
