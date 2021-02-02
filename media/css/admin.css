@@ -276,6 +276,10 @@ or do something with JLayouts. */
     box-sizing: border-box;
 }
 
+.task * {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
 .task .heading {
     margin: 0 auto !important;
     cursor: pointer;
@@ -296,13 +300,14 @@ or do something with JLayouts. */
     display: block;
 }
 
+/*
 .task .editor .choices {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
 }
-
+*/
 .task .editor .choices button {
     height: 100%;
     padding: 0.4rem 0.75rem;
@@ -325,36 +330,38 @@ or do something with JLayouts. */
     background-color: mediumseagreen;
 }
 
-.task .editor .choice {
-    width: 100%;
+.task .editor .item {
+    /* width: 100%; */
     margin: 0;
-    padding: 1rem;
+    padding-top: 1rem;
     cursor: pointer;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
+    gap: 1rem;
+    padding-bottom: 1rem;
 }
 
-.task .editor .choice button {
+.task .editor .item button {
     display: none;
     color: crimson;
 }
 
-.task .editor .choice button:hover {
+.task .editor .item button:hover {
     color: white;
     background-color: crimson;
 }
 
-.task .editor .choice:hover {
+.task .editor .item:hover {
     background-color: aliceblue;
     border: 0.1rem solid #000000;
     box-sizing: border-box;
 }
 
-.task .editor .choice:hover > button {
+.task .editor .item:hover > button {
     display: block;
 }
 
-.task .editor .choice h2 {
+.task .editor .item h2 {
     flex: 1;
     font-weight: 500;
     font-size: 1.1rem;
@@ -363,20 +370,19 @@ or do something with JLayouts. */
     align-items: center;
 }
 
-.task .editor .choice h3 {
-    /* copy-paste of scorebox styling. */
+.task .editor .item h3 {
     font-weight: 500;
     box-sizing: border-box;
-    border: 2px solid #000000;
+    border: 0.1rem solid black;
     text-align: center;
-    width: 80px;
-    margin: auto auto auto 10px;
+    width: 5rem;
+    /* margin: auto auto auto 10px; */
     font-size: 1.1rem;
-    line-height: 1;
-    padding: 3px;
-    color: #000000;
+    /* line-height: 1; */
+    padding: 0.15rem;
+    color: black;
+    margin: 0 auto;
 }
-
 
 /*--------------------------------------------------/
                      s                 projectTable /
@@ -749,7 +755,6 @@ tbody tr:hover {
     width: 90%;
     height: 100%;
     margin: 18px auto 18px auto;
-
     display: flex;
     flex-direction: column;
 }

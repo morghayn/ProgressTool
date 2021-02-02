@@ -12,29 +12,31 @@
     <div class="editor">
 
         <h1>Criteria: <?php echo $this->task->criteria; ?></h1>
-        <div class="logic">
-            <h1>Logic: <?php echo $this->task->logic_id; ?></h1>
-            <label class="choice" style="--outlineColour: <?php echo $this->colourHex; ?>; --optionColour: <?php echo $this->colourHex; ?>;">
-                <input type="checkbox">
-                <!--id="qcid-<?php //echo $this->choiceID; ?>" type="checkbox" <?php //echo $this->isChecked; ?>
-                       onclick="surveySelect('')">-->
 
+        <h1>Logic</h1>
+        <div class="choices">
+            <label class="choice" style="--outlineColour: <?php echo $this->colourHex; ?>; --optionColour: <?php echo $this->colourHex; ?>;">
+                <input type="checkbox" <?php echo ($this->task->logic_id == 0 ? 'checked' : '');?>>
                 <span class="box" style="--labelColour: <?php echo $this->colourRGB; ?>;">
                     <span class="text">OR</span>
+                </span>
+            </label>
+            <label class="choice" style="--outlineColour: <?php echo $this->colourHex; ?>; --optionColour: <?php echo $this->colourHex; ?>;">
+                <input type="checkbox" <?php echo ($this->task->logic_id == 1 ? 'checked' : '');?>>
+                <span class="box" style="--labelColour: <?php echo $this->colourRGB; ?>;">
+                    <span class="text">AND</span>
                 </span>
             </label>
         </div>
 
 
+        <h1>Choices</h1>
         <div id="choices" class="choices">
-            <h1>Choices</h1>
             <?php foreach ($this->task->choices as $this->choice): ?>
                 <?php $this->choiceID = 'choiceid-' . $this->choice->id; ?>
 
-                <div id="<?php echo $this->choiceID; ?>" class="choice">
-                    <button onclick="removeChoice('<?php echo $this->task->id . "','" . $this->choice->id; ?>')">
-                        Remove
-                    </button>
+                <div id="<?php echo $this->choiceID; ?>" class="choice item" style="border-color: <?php echo $this->colourHex; ?>">
+                    <button onclick="removeChoice('<?php echo $this->task->id . "','" . $this->choice->id; ?>')">Remove</button>
                     <h3 id="<?php echo $this->choice->id; ?>">CID:<?php echo $this->choice->id; ?></h3>
                     <h3>W:<?php echo $this->choice->weight; ?></h3>
                     <h2><?php echo $this->choice->choice; ?></h2>
