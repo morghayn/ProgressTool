@@ -60,7 +60,7 @@ body {
 
 .stickyHeading {
     position: sticky;
-    top: 30px;
+    top: 0;
     z-index: 4;
 }
 
@@ -71,7 +71,6 @@ body {
     align-items: center;
     justify-content: center;
     height: 3.5rem;
-    /*line-height: 1;*/
     font-size: 1.4rem;
     font-weight: 600;
     white-space: nowrap;
@@ -104,6 +103,12 @@ body {
 .heading .create {
     font-size: 2.5rem;
     background-color: mediumseagreen;
+}
+
+.heading #task:hover,
+.heading #task:focus {
+    color: black;
+    background-color: white;
 }
 
 .searchBar {
@@ -374,7 +379,7 @@ or do something with JLayouts. */
 
 
 /*--------------------------------------------------/
-                                      projectTable /
+                     s                 projectTable /
 -------------------------------------------------*/
 
 table {
