@@ -298,6 +298,7 @@ or do something with JLayouts. */
 .task .editor {
     height: auto;
     display: block;
+    margin: 0.5rem auto;
 }
 
 .task .editor .grouping {
