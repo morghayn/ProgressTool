@@ -300,65 +300,18 @@ or do something with JLayouts. */
     display: block;
 }
 
-/*
-.task .editor .choices {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
-*/
-.task .editor .choices button {
-    height: 100%;
-    padding: 0.4rem 0.75rem;
-    font-size: 1.1rem;
-    color: mediumseagreen;
-    background-color: white;
-    border: 0.1rem solid #707070;
-}
-
-.task .editor .choices .buttons {
-    margin: 1rem 0 auto auto;
-}
-
-.task .editor .choices .save {
-    margin-left: 1rem;
-}
-
-.task .editor .choices button:hover {
-    color: white;
-    background-color: mediumseagreen;
-}
-
 .task .editor .item {
-    /* width: 100%; */
-    margin: 0;
-    padding-top: 1rem;
+    margin: 0.25rem 0;
+    padding: 0.5rem;
     cursor: pointer;
     align-items: center;
-    /* justify-content: center; */
     gap: 1rem;
-    padding-bottom: 1rem;
-}
-
-.task .editor .item button {
-    display: none;
-    color: crimson;
-}
-
-.task .editor .item button:hover {
-    color: white;
-    background-color: crimson;
 }
 
 .task .editor .item:hover {
     background-color: aliceblue;
     border: 0.1rem solid #000000;
     box-sizing: border-box;
-}
-
-.task .editor .item:hover > button {
-    display: block;
 }
 
 .task .editor .item h2 {
@@ -371,17 +324,46 @@ or do something with JLayouts. */
 }
 
 .task .editor .item h3 {
-    font-weight: 500;
-    box-sizing: border-box;
-    border: 0.1rem solid black;
-    text-align: center;
     width: 5rem;
-    /* margin: auto auto auto 10px; */
-    font-size: 1.1rem;
-    /* line-height: 1; */
-    padding: 0.15rem;
-    color: black;
+    padding: 0.3rem;
     margin: 0 auto;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: #707070;
+    border: 0.1rem solid #707070;
+    box-sizing: border-box;
+    line-height: 1;
+}
+
+.task .editor .choices button {
+    height: 100%;
+    width: 7rem;
+    padding: 0.3rem;
+    font-size: 1.1rem;
+    color: mediumseagreen;
+    background-color: white;
+    border: 0.1rem solid #707070;
+    box-sizing: border-box;
+}
+
+.task .editor .item button {
+    display: none;
+    color: crimson;
+}
+
+.task .editor .choices button:hover {
+    color: white;
+    background-color: mediumseagreen;
+}
+
+.task .editor .item button:hover {
+    color: white;
+    background-color: crimson;
+}
+
+.task .editor .item:hover > button {
+    display: block;
 }
 
 /*--------------------------------------------------/
