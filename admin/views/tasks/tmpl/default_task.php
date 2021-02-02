@@ -1,9 +1,11 @@
 <?php defined('_JEXEC') or die; ?>
 
-<div id="<?php echo $this->taskID; ?>" class="task" onclick="toggleTaskEditor(this.id)" style="border-color: <?php echo $this->colourHex; ?>">
+<div id="<?php echo $this->taskID; ?>" class="task" style="border-color: <?php echo $this->colourHex; ?>">
 
     <!-- Heading -->
-    <div class="heading" style="background-color: <?php echo $this->colourHex; ?>">
+    <div class="heading" style="background-color: <?php echo $this->colourHex; ?>"
+         onclick="toggleTaskEditor('<?php echo $this->taskID; ?>')">
+
         <h2>TID:<?php echo $this->task->id; ?></h2>
         <h1 id="task" contenteditable="true"><?php echo $this->task->task; ?></h1>
     </div>
@@ -27,7 +29,7 @@
             <button class="loose" onclick="openModal()">Add Choice</button>
         </div>
 
-        <h1>Logic | C:<?php echo $this->task->criteria;?></h1>
+        <h1>Logic | C:<?php echo $this->task->criteria; ?></h1>
         <div class="grouping" style="display: block;">
             <label class="choice" style="--outlineColour: <?php echo $this->colourHex; ?>; --optionColour: <?php echo $this->colourHex; ?>;">
                 <input type="checkbox" <?php echo($this->task->logic_id == 0 ? 'checked' : ''); ?>>
