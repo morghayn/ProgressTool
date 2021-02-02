@@ -300,6 +300,18 @@ or do something with JLayouts. */
     display: block;
 }
 
+.task .editor .grouping {
+    width: 95%;
+    height: 100%;
+    margin: 0.5rem auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.task .editor .grouping .choice {
+    --checkSize: 1.75rem;
+}
+
 .task .editor .item {
     margin: 0.25rem 0;
     padding: 0.5rem;
@@ -309,16 +321,27 @@ or do something with JLayouts. */
 }
 
 .task .editor .item:hover {
-    background-color: aliceblue;
+    background-color: rgba(var(--hoverColour), 0.10);
     border: 0.1rem solid #000000;
     box-sizing: border-box;
+}
+
+.task .editor h1 {
+    flex: 3;
+    height: auto;
+    margin: 0 2.5%;
+    font-size: 1.25rem;
+    font-weight: 600;
+    justify-content: left;
+    background-color: unset;
+    white-space: unset;
 }
 
 .task .editor .item h2 {
     flex: 1;
     font-weight: 500;
     font-size: 1.1rem;
-    margin: 0 2.5%;
+    margin: 0 auto;
     display: flex;
     align-items: center;
 }
@@ -336,7 +359,7 @@ or do something with JLayouts. */
     line-height: 1;
 }
 
-.task .editor .choices button {
+.task .editor button {
     height: 100%;
     width: 7rem;
     padding: 0.3rem;
@@ -347,14 +370,18 @@ or do something with JLayouts. */
     box-sizing: border-box;
 }
 
+.task .editor .loose {
+    margin: 0.25rem 0.5rem;
+}
+
+.task .editor button:hover {
+    color: white;
+    background-color: mediumseagreen;
+}
+
 .task .editor .item button {
     display: none;
     color: crimson;
-}
-
-.task .editor .choices button:hover {
-    color: white;
-    background-color: mediumseagreen;
 }
 
 .task .editor .item button:hover {
@@ -736,7 +763,7 @@ tbody tr:hover {
 .choices {
     width: 90%;
     height: 100%;
-    margin: 18px auto 18px auto;
+    margin: 18px auto;
     display: flex;
     flex-direction: column;
 }
@@ -745,6 +772,7 @@ tbody tr:hover {
     margin: 10px auto 10px 0;
     display: inline-flex;
     position: relative;
+    --checkSize: 37.5px;
 }
 
 .text {
@@ -774,8 +802,8 @@ tbody tr:hover {
 /* 1. Calculation of the gap for the custom checkbox */
 .box {
     display: inline-flex;
-    min-height: 37.5px;
-    padding-left: calc(37.5px + 1.15em);
+    min-height: var(--checkSize);
+    padding-left: calc(var(--checkSize) + 1.15em);
 }
 
 .choice input:not(:disabled) ~ .box {
@@ -791,7 +819,7 @@ tbody tr:hover {
     /** Size of checkbox... */
     width: 1em;
     height: 1em;
-    font-size: 37.5px; /* 1 */
+    font-size: var(--checkSize); /* 1 */
 
     /* can put margin-top here to move box, but then tick positioning is skewed */
     position: absolute;
@@ -818,7 +846,7 @@ tbody tr:hover {
     content: "";
     width: 0;
     height: 0;
-    font-size: 37.5px; /* 1 */
+    font-size: var(--checkSize); /* 1 */
 
     border-left-width: 0;
     border-bottom-width: 0;
