@@ -31,7 +31,7 @@ class ProgressToolViewTest extends JViewLegacy
 
         $this->projects = $model->getProjects();
         $this->setProgress();
-        var_dump($this->progresses);
+        //var_dump($this->progresses);
 
         $this->prepareDocument();
         parent::display($tpl);

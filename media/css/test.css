@@ -1,6 +1,40 @@
 * {
-    --backgroundColor: 255,255,255;
+    --backgroundColor: 255, 255, 255;
 }
+
+.timeline {
+    width: 100%;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.outer {
+    float: left;
+}
+
+.inner {
+    position: relative;
+}
+
+img {
+    max-width: unset !important;
+    max-height: 85vh;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    background-color: greenyellow;
+    opacity: 0.25;
+}
+
+
+
 
 .category {
     background-color: rgba(var(--backgroundColour), 0.25);
