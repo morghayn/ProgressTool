@@ -14,7 +14,7 @@
  */
 class ProgressToolViewTest extends JViewLegacy
 {
-    protected $categories, $progress, $progresses, $projects;
+    protected $categories, $projects, $plots;
 
     /**
      * Renders view.
@@ -29,38 +29,49 @@ class ProgressToolViewTest extends JViewLegacy
 
         $model = parent::getModel();
 
+        $this->categories = $model->getCategories();
         $this->projects = $model->getProjects();
-        $this->setProgress();
-        //var_dump($this->progresses);
+        $this->plots = $this->getPlots();
 
         $this->prepareDocument();
         parent::display($tpl);
     }
 
     /**
-     * Calculates and sets the progress percentage of this progress for each category.
+     * Calculates the y and x plots for each project.
      *
      * @since 0.5.0
      */
-    private function setProgress()
+    private function getPlots()
     {
         $model = parent::getModel();
-        $this->progresses = array();
+        $yPre = array(11, 44.5, 70, 99.5);
+        $yCur = array(11, 40.0, 65, 94);
+        $plots = array();
 
         foreach($this->projects as $projectID)
         {
-            $this->categories = $model->getCategories(1, $projectID);
-            $this->progress = array();
+            $projectProgress = $model->getProjectProgress(1, $projectID);
             foreach ($this->categories as $category)
             {
+                $categoryProjectProgress = ($projectProgress[$category->id - 1]);
                 array_push(
-                    $this->progress,
-                    intval(($category->projectTotal / $category->categoryTotal) * 100)
+                    $plots,
+                    array(
+                        // Getting vertical plot
+                        rand($yPre[$category->id - 1], $yCur[$category->id]),
+
+                        // Getting horizontal plot
+                        intval(($categoryProjectProgress->projectTotal / $categoryProjectProgress->categoryTotal) * 100),
+
+                        // Color RGB
+                        $category->colour_rgb
+                    )
                 );
             }
-
-            array_push($this->progresses, $this->progress);
         }
+
+        return $plots;
     }
 
     /**

@@ -28,9 +28,6 @@ img {
     top: 0;
     left: 0;
     right: 0;
-
-    background-color: greenyellow;
-    opacity: 0.25;
 }
 
 
@@ -43,9 +40,16 @@ img {
 }
 
 .project {
+    position: absolute;
     width: 3rem;
     height: 3rem;
     border-radius: 30rem;
     background-color: rgba(var(--backgroundColour), 1);
     border: 2px solid black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
 }
