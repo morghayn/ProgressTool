@@ -45,9 +45,5 @@
             </label>
         </div>
 
-        <!--<h1>Criteria: <?php //echo $this->task->criteria; ?></h1>-->
     </div>
 </div>
-
-<!-- For testing purposes -->
-<!--<button onclick="buildTaskObject('<?php //echo $this->taskid; ?>')">Test buildTaskObject()</button>-->

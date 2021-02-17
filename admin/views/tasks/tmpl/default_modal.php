@@ -18,7 +18,7 @@
                 </thead>
                 <tbody>
                     <?php foreach ($this->choices as $choice): ?>
-                        <tr>
+                        <tr onclick="addChoice('<?php echo $choice->id; ?>')">
                             <td><?php echo $choice->id; ?></td>
                             <td><?php echo $choice->question_id; ?></td>
                             <td><?php echo $choice->choice; ?></td>

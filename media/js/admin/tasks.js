@@ -1,4 +1,51 @@
 /**
+ * Opens modal with a table of choices that can be selected.
+ */
+function openModal()
+{
+    let modal = document.getElementById("ptModal")
+    modal.style.display = "block"
+
+    const heading = document.querySelector('#heading');
+    if (heading.classList.contains("stickyHeading"))
+    {
+        heading.classList.remove("stickyHeading");
+
+    }
+
+    let span = document.getElementsByClassName("ptCloseModal")[0]
+    span.onclick = () =>
+    {
+        modal.style.display = "none"
+        heading.classList.add("stickyHeading")
+    }
+    window.onclick = (event) =>
+    {
+        if (event.target === modal)
+        {
+            modal.style.display = "none"
+            heading.classList.add("stickyHeading")
+        }
+    }
+}
+
+/**
+ * Adds selected choice to currently focused task.
+ *
+ * @param choiceID
+ */
+function addChoice(choiceID)
+{
+
+    alert('Work in Progress')
+
+    // TODO AJAX REQUEST TO ADD CHOICE
+    //      // TODO AJAX REQUEST TO HANDLE ERROR
+    // TODO AJAX REQUEST TO RECEIVE CHOICE
+    //      // TODO AJAX REQUEST TO HANDLE ERROR
+}
+
+/**
  * Sets style of task editor for a particular task to 'block'.
  *
  * @param taskID
@@ -50,34 +97,10 @@ function removeChoice(taskID, choiceID)
     )
 }
 
-function openModal()
-{
-    let modal = document.getElementById("ptModal")
-    modal.style.display = "block"
 
-    const heading = document.querySelector('#heading');
-    if (heading.classList.contains("stickyHeading"))
-    {
-        heading.classList.remove("stickyHeading");
 
-    }
 
-    let span = document.getElementsByClassName("ptCloseModal")[0]
-    span.onclick = () =>
-    {
-        modal.style.display = "none"
-        heading.classList.add("stickyHeading")
-    }
-    window.onclick = (event) =>
-    {
-        if (event.target === modal)
-        {
-            modal.style.display = "none"
-            heading.classList.add("stickyHeading")
-        }
-    }
-}
-
+// TODO REMOVE?
 function buildTaskObject(taskid)
 {
     // empty task object
