@@ -35,7 +35,7 @@ function loadProjectEditorTable(projectID)
             success: (result) =>
             {
                 // TODO check if result actually exists first...
-                let projectEditorTable = document.getElementById("table")
+                let projectEditorTable = document.getElementById("amTable")
                 projectEditorTable.innerHTML = result
             },
             error: () => console.log('Failed to retrieve project table.'),
