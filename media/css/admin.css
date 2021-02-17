@@ -302,41 +302,40 @@ or do something with JLayouts. */
 }
 
 .task .editor .grouping {
-    width: 95%;
-    height: 100%;
-    margin: 0.5rem auto;
     display: flex;
     flex-direction: column;
+    padding: 0 2.5%;
 }
 
 .task .editor .grouping .choice {
     --checkSize: 1.75rem;
 }
 
-.task .editor .item {
-    margin: 0.25rem 0;
-    padding: 0.5rem;
-    cursor: pointer;
-    align-items: center;
-    gap: 1rem;
-}
-
-.task .editor .item:hover {
-    background-color: rgba(var(--hoverColour), 0.10);
-    border: 0.1rem solid #000000;
-    box-sizing: border-box;
-}
-
 .task .editor h1 {
     flex: 3;
     height: auto;
-    margin: 0 2.5%;
+    margin: 0 0;
     font-size: 1.25rem;
     font-weight: 600;
     justify-content: left;
     background-color: unset;
     white-space: unset;
 }
+
+.task .editor .item {
+    margin: 0 0;
+    padding: 0.5rem;
+    cursor: pointer;
+    align-items: center;
+    gap: 0.75rem;
+    box-sizing: border-box;
+}
+
+.task .editor .choice:hover {
+    background-color: rgba(var(--hoverColour), 0.10);
+    border: 0.1rem solid #000000;
+}
+
 
 .task .editor .item h2 {
     flex: 1;
@@ -348,15 +347,12 @@ or do something with JLayouts. */
 }
 
 .task .editor .item h3 {
-    width: 5rem;
     padding: 0.3rem;
     margin: 0 auto;
-    text-align: center;
     font-weight: 500;
     font-size: 1.1rem;
     color: #707070;
-    border: 0.1rem solid #707070;
-    box-sizing: border-box;
+    border: 0.05rem solid #707070;
     line-height: 1;
 }
 
@@ -367,8 +363,7 @@ or do something with JLayouts. */
     font-size: 1.1rem;
     color: mediumseagreen;
     background-color: white;
-    border: 0.1rem solid #707070;
-    box-sizing: border-box;
+    border: 0.05rem solid #707070;
 }
 
 .task .editor .loose {

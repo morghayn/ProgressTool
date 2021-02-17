@@ -1,7 +1,7 @@
 /**
- * Opens modal with a table of choices that can be selected.
+ * Opens choice selector modal.
  */
-function openModal()
+function openChoiceSelector()
 {
     let modal = document.getElementById("adminModal")
     modal.style.display = "block"
@@ -19,6 +19,7 @@ function openModal()
         modal.style.display = "none"
         heading.classList.add("stickyHeading")
     }
+
     window.onclick = (event) =>
     {
         if (event.target === modal)
@@ -58,12 +59,18 @@ function toggleTaskEditor(taskID)
     taskEditor.style.display = taskEditor.style.display === 'block' ? 'none' : 'block';
 }
 
+/**
+ * Opens task editor for every task.
+ */
 function openAllTaskEditors()
 {
     let taskEditors = document.querySelectorAll('.editor')
     taskEditors.forEach(e => e.style.display = 'block')
 }
 
+/**
+ * Closes task editor for every task.
+ */
 function closeAllTaskEditors()
 {
     let taskEditors = document.querySelectorAll('.editor')
@@ -86,19 +93,15 @@ function removeChoice(taskID, choiceID)
             data: {[token]: "1", task: "tasks.removeChoice", format: "json", taskID: taskID, choiceID: choiceID},
             success: () =>
             {
-                let choiceElement = document.getElementById('choiceid-' + choiceID)
-                choiceElement.outerHTML = ''
+                document.getElementById('choiceid-' + choiceID).outerHTML = ''
             },
             error: () =>
             {
-                console.log('Failed to remove choice.')
+                alert('Failed to remove choice.')
             },
         }
     )
 }
-
-
-
 
 // TODO REMOVE?
 function buildTaskObject(taskid)

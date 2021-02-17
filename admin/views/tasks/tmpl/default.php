@@ -10,7 +10,6 @@
         <?php foreach ($this->tasks as $this->task): ?>
             <?php $this->colourRGB = $this->categories[$this->task->category_id - 1]->colour_rgb; ?>
             <?php $this->colourHex = $this->categories[$this->task->category_id - 1]->colour_hex; ?>
-            <?php $this->taskID = 'taskid-' . $this->task->id; ?>
             <?php echo $this->loadTemplate('task'); ?>
         <?php endforeach; ?>
     </div>
