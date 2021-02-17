@@ -651,7 +651,7 @@
 Modal
 ---------------------------------------*/
 
-.pdModal {
+.clientModal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -664,7 +664,7 @@ Modal
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.pdModal .content {
+.clientModal .cmContent {
     position: relative;
     background-color: #fefefe;
     margin: 5vh auto auto;
@@ -678,7 +678,7 @@ Modal
     justify-content: center;
 }
 
-.pdModal .heading {
+.clientModal .heading {
     width: 100%;
     display: flex;
     align-items: center;
@@ -687,11 +687,11 @@ Modal
     background-color: #0C4DA0;
 }
 
-.pdModal .heading h1 {
+.clientModal .heading h1 {
     margin-left: 3.5rem;
 }
 
-.pdModal .heading span {
+.clientModal .heading span {
     height: 3.5rem;
     width: 3.5rem;
     display: flex;
@@ -704,7 +704,7 @@ Modal
     cursor: pointer;
 }
 
-.pdModal .heading span:hover {
+.clientModal .heading span:hover {
     color: crimson;
     background-color: white;
     border: 0.1rem solid crimson;

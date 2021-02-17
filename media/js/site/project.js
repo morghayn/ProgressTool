@@ -1,11 +1,11 @@
 function openModal(projectID)
 {
     // Get the modal
-    let modal = document.getElementById("pdModal")
+    let modal = document.getElementById("clientModal")
     modal.style.display = "block"
 
     // Get the <span> element that closes the modal
-    let span = document.getElementById("closeModal")
+    let span = document.getElementById("cmClose")
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = () => modal.style.display = "none"

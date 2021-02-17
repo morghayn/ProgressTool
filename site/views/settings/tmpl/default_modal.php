@@ -1,19 +1,17 @@
 <?php defined('_JEXEC') or die; ?>
 
-<div id="pdModal" class="pdModal">
-    <div class="content">
+<div id="clientModal" class="clientModal">
+    <div class="cmContent">
         <div class="heading">
             <h1>Deactivate Project</h1>
-            <span id="closeModal">&times;</span>
+            <span id="cmClose">&times;</span>
         </div>
 
         <form action="<?php echo JRoute::_('index.php?option=com_progresstool&view=settings&task=project.deactivate'); ?>"
               method="post" class="projectForm deactivationForm" enctype="multipart/form-data">
-
             <div class="form-horizontal">
                 <fieldset>
                     <input id="token" type="hidden" name="<?php echo JSession::getFormToken(); ?>" value="1"/>
-
                     <input type="hidden" name="project[id]" id="project_id" value="<?php echo $this->project['id']; ?>">
                     <p class="abstract">Type in <b><?php echo $this->project['name']; ?></b> to confirm project deactivation.</p>
                     <div class="control-group">
