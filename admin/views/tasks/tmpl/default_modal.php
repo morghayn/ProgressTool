@@ -2,9 +2,9 @@
 
 <div id="adminModal" class="adminModal">
     <div class="amContent">
-        <div class="amHeader">
+        <div class="heading">
+            <h1>Select choice</h1>
             <span class="amClose">&times;</span>
-            <h2>Select choice</h2>
         </div>
         <div id="amTable">
             <table>
