@@ -3,7 +3,7 @@
  */
 function openModal()
 {
-    let modal = document.getElementById("ptModal")
+    let modal = document.getElementById("adminModal")
     modal.style.display = "block"
 
     const heading = document.querySelector('#heading');
@@ -13,7 +13,7 @@ function openModal()
 
     }
 
-    let span = document.getElementsByClassName("ptCloseModal")[0]
+    let span = document.getElementsByClassName("amClose")[0]
     span.onclick = () =>
     {
         modal.style.display = "none"

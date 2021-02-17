@@ -35,7 +35,7 @@ function loadProjectEditorTable(projectID)
             success: (result) =>
             {
                 // TODO check if result actually exists first...
-                let projectEditorTable = document.getElementById("ptTable")
+                let projectEditorTable = document.getElementById("table")
                 projectEditorTable.innerHTML = result
             },
             error: () => console.log('Failed to retrieve project table.'),
@@ -47,14 +47,14 @@ function loadProjectEditorTable(projectID)
 function openModal(projectID)
 {
     // Get the modal
-    let modal = document.getElementById("ptModal")
+    let modal = document.getElementById("adminModal")
     modal.style.display = "block"
 
     // Populating project editor table
     loadProjectEditorTable(projectID)
 
     // Get the <span> element that closes the modal
-    let span = document.getElementsByClassName("ptCloseModal")[0]
+    let span = document.getElementsByClassName("amClose")[0]
 
     // Making heading not sticky
     const heading = document.querySelector('#heading');
