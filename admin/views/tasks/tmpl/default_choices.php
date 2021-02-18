@@ -27,16 +27,3 @@
         </tbody>
     </table>
 </div>
-
-<!--<h1>Choices</h1>-->
-
-<!--<tr onclick="addChoice('<?php echo $choice->id; ?>')">-->
-<!--<h3>CID:<?php //echo $choice->id; ?></h3>
-                <h3>W:<?php //echo $choice->weight; ?></h3>
-                <h2><?php //echo $choice->choice; ?></h2>-->
-
-<!--<div style="border-color: <?php //echo $this->colourHex; ?>; --hoverColour: <?php //echo $this->colourRGB; ?>;"
-             id="<?php //echo 'choiceid-' . $choice->id; ?>" class="choice item">-->
-
-<!--<button onclick="removeChoice('<?php //echo $this->task->id . "','" . $choice->id; ?>')">Remove</button>-->
-<!--</div>-->
