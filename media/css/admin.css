@@ -272,8 +272,10 @@ or do something with JLayouts. */
 
 .task {
     width: 80%;
-    border: 0.15rem solid #000000;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    /*gap: 3rem;*/
 }
 
 .task * {
@@ -281,26 +283,73 @@ or do something with JLayouts. */
 }
 
 .task .heading {
+    --colourHex: #000000;
     margin: 0 auto !important;
     cursor: pointer;
-}
-
-.task .heading:hover {
-    opacity: 0.5;
+    background-color: var(--colourHex);
+    border: 0.15rem var(--colourHex) solid;
+    box-sizing: border-box;
 }
 
 .task .heading h1 {
-    min-height: 3.5rem;
     padding: 0.5rem;
     line-height: 1;
+    margin: 0 0 !important;
+}
+
+.task .heading h1:focus {
+    outline: none;
+}
+
+.task .heading h2 {
+    margin: auto 1rem !important;
+}
+
+.task .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 3rem;
+}
+
+.task .buttons .logicToggle {
+    display: flex;
+    align-items: center;
+    border: 0.05rem solid black;
+}
+
+.task .buttons .logicToggle button {
+    border: none;
+    height: 100%;
+    padding: 0.75rem 0;
+}
+
+.task .buttons .addChoice {
+    padding: 0.75rem 0;
 }
 
 .task .editor {
     height: auto;
     display: block;
-    margin: 0.5rem auto;
 }
 
+.task .editor button {
+    height: 100%;
+    width: 7rem;
+    padding: 0.3rem;
+    font-size: 1.1rem;
+    color: mediumseagreen;
+    background-color: white;
+    border: 0.05rem solid #707070;
+}
+
+.task .editor button:hover,
+.task .editor .active {
+    color: white;
+    background-color: mediumseagreen;
+}
+
+/*
 .task .editor .grouping {
     display: flex;
     flex-direction: column;
@@ -355,26 +404,9 @@ or do something with JLayouts. */
     border: 0.05rem solid #707070;
     line-height: 1;
 }
+*/
 
-.task .editor button {
-    height: 100%;
-    width: 7rem;
-    padding: 0.3rem;
-    font-size: 1.1rem;
-    color: mediumseagreen;
-    background-color: white;
-    border: 0.05rem solid #707070;
-}
-
-.task .editor .loose {
-    margin: 0.25rem 0.5rem;
-}
-
-.task .editor button:hover {
-    color: white;
-    background-color: mediumseagreen;
-}
-
+/* TODO re-implement */
 .task .editor .item button {
     display: none;
     color: crimson;
@@ -394,7 +426,11 @@ or do something with JLayouts. */
 -------------------------------------------------*/
 
 table {
+    height: 100%;
     width: 100%;
+    /*table-layout: fixed;*/
+
+    /*display: inline-block; overflow: auto;*/
 }
 
 table * {
@@ -409,6 +445,7 @@ thead tr th {
     color: white;
     padding: 1.25rem;
     font-size: 1.25rem;
+    font-weight: 600;
 }
 
 tbody tr td {
@@ -448,7 +485,7 @@ tbody tr:hover {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    /*overflow: auto;*/
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
 }
@@ -457,7 +494,7 @@ tbody tr:hover {
     width: 75vw;
     min-height: 20vh;
     max-height: 85vh;
-    overflow-y: auto;
+    /*overflow-y: auto;*/
     position: relative;
     margin: 5vh auto auto;
     animation-name: animatetop;
@@ -498,12 +535,18 @@ tbody tr:hover {
     color: white;
     background-color: crimson;
     cursor: pointer;
+    font-family: unset !important;
 }
 
 .adminModal .heading span:hover {
     color: crimson;
     background-color: white;
     border: 0.1rem solid crimson;
+}
+
+.adminModal #amTable {
+    max-height: 75vh;
+    overflow-y: scroll;
 }
 
 @keyframes animatetop {

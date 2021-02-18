@@ -11,6 +11,7 @@
             <?php $this->colourRGB = $this->categories[$this->task->category_id - 1]->colour_rgb; ?>
             <?php $this->colourHex = $this->categories[$this->task->category_id - 1]->colour_hex; ?>
             <?php echo $this->loadTemplate('task'); ?>
+            <?php //break; ?>
         <?php endforeach; ?>
     </div>
 </div>

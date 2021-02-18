@@ -1,9 +1,9 @@
 <?php defined('_JEXEC') or die; ?>
 
-<div id="<?php echo 'taskid-' . $this->task->id; ?>" class="task" style="border-color: <?php echo $this->colourHex; ?>">
+<div id="<?php echo 'taskid-' . $this->task->id; ?>" class="task"> <!-- style="border-color: <?php //echo $this->colourHex; ?>">-->
 
     <!-- Heading -->
-    <div class="heading" style="background-color: <?php echo $this->colourHex; ?>"
+    <div class="heading" style="--colourHex: <?php echo $this->colourHex; ?>"
          onclick="toggleTaskEditor('<?php echo 'taskid-' . $this->task->id; ?>')">
         <h2>TID:<?php echo $this->task->id; ?></h2>
         <h1 id="task" contenteditable="true"><?php echo $this->task->task; ?></h1>
@@ -12,6 +12,6 @@
     <!-- Editor -->
     <div class="editor">
         <?php echo $this->loadTemplate('choices'); ?>
-        <?php echo $this->loadTemplate('logic'); ?>
+        <?php echo $this->loadTemplate('buttons'); ?>
     </div>
 </div>
