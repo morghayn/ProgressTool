@@ -54,9 +54,11 @@ function addChoice(choiceID)
 function toggleTaskEditor(taskID)
 {
     let task = document.querySelector('#' + taskID)
-    let taskEditor = task.querySelector('.editor')
+    let buttons = task.querySelector('#buttons')
+    let choices = task.querySelector('#choices')
 
-    taskEditor.style.display = taskEditor.style.display === 'block' ? 'none' : 'block';
+    buttons.style.display = buttons.style.display === 'flex' ? 'none' : 'flex';
+    choices.style.display = choices.style.display === 'block' ? 'none' : 'block';
 }
 
 /**
@@ -64,8 +66,10 @@ function toggleTaskEditor(taskID)
  */
 function openAllTaskEditors()
 {
-    let taskEditors = document.querySelectorAll('.editor')
-    taskEditors.forEach(e => e.style.display = 'block')
+    let buttons = document.querySelectorAll('#buttons')
+    let choices = document.querySelectorAll('#choices')
+    buttons.forEach(e => e.style.display = 'flex')
+    choices.forEach(e => e.style.display = 'block')
 }
 
 /**
@@ -73,8 +77,10 @@ function openAllTaskEditors()
  */
 function closeAllTaskEditors()
 {
-    let taskEditors = document.querySelectorAll('.editor')
-    taskEditors.forEach(e => e.style.display = 'none')
+    let buttons = document.querySelectorAll('#buttons')
+    let choices = document.querySelectorAll('#choices')
+    buttons.forEach(e => e.style.display = 'none')
+    choices.forEach(e => e.style.display = 'none')
 }
 
 /**

@@ -4,7 +4,7 @@
 <div id="choices">
     <table>
         <thead>
-            <tr style="background-color: <?php echo $this->colourHex; ?>;">
+            <tr>
                 <th>CID</th>
                 <th>Weight</th>
                 <th>Choice</th>

@@ -1,6 +1,6 @@
 <?php defined('_JEXEC') or die; ?>
 
-<div id="<?php echo 'taskid-' . $this->task->id; ?>" class="task"> <!-- style="border-color: <?php //echo $this->colourHex; ?>">-->
+<div id="<?php echo 'taskid-' . $this->task->id; ?>" class="task" style="--colourHex: <?php echo $this->colourHex; ?>">
 
     <!-- Heading -->
     <div class="heading" style="--colourHex: <?php echo $this->colourHex; ?>"
@@ -10,8 +10,6 @@
     </div>
 
     <!-- Editor -->
-    <div class="editor">
-        <?php echo $this->loadTemplate('choices'); ?>
-        <?php echo $this->loadTemplate('buttons'); ?>
-    </div>
+    <?php echo $this->loadTemplate('choices'); ?>
+    <?php echo $this->loadTemplate('buttons'); ?>
 </div>
