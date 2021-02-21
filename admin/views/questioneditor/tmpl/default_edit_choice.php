@@ -35,7 +35,7 @@ $formRedirect = 'index.php?option=com_progresstool&view=questionEditor&task=ques
 
                 <input name="choices[<?php echo $choiceID; ?>][weight]" type="text" value="<?php echo $choice->weight; ?>" maxlength="6"/>
 
-                <button type="button" onclick="deleteChoice(<?php echo $choiceID; ?>)">X</button>
+                <button type="button" onclick="deleteChoice(<?php echo $questionID; ?>, <?php echo $choiceID; ?>)">X</button>
             </div>
 
         <?php endforeach; ?>

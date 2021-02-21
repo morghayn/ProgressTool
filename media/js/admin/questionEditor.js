@@ -11,7 +11,7 @@ function addChoice(questionID)
     )
 }
 
-function deleteChoice(choiceID)
+function deleteChoice(questionID, choiceID)
 {
     let token = jQuery("#token").attr("name");
 
@@ -20,6 +20,7 @@ function deleteChoice(choiceID)
         `&view=questionEditor` +
         `&task=questionEditor.deleteChoice` +
         `&${token}=1` +
+        `&questionID=${questionID}` +
         `&choiceID=${choiceID}`
     )
 }
