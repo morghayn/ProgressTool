@@ -12,7 +12,8 @@ $imageAttributes = $filepath ? $this->question->image_attributes : '';
 
 <div class="question" style="border-color: <?php echo $this->colourHex; ?>">
     <div class="heading" style="background-color: <?php echo $this->colourHex; ?>;" onclick="toggleQuestion('<?php echo $this->questionID; ?>')">
-        <h1><?php echo '[ID: ' . $this->questionID . '] <span id="previewQuestion">' . $question . '</span>'; ?></h1>
+        <h2><?php echo 'ID: ' . $this->questionID; ?></h2>
+        <h1 contenteditable="true"><?php echo $this->question->question; ?></h1>
     </div>
 
     <?php if ($filepath): ?>
@@ -35,3 +36,8 @@ $imageAttributes = $filepath ? $this->question->image_attributes : '';
         <?php endforeach; ?>
     </div>
 </div>
+
+<script>
+    let elem = document.getElementById('iconChest')
+    dragElement(elem);
+</script>
