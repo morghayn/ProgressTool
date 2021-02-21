@@ -43,7 +43,7 @@ abstract class getCountry
         }
         else // for testing purposes
         {
-            $country = "Ireland";
+            $country = "Universal";
             return self::findCountryID($country);
             // TODO: return 0 once testing is complete.
         }
