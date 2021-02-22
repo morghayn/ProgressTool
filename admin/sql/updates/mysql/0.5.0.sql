@@ -298,91 +298,58 @@ CREATE TABLE `#__pt_question_choice` /* TODO: Make question_id, choice_id a comp
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO `#__pt_question_choice` (`id`, `question_id`, `choice`, `weight`)
-VALUES -- Question 1
-       (1, 1, 'No', 0),
+VALUES (1, 1, 'No', 0),
        (2, 1, 'Yes, about existing beacons in ECCO and other Irish community group projects', 1),
        (3, 1, 'Yes, about the actions of local authorities and their role in the transition', 1),
        (4, 1, 'Yes, there has been local initiatives about coming up with new ideas', 1),
-
-       -- Question 2
        (5, 2, 'No', 0),
        (6, 2, 'Yes, about existing beacons in ECCO', 1),
        (7, 2, 'Yes, about the actions of local authorities and their role in the transition', 1),
        (8, 2, 'Yes, there has been local initiatives about coming up with new ideas', 1),
-
-       -- Question 3
        (9, 3, 'No', 0),
-       (10, 3,
-        'Yes, regarding the type of governance that would be involved e.g. Co-operative or Sustainable Energy Community with SEAI (SEC)',
-        1),
+       (10, 3, 'Yes, regarding the type of governance that would be involved e.g. Co-operative or Sustainable Energy Community with SEAI (SEC)', 1),
        (11, 3, 'Yes, regarding the financial structuring', 1),
        (12, 3, 'Yes, regarding the type of partnerships available and if they would be suitable', 1),
        (13, 3, 'Yes, regarding how to distribute benefits and profits among the local area', 1),
-
-       -- Question 4
        (14, 4, 'No', 0),
        (15, 4, 'Yes, regarding the type of governance that would be involved e.g. Co-operative', 1),
        (16, 4, 'Yes, regarding the financial structuring', 1),
        (17, 4, 'Yes, regarding the type of partnerships available and if they would be suitable', 1),
        (18, 4, 'Yes, regarding how to distribute benefits and profits among the local area', 1),
-
-       -- Question 5
        (19, 5, 'No', 0),
        (20, 5, 'No, but there is interest from the community to forms one', 0),
-       (21, 5,
-        'Yes, there is a leading group that has been democratically organized and formed with members of the local community',
-        1),
+       (21, 5, 'Yes, there is a leading group that has been democratically organized and formed with members of the local community', 1),
        (22, 5, 'Yes, legal, technical and financial structuring has been discussed ', 1),
        (23, 5, 'Yes, the goals and the values of the group have been outlined', 1),
        (24, 5, 'Yes, the group has been officially founded as an association', 1),
-
-       -- Question 6
        (25, 6, 'No', 0),
-       (26, 6,
-        'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy',
-        1),
+       (26, 6, 'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy', 1),
        (27, 6,
-        'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel',
-        1),
+        'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel', 1),
        (28, 6, 'Yes, the group has looked into grid connection feasibility', 1),
        (29, 6, 'Yes, the group has consulted with SEC mentors for advice on the matter', 1),
-
-       -- Question 7
        (30, 7, 'No', 0),
-       (31, 7,
-        'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy',
-        1),
+       (31, 7, 'Yes, the group has completed the Technology Decision Plan tool to determine the suitable choice of Renewable Energy', 1),
        (32, 7,
-        'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel',
-        1),
-
-       -- Question 8
+        'Yes, the group has investigated local resources that may be suitable for a RE project, i.e. available rooftop space, unused fields for wind turbines or readily available bioenergy fuel', 1),
        (33, 8, 'No', 0),
-       (34, 8, 'Yes, the group has the support of local authorities such as SEAI', 1),
-       (35, 8, 'Yes, the group has official support from local bodies', 1),
+       (34, 8, 'Yes, the group is a registered SEC with SEAI', 1),
+       (35, 8, 'Yes, the group has official support from local bodies such as SEC mentors', 1),
        (36, 8, 'Yes, agreements have been set up with the local authorities', 1),
        (37, 8, 'Yes, contacts have been established within the local authorities', 1),
-
-       -- Question 9
        (38, 9, 'No', 0),
        (39, 9, 'Yes, the group has the support of local authorities', 1),
        (40, 9, 'Yes, the group has official support from local bodies', 1),
        (41, 9, 'Yes, agreements have been set up with the local authorities', 1),
        (42, 9, 'Yes, contacts have been established within the local authorities', 1),
-
-       -- Question 10
        (43, 10, 'No', 0),
-       (44, 10, 'Yes, with public partners such as SEAI', 1),
+       (44, 10, 'Yes, with public partners', 1),
        (45, 10, 'Yes, with private partners (developers)', 1),
        (46, 10, 'Yes, with SEC mentors', 1),
-
-       -- Question 11
        (47, 11, 'No', 0),
        (48, 11, 'Yes, with public partners', 1),
        (49, 11, 'Yes, with private partners (developers)', 1),
        (50, 11, 'Yes, with mentors', 1),
-
-       -- Question 12
        (51, 12, 'No', 0),
        (52, 12, 'It is not completed yet', 0),
        (53, 12, 'Yes, regarding location and mapping to decide what forms of RE is suitable to pursue', 1),
@@ -390,8 +357,6 @@ VALUES -- Question 1
        (55, 12, 'Yes, regarding the environmental impact', 1),
        (56, 12, 'Yes, regarding the impact to the local community', 1),
        (57, 12, 'Yes, the findings have been shared with the group', 1),
-
-       -- Question 13
        (58, 13, 'No', 0),
        (59, 13, 'It is not completed yet', 0),
        (60, 13, 'Yes, regarding location and mapping to decide what forms of RE is suitable to pursue', 1),
@@ -399,136 +364,96 @@ VALUES -- Question 1
        (62, 13, 'Yes, regarding the environmental impact', 1),
        (63, 13, 'Yes, regarding the impact to the local community', 1),
        (64, 13, 'Yes, the findings have been shared with the group', 1),
-
-       -- Question 14
        (65, 14, 'No', 0),
-       (66, 14, 'No, but options have been presented to the group', 0),
-       (67, 14, 'Yes', 2),
-
-       -- Question 15
+       (66, 14, 'Options have been presented to the group', 1),
+       (67, 14, 'Yes, a decision has been made', 2),
        (68, 15, 'No', 0),
-       (69, 15, 'Yes, it is in ongoing', 1),
-       (70, 15, 'Yes, the finding were positive and have been shared with the group', 1),
-       (71, 15, 'Yes, but the project is not viable and must be discontinued', 1),
-
-       -- Question 16
+       (69, 15, 'Yes, it is ongoing', 1),
+       (70, 15, 'Yes, the findings were positive and have been shared with the group', 1),
+       (71, 15, 'The project is not viable and must be discontinued', 1),
        (72, 16, 'No', 0),
        (73, 16, 'Yes, commitment to lease on behalf of the association', 2),
        (74, 16, 'Yes, commitment to lease on behalf of a local community partner', 2),
-
-       -- Question 17
        (75, 17, 'No', 0),
        (76, 17, 'Yes, a preliminary plan has been established', 1),
        (77, 17, 'Yes, the financial structure has been agreed', 1),
        (78, 17, 'Yes, and the group has launched fundraising for development costs', 1),
        (79, 17, 'Yes, the group is financially mobilized', 1),
-
-       -- Question 18
        (80, 18, 'No', 0),
        (81, 18, 'Yes, they have hosted public meetings', 1),
        (82, 18, 'Yes, they have hosted technical training sessions', 1),
        (83, 18, 'Yes, they have hosted financing plan training sessions', 1),
        (84, 18, 'Yes, they have hosted negotiation training sessions', 1),
        (85, 18, 'Yes, they have hosted building project management training sessions', 1),
-
-       -- Question 19
        (86, 19, 'No', 0),
        (87, 19, 'Yes, with support from SEC mentors', 1),
        (88, 19, 'Yes, for quotations', 1),
        (89, 19, 'Yes, for providers', 1),
        (90, 19, 'Yes, and a technical study on a risk-sensitive basis and on the level of funds needed', 1),
-
-       -- Question 20
        (91, 20, 'No', 0),
        (92, 20, 'Yes, with support from mentors', 1),
        (93, 20, 'Yes, for quotations', 1),
        (94, 20, 'Yes, for providers', 1),
        (95, 20, 'Yes, and a technical study on a risk-sensitive basis and on the level of funds needed', 1),
-
-       -- Question 21
        (96, 21, 'No', 0),
        (97, 21, 'Yes, from banks', 1),
        (98, 21, 'Yes, from citizens', 1),
-
-       -- Question 22
        (99, 22, 'No', 0),
        (100, 22, 'Yes, the feed-in tariff has been identified', 1),
        (101, 22, 'Yes, the technical scenario has been selected', 1),
        (102, 22, 'Yes, the means of production has been decided', 1),
        (103, 22, 'Yes, the site has been chosen', 1),
        (104, 22, 'Yes, the file has been submitted to the authorities for approval', 1),
-
-       -- Question 23
        (105, 23, 'No, a public enquiry is going to take place', 0),
-       (106, 23, 'No, the file is being reviewed', 0),
-       (107, 23, 'No, the project is being appealed ', 0),
-       (108, 23, 'Yes, there has been administration approval', 3),
-
-       -- Question 24
+       (106, 23, 'The file is being reviewed', 1),
+       (107, 23, 'The project is being appealed ', 1),
+       (108, 23, 'Yes, there has been administration approval', 2),
        (109, 24, 'No, it has not been started yet', 0),
        (110, 24, 'No, but it is in progress', 0),
        (111, 24, 'No, a feasibility study is ongoing', 0),
        (112, 24, 'Yes, the financial plan is consolidated', 1),
        (113, 24, 'Yes, and a risk assessment has been carried out', 1),
        (114, 24, 'Yes, the banking file is complete', 1),
-
-       -- Question 25
        (115, 25, 'No', 0),
-       (116, 25, 'Yes, bank loan', 1),
-       (117, 25, 'Yes, members’ investments', 1),
-       (118, 25, 'Yes, government funding scheme', 1),
-
-       -- Question 26
+       (116, 25, 'Through a bank loan', 1),
+       (117, 25, 'Through members’ investments', 1),
+       (118, 25, 'Through a government funding scheme', 1),
        (119, 26, 'No', 0),
        (120, 26, 'Yes, the land leasing contracts have been signed', 1),
        (121, 26, 'Yes, the energy feed-in tariffs have been agreed', 1),
        (122, 26, 'Yes, materials and production machines have been agreed', 1),
        (123, 26, 'Yes, maintenance contracts have been agreed', 1),
        (124, 26, 'Yes, building providers have been agreed', 1),
-
-       -- Question 27
        (125, 27, 'No', 0),
        (126, 27, 'Yes, there has been a session to discuss citizen involvement in project management', 1),
        (127, 27, 'Yes, an official project management plan has been put in place', 1),
-       (128, 27, 'Yes, there has been a group visit to the construction site', 1),
-       (129, 27, 'Yes, plans are in place for preparation of operation monitoring', 1),
-
-       -- Question 28
        (130, 28, 'No', 0),
        (131, 28, 'Yes, construction had commenced', 1),
        (132, 28, 'Yes, providers for neighborhood impact monitoring studies have been identified', 1),
        (133, 28, 'Yes, providers for environmental studies have been identified', 1),
        (134, 28, 'Yes, providers for system monitoring have been identified', 1),
        (135, 28, 'Yes, the site has been commissioned', 1),
-
-       -- Question 29
        (136, 29, 'No, construction is still ongoing', 0),
-       (137, 29, 'No, but construction is complete and it has been inaugurated', 0),
-       (138, 29, 'Yes, with ongoing communication regarding the operation', 3),
-
-       -- Question 30
+       (137, 29, 'Not yet, there has been a group visit to the construction site\r\n', 1),
+       (138, 29, 'Not yet, plans are in place for preparation of operation monitoring', 1),
        (139, 30, 'No', 0),
        (140, 30, 'Yes, the finances are managed through the committee', 1),
        (141, 30, 'Yes, profits have been allocated', 1),
-
-       -- Question 31
        (142, 31, 'No', 0),
        (143, 31, 'Yes, neighborhood impact monitoring in the first year of the project', 1),
        (144, 31, 'Yes, environmental monitoring every year of the project', 1),
        (145, 31, 'Yes, preventative maintenance and repairs are being carried out regularly', 1),
        (146, 31, 'Yes, the production site is being continuously technically monitored', 1),
-
-       -- Question 32
        (147, 32, 'No', 0),
        (148, 32, 'Yes, they have hosted a general assembly with the executive board', 1),
        (149, 32, 'Yes, and compensatory measures have been put in place for citizens', 1),
        (150, 32, 'Yes, they keep in touch with residents of the project', 1),
-
-       -- Question 33
        (151, 33, 'No', 0),
        (152, 33, 'Yes, about renewable energy', 1),
        (153, 33, 'Yes, about the environment', 1),
-       (154, 33, 'Yes, about energy saving', 1);
+       (154, 33, 'Yes, about energy saving', 1),
+       (155, 29, 'Yes, construction is complete and it has been inaugurated', 1),
+       (156, 29, 'Yes, with ongoing communication regarding the operation', 1);
 
 /* */
 
@@ -619,20 +544,15 @@ CREATE TABLE `#__pt_task`
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO `#__pt_task` (`id`, `category_id`, `section_id`, `task`)
-VALUES (1, 1, 1,
-        'Awareness activities about existing Beacon projects, Educational actions of local associations, Private developer prospection'),
-       (2, 1, 1,
-        'Local initiatives: new ideas + willpower of individuals, citizens, associations and local communities'),
+VALUES (1, 1, 1, 'Awareness activities about existing Beacon projects, Educational actions of local associations, Private developer prospection'),
+       (2, 1, 1, 'Local initiatives: new ideas + willpower of individuals, citizens, associations and local communities'),
        (3, 1, 1, 'Leading group'),
-       (4, 1, 2,
-        'Masterclasses: democratic organisation of the citizen group, Legal structuring, Technical issues, Initial financial elements, Expansion of the citizen group'),
-       (5, 1, 2,
-        'Brainwork on: goals and values of the group, The type of energy and awareness actions around energy transition'),
+       (4, 1, 2, 'Masterclasses: democratic organisation of the citizen group, Legal structuring, Technical issues, Initial financial elements, Expansion of the citizen group'),
+       (5, 1, 2, 'Brainwork on: goals and values of the group, The type of energy and awareness actions around energy transition'),
        (6, 1, 2, 'Organisation of the group, Founding of the association'),
        (7, 1, 2, 'Support of local authorities, to obtain official support from local bodies'),
        (8, 1, 3, 'Founding of the project society'),
-       (9, 1, 3,
-        'Public meetings and Advanced training: technical training, financing plan, negotiation training, building project management'),
+       (9, 1, 3, 'Public meetings and Advanced training: technical training, financing plan, negotiation training, building project management'),
        (10, 1, 3, 'Setting up of agreements with local authorities'),
        (11, 1, 3, 'Establish contacts with administrative authorities'),
        -- (12, 1, 'Citizen financial mobilisation'),
@@ -642,8 +562,7 @@ VALUES (1, 1, 1,
        (16, 1, 5, 'Preparation for the operation monitoring'),
        (17, 1, 5, 'Inauguration'),
        (18, 1, 6, 'Ongoing communication on operation'),
-       (19, 1, 6,
-        'Management of the cooperative: general assembly, executive board, retain strong bonds with citizens, compensatory measure'),
+       (19, 1, 6, 'Management of the cooperative: general assembly, executive board, retain strong bonds with citizens, compensatory measure'),
        (20, 1, 6, 'Keep in touch with the residents of the project'),
        (21, 1, 6, 'Educational activities on: renewable energy, environmental effects, Energy savings'),
 
@@ -663,12 +582,10 @@ VALUES (1, 1, 1,
        (35, 2, 6, 'Environmental monitoring'),
        (36, 2, 6, 'Preventative maintenance and repairs'),
 
-       (37, 3, 2,
-        'Think thank: type of governance, financial structuring, types of partnerships, how to distribute the benefits'),
+       (37, 3, 2, 'Think thank: type of governance, financial structuring, types of partnerships, how to distribute the benefits'),
        (38, 3, 2, 'Meeting with potential partner'),
        (39, 3, 2, 'Preliminary financing plan'),
-       (40, 3, 3,
-        'Financial mobilisation, launch fundraising for development costs, reinforcement of funding partnerships'),
+       (40, 3, 3, 'Financial mobilisation, launch fundraising for development costs, reinforcement of funding partnerships'),
        (41, 3, 3, 'Preparation of the financial mobilisation for the construction phase'),
        (42, 3, 3, 'Consolidation of the financial plan'),
        (43, 3, 3, 'Assessment of the valuation of the risk'),
@@ -796,7 +713,7 @@ CREATE TABLE `#__pt_choice_task`
     `task_id`   SMALLINT UNSIGNED NOT NULL,
     `choice_id` SMALLINT UNSIGNED NOT NULL,
     CONSTRAINT id PRIMARY KEY (`task_id`, `choice_id`),
-    FOREIGN KEY (`task_id`) REFERENCES `#__pt_task` (`id`),
+    FOREIGN KEY (`task_id`) REFERENCES `#__pt_task` (`id`) ON DELETE CASCADE,
     FOREIGN KEY (`choice_id`) REFERENCES `#__pt_question_choice` (`id`) ON DELETE CASCADE
 )
     ENGINE = InnoDB
@@ -833,8 +750,8 @@ VALUES (1, 2),
        -- discarded
        (13, 126),
        (14, 127),
-       (15, 128),
-       (16, 129),
+       (15, 155),
+       (16, 156),
        (17, 137),
        (18, 138),
        (19, 148),
