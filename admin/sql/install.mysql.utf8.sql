@@ -163,7 +163,7 @@ CREATE TABLE `#__pt_question_icon`
     DEFAULT CHARSET = utf8mb4
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
-INSERT INTO `#__pt_question_icon` (`question_id`, `filepath`, `width`, `height`, `right_offset`, `bottom_offset`)
+INSERT INTO `#__pt_question_icon` (`id`, `question_id`, `filepath`, `width`, `height`, `right_offset`, `bottom_offset`)
 VALUES (1, 1, '/media/com_progresstool/icons/Illustrations_Reflexions.jpg', 200, 135, 0, 9),
        (2, 2, '/media/com_progresstool/icons/Illustrations_Reflexions.jpg', 220, 149, 20, 110),
        (3, 3, '/media/com_progresstool/icons/Illustrations_Formations.jpg', 175, 131, 0, 0),
