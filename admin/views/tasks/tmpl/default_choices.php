@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die; ?>
 
 <!-- Choices -->
-<div id="choices">
+<div id="choices" style="--colourHex: <?php echo $this->colourHex; ?>">
     <table>
         <thead>
             <tr>
@@ -18,7 +18,7 @@
                     <td><?php echo $choice->weight; ?></td>
                     <td><?php echo $choice->choice; ?></td>
                     <td>
-                        <button onclick="removeChoice('<?php echo $this->task->id . "','" . $choice->id; ?>')">
+                        <button onclick="removeChoice('<?php echo $choice->id; ?>')">
                             Remove
                         </button>
                     </td>

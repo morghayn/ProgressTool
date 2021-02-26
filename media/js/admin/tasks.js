@@ -1,3 +1,10 @@
+let focusedTask;
+function focusTask(id)
+{
+    focusedTask = id;
+    console.log("TID:" + focusedTask)
+}
+
 /**
  * Opens choice selector modal.
  */
@@ -6,10 +13,10 @@ function openChoiceSelector()
     let modal = document.getElementById("adminModal")
     modal.style.display = "block"
 
-    const heading = document.querySelector('#heading');
+    const heading = document.querySelector('#heading')
     if (heading.classList.contains("stickyHeading"))
     {
-        heading.classList.remove("stickyHeading");
+        heading.classList.remove("stickyHeading")
 
     }
 
@@ -37,8 +44,7 @@ function openChoiceSelector()
  */
 function addChoice(choiceID)
 {
-
-    alert('Work in Progress')
+    alert(choiceID)
 
     // TODO AJAX REQUEST TO ADD CHOICE
     //      // TODO AJAX REQUEST TO HANDLE ERROR
@@ -48,12 +54,10 @@ function addChoice(choiceID)
 
 /**
  * Sets style of task editor for a particular task to 'block'.
- *
- * @param taskID
  */
-function toggleTaskEditor(taskID)
+function toggleTaskEditor()
 {
-    let task = document.querySelector('#' + taskID)
+    let task = document.querySelector('#' + focusedTask)
     let buttons = task.querySelector('#buttons')
     let choices = task.querySelector('#choices')
 
@@ -86,17 +90,16 @@ function closeAllTaskEditors()
 /**
  * AJAX post to controller requesting for a choice to be removed.
  *
- * @param taskID
  * @param choiceID
  */
-function removeChoice(taskID, choiceID)
+function removeChoice(choiceID)
 {
     let token = jQuery("#token").attr("name")
 
     jQuery.ajax(
         {
             type: 'POST',
-            data: {[token]: "1", task: "tasks.removeChoice", format: "json", taskID: taskID, choiceID: choiceID},
+            data: {[token]: "1", task: "tasks.removeChoice", format: "json", taskID: focusedTask, choiceID: choiceID},
             success: () =>
             {
                 document.getElementById('choiceid-' + choiceID).outerHTML = ''
