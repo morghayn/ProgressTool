@@ -92,46 +92,28 @@ CREATE TABLE `#__pt_question`
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO `#__pt_question` (`id`, `category_id`, `question`)
-VALUES -- Irish
-       (1, 1, 'Has your community hosted awareness activities surrounding the energy transition?'),
-       -- Exclude Ireland
-       (2, 1, 'Has your community hosted awareness activities surrounding the energy transition?'),
-       -- Irish
-       (3, 3, 'Has there been exploratory discussions within the community about creating a renewable energy project?'),
-       -- Exclude Ireland
-       (4, 3, 'Has there been exploratory discussions within the community about creating a renewable energy project?'),
-       (5, 1,
-        'Has a group been formed to manage the energy transition and any renewable energy projects in your community?'),
-       -- Irish
-       (6, 2, 'Has this group pursued any informal evaluation of the area to determine suitability?'),
-       -- Exclude Ireland
-       (7, 2, 'Has this group pursued any informal evaluation of the area to determine suitability?'),
-       -- Irish
-       (8, 1, 'Do the local authorities know this group? Is the group registered as an SEC with SEAI?'),
-       -- Exclude Ireland
-       (9, 1, 'Do the local authorities know this group?'),
-       -- Irish
-       (10, 3, 'Has there been any meetings with potential partners or mentors?'),
-       -- Exclude Ireland
-       (11, 3, 'Has there been any meetings with potential partners or mentors?'),
-       -- Irish
-       (12, 2,
-        'Has a preliminary evaluation of the territory been completed? Has an Energy Master Plan been carried out for the community?'),
-       -- Exclude Ireland
-       (13, 2, 'Has a preliminary evaluation of the territory been completed?'),
-       (14, 2,
-        'Following the preliminary evaluation of the territory, has a decision been made regarding project choice?'),
+VALUES (1, 1, 'Has your community hosted awareness activities surrounding the energy transition?'), -- Irish
+       (2, 1, 'Has your community hosted awareness activities surrounding the energy transition?'), -- Exclude Ireland
+       (3, 3, 'Has there been exploratory discussions within the community about creating a renewable energy project?'), -- Irish
+       (4, 3, 'Has there been exploratory discussions within the community about creating a renewable energy project?'), -- Exclude Ireland
+       (5, 1, 'Has a group been formed to manage the energy transition and any renewable energy projects in your community?'),
+       (6, 2, 'Has this group pursued any informal evaluation of the area to determine suitability?'), -- Irish
+       (7, 2, 'Has this group pursued any informal evaluation of the area to determine suitability?'), -- Exclude Ireland
+       (8, 1, 'Do the local authorities know this group? Is the group registered as an SEC with SEAI?'), -- Irish
+       (9, 1, 'Do the local authorities know this group?'), -- Exclude Ireland
+       (10, 3, 'Has there been any meetings with potential partners or mentors?'), -- Irish
+       (11, 3, 'Has there been any meetings with potential partners or mentors?'), -- Exclude Ireland
+       (12, 2, 'Has a preliminary evaluation of the territory been completed? Has an Energy Master Plan been carried out for the community?'), -- Irish
+       (13, 2, 'Has a preliminary evaluation of the territory been completed?'), -- Exclude Ireland
+       (14, 2, 'Following the preliminary evaluation of the territory, has a decision been made regarding project choice?'),
        (15, 2, 'Has a feasibility study been carried out for the selected Renewable Energy Project?'),
        (16, 2, 'Has a land leasing commitment been agreed?'),
        (17, 3, 'Is there a finance plan agreed within the group?'),
        (18, 1, 'Has the local community group become a project society?'),
-       -- Irish
-       (19, 2, 'Has a technical committee been established within the group?'),
-       -- Exclude Ireland
-       (20, 1, 'Has a technical committee been established within the group?'),
+       (19, 2, 'Has a technical committee been established within the group?'), -- Irish
+       (20, 1, 'Has a technical committee been established within the group?'), -- Exclude Ireland
        (21, 3, 'Has the group began planning how to raise equity for the project?'),
-       (22, 2,
-        'Is there a technical file for planning permission to be submitted for administration approval? This file will contain a report from any studies carried out and other documents required by authorities to give planning permission for the project.'),
+       (22, 2, 'Is there a technical file for planning permission to be submitted for administration approval? This file will contain a report from any studies carried out and other documents required by authorities to give planning permission for the project.'),
        (23, 2, 'Was the file approved?'),
        (24, 3, 'Is the financial plan finalized?'),
        (25, 3, 'How will the construction phase of the project be financed?'),
