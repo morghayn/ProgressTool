@@ -5,6 +5,29 @@ function focusTask(id)
     console.log("TID:" + focusedTask)
 }
 
+function logicToggle(logic)
+{
+    let task = document.querySelector('#' + focusedTask)
+    let buttons = task.querySelector('#buttons')
+    let logicToggle = buttons.querySelector('#logicToggle')
+
+    let or = logicToggle.querySelector('#or')
+    let and = logicToggle.querySelector('#and')
+
+    if (logic === 'or' && !or.classList.contains('active'))
+    {
+        or.classList.add('active')
+        and.classList.remove('active')
+        // TODO Ajax method updateLogic(0)
+    }
+    else if (logic === 'and' && !and.classList.contains('active'))
+    {
+        and.classList.add('active')
+        or.classList.remove('active')
+        // TODO Ajax method updateLogic(1)
+    }
+}
+
 /**
  * Opens choice selector modal.
  */
