@@ -14,6 +14,7 @@
  */
 class ProgressToolModelTest extends JModelLegacy
 {
+    /*
     public function getProjects()
     {
         $db = JFactory::getDbo();
@@ -25,6 +26,42 @@ class ProgressToolModelTest extends JModelLegacy
             ->where($db->quoteName('deactivated') . ' != 1');
 
         return $db->setQuery($getProjects)->loadColumn();
+    }
+    */
+
+    /**
+     * Retrieves all projects belonging to a user.
+     *
+     * @param int $userID ID of the user.
+     * @return mixed object list of all projects belonging to the user.
+     * @since 0.1.6
+     */
+    public function getProjects($userID)
+    {
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+
+        $query
+            ->select($db->quoteName('P.id', 'P.name', 'T.type'))
+            ->from($db->quoteName('#__pt_project', 'P'))
+            ->leftjoin($db->quoteName('#__community_groups_members', 'CGM') . ' ON P.group_id = CGM.groupid')
+            ->innerjoin($db->quoteName('#__pt_project_type', 'T') . ' ON T.id = P.type_id')
+            ->where(
+                $db->quoteName('P.user_id') . ' = ' . $db->quote($userID),
+            )
+            ->orwhere(array(
+                $db->quoteName('CGM.memberid') . ' = ' . $db->quote($userID),
+                $db->quoteName('CGM.permissions') . ' = 1'
+            ))
+            ->andwhere($db->quoteName('P.deactivated') . ' != 1')
+            ->group($db->quoteName('P.id'))
+            ->order('P.id DESC');
+        /*
+         * Note: for some reason the queries return duplicates on the production site not on my local site
+         * So we must group by projectID to avoid duplicates. I am not aware what is causing this duplication
+         */
+
+        return $db->setQuery($query)->loadColumn();
     }
 
     /**

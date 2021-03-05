@@ -15,6 +15,7 @@
 class ProgressToolViewTest extends JViewLegacy
 {
     protected $categories, $projects, $plots;
+    private $countryID;
 
     /**
      * Renders view.
@@ -28,9 +29,14 @@ class ProgressToolViewTest extends JViewLegacy
         $input = $app->input;
 
         $model = parent::getModel();
+        $userID = JFactory::getUser()->id;
+
+        // Retrieving countryID for the current user
+        JLoader::register('getCountry', JPATH_BASE . '/components/com_progresstool/helpers/getCountry.php');
+        $this->countryID = getCountry::getCountryID();
 
         $this->categories = $model->getCategories();
-        $this->projects = $model->getProjects();
+        $this->projects = $model->getProjects($userID);
         $this->plots = $this->getPlots();
 
         $this->prepareDocument();
@@ -51,7 +57,7 @@ class ProgressToolViewTest extends JViewLegacy
 
         foreach($this->projects as $projectID)
         {
-            $projectProgress = $model->getProjectProgress(1, $projectID);
+            $projectProgress = $model->getProjectProgress($this->countryID, $projectID);
             foreach ($this->categories as $category)
             {
                 $categoryProjectProgress = ($projectProgress[$category->id - 1]);
@@ -83,8 +89,8 @@ class ProgressToolViewTest extends JViewLegacy
     {
         $document = JFactory::getDocument();
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/admin.css");
+        $document->addScript(JURI::root() . "media/com_progresstool/js/admin/admin.css");
         $document->addStyleSheet(JURI::root() . "media/com_progresstool/css/test.css");
-        $document->addScript(JURI::root() . "media/com_progresstool/js/admin/adminBase.js");
-        $document->addScript(JURI::root() . "media/com_progresstool/js/admin/test.js");
+        $document->addScript(JURI::root() . "media/com_progresstool/js/site/test.js");
     }
 }
