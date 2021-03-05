@@ -28,22 +28,37 @@ class ProgressToolModelTest extends JModelLegacy
     }
 
     /**
-     * Retrieves the categories within the progress tool. Returns an additional field -- the total weight among all the choices
-     * within that category.
+     * Retrieves object list comprising of the categories.
      *
-     * @param int $countryID the ID of the country.
-     * @return object list of all the categories within the progress tool.
-     * @since 0.3.0
+     * @return object
+     * @since 0.5.5
      */
-    public function getCategories($countryID, $projectID)
+    public function getCategories()
     {
         $db = JFactory::getDbo();
         $getCategories = $db->getQuery(true);
 
-        $columns = array('CA.id', 'CA.category', 'CA.colour_hex', 'CA.colour_rgb');
+        $getCategories
+            ->select(
+                array(
+                    'id',
+                    'category',
+                    'colour_hex',
+                    'colour_rgb'
+                )
+            )
+            ->from($db->quoteName('#__pt_category'))
+            ->order('id ASC');
+
+        return $db->setQuery($getCategories)->loadObjectList();
+    }
+
+    public function getProjectProgress($countryID, $projectID)
+    {
+        $db = JFactory::getDbo();
+        $getCategories = $db->getQuery(true);
 
         $getCategories
-            ->select($db->quoteName($columns))
             ->select('SUM(QC.weight) AS categoryTotal')
             ->select('SUM((IF(' . $db->quoteName('PC.project_id') . ' = ' . $db->quote($projectID) . ', QC.weight, 0))) AS projectTotal')
             ->from($db->quoteName('#__pt_question_choice', 'QC'))
