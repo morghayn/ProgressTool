@@ -27,7 +27,7 @@ class ProgressToolModelTest extends JModelLegacy
         $query = $db->getQuery(true);
 
         $query
-            ->select($db->quoteName('P.id', 'P.name', 'T.type'))
+            ->select($db->quoteName(array('P.id', 'P.name', 'T.type')))
             ->from($db->quoteName('#__pt_project', 'P'))
             ->leftjoin($db->quoteName('#__community_groups_members', 'CGM') . ' ON P.group_id = CGM.groupid')
             ->innerjoin($db->quoteName('#__pt_project_type', 'T') . ' ON T.id = P.type_id')
@@ -46,7 +46,7 @@ class ProgressToolModelTest extends JModelLegacy
          * So we must group by projectID to avoid duplicates. I am not aware what is causing this duplication
          */
 
-        return $db->setQuery($query)->loadColumn();
+        return $db->setQuery($query)->loadObjectList();
     }
 
     /**

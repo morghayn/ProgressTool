@@ -6,8 +6,11 @@
 
             <div class="overlay">
                 <?php foreach ($this->plots as $plot): ?>
-                        <div class="project"
-                             style="top: <?php echo $plot[0]; ?>%; left: calc(<?php echo $plot[1]; ?>% - 3rem); --backgroundColour: <?php echo $plot[2]; ?>;">P</div>
+                    <div class="project"
+                         style="top: <?php echo $plot['y']; ?>%; left: calc(<?php echo $plot['x']; ?>% - 3rem); --backgroundColour: <?php echo $plot['colour_rgb']; ?>;">
+                        <img src="<?php echo JURI::root() . $plot['icon_path']; ?>"
+                             alt="<?php echo $plot['project_name']; ?>">
+                    </div>
                     <?php //TODO echo $category->colour_rgb; ?>
                 <?php endforeach; ?>
             </div>

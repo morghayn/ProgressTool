@@ -55,29 +55,48 @@ class ProgressToolViewTest extends JViewLegacy
         $yCur = array(11, 40.0, 65, 94);
         $plots = array();
 
-        foreach($this->projects as $projectID)
+        foreach ($this->projects as $project)
         {
-            $projectProgress = $model->getProjectProgress($this->countryID, $projectID);
+            $projectProgress = $model->getProjectProgress($this->countryID, $project->id);
             foreach ($this->categories as $category)
             {
-                $categoryProjectProgress = ($projectProgress[$category->id - 1]);
                 array_push(
                     $plots,
                     array(
-                        // Getting vertical plot
-                        rand($yPre[$category->id - 1], $yCur[$category->id]),
-
-                        // Getting horizontal plot
-                        intval(($categoryProjectProgress->projectTotal / $categoryProjectProgress->categoryTotal) * 100),
-
-                        // Color RGB
-                        $category->colour_rgb
+                        'project_name' => $project->name,
+                        'colour_rgb' => $category->colour_rgb,
+                        'icon_path' => $this->getProjectTypeIconPath($project->type),
+                        'y' => rand($yPre[$category->id - 1], $yCur[$category->id]),
+                        'x' => intval(($projectProgress[$category->id - 1]->projectTotal / $projectProgress[$category->id - 1]->categoryTotal) * 100)
                     )
                 );
             }
         }
 
         return $plots;
+    }
+
+    public function getProjectTypeIconPath($type)
+    {
+        $path = "/media/com_progresstool/icons/";
+
+        switch ($type)
+        {
+            case "Solar":
+                $path .= "TypeIcon_Solar";
+                break;
+            case "Wind":
+                $path .= "TypeIcon_Wind";
+                break;
+            case "Hydro":
+                $path .= "TypeIcon_Hydro";
+                break;
+            case "Biomass":
+                $path .= "TypeIcon_BioFuel";
+                break;
+        }
+
+        return $path;
     }
 
     /**
