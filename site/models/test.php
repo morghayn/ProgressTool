@@ -14,21 +14,6 @@
  */
 class ProgressToolModelTest extends JModelLegacy
 {
-    /*
-    public function getProjects()
-    {
-        $db = JFactory::getDbo();
-        $getProjects = $db->getQuery(true);
-
-        $getProjects
-            ->select($db->quoteName('P.id'))
-            ->from($db->quoteName('#__pt_project', 'P'))
-            ->where($db->quoteName('deactivated') . ' != 1');
-
-        return $db->setQuery($getProjects)->loadColumn();
-    }
-    */
-
     /**
      * Retrieves all projects belonging to a user.
      *
@@ -109,4 +94,19 @@ class ProgressToolModelTest extends JModelLegacy
 
         return $db->setQuery($getCategories)->loadObjectList();
     }
+
+    /*
+    public function getProjects()
+    {
+        $db = JFactory::getDbo();
+        $getProjects = $db->getQuery(true);
+
+        $getProjects
+            ->select($db->quoteName('P.id'))
+            ->from($db->quoteName('#__pt_project', 'P'))
+            ->where($db->quoteName('deactivated') . ' != 1');
+
+        return $db->setQuery($getProjects)->loadColumn();
+    }
+    */
 }
