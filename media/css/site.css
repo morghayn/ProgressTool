@@ -206,23 +206,6 @@
     color: #ffffff;
 }
 
-.titleContainer label {
-    height: 50%;
-    width: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 1.3rem;
-    line-height: 1;
-    font-weight: 600;
-    box-sizing: border-box;
-    border-left: 0.15rem solid rgb(125, 201, 37);
-    border-bottom: 0.15rem solid rgb(125, 201, 37);
-    color: #0C4DA0;
-    background-color: #ffffff;
-}
-
 .titleContainer select {
     height: 50%;
     width: 70%;
