@@ -5,7 +5,7 @@
     <h1 id="title">Project Board</h1>
 
     <?php if ($this->projects): // Only display project selector if user has projects ?>
-        <label for="projectSelect">Select Project</label>
+        <button id="timelinePlot">Timeline Plot</button>
         <select name="projectSelect" id="projectSelect">
             <option value="" disabled selected hidden>Select Project</option>
             <option value="0">All</option>
