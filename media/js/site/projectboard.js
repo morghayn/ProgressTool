@@ -70,6 +70,12 @@ function attachEventListeners()
         window.location = '?option=com_progresstool&view=create'
     )
 
+    // Timeline plot redirection
+    const timelinePlot = document.getElementById('timelinePlot')
+    timelinePlot.addEventListener('click', () =>
+        window.open('?option=com_progresstool&view=timelineplot','mywindow').focus()
+    )
+
     // Project selection event
     let projectSelect = document.getElementById('projectSelect')
     projectSelect.addEventListener("change", () => selectProject(projectSelect)
