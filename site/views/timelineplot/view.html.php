@@ -12,7 +12,7 @@
  * @author  Morgan Nolan <morgan.nolan@hotmail.com>
  * @link    https://github.com/morghayn
  */
-class ProgressToolViewTest extends JViewLegacy
+class ProgressToolViewTimelinePlot extends JViewLegacy
 {
     protected $categories, $projects, $plots;
     private $countryID;
