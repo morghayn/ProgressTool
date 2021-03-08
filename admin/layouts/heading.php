@@ -12,7 +12,7 @@ endif;
 
 
 <!-- Heading -->
-<div id="heading" class="heading stickyHeading" style="<?php echo $styleOverride; ?>">
+<div id="heading" class="heading stickyHeading" style="top: 31px; <?php echo $styleOverride; ?>">
     <span class="openSidebar" onclick="openNav()">&#9776;</span>
 
     <?php if (array_key_exists('additions', $displayData)): ?>
