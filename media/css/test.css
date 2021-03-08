@@ -35,7 +35,7 @@
     width: 4rem;
     height: 4rem;
     padding: 0.5rem;
-    border: 0.25rem solid white;
+    border: 0.25rem solid darkgray;
     --colour: 255, 255, 255;
     background-color: rgba(var(--colour), 0.8);
     cursor: pointer;
