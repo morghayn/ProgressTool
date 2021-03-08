@@ -7,6 +7,7 @@
     <?php if ($this->projects): // Only display project selector if user has projects ?>
         <label for="projectSelect">Select Project</label>
         <select name="projectSelect" id="projectSelect">
+            <option value="" disabled selected hidden>Select Project</option>
             <option value="0">All</option>
             <?php foreach ($this->projects as $project): ?>
                 <option value="<?php echo $project->id; ?>">
