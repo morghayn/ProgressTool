@@ -60,7 +60,7 @@ function accommodateNoSelector()
 }
 
 /**
- * Attaches event listeners
+ * Attaches event listeners to title container.
  */
 function attachEventListeners()
 {
@@ -72,23 +72,30 @@ function attachEventListeners()
 
     // Project selection event
     let projectSelect = document.getElementById('projectSelect')
-    projectSelect.addEventListener("change", () =>
-        {
-            let projectID = projectSelect.options[projectSelect.selectedIndex].value
-            if (projectID > 0)
-            {
-                // Display selected project
-                let projects = document.getElementById('projects')
-                let projectViewer = document.getElementById('projectViewer')
-                projectViewer.style.display = "block"
-                projects.style.display = "none"
-                projectViewer.innerHTML = getProjectTemplate(projectID, 1)
-            }
-            else
-            {
-                // Display all projects
-                window.location = '?option=com_progresstool&view=projectboard'
-            }
-        }
+    projectSelect.addEventListener("change", () => selectProject(projectSelect)
     )
+}
+
+/**
+ * Title container project selection.
+ *
+ * @param projectSelect
+ */
+function selectProject(projectSelect)
+{
+    let projectID = projectSelect.options[projectSelect.selectedIndex].value
+    if (projectID > 0)
+    {
+        // Display selected project
+        let projects = document.getElementById('projects')
+        let projectViewer = document.getElementById('projectViewer')
+        projectViewer.style.display = "block"
+        projects.style.display = "none"
+        projectViewer.innerHTML = getProjectTemplate(projectID, 1)
+    }
+    else
+    {
+        // Display all projects
+        window.location = '?option=com_progresstool&view=projectboard'
+    }
 }
