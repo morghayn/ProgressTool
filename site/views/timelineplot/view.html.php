@@ -67,7 +67,8 @@ class ProgressToolViewTimelinePlot extends JViewLegacy
                         'colour_rgb' => $category->colour_rgb,
                         'icon_path' => $this->getProjectTypeIconPath($project->type),
                         'y' => rand($yPre[$category->id - 1], $yCur[$category->id]),
-                        'x' => intval(($projectProgress[$category->id - 1]->projectTotal / $projectProgress[$category->id - 1]->categoryTotal) * 100)
+                        'x' => intval(($projectProgress[$category->id - 1]->projectTotal / $projectProgress[$category->id - 1]->categoryTotal) * 100),
+                        'progress' => intval(($projectProgress[$category->id - 1]->projectTotal / $projectProgress[$category->id - 1]->categoryTotal) * 100)
                     )
                 );
             }

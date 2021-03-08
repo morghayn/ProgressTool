@@ -10,7 +10,10 @@
                          style="top: <?php echo $plot['y']; ?>%; left: calc(<?php echo $plot['x']; ?>% - 3rem); --colour: <?php echo $plot['colour_rgb']; ?>;">
                         <img src="<?php echo JURI::root() . $plot['icon_path']; ?>"
                              alt="<?php echo $plot['project_name']; ?>">
-                        <span class="name"><?php echo $plot['project_name']; ?></span>
+                        <span class="name">
+                            <?php echo $plot['project_name']; ?><br>
+                            Progress: <?php echo $plot['progress']; ?>%
+                        </span>
                     </div>
                 <?php endforeach; ?>
             </div>
