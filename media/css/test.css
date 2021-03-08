@@ -41,15 +41,34 @@ img {
 
 .project {
     position: absolute;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 30rem;
-    background-color: rgba(var(--backgroundColour), 1);
-    border: 2px solid black;
+    width: 4rem;
+    height: 4rem;
+    padding: 0.5rem;
+    border: 0.25rem solid white;
+    background-color: rgba(var(--backgroundColour), 0.8);
+    cursor: pointer;
+}
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.project * {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+}
+
+.project img {
+    width: 100%;
+    height: 100%;
+}
+
+.project .name {
+    visibility: hidden;
+    position: absolute;
+    z-index: 1;
+    width: auto;
+    padding: 0.75rem 1.1rem;
+    font-size: 1.1rem;
     color: white;
-    font-size: 2rem;
+    background-color: #0C4DA0;
+}
+
+.project:hover .name {
+    visibility: visible;
 }
