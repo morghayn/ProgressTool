@@ -14,18 +14,31 @@ function logicToggle(logic)
     let or = logicToggle.querySelector('#or')
     let and = logicToggle.querySelector('#and')
 
-    if (logic === 'or' && !or.classList.contains('active'))
-    {
-        or.classList.add('active')
-        and.classList.remove('active')
-        // TODO Ajax method updateLogic(0)
-    }
-    else if (logic === 'and' && !and.classList.contains('active'))
-    {
-        and.classList.add('active')
-        or.classList.remove('active')
-        // TODO Ajax method updateLogic(1)
-    }
+    let token = jQuery("#token").attr("name")
+
+    jQuery.ajax(
+        {
+            type: 'POST',
+            data: {[token]: "1", task: "tasks.updateLogic", format: "json", taskID: focusedTask, logic: (logic === 'or' ? 0 : 1)},
+            success: () =>
+            {
+                if (logic === 'or' && !or.classList.contains('active'))
+                {
+                    or.classList.add('active')
+                    and.classList.remove('active')
+                }
+                else if (logic === 'and' && !and.classList.contains('active'))
+                {
+                    and.classList.add('active')
+                    or.classList.remove('active')
+                }
+            },
+            error: () =>
+            {
+                alert('Failed to remove choice.')
+            },
+        }
+    )
 }
 
 /**
@@ -67,6 +80,12 @@ function openChoiceSelector()
  */
 function addChoice(choiceID)
 {
+    let modal = document.getElementById("adminModal")
+
+    // If success
+    modal.style.display = "none"
+    heading.classList.add("stickyHeading")
+
     alert(choiceID)
 
     // TODO AJAX REQUEST TO ADD CHOICE

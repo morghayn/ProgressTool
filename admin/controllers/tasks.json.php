@@ -43,4 +43,34 @@ class ProgressToolControllerTasks extends JControllerLegacy
             )
         );
     }
+
+    public function updateLogic()
+    {
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+        $model = $this->getModel('tasks');
+
+        $app = JFactory::getApplication();
+        $input = $app->input;
+        $taskID = abs($input->getInt('taskID', 0));
+        $logic = $input->getInt('logic', 0);
+
+        /*
+        if (!$model->updateQuestion($questionID, $question))
+        {
+            $app->enqueueMessage("Failed to update question");
+        }
+
+
+        $this->setRedirect(
+            "index.php?option=com_progresstool&view=questionEditor&questionID=$questionID"
+        );
+        */
+
+        echo json_encode(
+            array(
+                "taskID" => $taskID,
+                "logic" => $logic
+            )
+        );
+    }
 }
