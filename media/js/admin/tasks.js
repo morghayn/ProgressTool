@@ -1,9 +1,40 @@
-let focusedTask;
+let focusedTask
+let focusedChoice
+
 function focusTask(id)
 {
-    focusedTask = id;
-    console.log("TID:" + focusedTask)
+    focusedTask = id
 }
+
+function focusChoice(id)
+{
+    focusedChoice = id
+}
+
+/**
+ * AJAX post to controller requesting for a choice to be removed.
+ */
+function removeChoice()
+{
+    let token = jQuery("#token").attr("name")
+    let choiceID = focusedChoice
+
+    jQuery.ajax(
+        {
+            type: 'POST',
+            data: {[token]: "1", task: "tasks.removeChoice", format: "json", taskID: focusedTask, choiceID: choiceID},
+            success: () => document.getElementById(choiceID).outerHTML = '',
+            error: () => alert('Failed to remove choice.'),
+        }
+    )
+}
+
+
+// TODO vvvvvvvvvv
+// TODO vvvvvvvvvv
+// TODO vvvvvvvvvv
+// TODO vvvvvvvvvv
+
 
 function logicToggle(logic)
 {
@@ -127,31 +158,6 @@ function closeAllTaskEditors()
     let choices = document.querySelectorAll('#choices')
     buttons.forEach(e => e.style.display = 'none')
     choices.forEach(e => e.style.display = 'none')
-}
-
-/**
- * AJAX post to controller requesting for a choice to be removed.
- *
- * @param choiceID
- */
-function removeChoice(choiceID)
-{
-    let token = jQuery("#token").attr("name")
-
-    jQuery.ajax(
-        {
-            type: 'POST',
-            data: {[token]: "1", task: "tasks.removeChoice", format: "json", taskID: focusedTask, choiceID: choiceID},
-            success: () =>
-            {
-                document.getElementById('choiceid-' + choiceID).outerHTML = ''
-            },
-            error: () =>
-            {
-                alert('Failed to remove choice.')
-            },
-        }
-    )
 }
 
 // TODO REMOVE?

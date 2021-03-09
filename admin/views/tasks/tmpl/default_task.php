@@ -13,7 +13,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>CID</th>
+                    <th>ID</th>
                     <th>Weight</th>
                     <th>Choice</th>
                     <th></th>
@@ -21,14 +21,12 @@
             </thead>
             <tbody>
                 <?php foreach ($this->task->choices as $choice): ?>
-                    <tr id="<?php echo 'choiceid-' . $choice->id; ?>">
+                    <tr id="<?php echo 'choiceid-' . $choice->id; ?>" onmouseover="focusChoice(this.id)">
                         <td><?php echo $choice->id; ?></td>
                         <td><?php echo $choice->weight; ?></td>
                         <td><?php echo $choice->choice; ?></td>
                         <td>
-                            <button onclick="removeChoice('<?php echo $choice->id; ?>')">
-                                Remove
-                            </button>
+                            <button onclick="removeChoice()">Remove</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
