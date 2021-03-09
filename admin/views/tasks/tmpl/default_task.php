@@ -3,7 +3,7 @@
 <div id="<?php echo 'taskid-' . $this->task->id; ?>" class="task" style="--colourHex: <?php echo $this->colourHex; ?>" onmouseover="focusTask(this.id)">
 
     <!-- Heading -->
-    <div class="heading" style="--colourHex: <?php echo $this->colourHex; ?>" onclick="toggleTaskEditor()">
+    <div class="heading" style="--colourHex: <?php echo $this->colourHex; ?>" onclick="toggleTask()">
         <h2>TID:<?php echo $this->task->id; ?></h2>
         <h1 id="task" contenteditable="true"><?php echo $this->task->task; ?></h1>
     </div>
@@ -36,7 +36,7 @@
 
     <!-- Logic Toggles -->
     <div id="buttons" class="buttons">
-        <button class="addChoice" onclick="openChoiceSelector()">Add Choice</button>
+        <button class="addChoice" onclick="openModal()">Add Choice</button>
 
         <div class="logicToggle" id="logicToggle">
             <button id="or" <?php echo($this->task->logic_id == 0 ? 'class="active"' : ''); ?> onclick="logicToggle('or')">OR</button>

@@ -62,8 +62,8 @@ class ProgressToolViewTasks extends JViewLegacy
             array(
                 "page" => "Tasks",
                 "additions" => array(
-                    '<button onclick="openAllTaskEditors()">Open all tasks</button>',
-                    '<button onclick="closeAllTaskEditors()">Close all tasks</button>'
+                    '<button onclick="toggleTasks(true)">Open all tasks</button>',
+                    '<button onclick="toggleTasks(false)">Close all tasks</button>'
                 )
             )
         );

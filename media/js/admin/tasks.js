@@ -1,99 +1,81 @@
 let focusedTask
+let focusedTaskID
 let focusedChoice
+let focusedChoiceID
 
 function focusTask(id)
 {
-    focusedTask = id
+    focusedTaskID = id
+    focusedTask = document.getElementById(focusedTaskID)
 }
 
 function focusChoice(id)
 {
-    focusedChoice = id
+    focusedChoiceID = id
+    focusedChoice = document.getElementById(focusedChoiceID)
 }
 
 /**
- * AJAX post to controller requesting for a choice to be removed.
+ * Removes choice via AJAX call.
  */
 function removeChoice()
 {
     let token = jQuery("#token").attr("name")
-    let choiceID = focusedChoice
 
     jQuery.ajax(
         {
             type: 'POST',
-            data: {[token]: "1", task: "tasks.removeChoice", format: "json", taskID: focusedTask, choiceID: choiceID},
-            success: () => document.getElementById(choiceID).outerHTML = '',
+            data:
+                {
+                    [token]: "1",
+                    task: "tasks.removeChoice",
+                    format: "json",
+                    taskID: focusedTaskID,
+                    choiceID: focusedChoiceID
+                },
+            success: () => focusedChoice.outerHTML = '',
             error: () => alert('Failed to remove choice.'),
         }
     )
 }
 
-
-// TODO vvvvvvvvvv
-// TODO vvvvvvvvvv
-// TODO vvvvvvvvvv
-// TODO vvvvvvvvvv
-
-
-function logicToggle(logic)
+/**
+ * Adds choice to a task via AJAX call.
+ */
+function addChoice()
 {
-    let task = document.querySelector('#' + focusedTask)
-    let buttons = task.querySelector('#buttons')
-    let logicToggle = buttons.querySelector('#logicToggle')
+    // Triggering modal close button
+    document.getElementsByClassName("amClose")[0].click()
 
-    let or = logicToggle.querySelector('#or')
-    let and = logicToggle.querySelector('#and')
+    alert(focusedChoiceID)
 
-    let token = jQuery("#token").attr("name")
-
-    jQuery.ajax(
-        {
-            type: 'POST',
-            data: {[token]: "1", task: "tasks.updateLogic", format: "json", taskID: focusedTask, logic: (logic === 'or' ? 0 : 1)},
-            success: () =>
-            {
-                if (logic === 'or' && !or.classList.contains('active'))
-                {
-                    or.classList.add('active')
-                    and.classList.remove('active')
-                }
-                else if (logic === 'and' && !and.classList.contains('active'))
-                {
-                    and.classList.add('active')
-                    or.classList.remove('active')
-                }
-            },
-            error: () =>
-            {
-                alert('Failed to remove choice.')
-            },
-        }
-    )
+    // TODO AJAX REQUEST TO ADD CHOICE
+    //      // TODO AJAX REQUEST TO HANDLE ERROR
+    // TODO AJAX REQUEST TO RECEIVE CHOICE
+    //      // TODO AJAX REQUEST TO HANDLE ERROR
 }
 
 /**
- * Opens choice selector modal.
+ * Opens modal for choice selection.
  */
-function openChoiceSelector()
+function openModal()
 {
+    // Displaying the modal
     let modal = document.getElementById("adminModal")
     modal.style.display = "block"
 
+    // Temporarily removing the administrator heading's stickiness
     const heading = document.querySelector('#heading')
-    if (heading.classList.contains("stickyHeading"))
-    {
-        heading.classList.remove("stickyHeading")
+    heading.classList.remove("stickyHeading")
 
-    }
-
-    let span = document.getElementsByClassName("amClose")[0]
-    span.onclick = () =>
+    // Adding event listener for modal close button
+    document.getElementsByClassName("amClose")[0].onclick = () =>
     {
         modal.style.display = "none"
         heading.classList.add("stickyHeading")
     }
 
+    // Adding event listener for modal closure via clicking outside modal
     window.onclick = (event) =>
     {
         if (event.target === modal)
@@ -105,78 +87,66 @@ function openChoiceSelector()
 }
 
 /**
- * Adds selected choice to currently focused task.
+ * Toggles task logic via AJAX call.
  *
- * @param choiceID
+ * @param logic
  */
-function addChoice(choiceID)
+function logicToggle(logic)
 {
-    let modal = document.getElementById("adminModal")
+    let logicToggle = focusedTask.querySelector('#buttons').querySelector('#logicToggle')
 
-    // If success
-    modal.style.display = "none"
-    heading.classList.add("stickyHeading")
+    let or = logicToggle.querySelector('#or')
+    let and = logicToggle.querySelector('#and')
 
-    alert(choiceID)
+    let token = jQuery("#token").attr("name")
 
-    // TODO AJAX REQUEST TO ADD CHOICE
-    //      // TODO AJAX REQUEST TO HANDLE ERROR
-    // TODO AJAX REQUEST TO RECEIVE CHOICE
-    //      // TODO AJAX REQUEST TO HANDLE ERROR
+    jQuery.ajax(
+        {
+            type: 'POST',
+            data:
+                {
+                    [token]: "1",
+                    task: "tasks.updateLogic",
+                    format: "json",
+                    taskID: focusedTaskID,
+                    logic: (logic === 'or' ? 0 : 1)
+                },
+            success: () =>
+            {
+                if (logic === 'or')
+                {
+                    or.classList.add('active')
+                    and.classList.remove('active')
+                }
+                else if (logic === 'and')
+                {
+                    and.classList.add('active')
+                    or.classList.remove('active')
+                }
+            },
+            error: () => alert('Failed to remove choice.'),
+        }
+    )
 }
 
 /**
- * Sets style of task editor for a particular task to 'block'.
+ * Toggles the visibility of a task.
  */
-function toggleTaskEditor()
+function toggleTask()
 {
-    let task = document.querySelector('#' + focusedTask)
-    let buttons = task.querySelector('#buttons')
-    let choices = task.querySelector('#choices')
-
+    let buttons = focusedTask.querySelector('#buttons')
+    let choices = focusedTask.querySelector('#choices')
     buttons.style.display = buttons.style.display === 'flex' ? 'none' : 'flex';
     choices.style.display = choices.style.display === 'block' ? 'none' : 'block';
 }
 
 /**
- * Opens task editor for every task.
+ * Toggles the visibility of all tasks.
  */
-function openAllTaskEditors()
+function toggleTasks(open)
 {
     let buttons = document.querySelectorAll('#buttons')
     let choices = document.querySelectorAll('#choices')
-    buttons.forEach(e => e.style.display = 'flex')
-    choices.forEach(e => e.style.display = 'block')
-}
-
-/**
- * Closes task editor for every task.
- */
-function closeAllTaskEditors()
-{
-    let buttons = document.querySelectorAll('#buttons')
-    let choices = document.querySelectorAll('#choices')
-    buttons.forEach(e => e.style.display = 'none')
-    choices.forEach(e => e.style.display = 'none')
-}
-
-// TODO REMOVE?
-function buildTaskObject(taskid)
-{
-    // empty task object
-    let taskObject = {
-        task: '',
-        choices: []
-    }
-
-    // collecting task string
-    let task = document.querySelector('#' + taskid)
-    taskObject.task = task.querySelector('#task').innerHTML
-
-    // collecting cids
-    let choicesDiv = task.querySelector('#choices')
-    let choices = choicesDiv.querySelectorAll('h3')
-    choices.forEach(e => taskObject.choices.push(e.id))
-
-    alert(JSON.stringify(taskObject))
+    buttons.forEach(e => e.style.display = open ? 'flex' : 'none')
+    choices.forEach(e => e.style.display = open ? 'block' : 'none')
 }
