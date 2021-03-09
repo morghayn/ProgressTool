@@ -8,7 +8,42 @@
         <h1 id="task" contenteditable="true"><?php echo $this->task->task; ?></h1>
     </div>
 
-    <!-- Editor -->
-    <?php echo $this->loadTemplate('choices'); ?>
-    <?php echo $this->loadTemplate('buttons'); ?>
+    <!-- Choices -->
+    <div id="choices" style="--colourHex: <?php echo $this->colourHex; ?>">
+        <table>
+            <thead>
+                <tr>
+                    <th>CID</th>
+                    <th>Weight</th>
+                    <th>Choice</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->task->choices as $choice): ?>
+                    <tr id="<?php echo 'choiceid-' . $choice->id; ?>">
+                        <td><?php echo $choice->id; ?></td>
+                        <td><?php echo $choice->weight; ?></td>
+                        <td><?php echo $choice->choice; ?></td>
+                        <td>
+                            <button onclick="removeChoice('<?php echo $choice->id; ?>')">
+                                Remove
+                            </button>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Logic Toggles -->
+    <div id="buttons" class="buttons">
+        <button class="addChoice" onclick="openChoiceSelector()">Add Choice</button>
+
+        <div class="logicToggle" id="logicToggle">
+            <button id="or" <?php echo($this->task->logic_id == 0 ? 'class="active"' : ''); ?> onclick="logicToggle('or')">OR</button>
+            <button id="and" <?php echo($this->task->logic_id == 1 ? 'class="active"' : ''); ?> onclick="logicToggle('and')">AND</button>
+        </div>
+    </div>
+
 </div>
