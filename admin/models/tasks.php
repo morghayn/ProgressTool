@@ -146,4 +146,21 @@ class ProgressToolModelTasks extends JModelLegacy
 
         return $db->setQuery($getChoices)->loadObjectList();
     }
+
+    public function removeChoice($taskID, $choiceID)
+    {
+        $db = JFactory::getDbo();
+        $removeChoice = $db->getQuery(true);
+
+        $removeChoice
+            ->delete($db->quoteName('#__pt_choice_task'))
+            ->where(
+                array(
+                    $db->quoteName('task_id') . ' = ' . $db->quote($taskID),
+                    $db->quoteName('choice_id') . ' = ' . $db->quote($choiceID)
+                )
+            );
+
+        return $db->setQuery($removeChoice)->execute();
+    }
 }

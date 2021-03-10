@@ -30,10 +30,53 @@ function removeChoice()
                     [token]: "1",
                     task: "tasks.removeChoice",
                     format: "json",
-                    taskID: focusedTaskID,
-                    choiceID: focusedChoiceID
+                    taskID: focusedTaskID.substring(7),
+                    choiceID: focusedChoiceID.substring(9)
                 },
             success: () => focusedChoice.outerHTML = '',
+            error: () => alert('Failed to remove choice.'),
+        }
+    )
+}
+
+/**
+ * Toggles task logic via AJAX call.
+ *
+ * @param logic
+ */
+function logicToggle(logic)
+{
+    let logicToggle = focusedTask.querySelector('#buttons').querySelector('#logicToggle')
+
+    let or = logicToggle.querySelector('#or')
+    let and = logicToggle.querySelector('#and')
+
+    let token = jQuery("#token").attr("name")
+
+    jQuery.ajax(
+        {
+            type: 'POST',
+            data:
+                {
+                    [token]: "1",
+                    task: "tasks.updateLogic",
+                    format: "json",
+                    taskID: focusedTaskID.substring(7),
+                    logic: (logic === 'or' ? 0 : 1)
+                },
+            success: () =>
+            {
+                if (logic === 'or')
+                {
+                    or.classList.add('active')
+                    and.classList.remove('active')
+                }
+                else if (logic === 'and')
+                {
+                    and.classList.add('active')
+                    or.classList.remove('active')
+                }
+            },
             error: () => alert('Failed to remove choice.'),
         }
     )
@@ -84,49 +127,6 @@ function openModal()
             heading.classList.add("stickyHeading")
         }
     }
-}
-
-/**
- * Toggles task logic via AJAX call.
- *
- * @param logic
- */
-function logicToggle(logic)
-{
-    let logicToggle = focusedTask.querySelector('#buttons').querySelector('#logicToggle')
-
-    let or = logicToggle.querySelector('#or')
-    let and = logicToggle.querySelector('#and')
-
-    let token = jQuery("#token").attr("name")
-
-    jQuery.ajax(
-        {
-            type: 'POST',
-            data:
-                {
-                    [token]: "1",
-                    task: "tasks.updateLogic",
-                    format: "json",
-                    taskID: focusedTaskID,
-                    logic: (logic === 'or' ? 0 : 1)
-                },
-            success: () =>
-            {
-                if (logic === 'or')
-                {
-                    or.classList.add('active')
-                    and.classList.remove('active')
-                }
-                else if (logic === 'and')
-                {
-                    and.classList.add('active')
-                    or.classList.remove('active')
-                }
-            },
-            error: () => alert('Failed to remove choice.'),
-        }
-    )
 }
 
 /**
