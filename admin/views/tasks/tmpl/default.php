@@ -18,3 +18,6 @@
 
 <!-- CSRF Token -->
 <input id="token" type="hidden" name="<?php echo JSession::getFormToken(); ?>" value="1"/>
+
+<!-- Initializing countryID -->
+<script>countryID = <?php echo $this->countryID; ?></script>
