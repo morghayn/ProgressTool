@@ -22,6 +22,7 @@ class ProgressToolControllerTasks extends JControllerLegacy
         $app = JFactory::getApplication();
         $input = $app->input;
 
+        $countryID = $input->getInt('countryID', 0);
         $taskID = $input->getInt('taskID', 0);
         $choiceID = $input->getInt('choiceID', 0);
 
@@ -35,13 +36,17 @@ class ProgressToolControllerTasks extends JControllerLegacy
     public function updateLogic()
     {
         JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-        $model = $this->getModel('tasks');
 
+        $model = $this->getModel('tasks');
         $app = JFactory::getApplication();
         $input = $app->input;
-        $taskID = abs($input->getInt('taskID', 0));
+
+        $countryID = $input->getInt('countryID', 0);
+        $taskID = $input->getInt('taskID', 0);
         $logic = $input->getInt('logic', 0);
 
+        // if logic 'or' we get the minimum score for all choices associated with the task for the particular country
+        // if logic 'and' we get the combined score for that country
         /*
         if (!$model->updateQuestion($questionID, $question))
         {
@@ -56,6 +61,7 @@ class ProgressToolControllerTasks extends JControllerLegacy
 
         echo json_encode(
             array(
+                "countryID" => $countryID,
                 "taskID" => $taskID,
                 "logic" => $logic
             )

@@ -30,6 +30,7 @@ function removeChoice()
                     [token]: "1",
                     task: "tasks.removeChoice",
                     format: "json",
+                    countryID: countryID,
                     taskID: focusedTaskID.substring(7),
                     choiceID: focusedChoiceID.substring(9)
                 },
@@ -61,6 +62,7 @@ function logicToggle(logic)
                     [token]: "1",
                     task: "tasks.updateLogic",
                     format: "json",
+                    countryID: countryID,
                     taskID: focusedTaskID.substring(7),
                     logic: (logic === 'or' ? 0 : 1)
                 },
