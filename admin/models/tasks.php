@@ -147,7 +147,16 @@ class ProgressToolModelTasks extends JModelLegacy
         return $db->setQuery($getChoices)->loadObjectList();
     }
 
-    public function removeChoice($taskID, $choiceID)
+    /**
+     * Removes a particular choice from a task.
+     *
+     * @param $countryID
+     * @param $taskID
+     * @param $choiceID
+     * @return bool
+     * @since 0.5.0
+     */
+    public function removeChoice($countryID, $taskID, $choiceID)
     {
         $db = JFactory::getDbo();
         $removeChoice = $db->getQuery(true);
@@ -161,6 +170,114 @@ class ProgressToolModelTasks extends JModelLegacy
                 )
             );
 
-        return $db->setQuery($removeChoice)->execute();
+        $db->setQuery($removeChoice)->execute();
+        $this->updateCriteria($countryID, $taskID);
+        return true;
+    }
+
+    /**
+     * Updates the logic id of a task for a particular country.
+     *
+     * @param $countryID
+     * @param $taskID
+     * @param $logicID
+     * @return bool
+     * @since 0.5.0
+     */
+    public function updateLogicID($countryID, $taskID, $logicID)
+    {
+        $db = JFactory::getDbo();
+        $updateLogic = $db->getQuery(true);
+
+        $columns = array('country_id', 'task_id', 'logic_id');
+
+        $updateLogic
+            ->insert($db->quoteName('#__pt_task_country'))
+            ->columns($db->quoteName($columns))
+            ->values($countryID . ', ' . $taskID . ', ' . $logicID);
+
+        $db->setQuery($updateLogic . " ON DUPLICATE KEY UPDATE `logic_id` = VALUES(`logic_id`)")->execute();
+        $this->updateCriteria($countryID, $taskID);
+        return true;
+    }
+
+    /**
+     * Updates the criteria of a task for a particular country.
+     * @param $countryID
+     * @param $taskID
+     * @return mixed
+     * @since 0.5.0
+     */
+    public function updateCriteria($countryID, $taskID)
+    {
+        $db = JFactory::getDbo();
+        $updateCriteria = $db->getQuery(true);
+
+        $columns = array('country_id', 'task_id', 'criteria');
+        $criteria = $this->getCriteria($countryID, $taskID);
+
+        $updateCriteria
+            ->insert($db->quoteName('#__pt_task_country'))
+            ->columns($db->quoteName($columns))
+            ->values($countryID . ', ' . $taskID . ', ' . $criteria);
+
+        return $db->setQuery($updateCriteria . " ON DUPLICATE KEY UPDATE `criteria` = VALUES(`criteria`)")->execute();
+    }
+
+    /**
+     * Gets a tasks criteria via calculation.
+     * We get the min() if logic is 'OR' else we get max().
+     *
+     * @param $countryID
+     * @param $taskID
+     * @return integer
+     * @since 0.5.0
+     */
+    public function getCriteria($countryID, $taskID)
+    {
+        $logic = $this->getLogicID($countryID, $taskID);
+        $operation = ($logic == 0 ? 'MIN' : 'SUM');
+
+        $db = JFactory::getDbo();
+        $getUpdatedWeight = $db->getQuery(true);
+
+        $getUpdatedWeight
+            ->select($operation . '(QC.weight)')
+            ->from($db->quoteName('#__pt_choice_task', 'CT'))
+            ->innerJoin($db->quoteName('#__pt_question_choice', 'QC') . ' ON CT.choice_id = QC.id')
+            ->innerJoin($db->quoteName('#__pt_question_country', 'QCO') . ' ON QC.question_id = QCO.question_id')
+            ->innerJoin($db->quoteName('#__pt_country', 'C') . ' ON QCO.country_id = C.id')
+            ->where(array(
+                $db->quoteName('C.id') . ' = ' . $db->quote($countryID),
+                $db->quoteName('CT.task_id') . ' = ' . $db->quote($taskID)
+            ));
+
+        return $db->setQuery($getUpdatedWeight)->loadResult();
+    }
+
+    /**
+     * Receives the logic id of a task for a particular country.
+     * 0 == OR LOGIC
+     * 1== AND LOGIC
+     *
+     * @param $countryID
+     * @param $taskID
+     * @return integer
+     * @since 0.5.0
+     */
+    public function getLogicID($countryID, $taskID)
+    {
+        $db = JFactory::getDbo();
+        $getTaskLogic = $db->getQuery(true);
+
+        $getTaskLogic
+            ->select($db->quoteName('logic_id'))
+            ->from($db->quoteName('#__pt_task_country'))
+            ->where(array(
+                $db->quoteName('task_id') . ' = ' . $db->quote($taskID),
+                $db->quoteName('country_id') . ' = ' . $db->quote($countryID)
+            ));
+
+        return $db->setQuery($getTaskLogic)->loadResult();
     }
 }

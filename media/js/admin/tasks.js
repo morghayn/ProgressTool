@@ -60,11 +60,11 @@ function logicToggle(logic)
             data:
                 {
                     [token]: "1",
-                    task: "tasks.updateLogic",
+                    task: "tasks.updateLogicID",
                     format: "json",
                     countryID: countryID,
                     taskID: focusedTaskID.substring(7),
-                    logic: (logic === 'or' ? 0 : 1)
+                    logicID: (logic === 'or' ? 0 : 1)
                 },
             success: () =>
             {
@@ -79,7 +79,7 @@ function logicToggle(logic)
                     or.classList.remove('active')
                 }
             },
-            error: () => alert('Failed to remove choice.'),
+            error: () => alert('Failed to update logic.'),
         }
     )
 }

@@ -28,12 +28,12 @@ class ProgressToolControllerTasks extends JControllerLegacy
 
         echo json_encode(
             array(
-                "status" => (!$model->removeChoice($taskID, $choiceID) ? "failure" : "success")
+                "status" => (!$model->removeChoice($countryID, $taskID, $choiceID) ? "failure" : "success")
             )
         );
     }
 
-    public function updateLogic()
+    public function updateLogicID()
     {
         JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
@@ -43,27 +43,11 @@ class ProgressToolControllerTasks extends JControllerLegacy
 
         $countryID = $input->getInt('countryID', 0);
         $taskID = $input->getInt('taskID', 0);
-        $logic = $input->getInt('logic', 0);
-
-        // if logic 'or' we get the minimum score for all choices associated with the task for the particular country
-        // if logic 'and' we get the combined score for that country
-        /*
-        if (!$model->updateQuestion($questionID, $question))
-        {
-            $app->enqueueMessage("Failed to update question");
-        }
-
-
-        $this->setRedirect(
-            "index.php?option=com_progresstool&view=questionEditor&questionID=$questionID"
-        );
-        */
+        $logicID = $input->getInt('logicID', 0);
 
         echo json_encode(
             array(
-                "countryID" => $countryID,
-                "taskID" => $taskID,
-                "logic" => $logic
+                "status" => (!$model->updateLogic($countryID, $taskID, $logicID) ? "failure" : "success")
             )
         );
     }
