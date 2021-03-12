@@ -98,13 +98,27 @@ function addChoice()
 {
     // Triggering modal close button
     document.getElementsByClassName("amClose")[0].click()
+    let token = jQuery("#token").attr("name")
 
-    alert(focusedChoiceID)
-
-    // TODO AJAX REQUEST TO ADD CHOICE
-    //      // TODO AJAX REQUEST TO HANDLE ERROR
-    // TODO AJAX REQUEST TO RECEIVE CHOICE
-    //      // TODO AJAX REQUEST TO HANDLE ERROR
+    jQuery.ajax(
+        {
+            type: 'POST',
+            data:
+                {
+                    [token]: "1",
+                    task: "tasks.addChoice",
+                    format: "json",
+                    countryID: countryID,
+                    taskID: focusedTaskID,
+                    choiceID: focusedChoiceID,
+                },
+            success: () =>
+            {
+                // TODO add choice to Task so it does not require page reload
+            },
+            error: () => alert('Failed to add choice to task.'),
+        }
+    )
 }
 
 /**

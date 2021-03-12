@@ -47,7 +47,26 @@ class ProgressToolControllerTasks extends JControllerLegacy
 
         echo json_encode(
             array(
-                "status" => (!$model->updateLogic($countryID, $taskID, $logicID) ? "failure" : "success")
+                "status" => (!$model->updateLogicID($countryID, $taskID, $logicID) ? "failure" : "success")
+            )
+        );
+    }
+
+    public function addChoice()
+    {
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+
+        $model = $this->getModel('tasks');
+        $app = JFactory::getApplication();
+        $input = $app->input;
+
+        $countryID = $input->getInt('countryID', 0);
+        $taskID = $input->getInt('taskID', 0);
+        $choiceID = $input->getInt('choiceID', 0);
+
+        echo json_encode(
+            array(
+                "status" => (!$model->addChoice($countryID, $taskID, $choiceID) ? "failure" : "success")
             )
         );
     }

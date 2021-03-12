@@ -38,7 +38,6 @@
                     {
                         focusTaskID('<?php echo $this->task->id; ?>')
                         focusTask('<?php echo 't-' . $this->task->id; ?>')
-
                         logicToggle(0)
                     })
 
@@ -49,7 +48,6 @@
                     {
                         focusTaskID('<?php echo $this->task->id; ?>')
                         focusTask('<?php echo 't-' . $this->task->id; ?>')
-
                         logicToggle(1)
                     })
 
@@ -61,10 +59,8 @@
                         {
                             focusTaskID('<?php echo $this->task->id; ?>')
                             focusTask('<?php echo 't-' . $this->task->id; ?>')
-
                             focusChoiceID('<?php echo $choice->id; ?>')
                             focusChoice('<?php echo 't-' . $this->task->id . '-c-' . $choice->id; ?>')
-
                             removeChoice()
                         })
                 <?php endforeach; ?>

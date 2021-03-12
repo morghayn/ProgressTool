@@ -64,7 +64,6 @@ class ProgressToolModelTasks extends JModelLegacy
             )
             ->from($db->quoteName('#__pt_task', 'T'))
             ->innerJoin($db->quoteName('#__pt_task_country', 'TC') . ' ON ' . $db->quoteName('T.id') . ' = ' . $db->quoteName('TC.task_id'))
-            ->innerJoin($db->quoteName('#__pt_choice_task', 'CT') . ' ON ' . $db->quoteName('TC.task_id') . ' = ' . $db->quoteName('CT.task_id'))
             ->where('TC.country_id = ' . $db->quote($countryID))
             ->group('T.id');
 
@@ -201,6 +200,23 @@ class ProgressToolModelTasks extends JModelLegacy
         return true;
     }
 
+    public function addChoice($countryID, $taskID, $choiceID)
+    {
+        $db = JFactory::getDbo();
+        $addChoice = $db->getQuery(true);
+
+        $columns = array('task_id', 'choice_id');
+
+        $addChoice
+            ->insert($db->quoteName('#__pt_choice_task'))
+            ->columns($db->quoteName($columns))
+            ->values($taskID . ', ' . $choiceID);
+
+        $db->setQuery($addChoice)->execute();
+        $this->updateCriteria($countryID, $taskID);
+        return true;
+    }
+
     /**
      * Updates the criteria of a task for a particular country.
      * @param $countryID
@@ -235,14 +251,14 @@ class ProgressToolModelTasks extends JModelLegacy
      */
     public function getCriteria($countryID, $taskID)
     {
-        $logic = $this->getLogicID($countryID, $taskID);
-        $operation = ($logic == 0 ? 'MIN' : 'SUM');
+        $logicID = $this->getLogicID($countryID, $taskID);
+        $operation = ($logicID == 0 ? 'MIN' : 'SUM');
 
         $db = JFactory::getDbo();
         $getUpdatedWeight = $db->getQuery(true);
 
         $getUpdatedWeight
-            ->select($operation . '(QC.weight)')
+            ->select('IFNULL(' . "$operation(QC.weight),0)")
             ->from($db->quoteName('#__pt_choice_task', 'CT'))
             ->innerJoin($db->quoteName('#__pt_question_choice', 'QC') . ' ON CT.choice_id = QC.id')
             ->innerJoin($db->quoteName('#__pt_question_country', 'QCO') . ' ON QC.question_id = QCO.question_id')
