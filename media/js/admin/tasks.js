@@ -3,9 +3,9 @@ let focusedTaskID
 let focusedChoice
 let focusedChoiceID
 
-function focusTask(id)
+function focusTask(e)
 {
-    focusedTask = document.getElementById(id)
+    focusedTask = e
 }
 
 function focusTaskID(id)
@@ -13,9 +13,9 @@ function focusTaskID(id)
     focusedTaskID = id
 }
 
-function focusChoice(id)
+function focusChoice(e)
 {
-    focusedChoice = document.getElementById(id)
+    focusedChoice = e
 }
 
 function focusChoiceID(id)

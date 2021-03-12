@@ -1,6 +1,6 @@
 <?php defined('_JEXEC') or die; ?>
 
-<div id="<?php echo 't-' . $this->task->id; ?>" class="task" style="--colourHex: <?php echo $this->colourHex; ?>">
+<div id="<?php echo 'tid-' . $this->task->id; ?>" class="task" style="--colourHex: <?php echo $this->colourHex; ?>">
 
     <!-- Heading -->
     <div class="heading" style="--colourHex: <?php echo $this->colourHex; ?>" onclick="toggleTask()">
@@ -21,8 +21,8 @@
             </thead>
             <tbody>
                 <?php foreach ($this->task->choices as $choice): ?>
-                    <?php $taskChoiceID = 't-' . $this->task->id . '-c-' . $choice->id; ?>
-                    <?php $removeTaskChoiceID = 'r-t-' . $this->task->id . '-c-' . $choice->id; ?>
+                    <?php $taskChoiceID = 't-cid-' . $this->task->id . '-' . $choice->id; ?>
+                    <?php $removeTaskChoiceID = 'r-t-c-' . $this->task->id . '-' . $choice->id; ?>
 
                     <tr id="<?php echo $taskChoiceID; ?>">
                         <td><?php echo $choice->id; ?></td>
@@ -39,12 +39,12 @@
 
     <!-- Logic Toggles -->
     <div class="task-buttons">
-        <?php $addChoice = 'a-c-t-' . $this->task->id; ?>
+        <?php $addChoice = 'a-t-c-' . $this->task->id; ?>
         <button class="addChoice" id="<?php echo $addChoice; ?>">Add Choice</button>
 
         <div class="logicToggle">
-            <?php $orLogicID = 'u-t-' . $this->task->id . '-l-0'; ?>
-            <?php $andLogicID = 'u-t-' . $this->task->id . '-l-1'; ?>
+            <?php $orLogicID = 'u-t-l-0-' . $this->task->id; ?>
+            <?php $andLogicID = 'u-t-l-1-' . $this->task->id; ?>
             <button <?php echo($this->task->logic_id == 0 ? 'class="active"' : ''); ?> id="<?php echo $orLogicID; ?>">OR</button>
             <button <?php echo($this->task->logic_id == 1 ? 'class="active"' : ''); ?> id="<?php echo $andLogicID; ?>">AND</button>
         </div>

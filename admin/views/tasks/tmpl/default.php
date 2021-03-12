@@ -18,53 +18,69 @@
             <?php $this->colourHex = $this->categories[$this->task->category_id - 1]->colour_hex; ?>
             <?php echo $this->loadTemplate('task'); ?>
             <?php //break; ?>
-
-            <!-- Adding event listeners -->
-            <script>
-                // Add choice click
-                document
-                    .getElementById('<?php echo 'a-c-t-' . $this->task->id; ?>')
-                    .addEventListener("click", () =>
-                    {
-                        focusTaskID('<?php echo $this->task->id; ?>')
-                        focusTask('<?php echo 't-' . $this->task->id; ?>')
-                        openModal()
-                    })
-
-                // Update task logic (or) click
-                document
-                    .getElementById('<?php echo 'u-t-' . $this->task->id . '-l-0'; ?>')
-                    .addEventListener("click", () =>
-                    {
-                        focusTaskID('<?php echo $this->task->id; ?>')
-                        focusTask('<?php echo 't-' . $this->task->id; ?>')
-                        logicToggle(0)
-                    })
-
-                // Update task logic (and) click
-                document
-                    .getElementById('<?php echo 'u-t-' . $this->task->id . '-l-1'; ?>')
-                    .addEventListener("click", () =>
-                    {
-                        focusTaskID('<?php echo $this->task->id; ?>')
-                        focusTask('<?php echo 't-' . $this->task->id; ?>')
-                        logicToggle(1)
-                    })
-
-                <?php foreach ($this->task->choices as $choice): ?>
-                    // Remove choice click
-                    document
-                        .getElementById('<?php echo 'r-t-' . $this->task->id . '-c-' . $choice->id; ?>')
-                        .addEventListener("click", () =>
-                        {
-                            focusTaskID('<?php echo $this->task->id; ?>')
-                            focusTask('<?php echo 't-' . $this->task->id; ?>')
-                            focusChoiceID('<?php echo $choice->id; ?>')
-                            focusChoice('<?php echo 't-' . $this->task->id . '-c-' . $choice->id; ?>')
-                            removeChoice()
-                        })
-                <?php endforeach; ?>
-            </script>
         <?php endforeach; ?>
     </div>
 </div>
+
+<!-- Adding event listeners -->
+<script>
+    // Task
+    document.querySelectorAll("[id^='tid-']").forEach(e =>
+        {
+            e.addEventListener(
+                "click",
+                e =>
+                {
+                    focusTask(e.currentTarget)
+                    focusTaskID(e.currentTarget.id.split('-')[1])
+                },
+                true
+            )
+        }
+    )
+
+    // Add choice click
+    document.querySelectorAll("[id^='a-t-c-']").forEach(e =>
+        {
+            e.addEventListener(
+                "click",
+                () => openModal(),
+                true
+            )
+        }
+    )
+
+    // Update task logic (or) click
+    document.querySelectorAll("[id^='u-t-l-']").forEach(e =>
+        {
+            e.addEventListener(
+                "click",
+                e => logicToggle(e.currentTarget.id.split('-')[4]),
+                true
+            )
+        }
+    )
+
+    // Choice click
+    document.querySelectorAll("[id*='t-cid-']").forEach(e =>
+        {
+            e.addEventListener(
+                "click",
+                e =>
+                {
+                    focusChoiceID(e.currentTarget.id.split('-')[3])
+                    focusChoice(e.currentTarget)
+                },
+                true
+            )
+        }
+    )
+
+    // Remove choice click
+    document.querySelectorAll("[id*='r-t-c-']").forEach(
+        e =>
+        {
+            e.addEventListener("click", () => removeChoice(), true)
+        }
+    )
+</script>
