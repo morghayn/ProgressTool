@@ -31,14 +31,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    <?php foreach ($this->choices as $choice): ?>
-        document.getElementById('<?php echo 'a-c-' . $choice->id; ?>')
-            .addEventListener("click", () =>
-            {
-                focusChoiceID('<?php echo $choice->id; ?>')
-                addChoice()
-            })
-    <?php endforeach; ?>
-</script>

@@ -82,8 +82,8 @@ function removeChoice()
 function logicToggle(logic)
 {
     let token = jQuery("#token").attr("name")
-    let orLogicID = 'u-t-' + focusedTaskID + '-l-0'
-    let andLogicID = 'u-t-' + focusedTaskID + '-l-1'
+    let orLogicID = 'u-t-l-0-' + focusedTaskID
+    let andLogicID = 'u-t-l-1-' + focusedTaskID
     let orElem = document.getElementById(orLogicID)
     let andElem = document.getElementById(andLogicID)
 

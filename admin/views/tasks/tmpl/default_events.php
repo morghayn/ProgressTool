@@ -51,14 +51,17 @@
         {
             e.addEventListener(
                 "click",
-                e => logicToggle(e.currentTarget.id.split('-')[4]),
+                e =>
+                {
+                    logicToggle(parseInt(e.currentTarget.id.split('-')[3]))
+                },
                 true
             )
         }
     )
 
     // Choice click
-    document.querySelectorAll("[id*='t-cid-']").forEach(e =>
+    document.querySelectorAll("[id^='t-cid-']").forEach(e =>
         {
             e.addEventListener(
                 "click",
@@ -73,10 +76,23 @@
     )
 
     // Remove choice click
-    document.querySelectorAll("[id*='r-t-c-']").forEach(
+    document.querySelectorAll("[id^='r-t-c-']").forEach(
         e =>
         {
             e.addEventListener("click", () => removeChoice(), true)
+        }
+    )
+
+    // Modal choice click
+    document.querySelectorAll("[id^='a-c-']").forEach(e =>
+        {
+            e.addEventListener(
+                "click",
+                e =>
+                {
+                    focusChoiceID(e.currentTarget.id.split('-')[2])
+                    addChoice()
+                })
         }
     )
 </script>
