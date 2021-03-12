@@ -200,6 +200,15 @@ class ProgressToolModelTasks extends JModelLegacy
         return true;
     }
 
+    /**
+     * Adds a choice to a task.
+     *
+     * @param $countryID
+     * @param $taskID
+     * @param $choiceID
+     * @return bool
+     * @since 0.5.0
+     */
     public function addChoice($countryID, $taskID, $choiceID)
     {
         $db = JFactory::getDbo();
