@@ -147,6 +147,29 @@ class ProgressToolModelTasks extends JModelLegacy
     }
 
     /**
+     * Updates the logic id of a task for a particular country.
+     *
+     * @param $taskID
+     * @param $text
+     * @return bool
+     * @since 0.5.0
+     */
+    public function updateTask($taskID, $text)
+    {
+        $db = JFactory::getDbo();
+        $updateLogic = $db->getQuery(true);
+
+        $columns = array('id', 'task');
+
+        $updateLogic
+            ->insert($db->quoteName('#__pt_task'))
+            ->columns($db->quoteName($columns))
+            ->values($taskID . ', ' . $db->quote($text));
+
+        return $db->setQuery($updateLogic . " ON DUPLICATE KEY UPDATE `task` = VALUES(`task`)")->execute();
+    }
+
+    /**
      * Removes a particular choice from a task.
      *
      * @param $countryID

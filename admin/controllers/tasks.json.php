@@ -14,6 +14,24 @@
  */
 class ProgressToolControllerTasks extends JControllerLegacy
 {
+    public function updateTask()
+    {
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+
+        $model = $this->getModel('tasks');
+        $app = JFactory::getApplication();
+        $input = $app->input;
+
+        $taskID = $input->getInt('taskID', 0);
+        $text = $input->getString('text', '');
+
+        echo json_encode(
+            array(
+                "status" => (!$model->updateTask($taskID, $text) ? "failure" : "success")
+            )
+        );
+    }
+
     public function removeChoice()
     {
         JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));

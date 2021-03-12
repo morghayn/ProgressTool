@@ -24,6 +24,32 @@ function focusChoiceID(id)
 }
 
 /**
+ * Updates a tasks text via AJAX call.
+ *
+ * @param text
+ */
+function updateTask(text)
+{
+    let token = jQuery("#token").attr("name")
+
+    jQuery.ajax(
+        {
+            type: 'POST',
+            data:
+                {
+                    [token]: "1",
+                    task: "tasks.updateTask",
+                    format: "json",
+                    taskID: focusedTaskID,
+                    text: text
+                },
+            success: () => console.log('Saved task text.'),
+            error: () => alert('Failed to save task text.'),
+        }
+    )
+}
+
+/**
  * Removes choice via AJAX call.
  */
 function removeChoice()

@@ -105,8 +105,8 @@ body {
     background-color: mediumseagreen;
 }
 
-.heading #task:hover,
-.heading #task:focus {
+.heading .task-h1:hover,
+.heading .task-h1:focus {
     color: black;
     background-color: white;
 }
