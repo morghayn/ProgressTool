@@ -306,7 +306,7 @@ or do something with JLayouts. */
     margin: auto 1rem !important;
 }
 
-.task .buttons {
+.task .task-buttons {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
     margin-left: 2rem;
@@ -316,19 +316,19 @@ or do something with JLayouts. */
     gap: 3rem;
 }
 
-.task .buttons .logicToggle {
+.task .task-buttons .logicToggle {
     display: flex;
     align-items: center;
     border: 0.05rem solid black;
 }
 
-.task .buttons .logicToggle button {
+.task .task-buttons .logicToggle button {
     border: none;
     height: 100%;
     padding: 0.75rem 0;
 }
 
-.task .buttons .addChoice {
+.task .task-buttons .addChoice {
     padding: 0.75rem 0;
 }
 
@@ -348,16 +348,16 @@ or do something with JLayouts. */
     background-color: mediumseagreen;
 }
 
-.task #choices {
+.task .task-choices {
     --colourHex: #000000;
     border-top: 0.15rem var(--colourHex) solid;
 }
 
-#choices table thead tr {
+.task-choices table thead tr {
     background-color: white !important;
 }
 
-#choices table thead tr th {
+.task-choices table thead tr th {
     color: #707070 !important;
 }
 

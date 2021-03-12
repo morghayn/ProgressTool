@@ -18,7 +18,8 @@
                 </thead>
                 <tbody>
                     <?php foreach ($this->choices as $choice): ?>
-                        <tr onclick="addChoice()">
+                        <?php $addChoiceID = 'a-c-' . $choice->id; ?>
+                        <tr id="<?php echo $addChoiceID; ?>">
                             <td><?php echo $choice->id; ?></td>
                             <td><?php echo $choice->question_id; ?></td>
                             <td><?php echo $choice->choice; ?></td>
@@ -30,3 +31,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    <?php foreach ($this->choices as $choice): ?>
+        document.getElementById('<?php echo 'a-c-' . $choice->id; ?>')
+            .addEventListener("click", () =>
+            {
+                focusChoiceID('<?php echo $choice->id; ?>')
+                addChoice()
+            })
+    <?php endforeach; ?>
+</script>

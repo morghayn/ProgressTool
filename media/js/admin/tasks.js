@@ -5,14 +5,22 @@ let focusedChoiceID
 
 function focusTask(id)
 {
+    focusedTask = document.getElementById(id)
+}
+
+function focusTaskID(id)
+{
     focusedTaskID = id
-    focusedTask = document.getElementById(focusedTaskID)
 }
 
 function focusChoice(id)
 {
+    focusedChoice = document.getElementById(id)
+}
+
+function focusChoiceID(id)
+{
     focusedChoiceID = id
-    focusedChoice = document.getElementById(focusedChoiceID)
 }
 
 /**
@@ -31,8 +39,8 @@ function removeChoice()
                     task: "tasks.removeChoice",
                     format: "json",
                     countryID: countryID,
-                    taskID: focusedTaskID.substring(7),
-                    choiceID: focusedChoiceID.substring(9)
+                    taskID: focusedTaskID,
+                    choiceID: focusedChoiceID
                 },
             success: () => focusedChoice.outerHTML = '',
             error: () => alert('Failed to remove choice.'),
@@ -47,12 +55,11 @@ function removeChoice()
  */
 function logicToggle(logic)
 {
-    let logicToggle = focusedTask.querySelector('#buttons').querySelector('#logicToggle')
-
-    let or = logicToggle.querySelector('#or')
-    let and = logicToggle.querySelector('#and')
-
     let token = jQuery("#token").attr("name")
+    let orLogicID = 'u-t-' + focusedTaskID + '-l-0'
+    let andLogicID = 'u-t-' + focusedTaskID + '-l-1'
+    let orElem = document.getElementById(orLogicID)
+    let andElem = document.getElementById(andLogicID)
 
     jQuery.ajax(
         {
@@ -63,20 +70,20 @@ function logicToggle(logic)
                     task: "tasks.updateLogicID",
                     format: "json",
                     countryID: countryID,
-                    taskID: focusedTaskID.substring(7),
-                    logicID: (logic === 'or' ? 0 : 1)
+                    taskID: focusedTaskID,
+                    logicID: (logic === 0 ? 0 : 1)
                 },
             success: () =>
             {
-                if (logic === 'or')
+                if (logic === 0)
                 {
-                    or.classList.add('active')
-                    and.classList.remove('active')
+                    orElem.classList.add('active')
+                    andElem.classList.remove('active')
                 }
-                else if (logic === 'and')
+                else if (logic === 1)
                 {
-                    and.classList.add('active')
-                    or.classList.remove('active')
+                    andElem.classList.add('active')
+                    orElem.classList.remove('active')
                 }
             },
             error: () => alert('Failed to update logic.'),
@@ -136,8 +143,8 @@ function openModal()
  */
 function toggleTask()
 {
-    let buttons = focusedTask.querySelector('#buttons')
-    let choices = focusedTask.querySelector('#choices')
+    let buttons = focusedTask.querySelector('.task-buttons')
+    let choices = focusedTask.querySelector('.task-choices')
     buttons.style.display = buttons.style.display === 'flex' ? 'none' : 'flex';
     choices.style.display = choices.style.display === 'block' ? 'none' : 'block';
 }
@@ -147,8 +154,8 @@ function toggleTask()
  */
 function toggleTasks(open)
 {
-    let buttons = document.querySelectorAll('#buttons')
-    let choices = document.querySelectorAll('#choices')
+    let buttons = document.querySelectorAll('.task-buttons')
+    let choices = document.querySelectorAll('.task-choices')
     buttons.forEach(e => e.style.display = open ? 'flex' : 'none')
     choices.forEach(e => e.style.display = open ? 'block' : 'none')
 }
