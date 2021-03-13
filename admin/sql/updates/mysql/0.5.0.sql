@@ -84,6 +84,7 @@ CREATE TABLE `#__pt_category_section`
     `category_id`   	TINYINT UNSIGNED NOT NULL,
     `section_id`    	TINYINT UNSIGNED NOT NULL,
     `start_percent`		TINYINT UNSIGNED NOT NULL,
+    `finish_percent`    TINYINT UNSIGNED NOT NULL,
 
     CONSTRAINT id PRIMARY KEY (category_id, section_id),
     FOREIGN KEY (category_id) REFERENCES `#__pt_category` (id),
@@ -94,24 +95,24 @@ CREATE TABLE `#__pt_category_section`
     DEFAULT CHARSET = utf8mb4
     DEFAULT COLLATE = utf8mb4_unicode_ci;
 
-INSERT INTO `#__pt_category_section` (`category_id`, `section_id`, `start_percent`)
-VALUES (1, 1, 0),
-       (1, 2, 5),
-       (1, 3, 20),
-       (1, 4, 40),
-       (1, 5, 50),
-       (1, 6, 60),
+INSERT INTO `#__pt_category_section` (`category_id`, `section_id`, `start_percent`, `finish_percent`)
+VALUES (1, 1, 0, 4),
+       (1, 2, 5, 19),
+       (1, 3, 20, 39),
+       (1, 4, 40, 49),
+       (1, 5, 50, 59),
+       (1, 6, 60, 101),
 
-       (2, 2, 0),
-       (2, 3, 20),
-       (2, 4, 40),
-       (2, 5, 60),
-       (2, 6, 70),
+       (2, 2, 0, 19),
+       (2, 3, 20, 39),
+       (2, 4, 40, 59),
+       (2, 5, 60, 69),
+       (2, 6, 70, 101),
 
-       (3, 2, 0),
-       (3, 3, 20),
-       (3, 4, 50),
-       (3, 6, 80);
+       (3, 2, 0, 19),
+       (3, 3, 20, 49),
+       (3, 4, 50, 79),
+       (3, 6, 80, 101);
 
 /* */
 
