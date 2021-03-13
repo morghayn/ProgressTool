@@ -79,10 +79,13 @@ class ProgressToolModelMetrics extends JModelItem
 
         $columns = array('CA.id', 'CA.category', 'CA.colour_hex', 'CA.colour_rgb');
 
+        // Selections for project total selection and category total selections
+        $projectTotal = 'SUM((IF(' . $db->quoteName('PC.project_id') . ' = ' . $db->quote($projectID) . ', QC.weight, 0)))';
+        $categoryTotal = 'SUM(QC.weight)';
+
         $getCategories
             ->select($db->quoteName($columns))
-            ->select('SUM(QC.weight) AS categoryTotal')
-            ->select('SUM((IF(' . $db->quoteName('PC.project_id') . ' = ' . $db->quote($projectID) . ', QC.weight, 0))) AS projectTotal')
+            ->select('ROUND((' . $projectTotal . ' / ' . $categoryTotal . ') * 100) AS progress')
             ->from($db->quoteName('#__pt_question_choice', 'QC'))
             ->innerJoin($db->quoteName('#__pt_question', 'Q') . ' ON ' . $db->quoteName('QC.question_id') . ' = ' . $db->quoteName('Q.id'))
             ->innerJoin($db->quoteName('#__pt_question_country', 'CO') . ' ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('CO.question_id'))

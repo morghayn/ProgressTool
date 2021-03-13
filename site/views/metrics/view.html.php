@@ -23,7 +23,7 @@ class ProgressToolViewMetrics extends JViewLegacy
      *
      * @since 0.5.0
      */
-    protected $countryID, $projectID, $tasks, $categories, $progress;
+    protected $countryID, $projectID, $tasks, $categories;
 
     /**
      * Renders view.
@@ -47,27 +47,9 @@ class ProgressToolViewMetrics extends JViewLegacy
         $model = parent::getModel();
         $this->tasks = $model->getTasks($this->countryID, $this->projectID);
         $this->categories = $model->getCategories($this->countryID, $this->projectID);
-        $this->setProgress();
 
         $this->prepareDocument();
         parent::display($tpl);
-    }
-
-    /**
-     * Calculates and sets the progress percentage of this progress for each category.
-     *
-     * @since 0.5.0
-     */
-    private function setProgress()
-    {
-        $this->progress = array();
-        foreach ($this->categories as $category)
-        {
-            array_push(
-                $this->progress,
-                intval(($category->projectTotal / $category->categoryTotal) * 100)
-            );
-        }
     }
 
     /**

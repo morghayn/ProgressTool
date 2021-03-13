@@ -9,7 +9,7 @@
                     style="background-color: <?php echo $category->colour_hex; ?>;"
                     onclick="toggleDisplay('t-l-<?php echo $category->id; ?>')">
                 <?php echo $category->category; ?>
-                <span>(<?php echo $this->progress[$category->id - 1]; ?>%)</span>
+                <span>(<?php echo $category->progress; ?>%)</span>
             </button>
 
             <!-- category task list -->
