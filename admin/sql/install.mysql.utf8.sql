@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS `#__pt_question`;
 DROP TABLE IF EXISTS `#__pt_project`;
 DROP TABLE IF EXISTS `#__pt_approval_question`;
 DROP TABLE IF EXISTS `#__pt_task`;
+DROP TABLE IF EXISTS `#__pt_category_section`;
 DROP TABLE IF EXISTS `#__pt_section`;
 DROP TABLE IF EXISTS `#__pt_category`;
 DROP TABLE IF EXISTS `#__pt_project_type`;
@@ -75,6 +76,42 @@ VALUES (1, 'Awareness', 'awareness'),
        (4, 'Post-Development', 'post-development'),
        (5, 'Construction', 'construction'),
        (6, 'Operation', 'operation');
+
+/* */
+
+CREATE TABLE `#__pt_category_section`
+(
+    `category_id`   	TINYINT UNSIGNED NOT NULL,
+    `section_id`    	TINYINT UNSIGNED NOT NULL,
+    `start_percent`		TINYINT UNSIGNED NOT NULL,
+
+    CONSTRAINT id PRIMARY KEY (category_id, section_id),
+    FOREIGN KEY (category_id) REFERENCES `#__pt_category` (id),
+    FOREIGN KEY (section_id) REFERENCES `#__pt_section` (id)
+)
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 0
+    DEFAULT CHARSET = utf8mb4
+    DEFAULT COLLATE = utf8mb4_unicode_ci;
+
+INSERT INTO `#__pt_category_section` (`category_id`, `section_id`, `start_percent`)
+VALUES (1, 1, 0),
+       (1, 2, 5),
+       (1, 3, 20),
+       (1, 4, 40),
+       (1, 5, 50),
+       (1, 6, 60),
+
+       (2, 2, 0),
+       (2, 3, 20),
+       (2, 4, 40),
+       (2, 5, 60),
+       (2, 6, 70),
+
+       (3, 2, 0),
+       (3, 3, 20),
+       (3, 4, 50),
+       (3, 6, 80);
 
 /* */
 
