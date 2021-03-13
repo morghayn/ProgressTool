@@ -65,8 +65,7 @@ class ProgressToolModelMetrics extends JModelItem
     }
 
     /**
-     * Retrieves the categories within the progress tool. Returns an additional field -- the total weight among all the choices
-     * within that category.
+     * Retrieves the timeline categories. Also calculates and returns project progress within each category.
      *
      * @param int $countryID the ID of the country.
      * @return object list of all the categories within the progress tool.
@@ -77,7 +76,12 @@ class ProgressToolModelMetrics extends JModelItem
         $db = JFactory::getDbo();
         $getCategories = $db->getQuery(true);
 
-        $columns = array('CA.id', 'CA.category', 'CA.colour_hex', 'CA.colour_rgb');
+        $columns = array(
+            'id',
+            'category',
+            'colour_hex',
+            'colour_rgb'
+        );
 
         // Selections for project total selection and category total selections
         $projectTotal = 'SUM((IF(' . $db->quoteName('PC.project_id') . ' = ' . $db->quote($projectID) . ', QC.weight, 0)))';

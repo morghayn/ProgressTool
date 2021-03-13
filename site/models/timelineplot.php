@@ -50,7 +50,7 @@ class ProgressToolModelTimelinePlot extends JModelLegacy
     }
 
     /**
-     * Retrieves object list comprising of the categories.
+     * Retrieves the timeline categories.
      *
      * @return object
      * @since 0.5.5
@@ -75,38 +75,34 @@ class ProgressToolModelTimelinePlot extends JModelLegacy
         return $db->setQuery($getCategories)->loadObjectList();
     }
 
+    /**
+     * Returns the progress percent of a particular project for each category.
+     *
+     * @param int $countryID
+     * @param int $projectID
+     * @return object
+     * @since 0.5.0
+     */
     public function getProjectProgress($countryID, $projectID)
     {
         $db = JFactory::getDbo();
         $getCategories = $db->getQuery(true);
 
+        // Selections for project total selection and category total selections
+        $projectTotal = 'SUM((IF(' . $db->quoteName('PC.project_id') . ' = ' . $db->quote($projectID) . ', QC.weight, 0)))';
+        $categoryTotal = 'SUM(QC.weight)';
+
         $getCategories
-            ->select('SUM(QC.weight) AS categoryTotal')
-            ->select('SUM((IF(' . $db->quoteName('PC.project_id') . ' = ' . $db->quote($projectID) . ', QC.weight, 0))) AS projectTotal')
+            ->select('ROUND((' . $projectTotal . ' / ' . $categoryTotal . ') * 100) AS progress')
             ->from($db->quoteName('#__pt_question_choice', 'QC'))
-            ->innerjoin($db->quoteName('#__pt_question', 'Q') . ' ON ' . $db->quoteName('QC.question_id') . ' = ' . $db->quoteName('Q.id'))
-            ->innerjoin($db->quoteName('#__pt_question_country', 'CO') . ' ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('CO.question_id'))
-            ->innerjoin($db->quoteName('#__pt_category', 'CA') . ' ON ' . $db->quoteName('Q.category_id') . ' = ' . $db->quoteName('CA.id'))
-            ->leftjoin($db->quoteName('#__pt_project_choice', 'PC') . ' ON ' . $db->quoteName('PC.choice_id') . ' = ' . $db->quoteName('QC.id') . ' AND ' . $db->quoteName('PC.project_id') . ' = ' . $db->quote($projectID))
+            ->innerJoin($db->quoteName('#__pt_question', 'Q') . ' ON ' . $db->quoteName('QC.question_id') . ' = ' . $db->quoteName('Q.id'))
+            ->innerJoin($db->quoteName('#__pt_question_country', 'CO') . ' ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('CO.question_id'))
+            ->innerJoin($db->quoteName('#__pt_category', 'CA') . ' ON ' . $db->quoteName('Q.category_id') . ' = ' . $db->quoteName('CA.id'))
+            ->leftJoin($db->quoteName('#__pt_project_choice', 'PC') . ' ON ' . $db->quoteName('PC.choice_id') . ' = ' . $db->quoteName('QC.id') . ' AND ' . $db->quoteName('PC.project_id') . ' = ' . $db->quote($projectID))
             ->where($db->quoteName('CO.country_id') . ' = ' . $db->quote($countryID))
             ->group('CA.id')
             ->order('CA.id ASC');
 
-        return $db->setQuery($getCategories)->loadObjectList();
+        return $db->setQuery($getCategories)->loadColumn();
     }
-
-    /*
-    public function getProjects()
-    {
-        $db = JFactory::getDbo();
-        $getProjects = $db->getQuery(true);
-
-        $getProjects
-            ->select($db->quoteName('P.id'))
-            ->from($db->quoteName('#__pt_project', 'P'))
-            ->where($db->quoteName('deactivated') . ' != 1');
-
-        return $db->setQuery($getProjects)->loadColumn();
-    }
-    */
 }

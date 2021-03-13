@@ -57,7 +57,7 @@ class ProgressToolViewTimelinePlot extends JViewLegacy
 
         foreach ($this->projects as $project)
         {
-            $projectProgress = $model->getProjectProgress($this->countryID, $project->id);
+            $progress = $model->getProjectProgress($this->countryID, $project->id);
             foreach ($this->categories as $category)
             {
                 array_push(
@@ -67,8 +67,8 @@ class ProgressToolViewTimelinePlot extends JViewLegacy
                         'colour_rgb' => $category->colour_rgb,
                         'icon_path' => $this->getProjectTypeIconPath($project->type),
                         'y' => rand($yPre[$category->id - 1], $yCur[$category->id]),
-                        'x' => intval(($projectProgress[$category->id - 1]->projectTotal / $projectProgress[$category->id - 1]->categoryTotal) * 100),
-                        'progress' => intval(($projectProgress[$category->id - 1]->projectTotal / $projectProgress[$category->id - 1]->categoryTotal) * 100)
+                        'x' => $progress[$category->id - 1],
+                        'progress' => $progress[$category->id - 1]
                     )
                 );
             }
@@ -77,6 +77,13 @@ class ProgressToolViewTimelinePlot extends JViewLegacy
         return $plots;
     }
 
+    /**
+     * Hardcoded function to return filepath for project type icons.
+     *
+     * @param $type
+     * @return string
+     * @since 0.5.0
+     */
     public function getProjectTypeIconPath($type)
     {
         $path = "/media/com_progresstool/icons/";
