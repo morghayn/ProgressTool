@@ -1,9 +1,9 @@
 <?php defined('_JEXEC') or die;
 
 /**
- * (Admin) Class ProgressToolModelPools
+ * (Admin) Class ProgressToolModelTasks
  *
- * Model for back-end question pools functionality.
+ * Model for back-end tasks functionality.
  *
  * @package ProgressTool
  * @subpackage admin
