@@ -77,10 +77,10 @@ class ProgressToolModelMetrics extends JModelItem
         $getCategories = $db->getQuery(true);
 
         $columns = array(
-            'id',
-            'category',
-            'colour_hex',
-            'colour_rgb'
+            'CA.id',
+            'CA.category',
+            'CA.colour_hex',
+            'CA.colour_rgb'
         );
 
         // Selections for project total selection and category total selections
@@ -95,7 +95,7 @@ class ProgressToolModelMetrics extends JModelItem
             ->innerJoin($db->quoteName('#__pt_question_country', 'CO') . ' ON ' . $db->quoteName('Q.id') . ' = ' . $db->quoteName('CO.question_id'))
             ->innerJoin($db->quoteName('#__pt_category', 'CA') . ' ON ' . $db->quoteName('Q.category_id') . ' = ' . $db->quoteName('CA.id'))
             ->leftJoin($db->quoteName('#__pt_project_choice', 'PC') . ' ON ' . $db->quoteName('PC.choice_id') . ' = ' . $db->quoteName('QC.id') . ' AND ' . $db->quoteName('PC.project_id') . ' = ' . $db->quote($projectID))
-            ->where($db->quoteName('CO.country_id') . ' = ' . $db->quote($countryID))
+            ->where($db->quoteName('CO.country_id') . ' = ' . $countryID)
             ->group('CA.id')
             ->order('CA.id ASC');
 

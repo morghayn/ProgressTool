@@ -17,10 +17,10 @@ class ProgressToolControllerTimelineRedirect extends JControllerLegacy
     public function redirect($key = null, $urlVar = null)
     {
         JSession::checkToken('get') or jexit(JText::_('JINVALID_TOKEN'));
-
         $input = JFactory::getApplication()->input;
-        $categoryID = $input->getInt('categoryID', 0);
+
         $countryID = $input->getInt('countryID', 0);
+        $categoryID = $input->getInt('categoryID', 0);
         $projectID = $input->getInt('projectID', 0);
 
         // Authorization
@@ -28,16 +28,9 @@ class ProgressToolControllerTimelineRedirect extends JControllerLegacy
         Auth::authorize($projectID);
 
         $model = $this->getModel('timelineredirect');
-        $categoryGroups = $model->getCategoryGroups($countryID, $projectID);
-        $redirects = $model->getRedirects($categoryGroups);
+        $progress = $model->getProgress($countryID, $categoryID, $projectID);
+        $redirect = $model->getRedirects($categoryID, $progress);
 
-        if (!empty($redirects[$categoryID]['redirect']))
-        {
-            JFactory::getApplication()->redirect($redirects[$categoryID]['redirect']);
-        }
-        else
-        {
-            JFactory::getApplication()->enqueueMessage('You currently are not on the timeline for this section.', 'error');
-        }
+        JFactory::getApplication()->redirect($redirect);
     }
 }
