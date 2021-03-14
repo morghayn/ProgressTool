@@ -42,7 +42,8 @@ class ProgressToolModelProjects extends JModelLegacy
         $getProjects
             ->select($columns)
             ->from($db->quoteName('#__pt_project', 'P'))
-            ->innerjoin($db->quoteName('#__users', 'U') . 'ON P.user_id = U.id');
+            ->innerjoin($db->quoteName('#__users', 'U') . 'ON P.user_id = U.id')
+            ->where($db->quoteName('P.deactivated') . ' = 0');
 
         return $db->setQuery($getProjects)->loadObjectList();
     }
